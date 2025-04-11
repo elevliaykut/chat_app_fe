@@ -2,7 +2,6 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { BASE_URL } from '../../utils/urls';
-import Routes from '../../utils/Routes';
 import {
 	USER_LOGIN_STARTED,
 } from './types';
