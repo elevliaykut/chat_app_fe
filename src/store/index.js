@@ -2,7 +2,7 @@
 import { persistReducer, persistStore } from 'redux-persist';
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware, { Task } from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import createRootReducer from './reducers';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import rootSagas from './sagas';
