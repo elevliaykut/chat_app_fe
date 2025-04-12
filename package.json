@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
-    "antd": "^4.20.7",
+    "antd": "^4.24.16",
     "async": "^3.2.6",
     "axios": "^1.8.4",
     "babel-plugin-styled-components": "^2.1.4",

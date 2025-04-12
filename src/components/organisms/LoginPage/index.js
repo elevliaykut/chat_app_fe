@@ -34,7 +34,9 @@ const LoginPage = ({
 
 	return (
 		<Body>
-			<p>asd</p>
+			<Form>
+				asd
+			</Form>
 		</Body>
 	);
 };
