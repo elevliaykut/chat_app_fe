@@ -5,27 +5,70 @@ import Image from 'next/image';
 
 const LoginPage = ({
 	loginUser = () => {},
+	userRegister = () => {},
 	error = () => {},
-	isLoading = false,
+	isLoading = true,
 	resetError = () => {},
 }) => {
-	const [gender, setGender] 			= useState();
-	const [username, setUsername]		= useState();
-	const [email, setEmail]				= useState();
-	const [password, setPassword]	    = useState();
-	const [birthDate, setBirthDate]		= useState();
+	const [gender, setGender] 								= useState();
+	const [username, setUsername]							= useState();
+	const [email, setEmail]									= useState();
+	const [password, setPassword]	    					= useState();
+	const [birthDate, setBirthDate]							= useState();
+	const [name, setName]									= useState();
+	const [surname, setSurname]								= useState();
+	const [age, setAge]										= useState();
+	const [phone, setPhone]									= useState();
+	const [isPrivacyChecked, setIsPrivacyChecked] 			= useState(false);
+	const [loginPrivacyChecked, setLoginPrivacyChecked] 	= useState(false);
+	const [emailPrivacyChecked, setEmailPrivacyChecked] 	= useState(false);
+
+	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
+	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
+	const [formOneHeaderVisible, setFormOneHeaderVisible]   = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-	}
 
-	const handleChange = () => {
+			if(loginPrivacyChecked && emailPrivacyChecked) {
+				const data = new FormData();
+				data.append('name', name);
+				data.append('surname', surname);
+				data.append('age', age);
+				data.append('username',username);
+				data.append('email', email);
+				data.append('password', password);
+				data.append('phone', phone);
+				data.append('gender', gender);
+				data.append('birth_date', birthDate);
+				data.append('type', 1);
 
+				userRegister({
+					formData: data
+				});
+			}
 	}
 
 	const genderHandleChange = (e) => {
-		console.log(e?.target?.value);
 		setGender(e?.target?.value);
+	}
+
+	const formOneButtonOnClick = () => {
+		if(isPrivacyChecked) {
+			setSectionOneVisible(false);
+			setSectionTwoVisible(true);
+			setFormOneHeaderVisible(true);
+		}
+	}
+
+	const sectionTwoHeaderOnClick = () => {
+		setSectionOneVisible(true);
+		setSectionTwoVisible(false);
+	}
+
+	const sectionOneHeaderOnClick = () => {
+		setSectionOneVisible(false);
+		setSectionTwoVisible(true);
 	}
 
 	return (
@@ -49,57 +92,163 @@ const LoginPage = ({
 						
 						<div className={styles.leftContentEpisode}>
 							<div className={styles.formContainer}>
-							<form onSubmit={handleSubmit}>
-								<div className={styles.formGroup}>
-								<select
-									id="gender"
-									name="gender"
-									onChange={genderHandleChange}
-									required
-								>
-									<option value="">Seçin</option>
-									<option value="1">Erkek</option>
-									<option value="0">Kadın</option>
-									<option value="other">Diğer</option>
-          						</select>
-								</div>
-								<div className={styles.formGroup}>
-									<input 
-										type="text" 
-										id="username" 
-										placeholder="Rumuz" 
-										onChange={(e) => setUsername(e.target.value)}
-									/>
-								</div>
-								<div className={styles.formGroup}>
-									<input 
-										type="email" 
-										id="email" 
-										placeholder="Email" 
-										onChange={(e) => setEmail(e.target.value)}
-									/>
-								</div>
-								<div className={styles.formGroup}>
-									<input 
-										type="password" 
-										id="password" 
-										placeholder="Şifre" 
-										onChange={(e) => setPassword(e.target.value)}
-									/>
-								</div>
-								<div className={styles.formGroup}>
-								<input
-									type={birthDate ? "date" : "text"}
-									id="birthDate"
-									value={birthDate}
-									onFocus={(e) => e.target.type = 'date'}
-									onBlur={(e) => !e.target.value && (e.target.type = 'text')}
-									onChange={(e) => setBirthDate(e.target.value)}
-									placeholder="Doğum tarihinizi seçin"
-									required
-								/>
-								</div>
-								<button type="submit" className={styles.submitButton}>ÜCRETSİZ KAYIT OL</button>
+								<form onSubmit={handleSubmit}>
+								
+								{sectionOneVisible && (
+									<>
+										{formOneHeaderVisible && (
+											<>
+												<div className={styles.sectionRoute}>
+													<div className={styles.sectionRouteOne} onClick={sectionOneHeaderOnClick}>
+														1
+													</div>
+													<div style={{ color: 'white'}}>
+														----
+													</div>
+													<div className={styles.sectionRouteTwo} onClick={sectionOneHeaderOnClick}>
+														2
+													</div>
+												</div>
+											</>
+										)}
+										<div className={styles.formGroup}>
+											<select
+												id="gender"
+												name="gender"
+												onChange={genderHandleChange}
+												required
+											>
+												<option value="">Seçin</option>
+												<option value="1">Erkek</option>
+												<option value="0">Kadın</option>
+												<option value="other">Diğer</option>
+											</select>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="text" 
+												id="username" 
+												placeholder="Rumuz" 
+												onChange={(e) => setUsername(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="email" 
+												id="email" 
+												placeholder="Email" 
+												onChange={(e) => setEmail(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="password" 
+												id="password" 
+												placeholder="Şifre" 
+												onChange={(e) => setPassword(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input
+												type={birthDate ? "date" : "text"}
+												id="birthDate"
+												value={birthDate}
+												onFocus={(e) => e.target.type = 'date'}
+												onBlur={(e) => !e.target.value && (e.target.type = 'text')}
+												onChange={(e) => setBirthDate(e.target.value)}
+												placeholder="Doğum tarihinizi seçin"
+												required
+											/>
+										</div>
+										<button className={styles.submitButton} onClick={formOneButtonOnClick}>ÜCRETSİZ ÜYE OL</button>
+										<div style={{ marginTop: '20px'}}> 
+											<label style={{ display: "flex" }}>
+												<input
+													style={{ width: '15px'}}
+													type="checkbox"
+													checked={isPrivacyChecked}
+													onChange={(e) => setIsPrivacyChecked(e.target.checked)}
+													required
+												/>
+												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
+											</label>
+										</div>
+									</>
+								)}
+
+								{sectionTwoVisible && (
+									<>
+										<div className={styles.sectionRoute}>
+											<div className={styles.sectionRouteOne} 
+											onClick={sectionTwoHeaderOnClick}>
+												1
+											</div>
+											<div style={{ color: 'white'}}>
+												----
+											</div>
+											<div className={styles.sectionRouteTwo}>
+												2
+											</div>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="text" 
+												id="name" 
+												placeholder="İsim" 
+												onChange={(e) => setName(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="text" 
+												id="surname" 
+												placeholder="Soyisim" 
+												onChange={(e) => setSurname(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="text" 
+												id="age" 
+												placeholder="Yaş" 
+												onChange={(e) => setAge(e.target.value)}
+											/>
+										</div>
+										<div className={styles.formGroup}>
+											<input 
+												type="number" 
+												id="phone" 
+												placeholder="Telefon" 
+												onChange={(e) => setPhone(e.target.value)}
+											/>
+										</div>
+										<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
+										<div style={{ marginTop: '20px'}}> 
+											<label style={{ display: "flex" }}>
+												<input
+													style={{ width: '15px'}}
+													type="checkbox"
+													checked={loginPrivacyChecked}
+													onChange={(e) => setLoginPrivacyChecked(e.target.checked)}
+													required
+												/>
+												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Üyelik Sözleşmesini okudum,kabul ediyorum.</span>
+											</label>
+										</div>
+										<div style={{ marginTop: '5px'}}> 
+											<label style={{ display: "flex" }}>
+												<input
+													style={{ width: '15px'}}
+													type="checkbox"
+													checked={emailPrivacyChecked}
+													onChange={(e) => setEmailPrivacyChecked(e.target.checked)}
+													required
+												/>
+												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
+											</label>
+										</div>
+									</>
+								)}
 							</form>
 							</div>
 						</div>

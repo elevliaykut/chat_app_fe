@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoginPageOrganisms from '../../organisms/LoginPage';
 
-import { loginUser, resetError } from '../../../store/user/actions';
+import { 
+	loginUser, 
+	userRegister,
+	resetError 
+} from '../../../store/user/actions';
 
 
 const mapStateToProps = state => ({
@@ -15,6 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	loginUser: payload => dispatch(loginUser(payload)),
+	userRegister: payload => dispatch(userRegister(payload)),
 	resetError: () => dispatch(resetError()),
 });
 

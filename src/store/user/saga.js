@@ -4,10 +4,13 @@ import Cookies from 'universal-cookie';
 import { BASE_URL } from '../../utils/urls';
 import {
 	USER_LOGIN_STARTED,
+	USER_REGISTER_STARTED
 } from './types';
 import {
 	loginUserSuccess,
-	loginUserError
+	loginUserError,
+	userRegisterSuccess,
+	userRegisterError
 } from './actions';
 
 const cookies = new Cookies();
@@ -16,7 +19,7 @@ function* loginUserTask(action) {
 	const { payload } = action;
 	const { email, password } = payload;
 	try {
-		const response = yield call(axios.post, `${BASE_URL}/admin/login`, {
+		const response = yield call(axios.post, `${BASE_URL}/user/login`, {
 			email,
 			password,
 		});
@@ -33,14 +36,33 @@ function* loginUserTask(action) {
 	}
 }
 
+function* userRegisterTask(action) {
+	const { payload } = action;
+	const { formData } = payload;
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/register`,
+			formData
+		);
+		const { data } = response;
+		yield put(userRegisterSuccess(data));
+	} catch (error) {
+		yield put(userRegisterError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
 	yield takeLatest(USER_LOGIN_STARTED, loginUserTask);
 }
 
+function* watchRegisterUser() {
+	yield takeLatest(USER_REGISTER_STARTED, userRegisterTask);
+}
+
 export default function* saga() {
 	yield all([
-		watchLoginUser()
+		watchRegisterUser()
 	]);
 }
