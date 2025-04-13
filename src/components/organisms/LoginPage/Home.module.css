@@ -1,0 +1,95 @@
+/* RegisterPage.module.css */
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../../utils//imgs/header-bg.jpg'); /* Resminizi buraya ekleyin */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.frame {
+  width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.header {
+  display: flex;
+  padding-top: 2%;
+}
+
+.logoEpisode { 
+}
+
+.loginEpisode {
+    margin-left: auto;
+}
+
+.loginButton {
+    width: 120px;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+}
+
+.loginButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.contentEpisode {
+  width: 100%;
+  display: flex;
+  margin-top: 3%;
+}
+
+.leftContentEpisode {
+  width: 50%;
+}
+
+.rightContentEpisode {
+  width: 50%;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background-color: #218838;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.submitButton:hover {
+  background-color: #86C695;
+}
