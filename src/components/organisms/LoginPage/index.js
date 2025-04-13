@@ -50,6 +50,13 @@ const LoginPage = ({
 			}
 	}
 
+	const loginHandleSubmit = async (e) => {
+		e.preventDefault();
+
+		console.log("username: ", username);
+		console.log("password: ", password);
+	}
+
 	const genderHandleChange = (e) => {
 		setGender(e?.target?.value);
 	}
@@ -90,8 +97,11 @@ const LoginPage = ({
 				<>
 					<div className={styles.overlay}>
 						<div className={styles.modal}>
+							<div style={{ textAlign: 'right', cursor: 'pointer'}} onClick={onClose}>
+								X
+							</div>
 							<h2>Giriş Yap</h2>
-							<form onSubmit={handleSubmit}>
+							<form onSubmit={loginHandleSubmit}>
 								<label style={{ fontSize: '14px', fontWeight: 'bold'}}>Kullanıcı Adı</label>
 								<input
 									type="text"
