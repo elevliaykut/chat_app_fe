@@ -26,6 +26,7 @@ const LoginPage = ({
 	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
 	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
 	const [formOneHeaderVisible, setFormOneHeaderVisible]   = useState(false);
+	const [loginModalVisible, setLoginModalVisible]			= useState(true);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -71,8 +72,63 @@ const LoginPage = ({
 		setSectionTwoVisible(true);
 	}
 
+	const loginButtonOnClick = () => {
+		setLoginModalVisible(true);
+	}
+
+	const onClose = () => {
+		setLoginModalVisible(false);
+	}
+
+	const handleLogin = () => {
+
+	}
+
 	return (
 		<>
+			{loginModalVisible && (
+				<>
+					<div className={styles.overlay}>
+						<div className={styles.modal}>
+							<h2>Giriş Yap</h2>
+							<form onSubmit={handleSubmit}>
+								<label style={{ fontSize: '14px', fontWeight: 'bold'}}>Kullanıcı Adı</label>
+								<input
+									type="text"
+									placeholder="Kullanıcı Adı"
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
+									required
+								/>
+								<label style={{ fontSize: '14px', fontWeight: 'bold',marginTop: '13px'}}>Şifre</label>
+								<input
+									type="password"
+									placeholder="Şifre"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+								/>
+								<button 
+									type="submit" 
+									disabled={isLoading} 
+									style={{ 
+										height: '52px',
+										marginTop: '12px',
+										borderRadius: '8px', 
+										fontSize: '18px'
+									}}>
+									{isLoading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+								</button>
+								<label style={{
+									fontSize: '16px',
+									marginTop: '15px',
+									cursor: 'pointer'
+								}}>Şifremi Unuttum ?</label>
+							</form>
+						</div>
+    				</div>
+				</>
+			)}
 			<div className={styles.container}>
 				<div className={styles.frame}>
 					<div className={styles.header}>
@@ -82,7 +138,7 @@ const LoginPage = ({
 								alt="logo"
 							/>
 						</div>
-						<div className={styles.loginEpisode}>
+						<div className={styles.loginEpisode} onClick={loginButtonOnClick}>
 							<button className={styles.loginButton}>GİRİŞ YAP</button>
 						</div>
 					</div>
