@@ -5,6 +5,7 @@ import {
 	USER_REGISTER_STARTED,
 	USER_REGISTER_SUCCEEDED,
 	USER_REGISTER_FAILED,
+	USER_REGISTER_COMPLETED_RESET,
     USER_RESET_ERROR
 } from './types';
 
@@ -25,6 +26,10 @@ export const loginUserError = error => ({
 
 export const resetError = () => ({
 	type: USER_RESET_ERROR,
+});
+
+export const userRegisterCompletedReset = () => ({
+	type: USER_REGISTER_COMPLETED_RESET
 });
 
 export const userRegister = values => ({

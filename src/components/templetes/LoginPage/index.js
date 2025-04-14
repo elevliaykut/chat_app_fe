@@ -5,21 +5,23 @@ import LoginPageOrganisms from '../../organisms/LoginPage';
 import { 
 	loginUser, 
 	userRegister,
-	resetError 
+	resetError,
+	userRegisterCompletedReset 
 } from '../../../store/user/actions';
 
 
 const mapStateToProps = state => ({
 	isUserLoggedIn: state?.user?.isUserLoggedIn,
 	error: state?.user?.error,
-	content: state?.content?.content?.data,
 	token: state?.user?.token,
 	isLoading: state?.user?.isLoading,
+	registerCompleted: state?.user?.registerCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
 	loginUser: payload => dispatch(loginUser(payload)),
 	userRegister: payload => dispatch(userRegister(payload)),
+	userRegisterCompletedReset: () => dispatch(userRegisterCompletedReset()),
 	resetError: () => dispatch(resetError()),
 });
 

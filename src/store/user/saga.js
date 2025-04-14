@@ -17,19 +17,20 @@ const cookies = new Cookies();
 
 function* loginUserTask(action) {
 	const { payload } = action;
-	const { email, password } = payload;
+	const { username, password } = payload;
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/login`, {
-			email,
-			password,
+			username: username,
+			password: password,
 		});
 		const { data } = response;
 		yield put(loginUserSuccess(data));
-		cookies.set('chatAppToken', data?.data?.token, {
+		cookies.set('chatAppToken', data?.token, {
 			path: '/',
 		});
 		cookies.set('userName', data?.data?.name);
 		cookies.set('userSurname', data?.data?.surname);
+		window.location = '/home';
 	} catch (error) {
 		yield put(loginUserError(error?.response?.data));
 		console.log(error?.response);
@@ -63,6 +64,7 @@ function* watchRegisterUser() {
 
 export default function* saga() {
 	yield all([
+		watchLoginUser(),
 		watchRegisterUser()
 	]);
 }

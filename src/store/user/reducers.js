@@ -5,7 +5,8 @@ import {
 	USER_RESET_ERROR,
 	USER_REGISTER_STARTED,
 	USER_REGISTER_SUCCEEDED,
-	USER_REGISTER_FAILED
+	USER_REGISTER_FAILED,
+	USER_REGISTER_COMPLETED_RESET
 } from './types';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
 	status: '',
 	token: '',
 	isUserLoggedIn: false,
+	registerCompleted: false,
 	error: null,
 	info: {},
 	isLoading: false
@@ -34,7 +36,7 @@ const user = (state = initialState, action) => {
 		case USER_LOGIN_SUCCEEDED:
 			return {
 				...state,
-				token: payload.data.token,
+				token: payload.token,
 				isUserLoggedIn: true,
 				firstName: payload?.data?.name,
 				lastName: payload?.data?.surname,
@@ -57,18 +59,26 @@ const user = (state = initialState, action) => {
 		case USER_REGISTER_STARTED:
 			return {
 				...state,
+				registerCompleted: false,
 				isLoading: true
 			};
 		case USER_REGISTER_SUCCEEDED:
 			return {
 				...state,
 				isLoading: false,
+				registerCompleted: true,
 			};
 		case USER_REGISTER_FAILED:
 			return {
 				...state,
 				isLoading: false,
+				registerCompleted: false,
 				error: payload
+			};
+		case USER_REGISTER_COMPLETED_RESET:
+			return {
+				...state,
+				registerCompleted: false
 			};
 		default:
 			return state;

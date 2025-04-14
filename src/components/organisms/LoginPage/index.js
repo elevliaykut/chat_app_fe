@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 import LOGO from '../../../utils/imgs/logo.png';
+import DARKLOGO from '../../../utils/imgs/gs-logo-dark.png';
 import Image from 'next/image';
+import ThemeConfig from '@/src/utils/ThemeConfig';
 
 const LoginPage = ({
 	loginUser = () => {},
@@ -9,6 +11,8 @@ const LoginPage = ({
 	error = () => {},
 	isLoading = true,
 	resetError = () => {},
+	registerCompleted = false,
+	userRegisterCompletedReset = () => {}
 }) => {
 	const [gender, setGender] 								= useState();
 	const [username, setUsername]							= useState();
@@ -26,7 +30,7 @@ const LoginPage = ({
 	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
 	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
 	const [formOneHeaderVisible, setFormOneHeaderVisible]   = useState(false);
-	const [loginModalVisible, setLoginModalVisible]			= useState(true);
+	const [loginModalVisible, setLoginModalVisible]			= useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -50,11 +54,29 @@ const LoginPage = ({
 			}
 	}
 
+	useEffect(() => {
+		userRegisterCompletedReset();
+	},[]);
+
+	useEffect(() => {
+		if(registerCompleted) {
+			loginUser({
+				username: username,
+				password: password
+			})
+		}
+	},[registerCompleted]);
+
 	const loginHandleSubmit = async (e) => {
 		e.preventDefault();
 
 		console.log("username: ", username);
 		console.log("password: ", password);
+
+		loginUser({
+			username: username,
+			password: password
+		})
 	}
 
 	const genderHandleChange = (e) => {
@@ -85,11 +107,12 @@ const LoginPage = ({
 
 	const onClose = () => {
 		setLoginModalVisible(false);
+		resetError();
 	}
 
-	const handleLogin = () => {
-
-	}
+	useEffect(() => {
+		resetError();
+	},[]);
 
 	return (
 		<>
@@ -100,7 +123,13 @@ const LoginPage = ({
 							<div style={{ textAlign: 'right', cursor: 'pointer'}} onClick={onClose}>
 								X
 							</div>
-							<h2>Giriş Yap</h2>
+							<div className={styles.loginLogoEpisode}>
+								<Image
+									src={DARKLOGO} // Görselin path'i burada yer alacak. "public" klasörüne yükleyin.
+									alt="logo"
+								/>
+							</div>
+							<label style={{ fontSize: '14px', fontWeight: 'bold', color: ThemeConfig.error, paddingTop: '5px'}}>{error?.message}</label>
 							<form onSubmit={loginHandleSubmit}>
 								<label style={{ fontSize: '14px', fontWeight: 'bold'}}>Kullanıcı Adı</label>
 								<input

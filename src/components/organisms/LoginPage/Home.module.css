@@ -23,6 +23,10 @@
 .logoEpisode { 
 }
 
+.loginLogoEpisode {
+  text-align: center;
+}
+
 .loginEpisode {
     margin-left: auto;
 }

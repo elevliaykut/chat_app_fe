@@ -9,3 +9,4 @@ export const USER_RESET_ERROR = `${category}__RESET_ERROR`;
 export const USER_REGISTER_STARTED = `${category}__USER_REGISTER__STARTED`;
 export const USER_REGISTER_SUCCEEDED = `${category}__USER_REGISTER__SUCCEEDED`;
 export const USER_REGISTER_FAILED = `${category}__USER_REGISTER__FAILED`;
+export const USER_REGISTER_COMPLETED_RESET = `${category}__USER_REGISTER_COMPLETED_RESET`;
