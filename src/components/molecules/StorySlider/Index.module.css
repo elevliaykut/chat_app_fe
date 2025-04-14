@@ -1,0 +1,59 @@
+/* Story Slider Container */
+.storySliderContainer {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0; /* Üst ve alt padding */
+    display: flex;
+    justify-content: center; /* Ortalamak için */
+}
+
+/* Frame için genişlik ayarlaması */
+.frame {
+    width: 70%; /* Yüzdeyle genişlik, container içinde ortalanacak */
+    margin: auto;
+}
+
+/* Hikaye Slider */
+.storySlider {
+    display: flex;
+    gap: 15px; /* Aradaki boşluğu ayarlıyoruz */
+    justify-content: center; /* Öğeleri yatayda ortalamak */
+    transition: transform 0.3s ease; /* Kaydırma animasyonu */
+}
+
+/* Her bir hikaye öğesi */
+.storyItem {
+    width: 100px; /* Hikaye öğesinin genişliği */
+    height: 100px; /* Hikaye öğesinin yüksekliği */
+    border-radius: 50%; /* Yuvarlak yapmak için */
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid transparent; /* Kenarlık transparan */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+/* Resim */
+.storyItem img {
+    width: 100%; /* Resmin genişliği */
+    height: 100%; /* Resmin yüksekliği */
+    object-fit: cover; /* Resmin kutuya düzgün şekilde sığması için */
+    transition: transform 0.3s ease;
+}
+
+/* Hover efekti - Resim büyümesi */
+.storyItem:hover img {
+    transform: scale(1.1); /* Resmi büyütme */
+}
+
+/* Hover durumunda - Gölgelendirme ve border */
+.storyItem:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Resmin etrafına daha belirgin gölge ekleme */
+    border: 2px solid #ddd; /* Çerçeve eklenmesi */
+}
+
+/* Hikaye öğesinin tıklanmasıyla gerçekleşen animasyon */
+.storyItem:active {
+    transform: scale(1.05); /* Tıklama efekti */
+}
