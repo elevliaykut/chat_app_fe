@@ -1,0 +1,77 @@
+.postBox {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    background-color: #fff;
+    font-family: sans-serif;
+    width: 100%;
+    margin: auto;
+    font-family: sans-serif;
+    margin-left: 20px;
+    margin-top: 0px;
+  }
+  
+  .postHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .postHeader input {
+    flex: 1;
+    border: none;
+    font-size: 16px;
+    padding: 8px 0;
+    outline: none;
+    color: #333;
+  }
+  
+  .postFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  
+  .emoji {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .footerRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .charCount {
+    font-size: 13px;
+    color: #999;
+  }
+  
+  .submit-btn {
+    background-color: #a5cfa2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #8dbd88;
+  }
+  

@@ -5,7 +5,7 @@ import ThemeConfig from "@/src/utils/ThemeConfig";
 import TopBanner from '../../molecules/TopBanner';
 import StorySlider from "../../molecules/StorySlider";
 import ProfileEpisode from "../../molecules/ProfileEpisode";
-
+import PostBox from "../../molecules/PostBox";
 const HomePage = () => {
     return (
         <>
@@ -14,7 +14,7 @@ const HomePage = () => {
             <div className={styles.frame}>
                 <div className={styles.content}>
                     <ProfileEpisode/>
-                    
+                    <PostBox/>
                 </div>
             </div>
         </>
