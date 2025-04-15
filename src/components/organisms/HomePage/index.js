@@ -6,6 +6,8 @@ import TopBanner from '../../molecules/TopBanner';
 import StorySlider from "../../molecules/StorySlider";
 import ProfileEpisode from "../../molecules/ProfileEpisode";
 import PostBox from "../../molecules/PostBox";
+import ListPostBox from "../../molecules/ListPostBox";
+
 const HomePage = () => {
     return (
         <>
@@ -14,7 +16,10 @@ const HomePage = () => {
             <div className={styles.frame}>
                 <div className={styles.content}>
                     <ProfileEpisode/>
-                    <PostBox/>
+                    <div style={{ width: '100%'}}>
+                        <PostBox/>
+                        <ListPostBox/>
+                    </div>
                 </div>
             </div>
         </>

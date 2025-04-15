@@ -1,0 +1,116 @@
+.container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ddd;
+    width: 100%;
+    font-family: sans-serif;
+    margin-left: 20px;
+    margin-bottom: 200px;
+    margin-top: 25px;
+}
+
+.topEpisode {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 20px 10px 20px;
+}
+
+.content {
+}
+
+.leftEpisode {
+    display: flex;
+}
+
+.profileEpisode {
+}
+
+.profileDetailEpisode {
+
+}
+
+.usernameEpisode {
+    margin-left: 12px;
+    margin-top: 6px;
+}
+
+.usernameEpisode label {
+    font-size: 15px;
+    color: #131313;
+}
+
+.info {
+    margin-left: 12px;
+    margin-top: 4px;
+}
+
+.info label {
+    font-size: 15px;
+    color: #131313;
+}
+
+.statusEpisode{
+    margin-left: 52px;
+    margin-top: 15px;
+}
+
+.statusEpisode label{
+    font-size: 15px;
+    color: #131313;
+}
+
+.rightEpisode {
+    margin-left: auto;
+    margin-top: 13px;
+    margin-right: 7px;
+}
+
+.contentText {
+    padding: 12px 30px 10px 20px;
+    line-height: 32px;
+}
+
+.contentText label {
+    font-size: 18px;
+    color: #131313;
+}
+
+.contentImage {
+}
+
+.footer {
+    display: flex;
+}
+
+.duzLine {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.line {
+    width: 1px;
+    height: 100%;
+    background-color: #ddd;
+}
+
+.footerText {
+    font-size: 16px;
+}
+
+.footerLike {
+    display: flex;
+}
+
+.footerMessage {
+    display: flex;
+}
+
+.footerFavorite {
+    display: flex;
+}
+
+.footerSmile {
+    display: flex;
+}
