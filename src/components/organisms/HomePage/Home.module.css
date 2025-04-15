@@ -1,0 +1,8 @@
+.frame {
+    width: 70%;
+    margin: auto;
+}
+
+.content {
+    display: flex
+}
