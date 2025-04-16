@@ -1,0 +1,31 @@
+.container {
+    width: 100%;
+}
+
+.frame{
+    width: 70%;
+    margin: auto;
+    border: 1px solid #e9eaeb;
+    display: flex;
+}
+
+.menu {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.menu:hover {
+    background-color: #e9eaeb;
+}
+
+.menu:active {
+    background-color: #e9eaeb;
+}
+
+.menu label {
+    font-size: 13px;
+}
+
