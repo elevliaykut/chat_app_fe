@@ -2,6 +2,7 @@ import React from "react";
 import styles from './Index.module.css';
 import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
+
 const SearchUserProfile = ({
     image = "",
     username = "",
@@ -21,10 +22,10 @@ const SearchUserProfile = ({
                 <div className={styles.profileUsername}>
                     <label>{username}</label>
                 </div>
-                <div className={styles.profileUsername}>
+                <div className={styles.profileDetail}>
                     <label>{detail}</label>
                 </div>
-                <div className={styles.profileUsername}>
+                <div className={styles.status}>
                     <label>{status}</label>
                 </div>
                 <div className={styles.buttons}>
@@ -50,6 +51,11 @@ const SearchUserProfile = ({
                                     10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 
                                     8-8 8 3.59 8 8-3.59 8-8 8zm-4-6c.67 1.33 2.03 2 4 2s3.33-.67 
                                     4-2h-8zm0-4h2v2H8v-2zm6 0h2v2h-2v-2z"/>
+                        </svg>
+                    </div>
+                    <div className={styles.buttonItem}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 2a8 8 0 0 1 6.32 12.9L5.1 5.68A7.962 7.962 0 0 1 12 4Zm0 16a8 8 0 0 1-6.32-12.9L18.9 18.32A7.962 7.962 0 0 1 12 20Z"/>
                         </svg>
                     </div>
                 </div>

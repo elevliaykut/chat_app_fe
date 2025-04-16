@@ -1,15 +1,25 @@
 .container {
-    width: 300px;
-    height: 400px;
-    border: 1px solid #e9eaeb;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
 }
 
 .profilePhoto {
+    width: 100%; /* Resmin tamamını kapsar */
+    height: 250px;
+    object-fit: cover; /* Resmin içeriğini sığdırır */
+    border-radius: 8px;
 }
 
 .profileUsername {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.profileUsername label {
+    font-size: 18px;
 }
 
 .profileDetail {
@@ -17,20 +27,36 @@
     margin-top: 10px;
 }
 
+.profileDetail label {
+    font-size: 15px;
+}
+
 .status {
     text-align: center;
     margin-top: 10px;
 }
 
+.status label {
+    font-size: 15px;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .buttonItem {
-    padding: 10px;
+    padding: 8px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.buttonItem:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
