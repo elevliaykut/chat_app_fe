@@ -1,8 +1,86 @@
+/* Genel container */
 .frame {
     width: 70%;
     margin: auto;
+    padding: 20px;
 }
 
+/* İçerik düzeni */
 .content {
-    display: flex
+    display: flex;
+    gap: 20px;
+}
+
+/* Sol taraf: Profile */
+.profileEpisode {
+    flex: 0 0 30%;
+    box-sizing: border-box;
+}
+
+/* Sağ taraf: Post paylaşımı + Liste */
+.rightSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Post bileşenleri */
+.postBox, .listPostBox {
+    width: 100%;
+}
+
+/* 1024px ve üzeri (Geniş ekranlar) */
+@media (min-width: 1024px) {
+    .frame {
+        width: 70%;
+    }
+
+    .content {
+        display: flex;
+    }
+
+    .profileEpisode {
+        flex: 0 0 30%;
+    }
+
+    .rightSide {
+        flex: 0 0 70%;
+    }
+}
+
+/* 768px - 1023px (Tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .frame {
+        width: 90%;
+    }
+
+    .content {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .profileEpisode {
+        flex: 1 1 100%;
+    }
+
+    .rightSide {
+        flex: 1 1 100%;
+    }
+}
+
+/* 767px ve altı (Mobil) */
+@media (max-width: 767px) {
+    .frame {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .profileEpisode, .rightSide {
+        flex: 1 1 100%;
+    }
 }

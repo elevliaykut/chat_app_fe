@@ -62,7 +62,7 @@ const ProfileEpisode = () => {
                                 <path d="M12 9.5l1.2-1.2a2.5 2.5 0 0 1 3.5 3.5L12 17l-4.7-5.2a2.5 2.5 0 1 1 3.5-3.5L12 9.5Z"/>
                             </svg>      
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px', cursor: 'pointer'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Eş Adayı Özellikleri</label>
                         </div>
                     </div>

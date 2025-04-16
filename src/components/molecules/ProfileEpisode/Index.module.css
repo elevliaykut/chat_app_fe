@@ -33,6 +33,11 @@
     margin-left: 30px;
     padding-top: 13px;
     padding-bottom: 13px;
+    cursor: pointer;
+}
+
+.menu label{
+    cursor: pointer;
 }
 
 .line {
