@@ -9,7 +9,11 @@ import {
     USER_RESET_ERROR,
 	USER_POST_LIST_STARTED,
 	USER_POST_LIST_SUCCEEDED,
-	USER_POST_LIST_FAILED
+	USER_POST_LIST_FAILED,
+	USER_CREATE_POST_STARTED,
+	USER_CREATE_POST_SUCCEEDED,
+	USER_CREATE_POST_FAILED,
+	RESET_CREATE_POST_COMPLETE
 } from './types';
 
 export const loginUser = values => ({
@@ -63,4 +67,23 @@ export const userPostListSuccess = data => ({
 export const userPostListError = error => ({
 	type: USER_POST_LIST_FAILED,
 	payload: error
+});
+
+export const userCreatePost = values => ({
+	type: USER_CREATE_POST_STARTED,
+	payload: values
+});
+
+export const userCreatePostSuccess = data => ({
+	type: USER_CREATE_POST_SUCCEEDED,
+	payload: data
+});
+
+export const userCreatePostError = error => ({
+	type: USER_CREATE_POST_FAILED,
+	payload: error
+});
+
+export const resetCreatePostComplete = () => ({
+	type: RESET_CREATE_POST_COMPLETE
 });

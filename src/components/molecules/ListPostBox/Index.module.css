@@ -75,6 +75,8 @@
 }
 
 .contentImage {
+    margin: auto;
+    text-align: center;
 }
 
 .footer {

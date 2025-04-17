@@ -13,12 +13,17 @@ const HomePage = ({
     isLoading = false,
     error = null,
     userPostList = () => {},
-    pageLoading = false
+    pageLoading = false,
+    createPostLoading = false,
+    createPostComplete = false,
+    userCreatePost = () => {},
+    resetCreatePostComplete = () => {}
 }) => {
 
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        resetCreatePostComplete();
         userPostList();
     },[]);
 
@@ -36,7 +41,13 @@ const HomePage = ({
                 <div className={styles.content}>
                     <ProfileEpisode/>
                     <div style={{ width: '100%'}}>
-                        <PostBox/>
+                        
+                        <PostBox
+                            createPostComplete={createPostComplete}
+                            createPostLoading={createPostLoading}
+                            userCreatePost={userCreatePost}
+                        />
+                        
                         {visible && (
                             <>
                                 <ListPostBox

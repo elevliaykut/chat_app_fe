@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css'; // Stil dosyasını import ediyoruz
 import IM from '../../../utils/imgs/header-bg.jpg';
 import Image from "next/image";
+import ToastMessage from "../TostMessage";
 
-const PostBox = () => {
+const PostBox = ({
+  createPostComplete = false,
+  createPostLoading = false,
+  userCreatePost = () => {}
+}) => {
   const [content, setContent] = useState();
   const [image, setImage] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Gönderilen içerik:", content);
+
+    const data = new FormData();
+      if(content) {
+        data.append('description', content);
+      }
+      if(image) {
+        data.append('photo', image);
+      }
+    userCreatePost({
+      formData: data
+    });
   };
 
   const handleImageChange = (e) => {
@@ -19,8 +35,26 @@ const PostBox = () => {
     }
   };
 
+  useEffect(() => {
+    if (createPostComplete) {
+      setShowSuccess(true);
+      setContent('');
+      setImage(null);
+  
+      const timeout = setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000); // 3 saniye sonra mesajı kaldır
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [createPostComplete]);
+
   return (
     <>
+      {showSuccess && (
+        <ToastMessage message={"Yaplaşımınız başarılı bir şekilde yapıldı. ✅"}/>
+      )}
+
         <div className={styles.container}>
             
             <div className={styles.header}>
@@ -59,7 +93,13 @@ const PostBox = () => {
               </div>
               <div className={styles.footerRight}>
                 <span className={styles.cracter}>180 Karakter</span>
-                <button className={styles.submitButton}>Gönder</button>
+                <button 
+                  onClick={handleSubmit}
+                  disabled={createPostLoading}
+                  className={styles.submitButton}
+                  >
+                    {createPostLoading ? 'Gönderiliyor...' : 'Gönder'}
+                </button>
               </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ const ListPostBox = ({
                                                 {item?.creator_user?.username}
                                             </div>
                                             <div className={styles.info}>
-                                                <label>{item?.creator_user?.age},Bekar,İstanbul</label>
+                                                <label>{item?.creator_user?.age},{item?.creator_user?.detail?.marital_status_value},{item?.creator_user?.detail?.city?.name}</label>
                                             </div>
                                         </div>
                                         <div className={styles.statusEpisode}>
@@ -31,17 +31,29 @@ const ListPostBox = ({
                                         </div>
                                     </div>
                                     <div className={styles.rightEpisode}>
-                                        
+                                        <label>
+                                            
+                                        </label>
                                     </div>
                                 </div>
 
                                 <div className={styles.content}>
                                     <div className={styles.contentText}>
-                                        <label>Sadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul YakasıSadece İstanbul Yakası</label>
+                                        <label>{item?.description}</label>
                                     </div>
-                                    <div className={styles.contentImage}>
-                                        <Image src={IM} style={{ width: '100%', height: '100%'}}/>
-                                    </div>
+
+                                    {item.photo[0] && (
+                                        <>
+                                            <div className={styles.contentImage}>
+                                                <Image 
+                                                    src={item?.photo[0]?.photo_path}
+                                                    width={500}
+                                                    height={400}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                    
                                 </div>
                                 
                                 <div className={styles.duzLine}/>

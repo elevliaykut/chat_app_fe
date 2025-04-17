@@ -9,7 +9,11 @@ import {
 	USER_REGISTER_COMPLETED_RESET,
 	USER_POST_LIST_STARTED,
 	USER_POST_LIST_SUCCEEDED,
-	USER_POST_LIST_FAILED
+	USER_POST_LIST_FAILED,
+	USER_CREATE_POST_STARTED,
+	USER_CREATE_POST_SUCCEEDED,
+	USER_CREATE_POST_FAILED,
+	RESET_CREATE_POST_COMPLETE
 } from './types';
 
 const initialState = {
@@ -26,7 +30,9 @@ const initialState = {
 	info: {},
 	isLoading: false,
 	pageLoading: false,
-	posts: []
+	createPostComplete: false,
+	createPostLoading: false,
+	posts: [],
 };
 
 const user = (state = initialState, action) => {
@@ -104,6 +110,32 @@ const user = (state = initialState, action) => {
 				isLoading: false,
 				pageLoading: false,
 				error: payload
+			};
+		case USER_CREATE_POST_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				createPostLoading: true,
+				createPostComplete: false
+			};
+		case USER_CREATE_POST_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				createPostLoading: false,
+				createPostComplete: true
+			};
+		case USER_CREATE_POST_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				createPostLoading: false,
+				createPostComplete: false
+			};
+		case RESET_CREATE_POST_COMPLETE:
+			return {
+				...state,
+				createPostComplete: false
 			};
 		default:
 			return state;
