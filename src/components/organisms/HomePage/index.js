@@ -8,8 +8,29 @@ import ProfileEpisode from "../../molecules/ProfileEpisode";
 import PostBox from "../../molecules/PostBox";
 import ListPostBox from "../../molecules/ListPostBox";
 
-const HomePage = () => {
+const HomePage = ({
+    posts = [],
+    isLoading = false,
+    error = null,
+    userPostList = () => {},
+    pageLoading = false
+}) => {
+
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        userPostList();
+    },[]);
+
+    useEffect(() => {
+        if(!pageLoading) {
+            setVisible(true);
+        }
+    },[pageLoading]);
+
     return (
+
+
         <>
             <TopBanner/>
             <StorySlider/>
@@ -18,7 +39,21 @@ const HomePage = () => {
                     <ProfileEpisode/>
                     <div style={{ width: '100%'}}>
                         <PostBox/>
-                        <ListPostBox/>
+                        {visible && (
+                            <>
+                                <ListPostBox
+                                    posts={posts}
+                                />
+                            </>
+                        )}
+
+                        {!visible && (
+                            <>
+                                <div className={styles.loader}>
+                                    <div className={styles.spinner}></div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

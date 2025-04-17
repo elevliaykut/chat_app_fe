@@ -6,7 +6,10 @@ import {
 	USER_REGISTER_STARTED,
 	USER_REGISTER_SUCCEEDED,
 	USER_REGISTER_FAILED,
-	USER_REGISTER_COMPLETED_RESET
+	USER_REGISTER_COMPLETED_RESET,
+	USER_POST_LIST_STARTED,
+	USER_POST_LIST_SUCCEEDED,
+	USER_POST_LIST_FAILED
 } from './types';
 
 const initialState = {
@@ -21,7 +24,9 @@ const initialState = {
 	registerCompleted: false,
 	error: null,
 	info: {},
-	isLoading: false
+	isLoading: false,
+	pageLoading: false,
+	posts: []
 };
 
 const user = (state = initialState, action) => {
@@ -79,6 +84,26 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				registerCompleted: false
+			};
+		case USER_POST_LIST_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				pageLoading: true
+			};
+		case USER_POST_LIST_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: false,
+				posts: payload?.data
+			};
+		case USER_POST_LIST_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: false,
+				error: payload
 			};
 		default:
 			return state;

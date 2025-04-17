@@ -4,13 +4,16 @@ import Cookies from 'universal-cookie';
 import { BASE_URL } from '../../utils/urls';
 import {
 	USER_LOGIN_STARTED,
-	USER_REGISTER_STARTED
+	USER_REGISTER_STARTED,
+	USER_POST_LIST_STARTED
 } from './types';
 import {
 	loginUserSuccess,
 	loginUserError,
 	userRegisterSuccess,
-	userRegisterError
+	userRegisterError,
+	userPostListSuccess,
+	userPostListError
 } from './actions';
 
 const cookies = new Cookies();
@@ -52,6 +55,25 @@ function* userRegisterTask(action) {
 	}
 }
 
+function* userPostListTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/post`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(userPostListSuccess(data));
+	} catch (error) {
+		yield put(userPostListError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -62,9 +84,14 @@ function* watchRegisterUser() {
 	yield takeLatest(USER_REGISTER_STARTED, userRegisterTask);
 }
 
+function* watchUserPostList() {
+	yield takeLatest(USER_POST_LIST_STARTED, userPostListTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
-		watchRegisterUser()
+		watchRegisterUser(),
+		watchUserPostList()
 	]);
 }

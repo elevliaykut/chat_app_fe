@@ -6,7 +6,10 @@ import {
 	USER_REGISTER_SUCCEEDED,
 	USER_REGISTER_FAILED,
 	USER_REGISTER_COMPLETED_RESET,
-    USER_RESET_ERROR
+    USER_RESET_ERROR,
+	USER_POST_LIST_STARTED,
+	USER_POST_LIST_SUCCEEDED,
+	USER_POST_LIST_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -44,5 +47,20 @@ export const userRegisterSuccess = data => ({
 
 export const userRegisterError = error => ({
 	type: USER_REGISTER_FAILED,
+	payload: error
+});
+
+export const userPostList = values => ({
+	type: USER_POST_LIST_STARTED,
+	payload: values
+});
+
+export const userPostListSuccess = data => ({
+	type: USER_POST_LIST_SUCCEEDED,
+	payload: data
+});
+
+export const userPostListError = error => ({
+	type: USER_POST_LIST_FAILED,
 	payload: error
 });

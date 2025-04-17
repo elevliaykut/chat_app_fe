@@ -54,7 +54,7 @@ const ProfileEpisode = () => {
                     <div className={styles.line}/>
                     <div className={styles.menu}>
                         <div style={{ marginTop: '3px'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#000" viewBox="0 0 24 24">
                                 <circle cx="7" cy="7" r="2.5"/>
                                 <circle cx="17" cy="7" r="2.5"/>
                                 <path d="M4 20v-1a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v1"/>
@@ -69,7 +69,7 @@ const ProfileEpisode = () => {
                     <div className={styles.line}/>
                     <div className={styles.menu}>
                         <div style={{ marginTop: '3px'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#4A4A4A" viewBox="0 0 24 24">
                                 <path d="M12 2a9 9 0 0 1 9 9v2a5 5 0 0 1-5 5h-1l-1 4h-4l-1-4H8a5 5 0 0 1-5-5v-2a9 9 0 0 1 9-9Z"/>
                             </svg>
                         </div>
@@ -80,7 +80,7 @@ const ProfileEpisode = () => {
                     <div className={styles.line}/>
                     <div className={styles.menu}>
                         <div style={{ marginTop: '3px'}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#4A4A4A" viewBox="0 0 24 24">
                             <rect x="3" y="3" width="18" height="4" rx="1" />
                             <path d="M4 7v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7" />
                             <path d="M10 12h4" />
