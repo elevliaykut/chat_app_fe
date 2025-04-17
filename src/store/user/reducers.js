@@ -13,7 +13,14 @@ import {
 	USER_CREATE_POST_STARTED,
 	USER_CREATE_POST_SUCCEEDED,
 	USER_CREATE_POST_FAILED,
-	RESET_CREATE_POST_COMPLETE
+	RESET_CREATE_POST_COMPLETE,
+	USER_UPLOAD_PROFILE_PHOTO_STARTED,
+	USER_UPLOAD_PROFILE_PHOTO_SUCCEEDED,
+	USER_UPLOAD_PROFILE_PHOTO_FAILED,
+	RESET_UPLOAD_PROFILE_PHOTO_COMPLETE,
+	GET_USER_ME_STARTED,
+	GET_USER_ME_SUCCEEDED,
+	GET_USER_ME_FAILED
 } from './types';
 
 const initialState = {
@@ -32,7 +39,11 @@ const initialState = {
 	pageLoading: false,
 	createPostComplete: false,
 	createPostLoading: false,
+	uploadProfilePhotoComplete: false,
+	uploadProfilePhotoIsLoading: false,
 	posts: [],
+	userMe: {},
+	userMeLoading: false
 };
 
 const user = (state = initialState, action) => {
@@ -132,10 +143,56 @@ const user = (state = initialState, action) => {
 				createPostLoading: false,
 				createPostComplete: false
 			};
+		case USER_UPLOAD_PROFILE_PHOTO_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				uploadProfilePhotoIsLoading: true,
+				uploadProfilePhotoComplete: false
+			};
+		case USER_UPLOAD_PROFILE_PHOTO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				uploadProfilePhotoIsLoading: false,
+				uploadProfilePhotoComplete: true
+			};
+		case USER_UPLOAD_PROFILE_PHOTO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				uploadProfilePhotoIsLoading: false,
+				uploadProfilePhotoComplete: false
+			};
+		case RESET_UPLOAD_PROFILE_PHOTO_COMPLETE:
+			return {
+				...state,
+				uploadProfilePhotoComplete: false
+			};
 		case RESET_CREATE_POST_COMPLETE:
 			return {
 				...state,
 				createPostComplete: false
+			};
+		case GET_USER_ME_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userMeLoading: true
+			};
+		case GET_USER_ME_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userMeLoading: false,
+				userMe: payload?.data
+			};
+		case GET_USER_ME_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userMeLoading: false,
+				error: payload
 			};
 		default:
 			return state;

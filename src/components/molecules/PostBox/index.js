@@ -9,7 +9,8 @@ const PostBox = ({
   createPostComplete = false,
   createPostLoading = false,
   userCreatePost = () => {},
-  userPostList = () => {}
+  userPostList = () => {},
+  userMe = {}
 }) => {
   const [content, setContent] = useState();
   const [image, setImage] = useState(null);
@@ -62,14 +63,40 @@ const PostBox = ({
       )}
 
       {showSuccess && (
-        <ToastMessage message={"Yaplaşımınız başarılı bir şekilde yapıldı. ✅"}/>
+        <ToastMessage message={"Paylaşımınız başarılı bir şekilde yapıldı. ✅"}/>
       )}
 
         <div className={styles.container}>
             
             <div className={styles.header}>
               <div className={styles.profileEpisode}>
-                <Image src={IM} style={{ width: '100px', height: '100px', borderRadius: '100px'}}/>
+                {userMe?.profile_photo_path ? (
+                            <>
+                                <Image 
+                                    width={100}
+                                    height={100}
+                                    style={{ borderRadius: '120px'}}
+                                    src={userMe?.profile_photo_path}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <svg
+                                            width="100"
+                                            height="100"
+                                            viewBox="0 0 24 24"
+                                            fill="#ccc"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                            <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                            <path
+                                                d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                fill="#BDBDBD"
+                                        />
+                                    </svg>
+                            </>
+                  )}
               </div>
               <div className={styles.textInputEpisode}>
                 <input

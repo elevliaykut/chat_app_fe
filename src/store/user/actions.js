@@ -13,7 +13,14 @@ import {
 	USER_CREATE_POST_STARTED,
 	USER_CREATE_POST_SUCCEEDED,
 	USER_CREATE_POST_FAILED,
-	RESET_CREATE_POST_COMPLETE
+	RESET_CREATE_POST_COMPLETE,
+	USER_UPLOAD_PROFILE_PHOTO_STARTED,
+	USER_UPLOAD_PROFILE_PHOTO_SUCCEEDED,
+	USER_UPLOAD_PROFILE_PHOTO_FAILED,
+	RESET_UPLOAD_PROFILE_PHOTO_COMPLETE,
+	GET_USER_ME_STARTED,
+	GET_USER_ME_SUCCEEDED,
+	GET_USER_ME_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -86,4 +93,38 @@ export const userCreatePostError = error => ({
 
 export const resetCreatePostComplete = () => ({
 	type: RESET_CREATE_POST_COMPLETE
+});
+
+export const userUploadProfilePhoto = values => ({
+	type: USER_UPLOAD_PROFILE_PHOTO_STARTED,
+	payload: values
+});
+
+export const userUploadProfilePhotoSuccess = data => ({
+	type: USER_UPLOAD_PROFILE_PHOTO_SUCCEEDED,
+	payload: data
+});
+
+export const userUploadProfilePhotoError = error => ({
+	type: USER_UPLOAD_PROFILE_PHOTO_FAILED,
+	payload: error
+});
+
+export const resetUploadProfilePhotoComplete = () => ({
+	type: RESET_UPLOAD_PROFILE_PHOTO_COMPLETE
+});
+
+export const getUserMe = values => ({
+	type: GET_USER_ME_STARTED,
+	payload: values
+});
+
+export const getUserMeSuccess = data => ({
+	type: GET_USER_ME_SUCCEEDED,
+	payload: data
+});
+
+export const getUserMeError = error => ({
+	type: GET_USER_ME_FAILED,
+	payload: error
 });

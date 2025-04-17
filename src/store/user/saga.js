@@ -7,6 +7,8 @@ import {
 	USER_REGISTER_STARTED,
 	USER_POST_LIST_STARTED,
 	USER_CREATE_POST_STARTED,
+	USER_UPLOAD_PROFILE_PHOTO_STARTED,
+	GET_USER_ME_STARTED
 } from './types';
 import {
 	loginUserSuccess,
@@ -16,7 +18,11 @@ import {
 	userPostListSuccess,
 	userPostListError,
 	userCreatePostSuccess,
-	userCreatePostError
+	userCreatePostError,
+	userUploadProfilePhotoSuccess,
+	userUploadProfilePhotoError,
+	getUserMeSuccess,
+	getUserMeError
 } from './actions';
 
 const cookies = new Cookies();
@@ -97,6 +103,45 @@ function* userCreatePostTask(action) {
 	}
 }
 
+function* userUploadProfilePhotoTask(action) {
+	const { payload } = action;
+	const { formData } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/upload-profile-photo`,
+			formData,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userUploadProfilePhotoSuccess(data));
+	} catch (error) {
+		yield put(userUploadProfilePhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getUserMeTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/me`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getUserMeSuccess(data));
+	} catch (error) {
+		yield put(getUserMeError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
 
 // -------- WATCH FUNCTIONS ---------
 
@@ -116,11 +161,21 @@ function* watchUserCreatePost() {
 	yield takeLatest(USER_CREATE_POST_STARTED, userCreatePostTask);
 }
 
+function* watchUserUploadProfilePhoto() {
+	yield takeLatest(USER_UPLOAD_PROFILE_PHOTO_STARTED, userUploadProfilePhotoTask);
+}
+
+function* watchGetUserMe() {
+	yield takeLatest(GET_USER_ME_STARTED, getUserMeTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
 		watchRegisterUser(),
 		watchUserPostList(),
-		watchUserCreatePost()
+		watchUserCreatePost(),
+		watchUserUploadProfilePhoto(),
+		watchGetUserMe()
 	]);
 }

@@ -17,12 +17,21 @@ const HomePage = ({
     createPostLoading = false,
     createPostComplete = false,
     userCreatePost = () => {},
-    resetCreatePostComplete = () => {}
+    resetCreatePostComplete = () => {},
+    uploadProfilePhotoComplete = false,
+    uploadProfilePhotoIsLoading = false,
+    userUploadProfilePhoto = () => {},
+    resetUploadProfilePhotoComplete = () => {},
+    getUserMe = () => {},
+    userMe = {},
+    userMeLoading = false
 }) => {
 
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible]                 = useState(false);
+    const [profileVisible, setProfileVisible]   = useState(false);
 
     useEffect(() => {
+        getUserMe();
         resetCreatePostComplete();
         userPostList();
     },[]);
@@ -33,13 +42,39 @@ const HomePage = ({
         }
     },[pageLoading]);
 
+    useEffect(() => {
+        if(!userMeLoading) {
+            setProfileVisible(true);
+        }
+    },[userMeLoading]);
+
     return (
         <>
             <TopBanner/>
             <StorySlider/>
             <div className={styles.frame}>
                 <div className={styles.content}>
-                    <ProfileEpisode/>
+                    
+                    {profileVisible && (
+                        <>
+                            <ProfileEpisode
+                                uploadProfilePhotoComplete={uploadProfilePhotoComplete}
+                                uploadProfilePhotoIsLoading={uploadProfilePhotoIsLoading}
+                                userUploadProfilePhoto={userUploadProfilePhoto}
+                                resetUploadProfilePhotoComplete={resetUploadProfilePhotoComplete}
+                                userMe={userMe}
+                            />
+                        </>
+                    )}
+
+                    {!profileVisible && (
+                            <>
+                                <div className={styles.profileLoader}>
+                                    <div className={styles.spinner}></div>
+                                </div>
+                            </>
+                        )}
+                    
                     <div style={{ width: '100%'}}>
                         
                         <PostBox
@@ -47,6 +82,7 @@ const HomePage = ({
                             createPostLoading={createPostLoading}
                             userCreatePost={userCreatePost}
                             userPostList={userPostList}
+                            userMe={userMe}
                         />
                         
                         {visible && (

@@ -1,22 +1,100 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import IMG from '../../../utils/imgs/header-bg.jpg';
 import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
+import ToastMessage from "../TostMessage";
 
-const ProfileEpisode = () => {
+const ProfileEpisode = ({
+    uploadProfilePhotoComplete = false,
+    uploadProfilePhotoIsLoading = false,
+    userUploadProfilePhoto = () => {},
+    resetUploadProfilePhotoComplete = () => {},
+    userMe = {}
+}) => {
+
+    const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    const handleImageChange = (e) => {
+        setShowSelectedFileSuccess(true);
+        const file = e.target.files[0]; // İlk dosyayı alıyoruz
+        if (file) {
+          const data = new FormData();
+          data.append('photo', file);
+          userUploadProfilePhoto({
+            formData: data
+          })
+        }
+      };
+
+      useEffect(() => {
+        if (uploadProfilePhotoComplete) {
+          resetUploadProfilePhotoComplete();
+          //userPostList();
+          setShowSuccess(true);
+      
+          const timeout = setTimeout(() => {
+            setShowSuccess(false);
+          }, 3000); // 3 saniye sonra mesajı kaldır
+      
+          return () => clearTimeout(timeout);
+        }
+      }, [uploadProfilePhotoComplete]);
+
     return (
         <>
+            {showSelectedFileSuccess && (
+                <ToastMessage message={"Dosya başarılı bir şekile alındı ✅"}/>
+            )}
+
+            {showSuccess && (
+                <ToastMessage message={"Profil Fotoğrafınız başarılı bir şekilde güncellendi. ✅"}/>
+            )}
             <div className={styles.container}>
                 <div className={styles.frame}>
-                    <div className={styles.profilePhoto}>
-                        <Image src={IMG} />
+                    <div className={styles.profilePhoto} onClick={() => document.getElementById('fileInput').click()}> 
+                        {userMe?.profile_photo_path ? (
+                            <>
+                                <Image 
+                                    width={100}
+                                    height={100}
+                                    src={userMe?.profile_photo_path}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <svg
+                                            width="100"
+                                            height="100"
+                                            viewBox="0 0 24 24"
+                                            fill="#ccc"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                            <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                            <path
+                                                d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                fill="#BDBDBD"
+                                        />
+                                    </svg>
+                            </>
+                        )}
                     </div>
+
+                    <input
+                        id="fileInput" // Bu inputu gizli yapıyoruz
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={handleImageChange} // Resim seçildiğinde handleImageChange çağrılıyor
+                    />
+
                     <div className={styles.defination}>
-                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>42, Hiç Evlenmemiş, İstanbul</label>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{userMe?.age}, {userMe?.detail?.marital_status_value}, {userMe?.detail?.city?.name}</label>
                     </div>
                     <div className={styles.burc}>
-                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Oğlak</label>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{userMe?.detail?.horoscope}</label>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.menu}>

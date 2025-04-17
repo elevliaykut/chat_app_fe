@@ -5,7 +5,10 @@ import HomePageOrganisms from '../../organisms/HomePage';
 import {
     userPostList,
     userCreatePost,
-    resetCreatePostComplete
+    resetCreatePostComplete,
+    userUploadProfilePhoto,
+    resetUploadProfilePhotoComplete,
+    getUserMe
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -16,12 +19,19 @@ const mapStateToProps = state => ({
     token: state?.user?.token,
     createPostLoading: state?.user?.createPostLoading,
     createPostComplete: state?.user?.createPostComplete,
+    uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
+    uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
+    userMe: state?.user?.userMe,
+    userMeLoading: state?.user?.userMeLoading
 });
 
 const mapDispatchToProps = dispatch => ({
     userPostList: payload => dispatch(userPostList(payload)),
     userCreatePost: payload => dispatch(userCreatePost(payload)),
     resetCreatePostComplete: () => dispatch(resetCreatePostComplete()),
+    userUploadProfilePhoto: payload => dispatch(userUploadProfilePhoto(payload)),
+    resetUploadProfilePhotoComplete: (payload) => dispatch(resetUploadProfilePhotoComplete(payload)),
+    getUserMe: () => dispatch(getUserMe())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);
