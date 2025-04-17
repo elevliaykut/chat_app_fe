@@ -46,6 +46,7 @@ const HomePage = ({
                             createPostComplete={createPostComplete}
                             createPostLoading={createPostLoading}
                             userCreatePost={userCreatePost}
+                            userPostList={userPostList}
                         />
                         
                         {visible && (

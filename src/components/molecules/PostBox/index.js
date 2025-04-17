@@ -3,15 +3,18 @@ import styles from './Index.module.css'; // Stil dosyasını import ediyoruz
 import IM from '../../../utils/imgs/header-bg.jpg';
 import Image from "next/image";
 import ToastMessage from "../TostMessage";
+import { resetCreatePostComplete } from "@/src/store/user/actions";
 
 const PostBox = ({
   createPostComplete = false,
   createPostLoading = false,
-  userCreatePost = () => {}
+  userCreatePost = () => {},
+  userPostList = () => {}
 }) => {
   const [content, setContent] = useState();
   const [image, setImage] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +32,7 @@ const PostBox = ({
   };
 
   const handleImageChange = (e) => {
+    setShowSelectedFileSuccess(true);
     const file = e.target.files[0]; // İlk dosyayı alıyoruz
     if (file) {
       setImage(file); // Resmi state'e set ediyoruz
@@ -37,6 +41,8 @@ const PostBox = ({
 
   useEffect(() => {
     if (createPostComplete) {
+      resetCreatePostComplete();
+      userPostList();
       setShowSuccess(true);
       setContent('');
       setImage(null);
@@ -51,6 +57,10 @@ const PostBox = ({
 
   return (
     <>
+      {showSelectedFileSuccess && (
+           <ToastMessage message={"Dosya başarılı bir şekile alındı ✅"}/>
+      )}
+
       {showSuccess && (
         <ToastMessage message={"Yaplaşımınız başarılı bir şekilde yapıldı. ✅"}/>
       )}
