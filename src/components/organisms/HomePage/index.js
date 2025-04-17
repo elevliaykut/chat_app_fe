@@ -29,8 +29,6 @@ const HomePage = ({
     },[pageLoading]);
 
     return (
-
-
         <>
             <TopBanner/>
             <StorySlider/>
