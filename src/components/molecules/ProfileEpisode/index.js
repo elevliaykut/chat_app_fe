@@ -11,7 +11,8 @@ const ProfileEpisode = ({
     userUploadProfilePhoto = () => {},
     resetUploadProfilePhotoComplete = () => {},
     userMe = {},
-    setProfileTextModalVisible = () => {}
+    setProfileTextModalVisible = () => {},
+    setBasicInfoModalVisible = () => {}
 }) => {
 
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
@@ -126,7 +127,7 @@ const ProfileEpisode = ({
                                 <path fill="#000" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.33 0-10 1.67-10 5v1a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-1c0-3.33-6.67-5-10-5Z"/>
                             </svg>
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setBasicInfoModalVisible(true)}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Temel Bilgiler</label>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import ProfileEpisode from "../../molecules/ProfileEpisode";
 import PostBox from "../../molecules/PostBox";
 import ListPostBox from "../../molecules/ListPostBox";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
+import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 
 const HomePage = ({
     posts = [],
@@ -33,7 +34,9 @@ const HomePage = ({
 
     const [visible, setVisible]                                         = useState(false);
     const [profileVisible, setProfileVisible]                           = useState(false);
-    const [profileTextModalVisible, setProfileTextModalVisible]       = useState(false);
+    const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
+    const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
+
 
     useEffect(() => {
         getUserMe();
@@ -57,12 +60,28 @@ const HomePage = ({
         setProfileTextModalVisible(false);
     }
 
+    const basicInfoModalOnClose = () => {
+        setBasicInfoModalVisible(false);
+    }
+
     return (
         <>
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
                         onClose={profileTextModalOnClose}
+                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
+                        updateUserPersonalInfo={updateUserPersonalInfo}
+                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userMe={userMe}
+                    />
+                </>
+            )}
+
+            {basicInfoModalVisible && (
+                <>
+                    <BasicInfoModal
+                        onClose={basicInfoModalOnClose}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
@@ -84,6 +103,7 @@ const HomePage = ({
                                 resetUploadProfilePhotoComplete={resetUploadProfilePhotoComplete}
                                 userMe={userMe}
                                 setProfileTextModalVisible={setProfileTextModalVisible}
+                                setBasicInfoModalVisible={setBasicInfoModalVisible}
                             />
                         </>
                     )}
