@@ -20,7 +20,11 @@ import {
 	RESET_UPLOAD_PROFILE_PHOTO_COMPLETE,
 	GET_USER_ME_STARTED,
 	GET_USER_ME_SUCCEEDED,
-	GET_USER_ME_FAILED
+	GET_USER_ME_FAILED,
+	UPDATE_USER_PERSONAL_INFO_STARTED,
+	UPDATE_USER_PERSONAL_INFO_SUCCEEDED,
+	UPDATE_USER_PERSONAL_INFO_FAILED,
+	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
 } from './types';
 
 const initialState = {
@@ -43,7 +47,8 @@ const initialState = {
 	uploadProfilePhotoIsLoading: false,
 	posts: [],
 	userMe: {},
-	userMeLoading: false
+	userMeLoading: false,
+	updateUserPersonalInfoComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -193,6 +198,31 @@ const user = (state = initialState, action) => {
 				isLoading: false,
 				userMeLoading: false,
 				error: payload
+			};
+		case UPDATE_USER_PERSONAL_INFO_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				updateUserPersonalInfoComplete: false,
+			};
+		case UPDATE_USER_PERSONAL_INFO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				updateUserPersonalInfoComplete: true,
+				userMe: payload?.data
+			};
+		case UPDATE_USER_PERSONAL_INFO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				updateUserPersonalInfoComplete: false,
+				error: payload
+			};
+		case RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE:
+			return {
+				...state,
+				updateUserPersonalInfoComplete: false
 			};
 		default:
 			return state;

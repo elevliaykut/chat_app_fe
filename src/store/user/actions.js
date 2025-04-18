@@ -20,7 +20,11 @@ import {
 	RESET_UPLOAD_PROFILE_PHOTO_COMPLETE,
 	GET_USER_ME_STARTED,
 	GET_USER_ME_SUCCEEDED,
-	GET_USER_ME_FAILED
+	GET_USER_ME_FAILED,
+	UPDATE_USER_PERSONAL_INFO_STARTED,
+	UPDATE_USER_PERSONAL_INFO_SUCCEEDED,
+	UPDATE_USER_PERSONAL_INFO_FAILED,
+	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
 } from './types';
 
 export const loginUser = values => ({
@@ -127,4 +131,23 @@ export const getUserMeSuccess = data => ({
 export const getUserMeError = error => ({
 	type: GET_USER_ME_FAILED,
 	payload: error
+});
+
+export const updateUserPersonalInfo = values => ({
+	type: UPDATE_USER_PERSONAL_INFO_STARTED,
+	payload: values
+});
+
+export const updateUserPersonalInfoSuccess = data => ({
+	type: UPDATE_USER_PERSONAL_INFO_SUCCEEDED,
+	payload: data
+});
+
+export const updateUserPersonalInfoError = error => ({
+	type: UPDATE_USER_PERSONAL_INFO_FAILED,
+	payload: error
+});
+
+export const resetUpdateUserPersonalInfoComplete = () => ({
+	type: RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
 });

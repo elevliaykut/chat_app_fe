@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import ThemeConfig from "@/src/utils/ThemeConfig";
+import ToastMessage from "../../TostMessage";
 
 const ProfileTextModal = ({
     onClose = () => {},
-    isLoading = false
+    isLoading = false,
+    updateUserPersonalInfoComplete = false,
+    updateUserPersonalInfo = () => {},
+    resetUpdateUserPersonalInfoComplete = () => {}
 }) => {
 
     const [content, setContent] = useState();
+    const [messageVisible, setMessageVisible] = useState(false);
 
     const submitOnClick = () => {
-
+        updateUserPersonalInfo({
+            profileSummary: content
+        });
     }
+
+    useEffect(() => {
+        if(updateUserPersonalInfoComplete) {
+            resetUpdateUserPersonalInfoComplete();
+            setMessageVisible(true);
+        }
+    },[updateUserPersonalInfoComplete]);
 
     return(
         <>
+            {messageVisible && (
+                <>
+                    <ToastMessage message="Profil yazınız başarılı bir şekilde kaydedildi."/>
+                </>
+            )}
             <div className={styles.overlay}>
                 <div className={styles.modal}>
                     <div className={styles.modalHeader}>
@@ -61,6 +80,7 @@ const ProfileTextModal = ({
                         <div className={styles.saveButton}>
                             <button
                                 onClick={submitOnClick}
+                                disabled={isLoading}
                                 style={{
                                     width: '120px',
                                     height: '50px',

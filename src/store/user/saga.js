@@ -8,7 +8,8 @@ import {
 	USER_POST_LIST_STARTED,
 	USER_CREATE_POST_STARTED,
 	USER_UPLOAD_PROFILE_PHOTO_STARTED,
-	GET_USER_ME_STARTED
+	GET_USER_ME_STARTED,
+	UPDATE_USER_PERSONAL_INFO_STARTED
 } from './types';
 import {
 	loginUserSuccess,
@@ -22,7 +23,9 @@ import {
 	userUploadProfilePhotoSuccess,
 	userUploadProfilePhotoError,
 	getUserMeSuccess,
-	getUserMeError
+	getUserMeError,
+	updateUserPersonalInfoSuccess,
+	updateUserPersonalInfoError
 } from './actions';
 
 const cookies = new Cookies();
@@ -143,6 +146,29 @@ function* getUserMeTask(action) {
 	}
 }
 
+function* updateUserPersonalInfoTask(action) {
+	const { payload } = action;
+	const { profileSummary } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.put, `${BASE_URL}/user/personal-information`,
+			{
+				profile_summary: profileSummary
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(updateUserPersonalInfoSuccess(data));
+	} catch (error) {
+		yield put(updateUserPersonalInfoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -169,6 +195,10 @@ function* watchGetUserMe() {
 	yield takeLatest(GET_USER_ME_STARTED, getUserMeTask);
 }
 
+function* watchUpdateUserPersonalInfo() {
+	yield takeLatest(UPDATE_USER_PERSONAL_INFO_STARTED, updateUserPersonalInfoTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -176,6 +206,7 @@ export default function* saga() {
 		watchUserPostList(),
 		watchUserCreatePost(),
 		watchUserUploadProfilePhoto(),
-		watchGetUserMe()
+		watchGetUserMe(),
+		watchUpdateUserPersonalInfo()
 	]);
 }

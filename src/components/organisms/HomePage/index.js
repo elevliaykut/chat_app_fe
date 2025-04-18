@@ -25,7 +25,10 @@ const HomePage = ({
     resetUploadProfilePhotoComplete = () => {},
     getUserMe = () => {},
     userMe = {},
-    userMeLoading = false
+    userMeLoading = false,
+    updateUserPersonalInfoComplete = false,
+    updateUserPersonalInfo = () => {},
+    resetUpdateUserPersonalInfoComplete = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -60,6 +63,9 @@ const HomePage = ({
                 <>
                     <ProfileTextModal
                         onClose={profileTextModalOnClose}
+                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
+                        updateUserPersonalInfo={updateUserPersonalInfo}
+                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
                     />
                 </>
             )}

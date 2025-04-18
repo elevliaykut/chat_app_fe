@@ -8,7 +8,9 @@ import {
     resetCreatePostComplete,
     userUploadProfilePhoto,
     resetUploadProfilePhotoComplete,
-    getUserMe
+    getUserMe,
+    updateUserPersonalInfo,
+    resetUpdateUserPersonalInfoComplete
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -22,7 +24,8 @@ const mapStateToProps = state => ({
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMe: state?.user?.userMe,
-    userMeLoading: state?.user?.userMeLoading
+    userMeLoading: state?.user?.userMeLoading,
+    updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,7 +34,9 @@ const mapDispatchToProps = dispatch => ({
     resetCreatePostComplete: () => dispatch(resetCreatePostComplete()),
     userUploadProfilePhoto: payload => dispatch(userUploadProfilePhoto(payload)),
     resetUploadProfilePhotoComplete: (payload) => dispatch(resetUploadProfilePhotoComplete(payload)),
-    getUserMe: () => dispatch(getUserMe())
+    getUserMe: () => dispatch(getUserMe()),
+    updateUserPersonalInfo: payload => dispatch(updateUserPersonalInfo(payload)),
+    resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);
