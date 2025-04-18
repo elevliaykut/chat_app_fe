@@ -66,6 +66,7 @@ const HomePage = ({
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userMe={userMe}
                     />
                 </>
             )}

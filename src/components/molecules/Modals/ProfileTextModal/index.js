@@ -8,7 +8,8 @@ const ProfileTextModal = ({
     isLoading = false,
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
-    resetUpdateUserPersonalInfoComplete = () => {}
+    resetUpdateUserPersonalInfoComplete = () => {},
+    userMe = {}
 }) => {
 
     const [content, setContent] = useState();
@@ -51,7 +52,8 @@ const ProfileTextModal = ({
                                 height: '300px',
                                 border: '1px solid #eee',
                                 padding: '12px'
-                            }}                            
+                            }}                
+                            defaultValue={userMe?.detail?.profile_summary}            
                             placeholder="PROFIL YAZISI"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
@@ -61,6 +63,7 @@ const ProfileTextModal = ({
                     </div>
                     <div className={styles.subText}>
                         Profil yazınız en fazla 450 karakter olmalıdır. Profil yazınız arama sonuçlarında gözükecek. Dolayısıyla diğer üyelerin sizin hakkınızda daha fazla bilgi sahibi olabilmesi için profil yazınız çok önemli! Ayrıca kendinizi ifade ettiğiniz taktirde diğer üyelerin dikkatini çekerek güvenini kazanabilirsiniz. Şimdi bize nasıl biri olduğunuzu,aradığınız eş adayının özelliklerini anlatın.
+                        Lütfen e-posta, telefon gibi iletişim bilgilerinizi yazmayın ve dolaylı yollarla bildirmeyin.
                     </div>
                     <div className={styles.buttonEpisode}>
                         <div className={styles.cancelButton}>
