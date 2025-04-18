@@ -7,6 +7,7 @@ import StorySlider from "../../molecules/StorySlider";
 import ProfileEpisode from "../../molecules/ProfileEpisode";
 import PostBox from "../../molecules/PostBox";
 import ListPostBox from "../../molecules/ListPostBox";
+import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 
 const HomePage = ({
     posts = [],
@@ -27,8 +28,9 @@ const HomePage = ({
     userMeLoading = false
 }) => {
 
-    const [visible, setVisible]                 = useState(false);
-    const [profileVisible, setProfileVisible]   = useState(false);
+    const [visible, setVisible]                                         = useState(false);
+    const [profileVisible, setProfileVisible]                           = useState(false);
+    const [profileTextModalVisible, setProfileTextModalVisible]       = useState(false);
 
     useEffect(() => {
         getUserMe();
@@ -48,8 +50,19 @@ const HomePage = ({
         }
     },[userMeLoading]);
 
+    const profileTextModalOnClose = () => {
+        setProfileTextModalVisible(false);
+    }
+
     return (
         <>
+            {profileTextModalVisible && (
+                <>
+                    <ProfileTextModal
+                        onClose={profileTextModalOnClose}
+                    />
+                </>
+            )}
             <TopBanner/>
             <StorySlider/>
             <div className={styles.frame}>
@@ -63,6 +76,7 @@ const HomePage = ({
                                 userUploadProfilePhoto={userUploadProfilePhoto}
                                 resetUploadProfilePhotoComplete={resetUploadProfilePhotoComplete}
                                 userMe={userMe}
+                                setProfileTextModalVisible={setProfileTextModalVisible}
                             />
                         </>
                     )}
@@ -77,13 +91,25 @@ const HomePage = ({
                     
                     <div style={{ width: '100%'}}>
                         
-                        <PostBox
-                            createPostComplete={createPostComplete}
-                            createPostLoading={createPostLoading}
-                            userCreatePost={userCreatePost}
-                            userPostList={userPostList}
-                            userMe={userMe}
-                        />
+                        {profileVisible && (
+                            <>
+                                <PostBox
+                                    createPostComplete={createPostComplete}
+                                    createPostLoading={createPostLoading}
+                                    userCreatePost={userCreatePost}
+                                    userPostList={userPostList}
+                                    userMe={userMe}
+                                />
+                            </>
+                        )}
+
+                        {!profileVisible && (
+                            <>
+                                <div className={styles.profileLoader}>
+                                    <div className={styles.spinner}></div>
+                                </div>
+                            </>
+                        )}
                         
                         {visible && (
                             <>

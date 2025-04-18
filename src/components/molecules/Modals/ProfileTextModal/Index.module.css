@@ -1,0 +1,99 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 750px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .modalHeader {
+    display: flex;
+  }
+
+  .modalHeader label {
+    font-weight: bold;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 2%;
+    color: #555;
+    transition: background-color 0.2s ease;
+  }
+  
+  .closeButton:hover {
+    background-color: #eee;
+  }
+  
+  .modal h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .modal button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal button:disabled {
+    background-color: #aaa;
+  }
+
+  .textInputEpisode {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .subText {
+    font-size: 13px;
+    padding: 15px;
+    line-height: 28px;
+    color: #575757;
+  }
+
+  .buttonEpisode {
+    width: 100%;
+    display: flex;
+  }
+
+  .cancelButton {
+    margin-left: auto;
+  }
+
+  .saveButton {
+    margin-left: 15px;
+  }
