@@ -3,30 +3,56 @@ import styles from './Index.module.css';
 import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const SearchUserProfile = ({
-    image = "",
-    username = "",
-    detail = "",
-    status = "",
+    user = {}
 }) => {
     return(
         <>
             <div className={styles.container}>
-                <div className={styles.profilePhoto}>
-                    <Image 
-                        src={image} 
-                        alt="image" 
-                        style={{ width: '100%', height: '260px'}}
-                    />
+                <div>
+                    {user?.profile_photo_path ? (
+                            <>
+                                <Image 
+                                    width={100}
+                                    height={100}
+                                    src={user?.profile_photo_path}
+                                    className={styles.profilePhoto}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <div style={{ textAlign: 'center', cursor: 'pointer'}}>
+                                    <svg
+                                            width="240"
+                                            height="240"
+                                            viewBox="0 0 24 24"
+                                            fill="#ccc"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                            <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                            <path
+                                                d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                fill="#BDBDBD"
+                                        />
+                                    </svg>
+                                </div>
+                            </>
+                        )}
                 </div>
                 <div className={styles.profileUsername}>
-                    <label>{username}</label>
+                    <label>{user?.username}</label>
                 </div>
                 <div className={styles.profileDetail}>
-                    <label>{detail}</label>
+                    <label>{user?.age}, {user?.detail?.marital_status_value}, {user?.detail?.city?.name}</label>
                 </div>
                 <div className={styles.status}>
-                    <label>{status}</label>
+                    <label>{user?.status}</label>
                 </div>
                 <div className={styles.buttons}>
                     <div className={styles.buttonItem}>

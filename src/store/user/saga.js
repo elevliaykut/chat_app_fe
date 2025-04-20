@@ -9,8 +9,10 @@ import {
 	USER_CREATE_POST_STARTED,
 	USER_UPLOAD_PROFILE_PHOTO_STARTED,
 	GET_USER_ME_STARTED,
-	UPDATE_USER_PERSONAL_INFO_STARTED
+	UPDATE_USER_PERSONAL_INFO_STARTED,
+	GET_USERS_STARTED,
 } from './types';
+
 import {
 	loginUserSuccess,
 	loginUserError,
@@ -25,7 +27,9 @@ import {
 	getUserMeSuccess,
 	getUserMeError,
 	updateUserPersonalInfoSuccess,
-	updateUserPersonalInfoError
+	updateUserPersonalInfoError,
+	getUsersSuccess,
+	getUsersError
 } from './actions';
 
 const cookies = new Cookies();
@@ -243,6 +247,32 @@ function* updateUserPersonalInfoTask(action) {
 	}
 }
 
+function* getUsersTask(action) {
+	const { payload } = action;
+	const { id, nearUsers, bornTodayDate, gender, startsBetween } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	const query = `?filter[id]=${id ? id : ''}
+					&filter[near_users]=${nearUsers ? nearUsers : ''}
+					&filter[born_today_date]=${bornTodayDate ? bornTodayDate : ''}
+					&filter[gender]=${gender ? gender : ''}
+					&filter[starts_between]=${startsBetween ? startsBetween : ''}`;
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/activity/filter${query}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getUsersSuccess(data));
+	} catch (error) {
+		yield put(getUsersError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -273,6 +303,10 @@ function* watchUpdateUserPersonalInfo() {
 	yield takeLatest(UPDATE_USER_PERSONAL_INFO_STARTED, updateUserPersonalInfoTask);
 }
 
+function* watchGetUsers() {
+	yield takeLatest(GET_USERS_STARTED, getUsersTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -281,6 +315,7 @@ export default function* saga() {
 		watchUserCreatePost(),
 		watchUserUploadProfilePhoto(),
 		watchGetUserMe(),
-		watchUpdateUserPersonalInfo()
+		watchUpdateUserPersonalInfo(),
+		watchGetUsers()
 	]);
 }

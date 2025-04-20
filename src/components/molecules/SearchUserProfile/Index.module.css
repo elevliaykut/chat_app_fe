@@ -1,25 +1,34 @@
 .container {
     width: 100%;
+    height: 425px;
     background-color: white;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
+
 }
 
 .profilePhoto {
     width: 100%; /* Resmin tamamını kapsar */
     height: 250px;
     object-fit: cover; /* Resmin içeriğini sığdırır */
-    border-radius: 8px;
+    cursor: pointer;
 }
 
 .profileUsername {
     text-align: center;
-    margin-top: 30px;
+    padding-top: 15px;
     font-weight: bold;
 }
 
 .profileUsername label {
     font-size: 18px;
+    cursor: pointer;
+    color: #131313;
+}
+
+.profileUsername label:hover {
+    color: #131313;
+    text-decoration: underline;
 }
 
 .profileDetail {

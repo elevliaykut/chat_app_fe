@@ -177,13 +177,13 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/near-locations'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YAKIN KONUMDA</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/born-today'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BUGÜN DOĞANLAR</label>
                         </div>

@@ -1,30 +1,25 @@
-import React, { useEffect,useState } from "react";
-import styles from './Home.module.css';
-import TopBanner from '../../molecules/TopBanner';
+import React, { useEffect, useState } from "react";
+import TopBanner from "../../molecules/TopBanner";
 import StorySlider from "../../molecules/StorySlider";
+import styles from './Index.module.css';
 import ProfileEpisode from "../../molecules/ProfileEpisode";
-import PostBox from "../../molecules/PostBox";
-import ListPostBox from "../../molecules/ListPostBox";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
+import SearchUserProfile from "../../molecules/SearchUserProfile";
 
-const HomePage = ({
-    posts = [],
+const NearLocationsPage = ({
     isLoading = false,
     error = null,
-    userPostList = () => {},
     pageLoading = false,
-    createPostLoading = false,
-    createPostComplete = false,
-    userCreatePost = () => {},
-    resetCreatePostComplete = () => {},
+    getUsers = () => {},
+    members = [],
+    getUserMe = () => {},
+    userMe = {},
+    userMeLoading = false,
     uploadProfilePhotoComplete = false,
     uploadProfilePhotoIsLoading = false,
     userUploadProfilePhoto = () => {},
     resetUploadProfilePhotoComplete = () => {},
-    getUserMe = () => {},
-    userMe = {},
-    userMeLoading = false,
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
     resetUpdateUserPersonalInfoComplete = () => {},
@@ -34,34 +29,31 @@ const HomePage = ({
     districts = []
 }) => {
 
-    const [visible, setVisible]                                         = useState(false);
     const [profileVisible, setProfileVisible]                           = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
+    const [memberVisible, setMemberVisible] = useState(false);
 
+    useEffect(() => {
+        getUserMe();
+    },[]);
 
     useEffect(() => {
         getCities();
     },[]);
 
     useEffect(() => {
-        getUserMe();
-        resetCreatePostComplete();
-        userPostList();
-    },[]);
-
-    useEffect(() => {
-        if(!pageLoading) {
-            setVisible(true);
-        }
-    },[pageLoading]);
-
-    useEffect(() => {
         if(!userMeLoading) {
+
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            
             setProfileVisible(true);
         }
     },[userMeLoading]);
 
+    
     const profileTextModalOnClose = () => {
         setProfileTextModalVisible(false);
     }
@@ -70,8 +62,15 @@ const HomePage = ({
         setBasicInfoModalVisible(false);
     }
 
+    useEffect(() => {
+        if(!isLoading) {
+            setMemberVisible(true);
+        }
+    },[isLoading]);
+
     return (
         <>
+
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -98,11 +97,13 @@ const HomePage = ({
                     />
                 </>
             )}
+
             <TopBanner/>
             <StorySlider/>
+
             <div className={styles.frame}>
                 <div className={styles.content}>
-                    
+
                     {profileVisible && (
                         <>
                             <ProfileEpisode
@@ -116,40 +117,24 @@ const HomePage = ({
                             />
                         </>
                     )}
-                    
-                    <div style={{ width: '100%'}}>
-                        
-                        {profileVisible && (
-                            <>
-                                <PostBox
-                                    createPostComplete={createPostComplete}
-                                    createPostLoading={createPostLoading}
-                                    userCreatePost={userCreatePost}
-                                    userPostList={userPostList}
-                                    userMe={userMe}
-                                />
-                            </>
-                        )}
-                        
-                        {visible && (
-                            <>
-                                <ListPostBox
-                                    posts={posts}
-                                />
-                            </>
-                        )}
 
-                        {!visible && (
+                    <div className={styles.memberEpisode}>
+                        {memberVisible && (
                             <>
-                                <div className={styles.loader}>
-                                    <div className={styles.spinner}></div>
-                                </div>
+                                {members?.map(item => (
+                                    <>
+                                        <SearchUserProfile
+                                            user={item}
+                                        />
+                                    </>
+                                ))}
                             </>
                         )}
                     </div>
                 </div>
             </div>
+
         </>
     )
 }
-export default HomePage;
+export default NearLocationsPage;

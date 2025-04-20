@@ -24,7 +24,10 @@ import {
 	UPDATE_USER_PERSONAL_INFO_STARTED,
 	UPDATE_USER_PERSONAL_INFO_SUCCEEDED,
 	UPDATE_USER_PERSONAL_INFO_FAILED,
-	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
+	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE,
+	GET_USERS_STARTED,
+	GET_USERS_SUCCEEDED,
+	GET_USERS_FAILED
 } from './types';
 
 const initialState = {
@@ -48,7 +51,8 @@ const initialState = {
 	posts: [],
 	userMe: {},
 	userMeLoading: false,
-	updateUserPersonalInfoComplete: false
+	updateUserPersonalInfoComplete: false,
+	members: []
 };
 
 const user = (state = initialState, action) => {
@@ -223,6 +227,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				updateUserPersonalInfoComplete: false
+			};
+		case GET_USERS_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case GET_USERS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				members: payload?.data
+			};
+		case GET_USERS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;

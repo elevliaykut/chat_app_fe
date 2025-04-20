@@ -4,7 +4,7 @@ import Image from 'next/image';
 import LOGO from '../../../utils/imgs/logo.png';
 import ThemeConfig from "@/src/utils/ThemeConfig";
 
-const TopMenu = () => {
+const TopBanner = () => {
     return (
         <>
             <div className={styles.container}>
@@ -101,4 +101,4 @@ const TopMenu = () => {
         </>
     )
 }
-export default TopMenu;
+export default TopBanner;

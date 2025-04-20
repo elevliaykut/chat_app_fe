@@ -24,7 +24,10 @@ import {
 	UPDATE_USER_PERSONAL_INFO_STARTED,
 	UPDATE_USER_PERSONAL_INFO_SUCCEEDED,
 	UPDATE_USER_PERSONAL_INFO_FAILED,
-	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
+	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE,
+	GET_USERS_STARTED,
+	GET_USERS_SUCCEEDED,
+	GET_USERS_FAILED,
 } from './types';
 
 export const loginUser = values => ({
@@ -150,4 +153,19 @@ export const updateUserPersonalInfoError = error => ({
 
 export const resetUpdateUserPersonalInfoComplete = () => ({
 	type: RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE
+});
+
+export const getUsers = values => ({
+	type: GET_USERS_STARTED,
+	payload: values
+});
+
+export const getUsersSuccess = data => ({
+	type: GET_USERS_SUCCEEDED,
+	payload: data
+});
+
+export const getUsersError = error => ({
+	type: GET_USERS_FAILED,
+	payload: error
 });
