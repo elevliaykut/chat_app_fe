@@ -9,7 +9,10 @@ const BasicInfoModal = ({
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
     resetUpdateUserPersonalInfoComplete = () => {},
-    userMe = {}
+    userMe = {},
+    cities = [],
+    districts = [],
+    getDistricts = []
 }) => {
     const [messageVisible, setMessageVisible] = useState(false);
     const [horoscope, setHoroscope] = useState();
@@ -21,7 +24,7 @@ const BasicInfoModal = ({
     const [hairColor, setHairColor] = useState();
     const [skinColor, setSkinColor] = useState();
     const [bodyType, setBodyType] = useState();
-    const [haveAChicd, setHaveAChild] = useState();
+    const [haveAChild, setHaveAChild] = useState();
     const [wantToChild, setWantToChild] = useState();
     const [cigarette, setCigarette] = useState();
     const [alcohol, setAlcohol] = useState();
@@ -45,6 +48,48 @@ const BasicInfoModal = ({
     const [hoobies, setHoobies] = useState();
     const [yourPersonality, setYourPersonality] = useState();
     const [disability, setDisability] = useState();
+    const [cityId, setCityId] = useState();
+    const [districtId, setDistrictId] = useState();
+
+    const submitOnClick = () => {
+        updateUserPersonalInfo({
+            cityId: cityId,
+            districtId: districtId,
+            horoscope: horoscope,
+            maritalStatus: maturity,
+            headscarf: headCraft,
+            tall: tall,
+            weight: weight,
+            eyeColor: eyeColor,
+            hairColor: hairColor,
+            skinColor: skinColor,
+            bodyType: bodyType,
+            haveAChild: haveAChild,
+            wantAChild: wantToChild,
+            useCigarette: cigarette,
+            useAlcohol: alcohol,
+            educationStatus: educationStatus,
+		    foreignLanguage: foreighLanguages,
+            job: job,
+            salary: salary,
+            workStatus: workStatus,
+            liveWith:liveWith,
+            clothingStyle: clothingStyle,
+            notCompromise: notCompromise,
+            community: community,
+            sect: sect,
+            doYouPray: pray,
+            doYouKnowQuran: quran,
+            areYouFasting: fasting,
+            considerImportantInIslam: considerIslam,
+            listeningMusicType: musicType,
+            readingBookTypes: bookType,
+            lookingQualities: lookingQuality,
+            yourHobbies: hoobies,
+            yourPersonality: yourPersonality,
+            physicalDisability: disability
+        });
+    }
 
     useEffect(() => {
         if(updateUserPersonalInfoComplete) {
@@ -89,6 +134,15 @@ const BasicInfoModal = ({
         setFasting(e?.target?.value);
     }
 
+    const cityOnChange = (e) => {
+        getDistricts({ cityId: e?.target?.value });
+        setCityId(e?.target?.value);
+    }
+
+    const districtOnChange = (e) => {
+        setDistrictId(e?.target?.value);
+    }
+
     return (
         <>
             {messageVisible && (
@@ -108,7 +162,7 @@ const BasicInfoModal = ({
                         </div>
                     </div>
                     <div className={styles.modalContent}>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Burç</label>
                             <input
                                 placeholder="Burç"
@@ -116,7 +170,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Medeni Haliniz</label>
                             <select
                                 style={{ marginTop: '10px'}}
@@ -128,7 +182,7 @@ const BasicInfoModal = ({
 								<option value="3">Bekar</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Tessetür </label>
                             <select
                                 style={{ marginTop: '10px'}}
@@ -139,7 +193,35 @@ const BasicInfoModal = ({
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Yaşadığınız Şehir </label>
+                            <select
+                                style={{ marginTop: '10px'}}
+								onChange={cityOnChange}
+								required
+							>
+                                {cities?.map(item => (
+                                    <>
+								        <option value={item?.id}>{item.name}</option>
+                                    </>
+                                ))}
+							</select>
+                        </div>
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Yaşadığınız İlçe </label>
+                            <select
+                                style={{ marginTop: '10px'}}
+								onChange={districtOnChange}
+								required
+							>
+                                {districts?.map(item => (
+                                    <>
+								        <option value={item?.id}>{item.name}</option>
+                                    </>
+                                ))}
+							</select>
+                        </div>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Boy </label>
                             <input
                                 placeholder="Boy"
@@ -147,7 +229,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Kilo </label>
                             <input
                                 placeholder="Kilo"
@@ -155,23 +237,35 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Göz rengi </label>
-                            <input
-                                placeholder="Göz Rengi"
-                                onChange={(e) => setEyeColor(e?.target?.value)}
-                                className={styles.input}
-                            />
+                            <select
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setEyeColor(e?.target?.value)}
+							>
+								<option value="Siyah">Siyah</option>
+								<option value="Kahverengi">Kahverengi</option>
+								<option value="Ela">Ela</option>
+								<option value="Yeşil">Yeşil</option>
+								<option value="Mavi">Mavi</option>
+								<option value="Diğer">Diğer</option>
+							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Saç rengi </label>
-                            <input
-                                placeholder="Saç Rengi"
-                                onChange={(e) => setHairColor(e?.target?.value)}
-                                className={styles.input}
-                            />
+                            <select
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setHairColor(e?.target?.value)}
+							>
+								<option value="Siyah">Siyah</option>
+								<option value="Kahverengi">Kahverengi</option>
+								<option value="Kızıl">Kızıl</option>
+								<option value="Kırlaşmış">Kırlaşmış</option>
+								<option value="Sarı">Sarı</option>
+								<option value="Diğer">Diğer</option>
+							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Ten rengi </label>
                             <input
                                 placeholder="Ten Rengi"
@@ -179,7 +273,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Vücut Tipi </label>
                             <input
                                 placeholder="Vücut Tipi"
@@ -187,51 +281,47 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Çocuğunuz Varmı? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={haveAChildOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Çocuk İstiyormusunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={wantTohChildOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Sigara Kullanıyormusunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={cigaretteOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Alkol Kullanıyormusunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={alcoholOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Eğitim Durumunuz </label>
                             <input
                                 placeholder="Eğitim Durumunuz"
@@ -239,7 +329,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Yabancı Dilleriniz </label>
                             <input
                                 placeholder="Yabancı Dilleriniz"
@@ -247,7 +337,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Mesleğiniz </label>
                             <input
                                 placeholder="Mesleğiniz"
@@ -255,7 +345,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Geliriniz </label>
                             <input
                                 placeholder="Geliriniz"
@@ -263,7 +353,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Çalışma Şekliniz </label>
                             <input
                                 placeholder="Çalışma Şekliniz"
@@ -271,7 +361,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Kiminle Yaşıyorsunuz? </label>
                             <input
                                 placeholder="Kiminle Yaşıyorsunuz?"
@@ -279,7 +369,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Giyim Tarzınız </label>
                             <input
                                 placeholder="Giyim Tarzınız"
@@ -287,7 +377,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Taviz Vermeyecekleriniz </label>
                             <input
                                 placeholder="Taviz Vermeyecekleriniz"
@@ -295,7 +385,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Cemaat </label>
                             <input
                                 placeholder="Cemaat"
@@ -303,7 +393,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Mezhebiniz </label>
                             <input
                                 placeholder="Mezhebiniz"
@@ -311,40 +401,37 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Namaz Kılıyormusunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={doYouPrayOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Kuran'ı Kerim Biliyor ve Okuyormusunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={doYouKnowQuranOnChange}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Oruç Tutuyormsunuz? </label>
                             <select
                                 style={{ marginTop: '10px'}}
 								onChange={areYouFasting}
-								required
 							>
 								<option value="0">Evet</option>
 								<option value="1">Hayr</option>
 							</select>
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>İslami ve Alaki Olarak Önemli Gördükleriniz</label>
                             <input
                                 placeholder="İslami ve Alaki Olarak Önemli Gördükleriniz"
@@ -352,7 +439,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Dinlediğiniz Müzik Türleri</label>
                             <input
                                 placeholder="Dinlediğiniz Müzik Türleri"
@@ -360,7 +447,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Okuduğunuz Kitap Türleri</label>
                             <input
                                 placeholder="Okuduğunuz Kitap Türleri"
@@ -368,7 +455,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Eş Adayında Aradığınız Özellikler</label>
                             <input
                                 placeholder="Eş Adayında Aradığınız Özellikler"
@@ -376,7 +463,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Hobileriniz</label>
                             <input
                                 placeholder="Hobileriniz"
@@ -384,7 +471,7 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Kişiliğiniz</label>
                             <input
                                 placeholder="Kişiliğiniz"
@@ -392,13 +479,41 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        <div style={{ marginTop: '10px'}}>
+                        <div style={{ marginTop: '18px'}}>
                             <label>Fiziksel Engel</label>
                             <input
                                 placeholder="Fiziksel Engel"
                                 onChange={(e) => setDisability(e?.target?.value)}
                                 className={styles.input}
                             />
+                        </div>
+                    </div>
+                    <div className={styles.buttonEpisode}>
+                        <div className={styles.cancelButton}>
+                            <button
+                                onClick={() => onClose()}
+                                style={{
+                                    width: '120px',
+                                    height: '50px',
+                                    backgroundColor: 'white',
+                                    color: ThemeConfig.black,
+                                    border: '1px solid #E3E6EE'
+                                }}
+                            >
+                                Kapat
+                            </button>
+                        </div>
+                        <div className={styles.saveButton}>
+                            <button
+                                onClick={submitOnClick}
+                                disabled={isLoading}
+                                style={{
+                                    width: '120px',
+                                    height: '50px',
+                                }}
+                            >
+                                {isLoading ? 'Kaydediliyor' : 'Kaydet'}
+                            </button>
                         </div>
                     </div>
                 </div>

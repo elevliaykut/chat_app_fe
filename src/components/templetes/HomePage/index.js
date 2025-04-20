@@ -13,6 +13,11 @@ import {
     resetUpdateUserPersonalInfoComplete
 } from '../../../store/user/actions';
 
+import {
+    getCities,
+    getDistricts
+} from '../../../store/definitions/actions';
+
 const mapStateToProps = state => ({
     posts: state?.user?.posts,
     isLoading: state?.user?.isLoading,
@@ -25,7 +30,9 @@ const mapStateToProps = state => ({
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMe: state?.user?.userMe,
     userMeLoading: state?.user?.userMeLoading,
-    updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete
+    updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
+    cities: state?.definitions?.cities,
+    districts: state?.definitions?.districts,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -36,7 +43,9 @@ const mapDispatchToProps = dispatch => ({
     resetUploadProfilePhotoComplete: (payload) => dispatch(resetUploadProfilePhotoComplete(payload)),
     getUserMe: () => dispatch(getUserMe()),
     updateUserPersonalInfo: payload => dispatch(updateUserPersonalInfo(payload)),
-    resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete())
+    resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete()),
+    getCities: () => dispatch(getCities()),
+    getDistricts: payload => dispatch(getDistricts(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

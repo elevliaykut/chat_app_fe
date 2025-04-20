@@ -95,3 +95,17 @@
 .input :active {
     border: none;
 }
+
+.buttonEpisode {
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+}
+
+.cancelButton {
+  margin-left: auto;
+}
+
+.saveButton {
+  margin-left: 15px;
+}

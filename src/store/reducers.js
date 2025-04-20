@@ -1,8 +1,10 @@
 "use client";
 import { combineReducers } from 'redux';
 import user from './user/reducers';
+import definitions from './definitions/reducers';
 
 export default combineReducers({
-	user
+	user,
+	definitions
 });
 // NOTE: WORK IN PROGRESS

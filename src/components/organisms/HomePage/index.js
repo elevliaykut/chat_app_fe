@@ -29,7 +29,11 @@ const HomePage = ({
     userMeLoading = false,
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
-    resetUpdateUserPersonalInfoComplete = () => {}
+    resetUpdateUserPersonalInfoComplete = () => {},
+    getCities =  () => {},
+    getDistricts = () => {},
+    cities = [],
+    districts = []
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -37,6 +41,10 @@ const HomePage = ({
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
 
+
+    useEffect(() => {
+        getCities();
+    },[]);
 
     useEffect(() => {
         getUserMe();
@@ -86,6 +94,9 @@ const HomePage = ({
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
                         userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
                     />
                 </>
             )}
