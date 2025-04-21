@@ -7,12 +7,10 @@ import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import SearchUserProfile from "../../molecules/SearchUserProfile";
 
-const BornTodayPage = ({
+const GetMyFavoriteUsersPage = ({
     isLoading = false,
     error = null,
     pageLoading = false,
-    getUsers = () => {},
-    members = [],
     getUserMe = () => {},
     userMe = {},
     userMeLoading = false,
@@ -26,7 +24,9 @@ const BornTodayPage = ({
     getCities =  () => {},
     getDistricts = () => {},
     cities = [],
-    districts = []
+    districts = [],
+    getMyFavoriteUsers = () => {},
+    favoriteUsers = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -36,9 +36,7 @@ const BornTodayPage = ({
 
     useEffect(() => {
         getUserMe();
-    },[]);
-
-    useEffect(() => {
+        getMyFavoriteUsers();
         getCities();
     },[]);
 
@@ -48,16 +46,7 @@ const BornTodayPage = ({
         }
     },[userMeLoading]);
 
-    useEffect(() => {
-        const now = new Date();
-        const formattedDate = now.toISOString().split('T')[0]; // "yyyy-mm-dd"
-        
-        getUsers({
-            bornTodayDate: formattedDate
-        });
-        
-    },[]);
-
+    
     const profileTextModalOnClose = () => {
         setProfileTextModalVisible(false);
     }
@@ -74,7 +63,6 @@ const BornTodayPage = ({
 
     return (
         <>
-
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -125,11 +113,10 @@ const BornTodayPage = ({
                     <div className={styles.memberEpisode}>
                         {memberVisible && (
                             <>
-                                {members?.map(item => (
+                                {favoriteUsers?.map(item => (
                                     <>
                                         <SearchUserProfile
-                                            key={item?.user?.id}
-                                            user={item}
+                                            user={item?.user}
                                         />
                                     </>
                                 ))}
@@ -142,4 +129,4 @@ const BornTodayPage = ({
         </>
     )
 }
-export default BornTodayPage;
+export default GetMyFavoriteUsersPage;

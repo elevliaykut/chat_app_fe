@@ -11,6 +11,7 @@ import {
 	GET_USER_ME_STARTED,
 	UPDATE_USER_PERSONAL_INFO_STARTED,
 	GET_USERS_STARTED,
+	GET_MY_FAVORITE_USERS_STARTED
 } from './types';
 
 import {
@@ -29,7 +30,9 @@ import {
 	updateUserPersonalInfoSuccess,
 	updateUserPersonalInfoError,
 	getUsersSuccess,
-	getUsersError
+	getUsersError,
+	getMyFavoriteUsersSuccess,
+	getMyFavoriteUsersError
 } from './actions';
 
 const cookies = new Cookies();
@@ -273,6 +276,25 @@ function* getUsersTask(action) {
 	}
 }
 
+function* getMyFavoriteUsersTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/activity/favorite-profiles`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getMyFavoriteUsersSuccess(data));
+	} catch (error) {
+		yield put(getMyFavoriteUsersError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -307,6 +329,10 @@ function* watchGetUsers() {
 	yield takeLatest(GET_USERS_STARTED, getUsersTask);
 }
 
+function* watchGetMyFavoriteUsers() {
+	yield takeLatest(GET_MY_FAVORITE_USERS_STARTED, getMyFavoriteUsersTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -316,6 +342,7 @@ export default function* saga() {
 		watchUserUploadProfilePhoto(),
 		watchGetUserMe(),
 		watchUpdateUserPersonalInfo(),
-		watchGetUsers()
+		watchGetUsers(),
+		watchGetMyFavoriteUsers()
 	]);
 }

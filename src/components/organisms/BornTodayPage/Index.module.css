@@ -8,6 +8,7 @@
 /* İçerik düzeni */
 .content {
     display: flex;
+    align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
     gap: 20px;
 }
 

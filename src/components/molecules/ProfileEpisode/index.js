@@ -195,19 +195,19 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/my-favorite-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>FAVORİLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/my-smiled-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>GÜLÜMSEDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/my-liked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BEĞENDİKLERİN</label>
                         </div>

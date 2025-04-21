@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import BornTodayPageOrganisms from '../../organisms/BornTodayPage';
+import GetMyFavoriteUsersPageOrganisms from '../../organisms/GetMyFavoriteUsersPage';
 
 import {
-    getUsers,
     getUserMe,
     userUploadProfilePhoto,
     resetUploadProfilePhotoComplete,
     updateUserPersonalInfo,
-    resetUpdateUserPersonalInfoComplete
-
+    resetUpdateUserPersonalInfoComplete,
+    getMyFavoriteUsers
 } from '../../../store/user/actions';
 
 import {
@@ -21,25 +20,25 @@ const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
     error: state?.user?.error,
     pageLoading: state?.user?.pageLoading,
-    members: state?.user?.members,
     userMe: state?.user?.userMe,
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMeLoading: state?.user?.userMeLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
+    favoriteUsers: state?.user?.favoriteUsers,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
 });
 
 const mapDispatchToProps = dispatch => ({
-    getUsers: payload => dispatch(getUsers(payload)),
     getUserMe: () => dispatch(getUserMe()),
     userUploadProfilePhoto: payload => dispatch(userUploadProfilePhoto(payload)),
     resetUploadProfilePhotoComplete: (payload) => dispatch(resetUploadProfilePhotoComplete(payload)),
     updateUserPersonalInfo: payload => dispatch(updateUserPersonalInfo(payload)),
     resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete()),
     getCities: () => dispatch(getCities()),
-    getDistricts: payload => dispatch(getDistricts(payload))
+    getDistricts: payload => dispatch(getDistricts(payload)),
+    getMyFavoriteUsers: () => dispatch(getMyFavoriteUsers())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BornTodayPageOrganisms);
+export default connect(mapStateToProps, mapDispatchToProps)(GetMyFavoriteUsersPageOrganisms);

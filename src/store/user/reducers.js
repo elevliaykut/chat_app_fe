@@ -27,7 +27,10 @@ import {
 	RESET_UPDATE_USER_PERSONAL_INFO_COMPLETE,
 	GET_USERS_STARTED,
 	GET_USERS_SUCCEEDED,
-	GET_USERS_FAILED
+	GET_USERS_FAILED,
+	GET_MY_FAVORITE_USERS_STARTED,
+	GET_MY_FAVORITE_USERS_SUCCEEDED,
+	GET_MY_FAVORITE_USERS_FAILED
 } from './types';
 
 const initialState = {
@@ -52,7 +55,8 @@ const initialState = {
 	userMe: {},
 	userMeLoading: false,
 	updateUserPersonalInfoComplete: false,
-	members: []
+	members: [],
+	favoriteUsers: []
 };
 
 const user = (state = initialState, action) => {
@@ -231,18 +235,41 @@ const user = (state = initialState, action) => {
 		case GET_USERS_STARTED:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
+				pageLoading: false
 			};
 		case GET_USERS_SUCCEEDED:
 			return {
 				...state,
 				isLoading: false,
+				pageLoading: true,
 				members: payload?.data
 			};
 		case GET_USERS_FAILED:
 			return {
 				...state,
 				isLoading: false,
+				pageLoading: false,
+				error: payload
+			};
+		case GET_MY_FAVORITE_USERS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				pageLoading: false,
+			};
+		case GET_MY_FAVORITE_USERS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: true,
+				favoriteUsers: payload?.data
+			};
+		case GET_MY_FAVORITE_USERS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: false,
 				error: payload
 			};
 		default:

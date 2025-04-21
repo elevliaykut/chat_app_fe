@@ -9,6 +9,7 @@
 .content {
     display: flex;
     gap: 20px;
+    align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
 }
 
 .memberEpisode {

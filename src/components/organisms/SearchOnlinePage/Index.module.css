@@ -14,4 +14,5 @@
     width: 100%;
     max-width: 1200px; /* Maksimum genişlik */
     margin: 0 auto; /* Ortalayalım */
+    align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
   }
