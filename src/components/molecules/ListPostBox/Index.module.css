@@ -101,16 +101,20 @@
 
 .footerLike {
     display: flex;
+    cursor: pointer;
 }
 
 .footerMessage {
     display: flex;
+    cursor: pointer;
 }
 
 .footerFavorite {
     display: flex;
+    cursor: pointer;
 }
 
 .footerSmile {
     display: flex;
+    cursor: pointer;
 }

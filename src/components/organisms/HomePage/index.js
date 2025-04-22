@@ -31,7 +31,12 @@ const HomePage = ({
     getCities =  () => {},
     getDistricts = () => {},
     cities = [],
-    districts = []
+    districts = [],
+    postActivityLike = () => {},
+    postIsLoading = false,
+    postError = null,
+    postActivityFavorite = () => {},
+    postActivitySmiled = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -135,6 +140,10 @@ const HomePage = ({
                             <>
                                 <ListPostBox
                                     posts={posts}
+                                    postActivityLike={postActivityLike}
+                                    postIsLoading={postIsLoading}
+                                    postActivityFavorite={postActivityFavorite}
+                                    postActivitySmiled={postActivitySmiled}
                                 />
                             </>
                         )}

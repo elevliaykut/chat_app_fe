@@ -18,6 +18,12 @@ import {
     getDistricts
 } from '../../../store/definitions/actions';
 
+import {
+    postActivityLike,
+    postActivityFavorite,
+    postActivitySmiled
+} from '../../../store/post/actions';
+
 const mapStateToProps = state => ({
     posts: state?.user?.posts,
     isLoading: state?.user?.isLoading,
@@ -33,6 +39,8 @@ const mapStateToProps = state => ({
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
+    postIsLoading: state?.post?.isLoading,
+    postError: state?.post?.error
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -45,7 +53,10 @@ const mapDispatchToProps = dispatch => ({
     updateUserPersonalInfo: payload => dispatch(updateUserPersonalInfo(payload)),
     resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete()),
     getCities: () => dispatch(getCities()),
-    getDistricts: payload => dispatch(getDistricts(payload))
+    getDistricts: payload => dispatch(getDistricts(payload)),
+    postActivityLike: payload => dispatch(postActivityLike(payload)),
+    postActivityFavorite: payload => dispatch(postActivityFavorite(payload)),
+    postActivitySmiled: payload => dispatch(postActivitySmiled(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);
