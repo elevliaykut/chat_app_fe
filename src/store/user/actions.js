@@ -30,7 +30,10 @@ import {
 	GET_USERS_FAILED,
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_FAVORITE_USERS_SUCCEEDED,
-	GET_MY_FAVORITE_USERS_FAILED
+	GET_MY_FAVORITE_USERS_FAILED,
+	GET_MY_SMILED_PROFILES_STARTED,
+	GET_MY_SMILED_PROFILES_SUCCEEDED,
+	GET_MY_SMILED_PROFILES_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -185,5 +188,20 @@ export const getMyFavoriteUsersSuccess = data => ({
 
 export const getMyFavoriteUsersError = error => ({
 	type: GET_MY_FAVORITE_USERS_FAILED,
+	payload: error
+});
+
+export const getMySmiledProfiles = values => ({
+	type: GET_MY_SMILED_PROFILES_STARTED,
+	payload: values
+});
+
+export const getMySmiledProfilesSuccess = data => ({
+	type: GET_MY_SMILED_PROFILES_SUCCEEDED,
+	payload: data
+});
+
+export const getMySmiledProfilesError = error => ({
+	type: GET_MY_SMILED_PROFILES_FAILED,
 	payload: error
 });

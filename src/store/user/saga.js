@@ -11,7 +11,8 @@ import {
 	GET_USER_ME_STARTED,
 	UPDATE_USER_PERSONAL_INFO_STARTED,
 	GET_USERS_STARTED,
-	GET_MY_FAVORITE_USERS_STARTED
+	GET_MY_FAVORITE_USERS_STARTED,
+	GET_MY_SMILED_PROFILES_STARTED,
 } from './types';
 
 import {
@@ -32,7 +33,9 @@ import {
 	getUsersSuccess,
 	getUsersError,
 	getMyFavoriteUsersSuccess,
-	getMyFavoriteUsersError
+	getMyFavoriteUsersError,
+	getMySmiledProfilesSuccess,
+	getMySmiledProfilesError
 } from './actions';
 
 const cookies = new Cookies();
@@ -295,6 +298,25 @@ function* getMyFavoriteUsersTask(action) {
 	}
 }
 
+function* getMySmiledProfilesTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/activity/similed-profiles`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getMySmiledProfilesSuccess(data));
+	} catch (error) {
+		yield put(getMySmiledProfilesError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -333,6 +355,10 @@ function* watchGetMyFavoriteUsers() {
 	yield takeLatest(GET_MY_FAVORITE_USERS_STARTED, getMyFavoriteUsersTask);
 }
 
+function* watchGetMySmiledProfiles() {
+	yield takeLatest(GET_MY_SMILED_PROFILES_STARTED, getMySmiledProfilesTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -343,6 +369,7 @@ export default function* saga() {
 		watchGetUserMe(),
 		watchUpdateUserPersonalInfo(),
 		watchGetUsers(),
-		watchGetMyFavoriteUsers()
+		watchGetMyFavoriteUsers(),
+		watchGetMySmiledProfiles()
 	]);
 }

@@ -30,7 +30,10 @@ import {
 	GET_USERS_FAILED,
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_FAVORITE_USERS_SUCCEEDED,
-	GET_MY_FAVORITE_USERS_FAILED
+	GET_MY_FAVORITE_USERS_FAILED,
+	GET_MY_SMILED_PROFILES_STARTED,
+	GET_MY_SMILED_PROFILES_SUCCEEDED,
+	GET_MY_SMILED_PROFILES_FAILED
 } from './types';
 
 const initialState = {
@@ -56,7 +59,8 @@ const initialState = {
 	userMeLoading: false,
 	updateUserPersonalInfoComplete: false,
 	members: [],
-	favoriteUsers: []
+	favoriteUsers: [],
+	smiledProfiles: []
 };
 
 const user = (state = initialState, action) => {
@@ -270,6 +274,23 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				pageLoading: false,
+				error: payload
+			};
+		case GET_MY_SMILED_PROFILES_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case GET_MY_SMILED_PROFILES_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				smiledProfiles: payload?.data
+			};
+		case GET_MY_SMILED_PROFILES_FAILED:
+			return {
+				...state,
+				isLoading: false,
 				error: payload
 			};
 		default:
