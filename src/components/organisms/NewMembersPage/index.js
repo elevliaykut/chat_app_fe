@@ -48,7 +48,7 @@ const NewMembersPage = ({
 
         getUsers({
             startsBetween: merge
-        })
+        });
     }, []);
 
     useEffect(() => {
