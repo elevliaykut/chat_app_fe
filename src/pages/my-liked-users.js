@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import GetMySmiledProfilesPage from '../components/templetes/GetMySmiledProfilesPage';
+import GetMyLikedProfilesPage from '../components/templetes/GetMyLikedProfilesPage';
 import { Provider } from 'react-redux';
 import store, { persistor } from '../../src/store/index';
 
@@ -8,10 +8,10 @@ const IndexPage = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Gülümsediklerim</title>
+				<title>Beğendiklerim</title>
 			</Helmet>
 			<Provider store={store}>
-				<GetMySmiledProfilesPage />
+				<GetMyLikedProfilesPage />
 			</Provider>
 		</>
 	);
