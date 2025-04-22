@@ -9,7 +9,7 @@ const TopBanner = () => {
         <>
             <div className={styles.container}>
                 <div className={styles.frame}>
-                    <div className={styles.logoEpisode}>
+                    <div className={styles.logoEpisode} onClick={() => window.location = '/home'}>
                         <Image
                             src={LOGO}
                         />
