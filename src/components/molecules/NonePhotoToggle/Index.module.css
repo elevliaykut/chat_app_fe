@@ -1,0 +1,42 @@
+.ToggleContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .ToggleLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .ToggleSwitch {
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 999px;
+    padding: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ToggleSwitch.Active {
+    background-color: #4caf50; /* Aktifken yeşil */
+  }
+  
+  .ToggleKnob {
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s ease;
+  }
+  
+  .ToggleSwitch.Active .ToggleKnob {
+    left: 26px;
+  }
+  

@@ -5,12 +5,17 @@ import styles from "./Index.module.css";
 
 import SearchUserProfile from "../../molecules/SearchUserProfile";
 import IM from '../../../utils/imgs/header-bg.jpg';
+import FilterWithToggleEpisode from "../../molecules/FilterWithToggleEpisode";
 
 const SearchOnlinePage = () => {
+
     return (
         <>
             <TopBanner/>
             <SearchMenu/>
+            {
+                //<FilterWithToggleEpisode/>
+            }
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.content}>

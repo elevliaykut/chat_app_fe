@@ -1,0 +1,12 @@
+.container {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.frame{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+}

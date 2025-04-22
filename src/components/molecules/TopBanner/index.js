@@ -24,7 +24,7 @@ const TopBanner = () => {
                             <label style={{ color: ThemeConfig.white, fontSize: '15px'}}>BLOG</label>
                         </div>
                         <div className={styles.cubuk}/>
-                        <div style={{ display: 'flex', paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}}>
+                        <div style={{ display: 'flex', paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}} onClick={() => window.location = '/search/online'}>
                             {/* Search Icon */}
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"
