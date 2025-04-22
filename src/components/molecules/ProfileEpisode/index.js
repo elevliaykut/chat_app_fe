@@ -213,7 +213,7 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => window.location = '/my-blocked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ENGELLENEN ÜYE</label>
                         </div>

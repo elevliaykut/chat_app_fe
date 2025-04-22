@@ -36,7 +36,10 @@ import {
 	GET_MY_SMILED_PROFILES_FAILED,
 	GET_MY_LIKED_PROFILES_STARTED,
 	GET_MY_LIKED_PROFILES_SUCCEEDED,
-	GET_MY_LIKED_PROFILES_FAILED
+	GET_MY_LIKED_PROFILES_FAILED,
+	GET_MY_BLOCKED_PROFILES_STARTED,
+	GET_MY_BLOCKED_PROFILES_SUCCEEDED,
+	GET_MY_BLOCKED_PROFILES_FAILED,
 } from './types';
 
 export const loginUser = values => ({
@@ -221,5 +224,20 @@ export const getMyLikedProfilesSuccess = data => ({
 
 export const getMyLikedProfilesError = error => ({
 	type: GET_MY_LIKED_PROFILES_FAILED,
+	payload: error
+});
+
+export const getMyBlockedProfiles = values => ({
+	type: GET_MY_BLOCKED_PROFILES_STARTED,
+	payload: values
+});
+
+export const getMyBlockedProfilesSuccess = data => ({
+	type: GET_MY_BLOCKED_PROFILES_SUCCEEDED,
+	payload: data
+});
+
+export const getMyBlockedProfilesError = error => ({
+	type: GET_MY_BLOCKED_PROFILES_FAILED,
 	payload: error
 });

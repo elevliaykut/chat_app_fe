@@ -14,6 +14,7 @@ import {
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_SMILED_PROFILES_STARTED,
 	GET_MY_LIKED_PROFILES_STARTED,
+	GET_MY_BLOCKED_PROFILES_STARTED
 } from './types';
 
 import {
@@ -38,7 +39,9 @@ import {
 	getMySmiledProfilesSuccess,
 	getMySmiledProfilesError,
 	getMyLikedProfilesSuccess,
-	getMyLikedProfilesError
+	getMyLikedProfilesError,
+	getMyBlockedProfilesSuccess,
+	getMyBlockedProfilesError
 } from './actions';
 
 const cookies = new Cookies();
@@ -339,6 +342,25 @@ function* getMyLikedProfilesTask(action) {
 	}
 }
 
+function* getMyBlockedProfilesTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/my-blocked-users`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getMyBlockedProfilesSuccess(data));
+	} catch (error) {
+		yield put(getMyBlockedProfilesError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -385,6 +407,10 @@ function* watchGetMyLikedProfiles() {
 	yield takeLatest(GET_MY_LIKED_PROFILES_STARTED, getMyLikedProfilesTask);
 }
 
+function* watchGetMyBlockedProfiles() {
+	yield takeLatest(GET_MY_BLOCKED_PROFILES_STARTED, getMyBlockedProfilesTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -397,6 +423,7 @@ export default function* saga() {
 		watchGetUsers(),
 		watchGetMyFavoriteUsers(),
 		watchGetMySmiledProfiles(),
-		watchGetMyLikedProfiles()
+		watchGetMyLikedProfiles(),
+		watchGetMyBlockedProfiles()
 	]);
 }
