@@ -52,7 +52,7 @@ const SearchUserProfile = ({
                     <label>{user?.age}, {user?.detail?.marital_status_value}, {user?.detail?.city?.name}</label>
                 </div>
                 <div className={styles.status}>
-                    <label>{user?.status}</label>
+                    <label>{user?.is_online ? 'Çevrimiçi' : 'Çevrimdışı'}</label>
                 </div>
                 <div className={styles.buttons}>
                     <div className={styles.buttonItem}>
