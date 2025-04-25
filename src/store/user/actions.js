@@ -40,6 +40,9 @@ import {
 	GET_MY_BLOCKED_PROFILES_STARTED,
 	GET_MY_BLOCKED_PROFILES_SUCCEEDED,
 	GET_MY_BLOCKED_PROFILES_FAILED,
+	GET_ONLINE_PROFILES_STARTED,
+	GET_ONLINE_PROFILES_SUCCEEDED,
+	GET_ONLINE_PROFILES_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -239,5 +242,20 @@ export const getMyBlockedProfilesSuccess = data => ({
 
 export const getMyBlockedProfilesError = error => ({
 	type: GET_MY_BLOCKED_PROFILES_FAILED,
+	payload: error
+});
+
+export const getOnlineProfiles = values => ({
+	type: GET_ONLINE_PROFILES_STARTED,
+	payload: values
+});
+
+export const getOnlineProfilesSuccess = data => ({
+	type: GET_ONLINE_PROFILES_SUCCEEDED,
+	payload: data
+});
+
+export const getOnlineProfilesError = error => ({
+	type: GET_ONLINE_PROFILES_FAILED,
 	payload: error
 });

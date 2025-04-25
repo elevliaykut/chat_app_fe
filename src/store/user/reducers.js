@@ -39,7 +39,10 @@ import {
 	GET_MY_LIKED_PROFILES_FAILED,
 	GET_MY_BLOCKED_PROFILES_STARTED,
 	GET_MY_BLOCKED_PROFILES_SUCCEEDED,
-	GET_MY_BLOCKED_PROFILES_FAILED
+	GET_MY_BLOCKED_PROFILES_FAILED,
+	GET_ONLINE_PROFILES_STARTED,
+	GET_ONLINE_PROFILES_SUCCEEDED,
+	GET_ONLINE_PROFILES_FAILED
 } from './types';
 
 const initialState = {
@@ -68,7 +71,8 @@ const initialState = {
 	favoriteUsers: [],
 	smiledProfiles: [],
 	likedProfiles: [],
-	blockedProfiles: []
+	blockedProfiles: [],
+	onlineProfiles: []
 };
 
 const user = (state = initialState, action) => {
@@ -333,6 +337,26 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				error: payload
+			};
+		case GET_ONLINE_PROFILES_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				pageLoading: true
+			};
+		case GET_ONLINE_PROFILES_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: false,
+				onlineProfiles: payload?.data
+			};
+		case GET_ONLINE_PROFILES_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				pageLoading: false,
 				error: payload
 			};
 		default:
