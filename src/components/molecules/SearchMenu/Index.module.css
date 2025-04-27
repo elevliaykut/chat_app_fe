@@ -16,13 +16,14 @@
     padding-top: 20px;
     padding-bottom: 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .menu:hover {
     background-color: #e9eaeb;
 }
 
-.menu:active {
+.active {
     background-color: #e9eaeb;
 }
 

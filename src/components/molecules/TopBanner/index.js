@@ -17,11 +17,11 @@ const TopBanner = () => {
                     <div className={styles.content}>
                         <div className={styles.cubuk}/>
                         <div style={{ paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}}>
-                            <label style={{ color: ThemeConfig.white, fontSize: '15px'}}>ONLINE ÜYE</label>
+                            <label style={{ color: ThemeConfig.white, fontSize: '15px', cursor: 'pointer'}}>ONLINE ÜYE</label>
                         </div>
                         <div className={styles.cubuk}/>
                         <div style={{ paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}}>
-                            <label style={{ color: ThemeConfig.white, fontSize: '15px'}}>BLOG</label>
+                            <label style={{ color: ThemeConfig.white, fontSize: '15px', cursor: 'pointer'}}>BLOG</label>
                         </div>
                         <div className={styles.cubuk}/>
                         <div style={{ display: 'flex', paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}} onClick={() => window.location = '/search/online'}>
@@ -36,7 +36,7 @@ const TopBanner = () => {
                                 <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34A6.5 6.5 0 009.5 3a6.5 6.5 0 000 13 6.471 6.471 0 005.34-1.48l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/>
                                 </svg>
                             {/* Label */}
-                            <label style={{ color: ThemeConfig.white, fontSize: '15px' }}>
+                            <label style={{ color: ThemeConfig.white, fontSize: '15px', cursor: 'pointer' }}>
                                 EŞ ADAYI ARA
                             </label>
                         </div>

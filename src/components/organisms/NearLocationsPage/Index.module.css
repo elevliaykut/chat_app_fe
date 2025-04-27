@@ -18,4 +18,5 @@
     gap: 20px; /* Kartlar arasındaki boşluk */
     width: 100%;
     margin: 0 auto; /* Ortalayalım */
+    align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
 }
