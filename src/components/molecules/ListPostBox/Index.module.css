@@ -22,6 +22,7 @@
 }
 
 .profileEpisode {
+    cursor: pointer;
 }
 
 .profileDetailEpisode {
@@ -31,6 +32,7 @@
 .usernameEpisode {
     margin-left: 12px;
     margin-top: 6px;
+    cursor: pointer;
 }
 
 .usernameEpisode label {
@@ -49,12 +51,13 @@
 }
 
 .statusEpisode{
-    margin-left: 52px;
+    margin-left: 100px;
     margin-top: 15px;
 }
 
 .statusEpisode label{
-    font-size: 15px;
+    text-align: right;
+    font-size: 13px;
     color: #131313;
 }
 

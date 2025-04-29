@@ -1,0 +1,9 @@
+const category = 'MEMBER';
+
+export const GET_MEMBER_DETAILS_STARTED = `${category}__GET_MEMBER_DETAILS__STARTED`;
+export const GET_MEMBER_DETAILS_SUCCEEDED = `${category}__GET_MEMBER_DETAILS__SUCCEEDED`;
+export const GET_MEMBER_DETAILS_FAILED = `${category}__GET_MEMBER_DETAILS__FAILED`;
+
+export const GET_MEMBER_POSTS_STARTED = `${category}__GET_MEMBER_POSTS__STARTED`;
+export const GET_MEMBER_POSTS_SUCCEEDED = `${category}__GET_MEMBER_POSTS__SUCCEEDED`;
+export const GET_MEMBER_POSTS_FAILED = `${category}__GET_MEMBER_POSTS__FAILED`;

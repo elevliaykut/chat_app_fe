@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import styles from './Index.module.css';
 import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
@@ -45,7 +45,7 @@ const SearchUserProfile = ({
                             </>
                         )}
                 </div>
-                <div className={styles.profileUsername}>
+                <div className={styles.profileUsername} onClick={() => window.location = '/member/' + user?.id}>
                     <label>{user?.username}</label>
                 </div>
                 <div className={styles.profileDetail}>

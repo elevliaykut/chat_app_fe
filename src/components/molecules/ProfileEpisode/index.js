@@ -92,6 +92,9 @@ const ProfileEpisode = ({
                         onChange={handleImageChange} // Resim seçildiğinde handleImageChange çağrılıyor
                     />
 
+                    <div className={styles.username}>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black, fontWeight: 'bold'}}>{userMe?.username}</label>
+                    </div>
                     <div className={styles.defination}>
                         <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{userMe?.age}, {userMe?.detail?.marital_status_value}, {userMe?.detail?.city?.name}</label>
                     </div>

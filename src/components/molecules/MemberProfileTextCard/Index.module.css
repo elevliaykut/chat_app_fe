@@ -1,11 +1,11 @@
 .container {
+    width: 100%;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     border: 1px solid #eee;
     width: 100%;
     font-family: sans-serif;
-    margin-top: 25px;
 }
 
 .title {
@@ -28,12 +28,15 @@
 }
 
 .contentText {
-    font-size: 14px;
-    color: #333;
     line-height: 1.5;
     padding: 15px;
     word-break: break-word;
     overflow-wrap: break-word;
     max-height: 300px; /* Maksimum yükseklik sınırı */
     overflow-y: auto;  /* İçerik taşarsa dikey scroll */
+}
+
+.contentText label {
+    font-size: 14px;
+    color: #333;
 }

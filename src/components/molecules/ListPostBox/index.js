@@ -64,12 +64,14 @@ const ListPostBox = ({
                         <>
                             <div className={styles.container}>
                                 <div className={styles.topEpisode}>
+                                    
                                     <div className={styles.leftEpisode}>
-                                        <div className={styles.profileEpisode}>
+                                        <div className={styles.profileEpisode} onClick={() => window.location = '/member/' + item?.creator_user?.id}>
                                             <Image src={IM} style={{ width: '60px',height: '60px',borderRadius: '100px'}}/>
                                         </div>
+                                        
                                         <div className={styles.profileDetailEpisode}>
-                                            <div className={styles.usernameEpisode}>
+                                            <div className={styles.usernameEpisode} onClick={() => window.location = '/member/' + item?.creator_user?.id}>
                                                 {item?.creator_user?.username}
                                             </div>
                                             <div className={styles.info}>
@@ -82,7 +84,7 @@ const ListPostBox = ({
                                     </div>
                                     <div className={styles.rightEpisode}>
                                         <label>
-                                            
+                                            Tarih
                                         </label>
                                     </div>
                                 </div>

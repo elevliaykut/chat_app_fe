@@ -1,7 +1,9 @@
 import React from "react";
 import styles from './Index.module.css';
 
-const MemberProfileTextCard = () => {
+const MemberProfileTextCard = ({
+    details = {}
+}) => {
     return (
         <>
             <div className={styles.container}>
@@ -25,7 +27,9 @@ const MemberProfileTextCard = () => {
                      </div>
                 </div>
                 <div className={styles.contentText}>
-                    asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
+                    <label>
+                        {details?.detail?.profile_summary ? details?.detail?.profile_summary  : 'Profil Yazısı Bulunmamaktadır!'}
+                    </label>
                 </div>
             </div>
         </>
