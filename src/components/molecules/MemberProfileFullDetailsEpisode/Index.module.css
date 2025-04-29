@@ -1,0 +1,98 @@
+.container {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Ortalayacağız */
+    padding: 6px;
+  }
+
+  .descriptionContainer {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    display: block;
+    border-bottom: 1px solid #ccc;
+  
+    max-height: 220px; /* 👈 Maksimum yükseklik belirliyoruz */
+    overflow-y: auto;  /* 👈 İçerik taşarsa dikey scroll aktif olur */
+  }
+
+  .descriptionEpisode {
+    padding: 12px;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .descriptionEpisode label{
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      padding-top: 2px;
+  }
+
+  .descriptionEpisode span{
+    font-size: 14px;
+    color: #333;
+}
+
+  .descriptionContainerTitle {
+    width: 30%;
+    display: flex;
+  }
+
+  .descriptionContainerContent {
+    width: 70%;
+    padding-left: 10px;
+  }
+  
+  .menu {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 12px 8px;
+    position: relative; /* 👈 Çubuğu konumlandırmak için */
+  }
+  
+  .menu::after {
+    content: '';
+    position: absolute;
+    right: 0; /* Sağa yapışsın */
+    top: 25%; 
+    height: 50%; /* Menü yüksekliğinin yarısı kadar */
+    width: 1px;
+    background-color: #ccc;
+  }
+  
+  /* Son menüde çubuk olmasın */
+  .menu:last-child::after {
+    display: none;
+  }
+  
+  .menu:hover label {
+    color: #0070f3;
+  }
+  
+  .cubuk {
+    width: 1px;
+    height: 50%;
+    background-color: #ccc;
+    transition: background-color 0.3s ease;
+  }
+  
+  .active label {
+    color: #0070f3;
+  }
+  
+  .active .cubuk {
+    background-color: #0070f3;
+  }
+  

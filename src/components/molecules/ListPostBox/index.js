@@ -151,7 +151,7 @@ const ListPostBox = ({
                                     <div className={styles.footerSmile} onClick={() => handleSmiledClick(item?.id)}>
                                         <div style={{ marginLeft: '20px',marginTop: '10px', marginBottom: '10px'}}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill={isSmiled ? ThemeConfig.success : 'white'} stroke={ThemeConfig.black} viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 
                                                     10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 
                                                     8-8 8 3.59 8 8-3.59 8-8 8zm-4-6c.67 1.33 2.03 2 4 2s3.33-.67 
                                                     4-2h-8zm0-4h2v2H8v-2zm6 0h2v2h-2v-2z"/>
