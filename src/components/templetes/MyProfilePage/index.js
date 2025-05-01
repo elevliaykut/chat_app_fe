@@ -1,0 +1,51 @@
+import React from "react";
+import { connect } from "react-redux";
+import MyProfileOrganisms from "../../organisms/MyProfilePage";
+
+import {
+    getUserMe,
+    userUploadProfilePhoto,
+    resetUploadProfilePhotoComplete,
+    updateUserPersonalInfo,
+    resetUpdateUserPersonalInfoComplete
+} from '../../../store/user/actions';
+
+import {
+    getCities,
+    getDistricts
+} from '../../../store/definitions/actions';
+
+import {
+    postActivityLike,
+    postActivityFavorite,
+    postActivitySmiled
+} from '../../../store/post/actions';
+
+const mapStateToProps = state => ({
+    isLoading: state?.user?.isLoading,
+    error: state?.user?.error,
+    pageLoading: state?.user?.pageLoading,
+    userMe: state?.user?.userMe,
+    userMeLoading: state?.user?.userMeLoading,
+    uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
+    uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
+    updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
+    cities: state?.definitions?.cities,
+    districts: state?.definitions?.districts,
+
+});
+
+const mapDispatchToProps = dispatch => ({
+    getUserMe: () => dispatch(getUserMe()),
+    userUploadProfilePhoto: payload => dispatch(userUploadProfilePhoto(payload)),
+    resetUploadProfilePhotoComplete: (payload) => dispatch(resetUploadProfilePhotoComplete(payload)),
+    updateUserPersonalInfo: payload => dispatch(updateUserPersonalInfo(payload)),
+    resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete()),
+    getCities: () => dispatch(getCities()),
+    getDistricts: payload => dispatch(getDistricts(payload)),
+    postActivityLike: payload => dispatch(postActivityLike(payload)),
+    postActivityFavorite: payload => dispatch(postActivityFavorite(payload)),
+    postActivitySmiled: payload => dispatch(postActivitySmiled(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfileOrganisms);

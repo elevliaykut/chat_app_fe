@@ -1,5 +1,5 @@
 .container {
-    width: 350px;
+    width: 300px;
     height: 100%;;
     display: block;
     border: 1px solid #e9eaeb;
@@ -16,16 +16,12 @@
     height: 100px; /* Hikaye öğesinin yüksekliği */
     border-radius: 50%; /* Yuvarlak yapmak için */
     overflow: hidden;
-    cursor: pointer;
 }
 
 .username {
     text-align: center;
     margin-top: 20px;
-}
-
-.username:hover{
-    text-decoration: underline;
+    font-weight: bold;
 }
 
 .defination {
@@ -35,15 +31,15 @@
 
 .burc {
     text-align: center;
-    padding-top: 10px;
     margin-bottom: 40px;
+    margin-top: 10px;
 }
 
 .menu {
     display: flex;
     margin-left: 30px;
     padding-top: 13px;
-    padding-bottom: 20px;
+    padding-bottom: 13px;
     cursor: pointer;
 }
 

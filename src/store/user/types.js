@@ -99,3 +99,5 @@ export const USER_REPORTS_STARTED = `${category}__USER_REPORTS__STARTED`;
 export const USER_REPORTS_SUCCEEDED = `${category}__USER_REPORTS__SUCCEEDED`;
 export const USER_REPORTS_FAILED = `${category}__USER_REPORTS__FAILED`;
 export const USER_REPORTS_RESET = `${category}__USER_REPORTS__RESET`;
+
+// GET MY POSTS

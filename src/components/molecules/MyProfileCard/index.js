@@ -5,16 +5,16 @@ import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
 import ToastMessage from "../TostMessage";
 
-const ProfileEpisode = ({
+const MyProfileCard = ({
     uploadProfilePhotoComplete = false,
     uploadProfilePhotoIsLoading = false,
     userUploadProfilePhoto = () => {},
     resetUploadProfilePhotoComplete = () => {},
-    userMe = {},
+    details = {},
     setProfileTextModalVisible = () => {},
-    setBasicInfoModalVisible = () => {}
+    setBasicInfoModalVisible = () => {},
+    setPersonalInfoModalVisible = () => {}
 }) => {
-
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -30,7 +30,7 @@ const ProfileEpisode = ({
         }
     };
 
-      useEffect(() => {
+    useEffect(() => {
         if (uploadProfilePhotoComplete) {
           resetUploadProfilePhotoComplete();
           //userPostList();
@@ -53,15 +53,16 @@ const ProfileEpisode = ({
             {showSuccess && (
                 <ToastMessage message={"Profil Fotoğrafınız başarılı bir şekilde güncellendi. ✅"}/>
             )}
+
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.profilePhoto} onClick={() => document.getElementById('fileInput').click()}> 
-                        {userMe?.profile_photo_path ? (
+                        {details?.profile_photo_path ? (
                             <>
                                 <Image 
                                     width={100}
                                     height={100}
-                                    src={userMe?.profile_photo_path}
+                                    src={details?.profile_photo_path}
                                 />
                             </>
                         ) : (
@@ -83,7 +84,7 @@ const ProfileEpisode = ({
                             </>
                         )}
                     </div>
-
+                    
                     <input
                         id="fileInput" // Bu inputu gizli yapıyoruz
                         type="file"
@@ -91,15 +92,15 @@ const ProfileEpisode = ({
                         style={{ display: 'none' }}
                         onChange={handleImageChange} // Resim seçildiğinde handleImageChange çağrılıyor
                     />
-
-                    <div className={styles.username} onClick={() => window.location = '/my-profile'}>
-                        <label style={{ fontSize: '15px', color: ThemeConfig.black, fontWeight: 'bold', cursor: 'pointer'}}>{userMe?.username}</label>
+                    
+                    <div className={styles.username}>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{details?.username}</label>
                     </div>
                     <div className={styles.defination}>
-                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{userMe?.age}, {userMe?.detail?.marital_status_value}, {userMe?.detail?.city?.name}</label>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{details?.age}, {details?.detail?.marital_status_value}, {details?.detail?.city?.name}</label>
                     </div>
                     <div className={styles.burc}>
-                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{userMe?.detail?.horoscope}</label>
+                        <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{details?.detail?.horoscope}</label>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.menu}>
@@ -132,6 +133,17 @@ const ProfileEpisode = ({
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setBasicInfoModalVisible(true)}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Temel Bilgiler</label>
+                        </div>
+                    </div>
+                    <div className={styles.line}/>
+                    <div className={styles.menu}>
+                        <div style={{ marginTop: '3px'}}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path fill="#000" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.33 0-10 1.67-10 5v1a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-1c0-3.33-6.67-5-10-5Z"/>
+                            </svg>
+                        </div>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setPersonalInfoModalVisible(true)}>
+                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Kişisel Bilgiler</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -174,86 +186,9 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/new-members'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YENİ ÜYELER</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/near-locations'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YAKIN KONUMDA</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/born-today'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BUGÜN DOĞANLAR</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>PROFİLİNİ GEZDİKLERİN</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-favorite-users'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>FAVORİLERİN</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-smiled-users'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>GÜLÜMSEDİKLERİN</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-liked-users'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BEĞENDİKLERİN</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-blocked-users'}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ENGELLENEN ÜYE</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÖDEME FORMU</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>İLETİŞİM</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YARDIM</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>AYARLAR</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÇIKIŞ</label>
-                        </div>
-                    </div>
                 </div>
             </div>
         </>
     )
 }
-export default ProfileEpisode;
+export default MyProfileCard;
