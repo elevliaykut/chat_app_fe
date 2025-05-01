@@ -10,9 +10,8 @@ const MemberProfileCard = ({
     userActivityLiked = () => {},
     userActivityFavorite = () => {},
     userActivitySmiled = () => {},
-    isLiked = false,
-    isSmiled = false,
-    isFavorited = false
+    userBlocked = () => {},
+    setReportModalVisible = () => {}
 }) => {
 
     const likedOnClick = () => {
@@ -32,6 +31,12 @@ const MemberProfileCard = ({
             userId: details?.id
         });
     };
+
+    const userBlockedOnClick = () => {
+        userBlocked({
+            userId: details?.id
+        });
+    }
 
     return (
         <>
@@ -69,7 +74,6 @@ const MemberProfileCard = ({
                     <div className={styles.username}>
                         <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{details?.username}</label>
                     </div>
-
                     <div className={styles.defination}>
                         <label style={{ fontSize: '15px', color: ThemeConfig.black}}>{details?.age}, {details?.detail?.marital_status_value}, {details?.detail?.city?.name}</label>
                     </div>
@@ -144,13 +148,13 @@ const MemberProfileCard = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={userBlockedOnClick}>
                         <div style={{ marginTop: '3px'}}>
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
-                            fill="none"
+                            fill={details?.blocked_by_me ? ThemeConfig.success : 'none'}
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                             stroke-width="1"
@@ -164,7 +168,7 @@ const MemberProfileCard = ({
                     </div>
                     <div className={styles.line}/>
                     
-                    <div className={styles.menu}>
+                    <div className={styles.menu} onClick={() => setReportModalVisible(true)}>
                         <div style={{ marginTop: '3px'}}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

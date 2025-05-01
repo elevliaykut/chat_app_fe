@@ -54,7 +54,15 @@ import {
 	USER_ACTIVITY_SMILED_STARTED,
 	USER_ACTIVITY_SMILED_SUCCEEDED,
 	USER_ACTIVITY_SMILED_FAILED,
-	USER_ACTIVITY_SMILED_RESET
+	USER_ACTIVITY_SMILED_RESET,
+	USER_BLOCKED_STARTED,
+	USER_BLOCKED_SUCCEEDED,
+	USER_BLOCKED_FAILED,
+	USER_BLOCKED_RESET,
+	USER_REPORTS_STARTED,
+	USER_REPORTS_SUCCEEDED,
+	USER_REPORTS_FAILED,
+	USER_REPORTS_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -327,4 +335,42 @@ export const userActivitySmiledError = error => ({
 
 export const userActivitySmiledReset = () => ({
 	type: USER_ACTIVITY_SMILED_RESET
+});
+
+export const userBlocked = values => ({
+	type: USER_BLOCKED_STARTED,
+	payload: values
+});
+
+export const userBlockedSuccess = data => ({
+	type: USER_BLOCKED_SUCCEEDED,
+	payload: data
+});
+
+export const userBlockedError = error => ({
+	type: USER_BLOCKED_FAILED,
+	payload: error
+});
+
+export const userBlockedReset = () => ({
+	type: USER_BLOCKED_RESET,
+});
+
+export const userReports = values => ({
+	type: USER_REPORTS_STARTED,
+	payload: values
+});
+
+export const userReportsSuccess = data => ({
+	type: USER_REPORTS_SUCCEEDED,
+	payload: data
+});
+
+export const userReportsError = error => ({
+	type: USER_REPORTS_FAILED,
+	payload: error
+});
+
+export const userReportsReset = () => ({
+	type: USER_REPORTS_RESET
 });

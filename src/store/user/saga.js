@@ -18,7 +18,9 @@ import {
 	GET_ONLINE_PROFILES_STARTED,
 	USER_ACTIVITY_LIKED_STARTED,
 	USER_ACTIVITY_FAVORITE_STARTED,
-	USER_ACTIVITY_SMILED_STARTED
+	USER_ACTIVITY_SMILED_STARTED,
+	USER_BLOCKED_STARTED,
+	USER_REPORTS_STARTED
 } from './types';
 
 import {
@@ -53,7 +55,11 @@ import {
 	userActivityFavoriteSuccess,
 	userActivityFavoriteError,
 	userActivitySmiledSuccess,
-	userActivitySmiledError
+	userActivitySmiledError,
+	userBlockedSuccess,
+	userBlockedError,
+	userReportsSuccess,
+	userReportsError
 } from './actions';
 
 const cookies = new Cookies();
@@ -458,6 +464,52 @@ function* userActivitySmiledTask(action) {
 	}
 }
 
+function* userBlockedTask(action) {
+	const { payload } = action;
+	const { userId } = payload;
+	
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/blocked/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userBlockedSuccess(data));
+	} catch (error) {
+		yield put(userBlockedError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userReportsTask(action) {
+	const { payload } = action;
+	const { description, type, userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/report/${userId}`,
+			{
+				description: description,
+				type: type
+			},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userReportsSuccess(data));
+	} catch (error) {
+		yield put(userReportsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -524,6 +576,14 @@ function* watchGetUserActivitySmiled() {
 	yield takeLatest(USER_ACTIVITY_SMILED_STARTED, userActivitySmiledTask);
 }
 
+function* watchUserBlocked() {
+	yield takeLatest(USER_BLOCKED_STARTED, userBlockedTask);
+}
+
+function* watchUserReports() {
+	yield takeLatest(USER_REPORTS_STARTED, userReportsTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -541,6 +601,8 @@ export default function* saga() {
 		watchGetOnlineProfiles(),
 		watchGetUserActivityLiked(),
 		watchGetUserActivityFavorite(),
-		watchGetUserActivitySmiled()
+		watchGetUserActivitySmiled(),
+		watchUserBlocked(),
+		watchUserReports()
 	]);
 }

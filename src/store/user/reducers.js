@@ -1,3 +1,4 @@
+import { userReportReset } from './actions';
 import {
 	USER_LOGIN_STARTED,
 	USER_LOGIN_SUCCEEDED,
@@ -54,7 +55,15 @@ import {
 	USER_ACTIVITY_SMILED_STARTED,
 	USER_ACTIVITY_SMILED_SUCCEEDED,
 	USER_ACTIVITY_SMILED_FAILED,
-	USER_ACTIVITY_SMILED_RESET
+	USER_ACTIVITY_SMILED_RESET,
+	USER_BLOCKED_STARTED,
+	USER_BLOCKED_SUCCEEDED,
+	USER_BLOCKED_FAILED,
+	USER_BLOCKED_RESET,
+	USER_REPORTS_STARTED,
+	USER_REPORTS_SUCCEEDED,
+	USER_REPORTS_FAILED,
+	USER_REPORTS_RESET
 } from './types';
 
 const initialState = {
@@ -87,7 +96,9 @@ const initialState = {
 	onlineProfiles: [],
 	userActivityLikedCompleted: false,
 	userActivityFavoriteCompleted: false,
-	userActivitySmiledCompleted: false
+	userActivitySmiledCompleted: false,
+	userBlockedComplete: false,
+	userReportsComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -445,6 +456,54 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				userActivitySmiledCompleted: false
+			};
+		case USER_BLOCKED_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userBlockedComplete: false
+			};
+		case USER_BLOCKED_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userBlockedComplete: true
+			};
+		case USER_BLOCKED_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userBlockedComplete: false,
+				error: payload
+			};
+		case USER_BLOCKED_RESET:
+			return {
+				...state,
+				userBlockedComplete: false
+			};
+		case USER_REPORTS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userReportsComplete: false
+			};
+		case USER_REPORTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userReportsComplete: true
+			};
+		case USER_REPORTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userReportsComplete: false,
+				error: payload
+			};
+		case USER_REPORTS_RESET:
+			return {
+				...state,
+				userReportsComplete: false
 			};
 		default:
 			return state;

@@ -5,6 +5,8 @@ import MemberProfileCard from "../../molecules/MemberProfileCard";
 import MemberProfileTextCard from "../../molecules/MemberProfileTextCard";
 import MemberProfileFullDetailsEpisode from "../../molecules/MemberProfileFullDetailsEpisode";
 import ListPostBox from "../../molecules/ListPostBox";
+import UserReportModal from "../../molecules/Modals/UserReportModal";
+import ToastMessage from "../../molecules/TostMessage";
 
 const MemberDetailsPage = ({
     isLoading = false,
@@ -31,12 +33,20 @@ const MemberDetailsPage = ({
     userActivitySmiledCompleted = false,
     userActivityLikedReset = () => {},
     userActivityFavoriteReset = () => {},
-    userActivitySmiledReset = () => {}
+    userActivitySmiledReset = () => {},
+    userReports = () => {},
+    userReportsReset = () => {},
+    userReportsComplete = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false
 }) => {
     
-    const [profileVisible, setProfileVisible]               = useState(false);
-    const [memberDetailVisible, setMemberDetailVisible]     = useState(false);
-    const [memberPostVisible, setMemberPostVisible]         = useState(false);
+    const [profileVisible, setProfileVisible]                           = useState(false);
+    const [memberDetailVisible, setMemberDetailVisible]                 = useState(false);
+    const [memberPostVisible, setMemberPostVisible]                     = useState(false);
+    const [reportModalVisible, setReportModalVisible]                   = useState(false);
+    const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
 
     useEffect(() => {
         if(!userMeLoading) {
@@ -67,6 +77,8 @@ const MemberDetailsPage = ({
         userActivityLikedReset();
         userActivityFavoriteReset();
         userActivitySmiledReset();
+        userBlockedReset();
+        userReportsReset();
     },[]);
 
     useEffect(() => {
@@ -90,9 +102,46 @@ const MemberDetailsPage = ({
         }
     },[userActivitySmiledCompleted]);
 
+    useEffect(() => {
+        if(userBlockedComplete) {
+            getMemberDetails({ memberId: memberId });
+            userBlockedReset();
+        }
+    },[userBlockedComplete]);
+
+    const reportModalOnClick = () => {
+        setReportModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(userReportsComplete) {
+            userReportsReset();
+            setReportToastMessageVisible(true);
+            setReportModalVisible(false);
+        }
+    },[userReportsComplete]);
+
     return (
         <>
+            {reportToastMessageVisible && (
+                <>
+                    <ToastMessage message="Şikayet kaydınız başarılı bir şekilde oluşturuldu."/>
+                </>
+            )}
+
+            {reportModalVisible && (
+                <>
+                    <UserReportModal
+                        onClose={reportModalOnClick}
+                        isLoading={isLoading}
+                        userReports={userReports}
+                        userId={details?.id}
+                    />
+                </>
+            )}
+
             <TopBanner/>
+            
             <div className={styles.frame}>
                 <div className={styles.content}>
                     
@@ -104,6 +153,8 @@ const MemberDetailsPage = ({
                                     userActivityLiked={userActivityLiked}
                                     userActivityFavorite={userActivityFavorite}
                                     userActivitySmiled={userActivitySmiled}
+                                    userBlocked={userBlocked}
+                                    setReportModalVisible={setReportModalVisible}
                                 />
                             </div>
                         </>

@@ -20,7 +20,11 @@ import {
     userActivitySmiled,
     userActivityLikedReset,
     userActivityFavoriteReset,
-    userActivitySmiledReset
+    userActivitySmiledReset,
+    userReports,
+    userReportsReset,
+    userBlocked,
+    userBlockedReset
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -37,7 +41,9 @@ const mapStateToProps = state => ({
     postError: state?.post?.error,
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
     userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
-    userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted
+    userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
+    userReportsComplete: state?.user?.userReportsComplete,
+    userBlockedComplete: state?.user?.userBlockedComplete,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -52,7 +58,11 @@ const mapDispatchToProps = dispatch => ({
     userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
-    userActivitySmiledReset: () => dispatch(userActivitySmiledReset())
+    userActivitySmiledReset: () => dispatch(userActivitySmiledReset()),
+    userReports: payload => dispatch(userReports(payload)),
+    userReportsReset: () => dispatch(userReportsReset()),
+    userBlocked: payload => dispatch(userBlocked(payload)),
+    userBlockedReset: () => dispatch(userBlockedReset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);
