@@ -15,7 +15,10 @@ import {
 	GET_MY_SMILED_PROFILES_STARTED,
 	GET_MY_LIKED_PROFILES_STARTED,
 	GET_MY_BLOCKED_PROFILES_STARTED,
-	GET_ONLINE_PROFILES_STARTED
+	GET_ONLINE_PROFILES_STARTED,
+	USER_ACTIVITY_LIKED_STARTED,
+	USER_ACTIVITY_FAVORITE_STARTED,
+	USER_ACTIVITY_SMILED_STARTED
 } from './types';
 
 import {
@@ -44,7 +47,13 @@ import {
 	getMyBlockedProfilesSuccess,
 	getMyBlockedProfilesError,
 	getOnlineProfilesSuccess,
-	getOnlineProfilesError
+	getOnlineProfilesError,
+	userActivityLikedSuccess,
+	userActivityLikedError,
+	userActivityFavoriteSuccess,
+	userActivityFavoriteError,
+	userActivitySmiledSuccess,
+	userActivitySmiledError
 } from './actions';
 
 const cookies = new Cookies();
@@ -383,6 +392,72 @@ function* getOnlineProfilesTask(action) {
 	}
 }
 
+function* userActivityLikedTask(action) {
+	const { payload } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/activity/like/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userActivityLikedSuccess(data));
+	} catch (error) {
+		yield put(userActivityLikedError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userActivityFavoriteTask(action) {
+	const { payload } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/activity/favorite/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userActivityFavoriteSuccess(data));
+	} catch (error) {
+		yield put(userActivityFavoriteError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userActivitySmiledTask(action) {
+	const { payload } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/activity/smile/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userActivitySmiledSuccess(data));
+	} catch (error) {
+		yield put(userActivitySmiledError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -437,6 +512,18 @@ function* watchGetOnlineProfiles() {
 	yield takeLatest(GET_ONLINE_PROFILES_STARTED, getOnlineProfilesTask);
 }
 
+function* watchGetUserActivityLiked() {
+	yield takeLatest(USER_ACTIVITY_LIKED_STARTED, userActivityLikedTask);
+}
+
+function* watchGetUserActivityFavorite() {
+	yield takeLatest(USER_ACTIVITY_FAVORITE_STARTED, userActivityFavoriteTask);
+}
+
+function* watchGetUserActivitySmiled() {
+	yield takeLatest(USER_ACTIVITY_SMILED_STARTED, userActivitySmiledTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -451,6 +538,9 @@ export default function* saga() {
 		watchGetMySmiledProfiles(),
 		watchGetMyLikedProfiles(),
 		watchGetMyBlockedProfiles(),
-		watchGetOnlineProfiles()
+		watchGetOnlineProfiles(),
+		watchGetUserActivityLiked(),
+		watchGetUserActivityFavorite(),
+		watchGetUserActivitySmiled()
 	]);
 }

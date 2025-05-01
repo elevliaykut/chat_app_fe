@@ -42,7 +42,19 @@ import {
 	GET_MY_BLOCKED_PROFILES_FAILED,
 	GET_ONLINE_PROFILES_STARTED,
 	GET_ONLINE_PROFILES_SUCCEEDED,
-	GET_ONLINE_PROFILES_FAILED
+	GET_ONLINE_PROFILES_FAILED,
+	USER_ACTIVITY_LIKED_STARTED,
+	USER_ACTIVITY_LIKED_SUCCEEDED,
+	USER_ACTIVITY_LIKED_FAILED,
+	USER_ACTIVITY_LIKED_RESET,
+	USER_ACTIVITY_FAVORITE_STARTED,
+	USER_ACTIVITY_FAVORITE_SUCCEEDED,
+	USER_ACTIVITY_FAVORITE_FAILED,
+	USER_ACTIVITY_FAVORITE_RESET,
+	USER_ACTIVITY_SMILED_STARTED,
+	USER_ACTIVITY_SMILED_SUCCEEDED,
+	USER_ACTIVITY_SMILED_FAILED,
+	USER_ACTIVITY_SMILED_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -258,4 +270,61 @@ export const getOnlineProfilesSuccess = data => ({
 export const getOnlineProfilesError = error => ({
 	type: GET_ONLINE_PROFILES_FAILED,
 	payload: error
+});
+
+export const userActivityLiked = values => ({
+	type: USER_ACTIVITY_LIKED_STARTED,
+	payload: values
+});
+
+export const userActivityLikedSuccess = data => ({
+	type: USER_ACTIVITY_LIKED_SUCCEEDED,
+	payload: data
+});
+
+export const userActivityLikedError = error => ({
+	type: USER_ACTIVITY_LIKED_FAILED,
+	payload: error
+});
+
+export const userActivityLikedReset = () => ({
+	type: USER_ACTIVITY_LIKED_RESET
+});
+
+export const userActivityFavorite = values => ({
+	type: USER_ACTIVITY_FAVORITE_STARTED,
+	payload: values
+});
+
+export const userActivityFavoriteSuccess = data => ({
+	type: USER_ACTIVITY_FAVORITE_SUCCEEDED,
+	payload: data
+});
+
+export const userActivityFavoriteError = error => ({
+	type: USER_ACTIVITY_FAVORITE_FAILED,
+	payload: error
+});
+
+export const userActivityFavoriteReset = () => ({
+	type: USER_ACTIVITY_FAVORITE_RESET
+});
+
+export const userActivitySmiled = values => ({
+	type: USER_ACTIVITY_SMILED_STARTED,
+	payload: values
+});
+
+export const userActivitySmiledSuccess = data => ({
+	type: USER_ACTIVITY_SMILED_SUCCEEDED,
+	payload: data
+});
+
+export const userActivitySmiledError = error => ({
+	type: USER_ACTIVITY_SMILED_FAILED,
+	payload: error
+});
+
+export const userActivitySmiledReset = () => ({
+	type: USER_ACTIVITY_SMILED_RESET
 });

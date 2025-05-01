@@ -15,6 +15,12 @@ import {
 
 import {
     getUserMe,
+    userActivityLiked,
+    userActivityFavorite,
+    userActivitySmiled,
+    userActivityLikedReset,
+    userActivityFavoriteReset,
+    userActivitySmiledReset
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -28,7 +34,10 @@ const mapStateToProps = state => ({
     memberIsLoading: state?.member?.isLoading,
     memberPostLoading: state?.member?.memberPostLoading,
     postIsLoading: state?.post?.isLoading,
-    postError: state?.post?.error
+    postError: state?.post?.error,
+    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
+    userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
+    userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +46,13 @@ const mapDispatchToProps = dispatch => ({
     getMemberPosts: payload => dispatch(getMemberPosts(payload)),
     postActivityLike: payload => dispatch(postActivityLike(payload)),
     postActivityFavorite: payload => dispatch(postActivityFavorite(payload)),
-    postActivitySmiled: payload => dispatch(postActivitySmiled(payload))
+    postActivitySmiled: payload => dispatch(postActivitySmiled(payload)),
+    userActivityLiked: payload => dispatch(userActivityLiked(payload)),
+    userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
+    userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
+    userActivityLikedReset: () => dispatch(userActivityLikedReset()),
+    userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
+    userActivitySmiledReset: () => dispatch(userActivitySmiledReset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);

@@ -42,7 +42,19 @@ import {
 	GET_MY_BLOCKED_PROFILES_FAILED,
 	GET_ONLINE_PROFILES_STARTED,
 	GET_ONLINE_PROFILES_SUCCEEDED,
-	GET_ONLINE_PROFILES_FAILED
+	GET_ONLINE_PROFILES_FAILED,
+	USER_ACTIVITY_LIKED_STARTED,
+	USER_ACTIVITY_LIKED_SUCCEEDED,
+	USER_ACTIVITY_LIKED_FAILED,
+	USER_ACTIVITY_LIKED_RESET,
+	USER_ACTIVITY_FAVORITE_STARTED,
+	USER_ACTIVITY_FAVORITE_SUCCEEDED,
+	USER_ACTIVITY_FAVORITE_FAILED,
+	USER_ACTIVITY_FAVORITE_RESET,
+	USER_ACTIVITY_SMILED_STARTED,
+	USER_ACTIVITY_SMILED_SUCCEEDED,
+	USER_ACTIVITY_SMILED_FAILED,
+	USER_ACTIVITY_SMILED_RESET
 } from './types';
 
 const initialState = {
@@ -72,7 +84,10 @@ const initialState = {
 	smiledProfiles: [],
 	likedProfiles: [],
 	blockedProfiles: [],
-	onlineProfiles: []
+	onlineProfiles: [],
+	userActivityLikedCompleted: false,
+	userActivityFavoriteCompleted: false,
+	userActivitySmiledCompleted: false
 };
 
 const user = (state = initialState, action) => {
@@ -358,6 +373,78 @@ const user = (state = initialState, action) => {
 				isLoading: false,
 				pageLoading: false,
 				error: payload
+			};
+		case USER_ACTIVITY_LIKED_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userActivityLikedCompleted: false
+			};
+		case USER_ACTIVITY_LIKED_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userActivityLikedCompleted: true,
+			};
+		case USER_ACTIVITY_LIKED_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userActivityLikedCompleted: false,
+				error: payload
+			};
+		case USER_ACTIVITY_LIKED_RESET:
+			return {
+				...state,
+				userActivityLikedCompleted: false
+			};
+		case USER_ACTIVITY_FAVORITE_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userActivityFavoriteCompleted: false,
+			};
+		case USER_ACTIVITY_FAVORITE_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userActivityFavoriteCompleted: true
+			};
+		case USER_ACTIVITY_FAVORITE_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userActivityFavoriteCompleted: false,
+				error: payload
+			};
+		case USER_ACTIVITY_FAVORITE_RESET:
+			return {
+				...state,
+				userActivityFavoriteCompleted: false,
+			};
+		case USER_ACTIVITY_SMILED_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userActivitySmiledCompleted: false
+			};
+		case USER_ACTIVITY_SMILED_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userActivitySmiledCompleted: true
+			};
+		case USER_ACTIVITY_SMILED_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userActivitySmiledCompleted: false,
+				error: payload
+			};
+		case USER_ACTIVITY_SMILED_RESET:
+			return {
+				...state,
+				userActivitySmiledCompleted: false
 			};
 		default:
 			return state;

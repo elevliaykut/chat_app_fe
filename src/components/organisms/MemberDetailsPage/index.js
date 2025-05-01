@@ -22,7 +22,16 @@ const MemberDetailsPage = ({
     postIsLoading = false,
     postError = null,
     postActivityFavorite = () => {},
-    postActivitySmiled = () => {}
+    postActivitySmiled = () => {},
+    userActivityLiked = () => {},
+    userActivityFavorite = () => {},
+    userActivitySmiled = () => {},
+    userActivityLikedCompleted = false,
+    userActivityFavoriteCompleted = false,
+    userActivitySmiledCompleted = false,
+    userActivityLikedReset = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivitySmiledReset = () => {}
 }) => {
     
     const [profileVisible, setProfileVisible]               = useState(false);
@@ -54,6 +63,33 @@ const MemberDetailsPage = ({
         }
     },[memberId]);
 
+    useEffect(() => {
+        userActivityLikedReset();
+        userActivityFavoriteReset();
+        userActivitySmiledReset();
+    },[]);
+
+    useEffect(() => {
+        if(userActivityLikedCompleted) {
+            getMemberDetails({ memberId: memberId });
+            userActivityLikedReset();
+        }
+    },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+            getMemberDetails({ memberId: memberId });
+            userActivityFavoriteReset();
+        }
+    },[userActivityFavoriteCompleted]);
+
+    useEffect(() => {
+        if(userActivitySmiledCompleted) {
+            getMemberDetails({ memberId: memberId });
+            userActivitySmiledReset();
+        }
+    },[userActivitySmiledCompleted]);
+
     return (
         <>
             <TopBanner/>
@@ -64,7 +100,10 @@ const MemberDetailsPage = ({
                         <>
                             <div className={styles.profileEpisode}>
                                 <MemberProfileCard
-                                    userMe={details}
+                                    details={details}
+                                    userActivityLiked={userActivityLiked}
+                                    userActivityFavorite={userActivityFavorite}
+                                    userActivitySmiled={userActivitySmiled}
                                 />
                             </div>
                         </>
