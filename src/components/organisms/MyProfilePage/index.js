@@ -10,6 +10,7 @@ import ToastMessage from "../../molecules/TostMessage";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
+import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 
 const MyProfilePage = ({
     userMe = {},
@@ -42,6 +43,7 @@ const MyProfilePage = ({
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
+    const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
 
     useEffect(() => {
         getCities();
@@ -68,6 +70,10 @@ const MyProfilePage = ({
     const personalInfoModalOnClose = () => {
         setPersonalInfoModalVisible(false);
     }
+
+    const spouseCandidateModalOnClose = () => {
+        setSpouseCandidateModalVisible(false);
+    } 
 
     return (
         <>
@@ -114,6 +120,22 @@ const MyProfilePage = ({
                     />
                 </>
             )}
+
+            {spouseCandidateModalVisible && (
+                <>
+                    <SpouseCandidateModal
+                        onClose={spouseCandidateModalOnClose}
+                        isLoading={isLoading}
+                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
+                        updateUserPersonalInfo={updateUserPersonalInfo}
+                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
+                    />
+                </>
+            )}
             <TopBanner/>
             
             <div className={styles.frame}>
@@ -131,6 +153,7 @@ const MyProfilePage = ({
                                     setProfileTextModalVisible={setProfileTextModalVisible}
                                     setBasicInfoModalVisible={setBasicInfoModalVisible}
                                     setPersonalInfoModalVisible={setPersonalInfoModalVisible}
+                                    setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 />
                             </div>
                         </>

@@ -1,0 +1,526 @@
+import React, { useEffect, useState } from "react";
+import styles from './Index.module.css';
+import ThemeConfig from "@/src/utils/ThemeConfig";
+import ToastMessage from "../../TostMessage";
+
+const SpouseCandidateModal = ({
+    onClose = () => {},
+    isLoading = false,
+    updateUserPersonalInfoComplete = false,
+    updateUserPersonalInfo = () => {},
+    resetUpdateUserPersonalInfoComplete = () => {},
+    userMe = {},
+    cities = [],
+    districts = [],
+    getDistricts = []
+}) => {
+    const [messageVisible, setMessageVisible] = useState(false);
+    const [maturity, setMaturity] = useState();
+    const [headCraft, setHeadCraft] = useState();
+    const [tall, setTall] = useState();
+    const [weight, setWeight] = useState();
+    const [eyeColor, setEyeColor] = useState();
+    const [hairColor, setHairColor] = useState();
+    const [skinColor, setSkinColor] = useState();
+    const [bodyType, setBodyType] = useState();
+    const [haveAChild, setHaveAChild] = useState();
+    const [wantToChild, setWantToChild] = useState();
+    const [cigarette, setCigarette] = useState();
+    const [alcohol, setAlcohol] = useState();
+    const [educationStatus, setEducationStatus] = useState();
+    const [foreighLanguages, setForeignLanguages] = useState([]);
+    const [job, setJob] = useState();
+    const [salary, setSalary] = useState();
+    const [workStatus, setWorkStatus] = useState();
+    const [liveWith, setLiveWith] = useState();
+    const [clothingStyle, setClothingStyle] = useState();
+    const [notCompromise, setNotCompromise] = useState([]);
+    const [community, setCommunity] = useState();
+    const [sect, setSect] = useState();
+    const [pray, setPray] = useState();
+    const [quran, setQuran] = useState();
+    const [fasting, setFasting] = useState();
+    const [considerIslam, setConsiderIslam] = useState([]);
+    const [musicType, setMusicType] = useState([]);
+    const [bookType, setBookType] = useState([]);
+    const [lookingQuality, setLookingQuality] = useState([]);
+    const [hoobies, setHoobies] = useState([]);
+    const [yourPersonality, setYourPersonality] = useState([]);
+    const [disability, setDisability] = useState();
+    const [cityId, setCityId] = useState();
+    const [districtId, setDistrictId] = useState();
+
+    const submitOnClick = () => {
+        updateUserPersonalInfo({
+            cityId: cityId,
+            districtId: districtId,
+            horoscope: horoscope,
+            maritalStatus: maturity,
+            headscarf: headCraft,
+            tall: tall,
+            weight: weight,
+            eyeColor: eyeColor,
+            hairColor: hairColor,
+            skinColor: skinColor,
+            bodyType: bodyType,
+            haveAChild: haveAChild,
+            wantAChild: wantToChild,
+            useCigarette: cigarette,
+            useAlcohol: alcohol,
+            educationStatus: educationStatus,
+		    foreignLanguage: foreighLanguages.length > 0 ? foreighLanguages : undefined,
+            job: job,
+            salary: salary,
+            workStatus: workStatus,
+            liveWith:liveWith,
+            clothingStyle: clothingStyle,
+            notCompromise: notCompromise.length > 0 ? notCompromise : undefined,
+            community: community,
+            sect: sect,
+            doYouPray: pray,
+            doYouKnowQuran: quran,
+            areYouFasting: fasting,
+            considerImportantInIslam: considerIslam.length > 0 ? considerIslam : undefined,
+            listeningMusicType: musicType.length > 0  ? musicType : undefined,
+            readingBookTypes: bookType.length > 0 ? bookType : undefined,
+            lookingQualities: lookingQuality.length > 0 ? lookingQuality : undefined,
+            yourHobbies: hoobies.length > 0 ? hoobies : undefined,
+            yourPersonality: yourPersonality.length > 0 ? yourPersonality : undefined,
+            physicalDisability: disability
+        });
+    }
+
+    useEffect(() => {
+        if(updateUserPersonalInfoComplete) {
+            resetUpdateUserPersonalInfoComplete();
+            setMessageVisible(true);
+        }
+    },[updateUserPersonalInfoComplete]);
+    
+
+  const handleCheckboxChange = (event) => {
+    const value = event.target.value;
+
+    // Eğer checkbox seçiliyse, seçilenler listesine ekle, değilse listeden çıkar
+    setForeignLanguages((prevState) =>
+      prevState.includes(value)
+        ? prevState.filter((lang) => lang !== value)
+        : [...prevState, value]
+    );
+  };
+
+  const handleNotCompromiseChange = (event) => {
+    const value = event.target.value;
+
+    // Eğer checkbox seçiliyse, seçilenler listesine ekle, değilse listeden çıkar
+    setNotCompromise((prevState) =>
+      prevState.includes(value)
+        ? prevState.filter((lang) => lang !== value)
+        : [...prevState, value]
+    );
+  };
+
+  const handleLookingQualityChange = (event) => {
+    const value = event.target.value;
+
+    // Eğer checkbox seçiliyse, seçilenler listesine ekle, değilse listeden çıkar
+    setLookingQuality((prevState) =>
+      prevState.includes(value)
+        ? prevState.filter((lang) => lang !== value)
+        : [...prevState, value]
+    );
+  };
+
+    return (
+        <>
+            {messageVisible && (
+                <>
+                    <ToastMessage message="Temel bilgileriniz başarılı bir şekilde kaydedildi."/>
+                </>
+            )}
+
+            <div className={styles.overlay}>
+                <div className={styles.modal}>
+                    <div className={styles.modalHeader}>
+                        <div>
+                            <label>EŞADAYI ÖZELLİKLER</label>
+                        </div>
+                        <div style={{ marginLeft: 'auto', cursor: 'pointer'}} onClick={onClose}>
+                            X
+                        </div>
+                    </div>
+                    
+                    <div className={styles.modalContent}>
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Boy </label>
+                            <input
+                                value={userMe?.detail?.tall}
+                                placeholder="Boy"
+                                onChange={(e) => setTall(e?.target?.value)}
+                                className={styles.input}
+                            />
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Kilo </label>
+                            <input
+                                value={userMe?.detail?.weight}
+                                placeholder="Kilo"
+                                onChange={(e) => setWeight(e?.target?.value)}
+                                className={styles.input}
+                            />
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Medeni Hal</label>
+                            <select
+                                defaultValue={userMe?.detail?.marital_status_value ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setMaturity(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.marital_status_value}
+                                </option>
+								<option value="Boşanmış">Boşanmış</option>
+								<option value="Eşi vefat etmiş">Eşi vefat etmiş</option>
+								<option value="Farketmez">Farketmez</option>
+								<option value="Hiç evlenmemiş">Hiç evlenmemiş</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Göz Rengi </label>
+                            <select
+                                defaultValue={userMe?.detail?.eye_color ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setEyeColor(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.eye_color}
+                                </option>
+								<option value="Siyah">Siyah</option>
+								<option value="Kahverengi">Kahverengi</option>
+								<option value="Ela">Ela</option>
+								<option value="Yeşil">Yeşil</option>
+								<option value="Mavi">Mavi</option>
+								<option value="Diğer">Diğer</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Saç rengi </label>
+                            <select
+                                defaultValue={userMe?.detail?.hair_color ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setHairColor(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.hair_color}
+                                </option>
+								<option value="Siyah">Siyah</option>
+								<option value="Kahverengi">Kahverengi</option>
+								<option value="Kızıl">Kızıl</option>
+								<option value="Kırlaşmış">Kırlaşmış</option>
+								<option value="Sarı">Sarı</option>
+								<option value="Diğer">Diğer</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Ten rengi </label>
+                            <select
+                                defaultValue={userMe?.detail?.skin_color ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setSkinColor(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.skin_color}
+                                </option>
+								<option value="Buğday">Buğday</option>
+								<option value="Bronz">Bronz</option>
+								<option value="Esmer">Esmer</option>
+								<option value="Beyaz">Beyaz</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Vücut Tipi</label>
+                            <select
+                                defaultValue={userMe?.detail?.body_type ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setBodyType(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.body_type}
+                                </option>
+								<option value="İnce">İnce</option>
+								<option value="Normal">Normal</option>
+								<option value="Atletik">Atletik</option>
+								<option value="Balık Etli">Balık Etli</option>
+								<option value="Kilolu">Kilolu</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Çocuğu Olsun mu? </label>
+                            <select
+                                defaultValue={userMe?.detail?.have_a_child ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={() => setHaveAChild(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.have_a_child}
+                                </option>
+								<option value="Olsun">Olsun</option>
+								<option value="Olmasın">Olmasın</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Tanışacağınız üyenin sigara kullanmasıyla ilgili ne düşünürsünüz? </label>
+                            <select
+                                defaultValue={userMe?.detail?.use_cigarette ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setCigarette(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.use_cigarette}
+                                </option>
+								<option value="İçsin">İçsin</option>
+								<option value="İçmesin">İçmesin</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Tanışacağınız üyenin alkol kullanmasıyla ilgili ne düşünürsünüz?</label>
+                            <select
+                                defaultValue={userMe?.detail?.use_alcohol ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setAlcohol(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.use_alcohol}
+                                </option>
+								<option value="Kesinlikle içmesin">Kesinlikle içmesin</option>
+								<option value="Arasıra içsin">Arasıra içsin</option>
+								<option value="İçmesin">İçmesin</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Tanışacağınız üyenin mezununiyet derecesi sizin için ne kadar önemli?</label>
+                            <select
+                                defaultValue={userMe?.detail?.education_status ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setEducationStatus(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.education_status}
+                                </option>
+								<option value="İlk Öğretim">İlk Öğretim</option>
+								<option value="Lise">Lise</option>
+								<option value="Ön Lisans">Ön Lisans</option>
+								<option value="Lisans">Lisans</option>
+								<option value="Lisans Üstü">Lisans Üstü</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Tanışacağınız üyenin maddi durumu sizin için ne kadar önemli?</label>
+                            <select
+                                defaultValue={userMe?.detail?.salary ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setSalary(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.salary}
+                                </option>
+								<option value="0-10000 TL">0-10000 TL</option>
+								<option value="10000-20000 TL">10000-20000 TL</option>
+								<option value="20000-30000 TL">20000-30000 TL</option>
+								<option value="30000-40000 TL">30000-40000 TL</option>
+								<option value="40000 + TL">40000 + TL</option>
+								<option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Taviz vermeyecekleri </label>
+                            <div
+                                style={{
+                                position: 'relative',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                maxHeight: '200px',
+                                overflowY: 'auto',
+                                backgroundColor: '#f9f9f9',
+                                padding: '10px',
+                                }}
+                            >
+                                <ul style={{ listStyleType: 'none', padding: '0' }}>
+                                {['Namaz', 'Oruç', 'Sadakat', 'Dürüstlük'].map((item) => (
+                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <input
+                                        type="checkbox"
+                                        value={item}
+                                        checked={notCompromise.includes(item)}
+                                        onChange={handleNotCompromiseChange}  // Burada onChange fonksiyonu çağrılıyor
+                                        style={{ marginRight: '8px' }}
+                                    />
+                                    {item}
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Cemaat </label>
+                            <select
+                                defaultValue={userMe?.detail?.community ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setCommunity(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.community}
+                                </option>
+								<option value="Cemaatlerle ilişkileri olsun">Cemaatlerle ilişkileri olsun</option>
+								<option value="Bir cemaate bağlı olsun">Bir cemaate bağlı olsun</option>
+								<option value="Cemaatlerle ilişiği olmasın">Cemaatlerle ilişiği olmasın</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Mezhebi </label>
+                            <select
+                                defaultValue={userMe?.detail?.sect ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setSect(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.sect}
+                                </option>
+								<option value="Hanefi">Hanefi</option>
+								<option value="Şafii">Şafii</option>
+								<option value="Hanbeli">Hanbeli</option>
+								<option value="Maliki">Maliki</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Namaz kılsın mı? </label>
+                            <select
+                                defaultValue={userMe?.detail?.do_you_pray ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setPray(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.do_you_pray}
+                                </option>
+								<option value="Namazlarını kılsın">Namazlarını kılsın</option>
+								<option value="Namazlarını kılmaya çalışsın">Namazlarını kılmaya çalışsın</option>
+								<option value="Cuma namazlarını kılsın">Cuma namazlarını kılsın</option>
+								<option value="Farketmez">Farketmez</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Eş Adayında Aradığınız Özellikler</label>
+                            <div
+                                style={{
+                                position: 'relative',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                maxHeight: '200px',
+                                overflowY: 'auto',
+                                backgroundColor: '#f9f9f9',
+                                padding: '10px',
+                                marginTop: '10px'
+                                }}
+                            >
+                                <ul style={{ listStyleType: 'none', padding: '0' }}>
+                                {[
+                                     "Politik uyum", 
+                                     "Hoşgörü", 
+                                     "Saygı", 
+                                     "Cinsel uyum", 
+                                     "Eğitim",
+                                     "Sevgi", 
+                                     "İyi vakit geçirme", 
+                                     "Güven", 
+                                     "Gelir uyumu"
+                                ].map((item) => (
+                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <input
+                                        type="checkbox"
+                                        value={item}
+                                        checked={lookingQuality.includes(item)}
+                                        onChange={handleLookingQualityChange}  // Burada onChange fonksiyonu çağrılıyor
+                                        style={{ marginRight: '8px' }}
+                                    />
+                                        {item}
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Fiziksel Engel</label>
+                            <select
+                                defaultValue={userMe?.detail?.physical_disability ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setDisability(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.physical_disability}
+                                </option>
+								<option value="Hayır">Hayır</option>
+								<option value="Evet; Görme engelli">Evet; Görme engelli</option>
+								<option value="Evet; İşitme engelli">Evet; İşitme engelli</option>
+								<option value="Evet; Bedensel engelli">Evet; Bedensel engelli</option>
+								<option value="Diğer">Diğer</option>
+							</select>
+                        </div>
+                    </div>
+
+                    <div className={styles.buttonEpisode}>
+                        <div className={styles.cancelButton}>
+                            <button
+                                onClick={() => onClose()}
+                                style={{
+                                    width: '120px',
+                                    height: '50px',
+                                    backgroundColor: 'white',
+                                    color: ThemeConfig.black,
+                                    border: '1px solid #E3E6EE'
+                                }}
+                            >
+                                Kapat
+                            </button>
+                        </div>
+                        <div className={styles.saveButton}>
+                            <button
+                                onClick={submitOnClick}
+                                disabled={isLoading}
+                                style={{
+                                    width: '120px',
+                                    height: '50px',
+                                }}
+                            >
+                                {isLoading ? 'Kaydediliyor' : 'Kaydet'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+export default SpouseCandidateModal;
