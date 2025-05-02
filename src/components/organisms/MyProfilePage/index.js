@@ -103,6 +103,7 @@ const MyProfilePage = ({
                 <>
                     <PersonalInfoModal
                         onClose={personalInfoModalOnClose}
+                        isLoading={isLoading}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}

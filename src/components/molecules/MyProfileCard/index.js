@@ -138,9 +138,18 @@ const MyProfileCard = ({
                     <div className={styles.line}/>
                     <div className={styles.menu}>
                         <div style={{ marginTop: '3px'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path fill="#000" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.33 0-10 1.67-10 5v1a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-1c0-3.33-6.67-5-10-5Z"/>
-                            </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            >
+                            <path
+                                d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                        </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setPersonalInfoModalVisible(true)}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Kişisel Bilgiler</label>

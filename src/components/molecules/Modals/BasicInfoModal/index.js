@@ -14,18 +14,22 @@ const BasicInfoModal = ({
     districts = [],
     getDistricts = []
 }) => {
+
+    useEffect(() => {
+        if(updateUserPersonalInfoComplete) {
+            onClose();
+            resetUpdateUserPersonalInfoComplete();
+        }
+    },[updateUserPersonalInfoComplete]);
+
     const [messageVisible, setMessageVisible] = useState(false);
-    const [maturity, setMaturity] = useState();
-    const [job, setJob] = useState();
     const [cityId, setCityId] = useState();
     const [districtId, setDistrictId] = useState();
 
     const submitOnClick = () => {
         updateUserPersonalInfo({
             cityId: cityId,
-            districtId: districtId,
-            maritalStatus: maturity,
-            job: job,
+            districtId: districtId
         });
     }
 
@@ -35,10 +39,6 @@ const BasicInfoModal = ({
             setMessageVisible(true);
         }
     },[updateUserPersonalInfoComplete]);
-    
-    const maturityOnChange = (e) => {
-		setMaturity(e?.target?.value);
-	}
 
     const cityOnChange = (e) => {
         getDistricts({ cityId: e?.target?.value });
@@ -108,38 +108,37 @@ const BasicInfoModal = ({
                                 className={styles.input}
                             />
                         </div>
-                        
-                        <div style={{ marginTop: '18px'}}>
-                            <label>Mesleğiniz </label>
-                            <input
-                                placeholder="Mesleğiniz"
-                                onChange={(e) => setJob(e?.target?.value)}
-                                className={styles.input}
-                            />
-                        </div>
 
                         <div style={{ marginTop: '18px'}}>
                             <label>Yaşadığınız Şehir </label>
                             <select
-                                style={{ marginTop: '10px'}}
-								onChange={cityOnChange}
-								required
-							>
+                                defaultValue={userMe?.detail?.city?.id ?? ""}
+                                style={{ marginTop: '10px' }}
+                                onChange={cityOnChange}
+                                required
+                            >
+                                <option value="" disabled>
+                                    {userMe?.detail?.city?.name}
+                                </option>
                                 {cities?.map(item => (
-                                    <>
-								        <option value={item?.id}>{item.name}</option>
-                                    </>
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
                                 ))}
-							</select>
+                            </select>
                         </div>
 
                         <div style={{ marginTop: '18px'}}>
                             <label>Yaşadığınız İlçe </label>
                             <select
                                 style={{ marginTop: '10px'}}
+                                defaultValue={userMe?.detail?.district?.id ?? ""}
 								onChange={districtOnChange}
 								required
 							>
+                                <option value="" disabled>
+                                    {userMe?.detail?.district?.name}
+                                </option>
                                 {districts?.map(item => (
                                     <>
 								        <option value={item?.id}>{item.name}</option>
