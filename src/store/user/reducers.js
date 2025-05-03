@@ -71,7 +71,10 @@ import {
 	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
 	USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED,
 	USER_UPDATE_CARACTERISTIC_FEATURE_FAILED,
-	USER_UPDATE_CARACTERISTIC_FEATURE_RESET
+	USER_UPDATE_CARACTERISTIC_FEATURE_RESET,
+	GET_MY_POSTS_STARTED,
+	GET_MY_POSTS_SUCCEEDED,
+	GET_MY_POSTS_FAILED
 } from './types';
 
 const initialState = {
@@ -109,6 +112,7 @@ const initialState = {
 	userReportsComplete: false,
 	userUpdateSpouseCandidateInfoComplete: false,
 	userUpdateCaracteristicFeatureComplete: false,
+	myPosts: []
 };
 
 const user = (state = initialState, action) => {
@@ -561,6 +565,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				userUpdateCaracteristicFeatureComplete: false
+			};
+		case GET_MY_POSTS_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case GET_MY_POSTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				myPosts: payload?.data
+			};
+		case GET_MY_POSTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;

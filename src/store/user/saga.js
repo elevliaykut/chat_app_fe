@@ -22,7 +22,8 @@ import {
 	USER_BLOCKED_STARTED,
 	USER_REPORTS_STARTED,
 	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
-	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED
+	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
+	GET_MY_POSTS_STARTED
 } from './types';
 
 import {
@@ -65,7 +66,9 @@ import {
 	userUpdateSpouseCandidateSuccess,
 	userUpdateSpouseCandidateError,
 	userUpdateCaracteristicFeatureSuccess,
-	userUpdateCaracteristicFeatureError
+	userUpdateCaracteristicFeatureError,
+	getMyPostsSuccess,
+	getMyPostsError
 } from './actions';
 
 const cookies = new Cookies();
@@ -626,6 +629,24 @@ function* userUpdateCaracteristicFeatureTask(action) {
 	}
 }
 
+function* getMyPostsTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/my-posts`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getMyPostsSuccess(data));
+	} catch (error) {
+		yield put(getMyPostsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -708,6 +729,10 @@ function* watchUserUpdateCaracteristicFeature() {
 	yield takeLatest(USER_UPDATE_CARACTERISTIC_FEATURE_STARTED, userUpdateCaracteristicFeatureTask);
 }
 
+function* watchGetMyPosts() {
+	yield takeLatest(GET_MY_POSTS_STARTED, getMyPostsTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -729,6 +754,7 @@ export default function* saga() {
 		watchUserBlocked(),
 		watchUserReports(),
 		wathcUserUpdateSpouseCandidate(),
-		watchUserUpdateCaracteristicFeature()
+		watchUserUpdateCaracteristicFeature(),
+		watchGetMyPosts()
 	]);
 }

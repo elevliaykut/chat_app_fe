@@ -70,7 +70,10 @@ import {
 	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
 	USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED,
 	USER_UPDATE_CARACTERISTIC_FEATURE_FAILED,
-	USER_UPDATE_CARACTERISTIC_FEATURE_RESET
+	USER_UPDATE_CARACTERISTIC_FEATURE_RESET,
+	GET_MY_POSTS_STARTED,
+	GET_MY_POSTS_SUCCEEDED,
+	GET_MY_POSTS_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -419,4 +422,19 @@ export const userUpdateCaracteristicFeatureError = error => ({
 
 export const userUpdateCaracteristicFeatureReset = () => ({
 	type: USER_UPDATE_CARACTERISTIC_FEATURE_RESET
+});
+
+export const getMyPosts = values => ({
+	type: GET_MY_POSTS_STARTED,
+	payload: values
+});
+
+export const getMyPostsSuccess = data => ({
+	type: GET_MY_POSTS_SUCCEEDED,
+	payload: data
+});
+
+export const getMyPostsError = error => ({
+	type: GET_MY_POSTS_FAILED,
+	payload: error
 });

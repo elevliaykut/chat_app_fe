@@ -41,7 +41,9 @@ const MyProfilePage = ({
     userUpdateSpouseCandidateReset = () => {},
     userUpdateCaracteristicFeatureComplete = false,
     userUpdateCaracteristicFeature = () => {},
-    userUpdateCaracteristicFeatureReset = () => {}
+    userUpdateCaracteristicFeatureReset = () => {},
+    getMyPosts = () => {},
+    myPosts = []
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [memberPostVisible, setMemberPostVisible] = useState(false);
@@ -50,6 +52,7 @@ const MyProfilePage = ({
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+    const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
 
     useEffect(() => {
         getCities();
@@ -57,6 +60,7 @@ const MyProfilePage = ({
 
     useEffect(() => {
         getUserMe();
+        getMyPosts();
     },[]);
     
     useEffect(() => {
@@ -102,6 +106,12 @@ const MyProfilePage = ({
     const caracteristicFeatureModalOnClose = () => {
         setCaracteristicFeatureModalVisible(false);
     } 
+
+    useEffect(() => {
+        if(!isLoading) {
+            setMyPostEpisodeVisible(true);
+        }
+    },[isLoading]);
 
     return (
         <>
@@ -213,10 +223,18 @@ const MyProfilePage = ({
                                     />
                             </>
                         )}
-
-                        {
-                            //List post box here...
-                        }
+                        {myPostEpisodeVisible && (
+                            <>
+                                <ListPostBox
+                                    posts={myPosts}
+                                    postActivityLike={postActivityLike}
+                                    postIsLoading={postIsLoading}
+                                    postError={postError}
+                                    postActivityFavorite={postActivityFavorite}
+                                    postActivitySmiled={postActivitySmiled}
+                                />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

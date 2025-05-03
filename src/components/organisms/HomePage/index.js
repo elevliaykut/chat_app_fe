@@ -7,6 +7,9 @@ import PostBox from "../../molecules/PostBox";
 import ListPostBox from "../../molecules/ListPostBox";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
+import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
+import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
+import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 
 const HomePage = ({
     posts = [],
@@ -36,14 +39,41 @@ const HomePage = ({
     postIsLoading = false,
     postError = null,
     postActivityFavorite = () => {},
-    postActivitySmiled = () => {}
+    postActivitySmiled = () => {},
+    userUpdateSpouseCandidate = () => {},
+    userUpdateSpouseCandidateReset = () => {},
+    userUpdateCaracteristicFeature = () => {},
+    userUpdateCaracteristicFeatureReset = () => {},
+    userUpdateSpouseCandidateInfoComplete = false,
+    userUpdateCaracteristicFeatureComplete = false
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
     const [profileVisible, setProfileVisible]                           = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
+    const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
+    const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
+    const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
 
+
+    useEffect(() => {
+        if(updateUserPersonalInfoComplete) {
+            getUserMe();
+        }
+    },[updateUserPersonalInfoComplete]);
+
+    useEffect(() => {
+        if(userUpdateSpouseCandidateInfoComplete) {
+            getUserMe();
+        }
+    },[userUpdateSpouseCandidateInfoComplete]);
+
+    useEffect(() => {
+        if(userUpdateCaracteristicFeatureComplete) {
+            getUserMe();
+        }
+    },[userUpdateCaracteristicFeatureComplete]);
 
     useEffect(() => {
         getCities();
@@ -75,6 +105,18 @@ const HomePage = ({
         setBasicInfoModalVisible(false);
     }
 
+    const personalInfoModalOnClose = () => {
+        setPersonalInfoModalVisible(false);
+    }
+
+    const spouseCandidateModalOnClose = () => {
+        setSpouseCandidateModalVisible(false);
+    } 
+
+    const caracteristicFeatureModalOnClose = () => {
+        setCaracteristicFeatureModalVisible(false);
+    } 
+
     return (
         <>
             {profileTextModalVisible && (
@@ -103,6 +145,52 @@ const HomePage = ({
                     />
                 </>
             )}
+
+            {personalInfoModalVisible && (
+                <>
+                    <PersonalInfoModal
+                        onClose={personalInfoModalOnClose}
+                        isLoading={isLoading}
+                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
+                        updateUserPersonalInfo={updateUserPersonalInfo}
+                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
+                    />
+                </>
+            )}
+
+            {spouseCandidateModalVisible && (
+                <>
+                    <SpouseCandidateModal
+                        onClose={spouseCandidateModalOnClose}
+                        isLoading={isLoading}
+                        userUpdateSpouseCandidateInfoComplete={userUpdateSpouseCandidateInfoComplete}
+                        userUpdateSpouseCandidate={userUpdateSpouseCandidate}
+                        userUpdateSpouseCandidateReset={userUpdateSpouseCandidateReset}
+                        userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
+                    />
+                </>
+            )}
+
+            {caracteristicFeatureModalVisible && (
+                <>
+                    <CaracteristicFeatureModal
+                        onClose={caracteristicFeatureModalOnClose}
+                        isLoading={isLoading}
+                        userUpdateCaracteristicFeatureComplete={userUpdateCaracteristicFeatureComplete}
+                        userUpdateCaracteristicFeature={userUpdateCaracteristicFeature}
+                        userUpdateCaracteristicFeatureReset={userUpdateCaracteristicFeatureReset}
+                        userMe={userMe}
+                    />
+                </>
+            )}
+            
             <TopBanner/>
             <StorySlider/>
             <div className={styles.frame}>
@@ -118,6 +206,9 @@ const HomePage = ({
                                 userMe={userMe}
                                 setProfileTextModalVisible={setProfileTextModalVisible}
                                 setBasicInfoModalVisible={setBasicInfoModalVisible}
+                                setPersonalInfoModalVisible={setPersonalInfoModalVisible}
+                                setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
+                                setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                             />
                         </>
                     )}

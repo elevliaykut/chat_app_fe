@@ -10,7 +10,11 @@ import {
     resetUploadProfilePhotoComplete,
     getUserMe,
     updateUserPersonalInfo,
-    resetUpdateUserPersonalInfoComplete
+    resetUpdateUserPersonalInfoComplete,
+    userUpdateSpouseCandidate,
+    userUpdateSpouseCandidateReset,
+    userUpdateCaracteristicFeature,
+    userUpdateCaracteristicFeatureReset
 } from '../../../store/user/actions';
 
 import {
@@ -37,6 +41,8 @@ const mapStateToProps = state => ({
     userMe: state?.user?.userMe,
     userMeLoading: state?.user?.userMeLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
+    userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
+    userUpdateCaracteristicFeatureComplete: state?.user?.userUpdateCaracteristicFeatureComplete,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
     postIsLoading: state?.post?.isLoading,
@@ -56,7 +62,11 @@ const mapDispatchToProps = dispatch => ({
     getDistricts: payload => dispatch(getDistricts(payload)),
     postActivityLike: payload => dispatch(postActivityLike(payload)),
     postActivityFavorite: payload => dispatch(postActivityFavorite(payload)),
-    postActivitySmiled: payload => dispatch(postActivitySmiled(payload))
+    postActivitySmiled: payload => dispatch(postActivitySmiled(payload)),
+    userUpdateSpouseCandidate: payload => dispatch(userUpdateSpouseCandidate(payload)),
+    userUpdateSpouseCandidateReset: payload => dispatch(userUpdateSpouseCandidateReset(payload)),
+    userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
+    userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

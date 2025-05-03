@@ -251,7 +251,7 @@ const PersonalInfoModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Boy </label>
                             <input
-                                value={userMe?.detail?.tall}
+                                defaultValue={userMe?.detail?.tall}
                                 placeholder="Boy"
                                 onChange={(e) => setTall(e?.target?.value)}
                                 className={styles.input}
@@ -261,7 +261,7 @@ const PersonalInfoModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Kilo </label>
                             <input
-                                value={userMe?.detail?.weight}
+                                defaultValue={userMe?.detail?.weight}
                                 placeholder="Kilo"
                                 onChange={(e) => setWeight(e?.target?.value)}
                                 className={styles.input}
