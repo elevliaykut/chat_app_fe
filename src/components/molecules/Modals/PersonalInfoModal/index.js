@@ -16,7 +16,6 @@ const PersonalInfoModal = ({
 }) => {
     const [messageVisible, setMessageVisible] = useState(false);
     const [horoscope, setHoroscope] = useState();
-    const [maturity, setMaturity] = useState();
     const [headCraft, setHeadCraft] = useState();
     const [tall, setTall] = useState();
     const [weight, setWeight] = useState();
@@ -48,15 +47,10 @@ const PersonalInfoModal = ({
     const [hoobies, setHoobies] = useState([]);
     const [yourPersonality, setYourPersonality] = useState([]);
     const [disability, setDisability] = useState();
-    const [cityId, setCityId] = useState();
-    const [districtId, setDistrictId] = useState();
 
     const submitOnClick = () => {
         updateUserPersonalInfo({
-            cityId: cityId,
-            districtId: districtId,
             horoscope: horoscope,
-            maritalStatus: maturity,
             headscarf: headCraft,
             tall: tall,
             weight: weight,
@@ -351,7 +345,7 @@ const PersonalInfoModal = ({
                             <select
                                 defaultValue={userMe?.detail?.have_a_child ?? ""}
                                 style={{ marginTop: '10px'}}
-								onChange={() => setHaveAChild(e?.target?.value)}
+								onChange={(e) => setHaveAChild(e?.target?.value)}
 							>
                                 <option value="" disabled>
                                     {userMe?.detail?.have_a_child}

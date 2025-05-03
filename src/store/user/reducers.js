@@ -63,7 +63,11 @@ import {
 	USER_REPORTS_STARTED,
 	USER_REPORTS_SUCCEEDED,
 	USER_REPORTS_FAILED,
-	USER_REPORTS_RESET
+	USER_REPORTS_RESET,
+	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
+	USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED,
+	USER_UPDATE_SPOUSE_CANDIDATE_FAILED,
+	USER_UPDATE_SPOUSE_CANIDATE_RESET
 } from './types';
 
 const initialState = {
@@ -98,7 +102,8 @@ const initialState = {
 	userActivityFavoriteCompleted: false,
 	userActivitySmiledCompleted: false,
 	userBlockedComplete: false,
-	userReportsComplete: false
+	userReportsComplete: false,
+	userUpdateSpouseCandidateInfoComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -504,6 +509,29 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				userReportsComplete: false
+			};
+		case USER_UPDATE_SPOUSE_CANDIDATE_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userUpdateSpouseCandidateInfoComplete: false
+			};
+		case USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userUpdateSpouseCandidateInfoComplete: true
+			};
+		case USER_UPDATE_SPOUSE_CANDIDATE_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userUpdateSpouseCandidateInfoComplete: false
+			};
+		case USER_UPDATE_SPOUSE_CANIDATE_RESET:
+			return {
+				...state,
+				userUpdateSpouseCandidateInfoComplete: false
 			};
 		default:
 			return state;

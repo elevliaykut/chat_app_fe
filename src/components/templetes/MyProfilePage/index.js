@@ -7,7 +7,9 @@ import {
     userUploadProfilePhoto,
     resetUploadProfilePhotoComplete,
     updateUserPersonalInfo,
-    resetUpdateUserPersonalInfoComplete
+    resetUpdateUserPersonalInfoComplete,
+    userUpdateSpouseCandidate,
+    userUpdateSpouseCandidateReset
 } from '../../../store/user/actions';
 
 import {
@@ -30,6 +32,7 @@ const mapStateToProps = state => ({
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
+    userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
 
@@ -45,7 +48,9 @@ const mapDispatchToProps = dispatch => ({
     getDistricts: payload => dispatch(getDistricts(payload)),
     postActivityLike: payload => dispatch(postActivityLike(payload)),
     postActivityFavorite: payload => dispatch(postActivityFavorite(payload)),
-    postActivitySmiled: payload => dispatch(postActivitySmiled(payload))
+    postActivitySmiled: payload => dispatch(postActivitySmiled(payload)),
+    userUpdateSpouseCandidate: payload => dispatch(userUpdateSpouseCandidate(payload)),
+    userUpdateSpouseCandidateReset: () => dispatch(userUpdateSpouseCandidateReset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyProfileOrganisms);

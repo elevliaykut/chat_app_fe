@@ -35,8 +35,9 @@ const MyProfilePage = ({
     getDistricts = () => {},
     cities = [],
     districts = [],
-
-
+    userUpdateSpouseCandidateInfoComplete = false,
+    userUpdateSpouseCandidate = () => {},
+    userUpdateSpouseCandidateReset = () => {}
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [memberPostVisible, setMemberPostVisible] = useState(false);
@@ -126,9 +127,9 @@ const MyProfilePage = ({
                     <SpouseCandidateModal
                         onClose={spouseCandidateModalOnClose}
                         isLoading={isLoading}
-                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
-                        updateUserPersonalInfo={updateUserPersonalInfo}
-                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userUpdateSpouseCandidateInfoComplete={userUpdateSpouseCandidateInfoComplete}
+                        userUpdateSpouseCandidate={userUpdateSpouseCandidate}
+                        userUpdateSpouseCandidateReset={userUpdateSpouseCandidateReset}
                         userMe={userMe}
                         cities={cities}
                         districts={districts}

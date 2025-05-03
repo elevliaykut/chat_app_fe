@@ -26,6 +26,7 @@ const LoginPage = ({
 	const [isPrivacyChecked, setIsPrivacyChecked] 			= useState(false);
 	const [loginPrivacyChecked, setLoginPrivacyChecked] 	= useState(false);
 	const [emailPrivacyChecked, setEmailPrivacyChecked] 	= useState(false);
+	const [maritalStatus, setMaritalStatus]					= useState();
 
 	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
 	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
@@ -47,7 +48,7 @@ const LoginPage = ({
 				data.append('gender', gender);
 				data.append('birth_date', birthDate);
 				data.append('type', 1);
-
+				data.append('marital_status', maritalStatus);
 				userRegister({
 					formData: data
 				});
@@ -83,6 +84,10 @@ const LoginPage = ({
 		setGender(e?.target?.value);
 	}
 
+	const martialStatusChange = (e) => {
+		setMaritalStatus(e?.target?.value);
+	}
+	
 	const formOneButtonOnClick = () => {
 		if(isPrivacyChecked) {
 			setSectionOneVisible(false);
@@ -316,6 +321,18 @@ const LoginPage = ({
 												placeholder="Telefon" 
 												onChange={(e) => setPhone(e.target.value)}
 											/>
+										</div>
+										<div className={styles.formGroup}>
+											<select
+												id="marital_status"
+												name="marital_status"
+												onChange={martialStatusChange}
+												required
+											>
+												<option value="1">Evli</option>
+												<option value="2">Boşanmış</option>
+												<option value="3">Bekar</option>
+											</select>
 										</div>
 										<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
 										<div style={{ marginTop: '20px'}}> 

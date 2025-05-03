@@ -62,7 +62,11 @@ import {
 	USER_REPORTS_STARTED,
 	USER_REPORTS_SUCCEEDED,
 	USER_REPORTS_FAILED,
-	USER_REPORTS_RESET
+	USER_REPORTS_RESET,
+	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
+	USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED,
+	USER_UPDATE_SPOUSE_CANDIDATE_FAILED,
+	USER_UPDATE_SPOUSE_CANIDATE_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -373,4 +377,23 @@ export const userReportsError = error => ({
 
 export const userReportsReset = () => ({
 	type: USER_REPORTS_RESET
+});
+
+export const userUpdateSpouseCandidate = values => ({
+	type: USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
+	payload: values
+});
+
+export const userUpdateSpouseCandidateSuccess = data => ({
+	type: USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED,
+	payload: data
+});	
+
+export const userUpdateSpouseCandidateError = error => ({
+	type: USER_UPDATE_SPOUSE_CANDIDATE_FAILED,
+	payload: error
+});
+
+export const userUpdateSpouseCandidateReset = () => ({
+	type: USER_UPDATE_SPOUSE_CANIDATE_RESET
 });

@@ -6,108 +6,80 @@ import ToastMessage from "../../TostMessage";
 const SpouseCandidateModal = ({
     onClose = () => {},
     isLoading = false,
-    updateUserPersonalInfoComplete = false,
-    updateUserPersonalInfo = () => {},
-    resetUpdateUserPersonalInfoComplete = () => {},
+    userUpdateSpouseCandidateInfoComplete = false,
+    userUpdateSpouseCandidate = () => {},
+    userUpdateSpouseCandidateReset = () => {},
     userMe = {},
     cities = [],
     districts = [],
     getDistricts = []
 }) => {
     const [messageVisible, setMessageVisible] = useState(false);
-    const [maturity, setMaturity] = useState();
-    const [headCraft, setHeadCraft] = useState();
+    const [ageRange, setAgeRange] = useState([20, 40]);
+    const [about, setAbout] = useState();
     const [tall, setTall] = useState();
     const [weight, setWeight] = useState();
+    const [maturity, setMaturity] = useState();
     const [eyeColor, setEyeColor] = useState();
     const [hairColor, setHairColor] = useState();
     const [skinColor, setSkinColor] = useState();
     const [bodyType, setBodyType] = useState();
     const [haveAChild, setHaveAChild] = useState();
-    const [wantToChild, setWantToChild] = useState();
+    const [wantAChild, setWantAChild] = useState();
     const [cigarette, setCigarette] = useState();
     const [alcohol, setAlcohol] = useState();
     const [educationStatus, setEducationStatus] = useState();
-    const [foreighLanguages, setForeignLanguages] = useState([]);
-    const [job, setJob] = useState();
     const [salary, setSalary] = useState();
-    const [workStatus, setWorkStatus] = useState();
-    const [liveWith, setLiveWith] = useState();
-    const [clothingStyle, setClothingStyle] = useState();
     const [notCompromise, setNotCompromise] = useState([]);
     const [community, setCommunity] = useState();
     const [sect, setSect] = useState();
     const [pray, setPray] = useState();
-    const [quran, setQuran] = useState();
-    const [fasting, setFasting] = useState();
-    const [considerIslam, setConsiderIslam] = useState([]);
-    const [musicType, setMusicType] = useState([]);
-    const [bookType, setBookType] = useState([]);
     const [lookingQuality, setLookingQuality] = useState([]);
-    const [hoobies, setHoobies] = useState([]);
-    const [yourPersonality, setYourPersonality] = useState([]);
     const [disability, setDisability] = useState();
-    const [cityId, setCityId] = useState();
-    const [districtId, setDistrictId] = useState();
+
+
+    const handleMinChange = (e) => {
+        const newMin = parseInt(e.target.value);
+        if (newMin <= ageRange[1]) setAgeRange([newMin, ageRange[1]]);
+    };
+
+    const handleMaxChange = (e) => {
+        const newMax = parseInt(e.target.value);
+        if (newMax >= ageRange[0]) setAgeRange([ageRange[0], newMax]);
+    };
 
     const submitOnClick = () => {
-        updateUserPersonalInfo({
-            cityId: cityId,
-            districtId: districtId,
-            horoscope: horoscope,
+        userUpdateSpouseCandidate({
+            ageRange: ageRange.join(','),
             maritalStatus: maturity,
-            headscarf: headCraft,
+            haveAChild: haveAChild,
+            useCigarette: cigarette,
+            useAlcohol: alcohol,
+            educationStatus: educationStatus,
+            salary: salary,
+            notCompromise: notCompromise.length > 0 ? notCompromise : undefined,
+            community: community,
+            sect: sect,
+            doYouPray: pray,
+            physicalDisability: disability,
+            about: about,
             tall: tall,
             weight: weight,
             eyeColor: eyeColor,
             hairColor: hairColor,
             skinColor: skinColor,
             bodyType: bodyType,
-            haveAChild: haveAChild,
-            wantAChild: wantToChild,
-            useCigarette: cigarette,
-            useAlcohol: alcohol,
-            educationStatus: educationStatus,
-		    foreignLanguage: foreighLanguages.length > 0 ? foreighLanguages : undefined,
-            job: job,
-            salary: salary,
-            workStatus: workStatus,
-            liveWith:liveWith,
-            clothingStyle: clothingStyle,
-            notCompromise: notCompromise.length > 0 ? notCompromise : undefined,
-            community: community,
-            sect: sect,
-            doYouPray: pray,
-            doYouKnowQuran: quran,
-            areYouFasting: fasting,
-            considerImportantInIslam: considerIslam.length > 0 ? considerIslam : undefined,
-            listeningMusicType: musicType.length > 0  ? musicType : undefined,
-            readingBookTypes: bookType.length > 0 ? bookType : undefined,
+            wantAChild: wantAChild,
             lookingQualities: lookingQuality.length > 0 ? lookingQuality : undefined,
-            yourHobbies: hoobies.length > 0 ? hoobies : undefined,
-            yourPersonality: yourPersonality.length > 0 ? yourPersonality : undefined,
-            physicalDisability: disability
         });
     }
 
     useEffect(() => {
-        if(updateUserPersonalInfoComplete) {
-            resetUpdateUserPersonalInfoComplete();
+        if(userUpdateSpouseCandidateInfoComplete) {
+            userUpdateSpouseCandidateReset();
             setMessageVisible(true);
         }
-    },[updateUserPersonalInfoComplete]);
-    
-
-  const handleCheckboxChange = (event) => {
-    const value = event.target.value;
-
-    // Eğer checkbox seçiliyse, seçilenler listesine ekle, değilse listeden çıkar
-    setForeignLanguages((prevState) =>
-      prevState.includes(value)
-        ? prevState.filter((lang) => lang !== value)
-        : [...prevState, value]
-    );
-  };
+    },[userUpdateSpouseCandidateInfoComplete]);
 
   const handleNotCompromiseChange = (event) => {
     const value = event.target.value;
@@ -135,7 +107,7 @@ const SpouseCandidateModal = ({
         <>
             {messageVisible && (
                 <>
-                    <ToastMessage message="Temel bilgileriniz başarılı bir şekilde kaydedildi."/>
+                    <ToastMessage message="Eş adayı özellikleriniz başarılı bir şekilde kaydedildi."/>
                 </>
             )}
 
@@ -151,10 +123,43 @@ const SpouseCandidateModal = ({
                     </div>
                     
                     <div className={styles.modalContent}>
+                    <div style={{ marginTop: '18px' }}>
+                        
+                        <label>Yaş Aralığı: {ageRange[0]} - {ageRange[1]}</label>
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                                <input
+                                type="range"
+                                min="18"
+                                max="99"
+                                value={ageRange[0]}
+                                onChange={handleMinChange}
+                                style={{ flex: 1 }}
+                                />
+                                <input
+                                type="range"
+                                min="18"
+                                max="99"
+                                value={ageRange[1]}
+                                onChange={handleMaxChange}
+                                style={{ flex: 1 }}
+                                />
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
+                            <label>Hakkında </label>
+                            <input
+                                defaultValue={userMe?.spouse_candidate?.about}
+                                placeholder="Hakkında"
+                                onChange={(e) => setAbout(e?.target?.value)}
+                                className={styles.input}
+                            />
+                        </div>
+
                         <div style={{ marginTop: '18px'}}>
                             <label>Boy </label>
                             <input
-                                value={userMe?.detail?.tall}
+                                defaultValue={userMe?.spouse_candidate?.tall}
                                 placeholder="Boy"
                                 onChange={(e) => setTall(e?.target?.value)}
                                 className={styles.input}
@@ -164,7 +169,7 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Kilo </label>
                             <input
-                                value={userMe?.detail?.weight}
+                                defaultValue={userMe?.spouse_candidate?.weight}
                                 placeholder="Kilo"
                                 onChange={(e) => setWeight(e?.target?.value)}
                                 className={styles.input}
@@ -174,12 +179,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Medeni Hal</label>
                             <select
-                                defaultValue={userMe?.detail?.marital_status_value ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.marital_status_value ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setMaturity(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.marital_status_value}
+                                    {userMe?.spouse_candidate?.marital_status_value}
                                 </option>
 								<option value="Boşanmış">Boşanmış</option>
 								<option value="Eşi vefat etmiş">Eşi vefat etmiş</option>
@@ -191,12 +196,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Göz Rengi </label>
                             <select
-                                defaultValue={userMe?.detail?.eye_color ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.eye_color ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setEyeColor(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.eye_color}
+                                    {userMe?.spouse_candidate?.eye_color}
                                 </option>
 								<option value="Siyah">Siyah</option>
 								<option value="Kahverengi">Kahverengi</option>
@@ -210,12 +215,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Saç rengi </label>
                             <select
-                                defaultValue={userMe?.detail?.hair_color ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.hair_color ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setHairColor(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.hair_color}
+                                    {userMe?.spouse_candidate?.hair_color}
                                 </option>
 								<option value="Siyah">Siyah</option>
 								<option value="Kahverengi">Kahverengi</option>
@@ -229,12 +234,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Ten rengi </label>
                             <select
-                                defaultValue={userMe?.detail?.skin_color ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.skin_color ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setSkinColor(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.skin_color}
+                                    {userMe?.spouse_candidate?.skin_color}
                                 </option>
 								<option value="Buğday">Buğday</option>
 								<option value="Bronz">Bronz</option>
@@ -246,12 +251,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Vücut Tipi</label>
                             <select
-                                defaultValue={userMe?.detail?.body_type ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.body_type ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setBodyType(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.body_type}
+                                    {userMe?.spouse_candidate?.body_type}
                                 </option>
 								<option value="İnce">İnce</option>
 								<option value="Normal">Normal</option>
@@ -264,12 +269,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Çocuğu Olsun mu? </label>
                             <select
-                                defaultValue={userMe?.detail?.have_a_child ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.have_a_child ?? ""}
                                 style={{ marginTop: '10px'}}
-								onChange={() => setHaveAChild(e?.target?.value)}
+								onChange={(e) => setHaveAChild(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.have_a_child}
+                                    {userMe?.spouse_candidate?.have_a_child}
                                 </option>
 								<option value="Olsun">Olsun</option>
 								<option value="Olmasın">Olmasın</option>
@@ -278,14 +283,31 @@ const SpouseCandidateModal = ({
                         </div>
 
                         <div style={{ marginTop: '18px'}}>
+                            <label>Çocuk İstesin mi? </label>
+                            <select
+                                defaultValue={userMe?.spouse_candidate?.want_a_child ?? ""}
+                                style={{ marginTop: '10px'}}
+								onChange={(e) => setWantAChild(e?.target?.value)}
+							>
+                                <option value="" disabled>
+                                    {userMe?.spouse_candidate?.want_a_child}
+                                </option>
+								<option value="İstesin">İstesin</option>
+								<option value="Daha sonra istesin">Daha sonra istesin</option>
+								<option value="İstemesin">İstemesin</option>
+                                <option value="Henüz Düşünmesin">Henüz Düşünmesin</option>
+							</select>
+                        </div>
+
+                        <div style={{ marginTop: '18px'}}>
                             <label>Tanışacağınız üyenin sigara kullanmasıyla ilgili ne düşünürsünüz? </label>
                             <select
-                                defaultValue={userMe?.detail?.use_cigarette ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.use_cigarette ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setCigarette(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.use_cigarette}
+                                    {userMe?.spouse_candidate?.use_cigarette}
                                 </option>
 								<option value="İçsin">İçsin</option>
 								<option value="İçmesin">İçmesin</option>
@@ -296,12 +318,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Tanışacağınız üyenin alkol kullanmasıyla ilgili ne düşünürsünüz?</label>
                             <select
-                                defaultValue={userMe?.detail?.use_alcohol ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.use_alcohol ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setAlcohol(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.use_alcohol}
+                                    {userMe?.spouse_candidate?.use_alcohol}
                                 </option>
 								<option value="Kesinlikle içmesin">Kesinlikle içmesin</option>
 								<option value="Arasıra içsin">Arasıra içsin</option>
@@ -313,12 +335,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Tanışacağınız üyenin mezununiyet derecesi sizin için ne kadar önemli?</label>
                             <select
-                                defaultValue={userMe?.detail?.education_status ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.education_status ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setEducationStatus(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.education_status}
+                                    {userMe?.spouse_candidate?.education_status}
                                 </option>
 								<option value="İlk Öğretim">İlk Öğretim</option>
 								<option value="Lise">Lise</option>
@@ -332,12 +354,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Tanışacağınız üyenin maddi durumu sizin için ne kadar önemli?</label>
                             <select
-                                defaultValue={userMe?.detail?.salary ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.salary ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setSalary(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.salary}
+                                    {userMe?.spouse_candidate?.salary}
                                 </option>
 								<option value="0-10000 TL">0-10000 TL</option>
 								<option value="10000-20000 TL">10000-20000 TL</option>
@@ -381,12 +403,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Cemaat </label>
                             <select
-                                defaultValue={userMe?.detail?.community ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.community ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setCommunity(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.community}
+                                    {userMe?.spouse_candidate?.community}
                                 </option>
 								<option value="Cemaatlerle ilişkileri olsun">Cemaatlerle ilişkileri olsun</option>
 								<option value="Bir cemaate bağlı olsun">Bir cemaate bağlı olsun</option>
@@ -398,12 +420,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Mezhebi </label>
                             <select
-                                defaultValue={userMe?.detail?.sect ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.sect ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setSect(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.sect}
+                                    {userMe?.spouse_candidate?.sect}
                                 </option>
 								<option value="Hanefi">Hanefi</option>
 								<option value="Şafii">Şafii</option>
@@ -416,12 +438,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Namaz kılsın mı? </label>
                             <select
-                                defaultValue={userMe?.detail?.do_you_pray ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.do_you_pray ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setPray(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.do_you_pray}
+                                    {userMe?.spouse_candidate?.do_you_pray}
                                 </option>
 								<option value="Namazlarını kılsın">Namazlarını kılsın</option>
 								<option value="Namazlarını kılmaya çalışsın">Namazlarını kılmaya çalışsın</option>
@@ -474,12 +496,12 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Fiziksel Engel</label>
                             <select
-                                defaultValue={userMe?.detail?.physical_disability ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.physical_disability ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setDisability(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.detail?.physical_disability}
+                                    {userMe?.spouse_candidate?.physical_disability}
                                 </option>
 								<option value="Hayır">Hayır</option>
 								<option value="Evet; Görme engelli">Evet; Görme engelli</option>

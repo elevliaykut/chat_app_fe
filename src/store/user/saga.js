@@ -20,7 +20,8 @@ import {
 	USER_ACTIVITY_FAVORITE_STARTED,
 	USER_ACTIVITY_SMILED_STARTED,
 	USER_BLOCKED_STARTED,
-	USER_REPORTS_STARTED
+	USER_REPORTS_STARTED,
+	USER_UPDATE_SPOUSE_CANDIDATE_STARTED
 } from './types';
 
 import {
@@ -59,7 +60,9 @@ import {
 	userBlockedSuccess,
 	userBlockedError,
 	userReportsSuccess,
-	userReportsError
+	userReportsError,
+	userUpdateSpouseCandidateSuccess,
+	userUpdateSpouseCandidateError
 } from './actions';
 
 const cookies = new Cookies();
@@ -510,6 +513,71 @@ function* userReportsTask(action) {
 	}
 }
 
+function* userUpdateSpouseCanidateTask(action) {
+	const { payload } = action;
+	const { 
+		ageRange,
+		maritalStatus,
+		haveAChild,
+		useCigarette,
+		useAlcohol,
+		educationStatus,
+		salary,
+		notCompromise,
+		community,
+		sect,
+		doYouPray,
+		physicalDisability,
+		about,
+		tall,
+		weight,
+		eyeColor,
+		hairColor,
+		skinColor,
+		bodyType,
+		wantAChild,
+		lookingQualities
+	} = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.put, `${BASE_URL}/user/spouse-candidate`,
+			{
+				age_range: ageRange,
+				marital_status: maritalStatus,
+				have_a_child: haveAChild,
+				use_cigarette: useCigarette,
+				use_alcohol: useAlcohol,
+				education_status: educationStatus,
+				salary: salary,
+				not_compromise: notCompromise,
+				community: community,
+				sect: sect,
+				do_you_pray: doYouPray,
+				physical_disability: physicalDisability,
+				about: about,
+				tall: tall,
+				weight: weight,
+				eye_color: eyeColor,
+				hair_color: hairColor,
+				skin_color: skinColor,
+				body_type: bodyType,
+				want_a_child: wantAChild,
+				looking_qualities: lookingQualities,
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userUpdateSpouseCandidateSuccess(data));
+	} catch (error) {
+		yield put(userUpdateSpouseCandidateError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -584,6 +652,10 @@ function* watchUserReports() {
 	yield takeLatest(USER_REPORTS_STARTED, userReportsTask);
 }
 
+function* wathcUserUpdateSpouseCandidate() {
+	yield takeLatest(USER_UPDATE_SPOUSE_CANDIDATE_STARTED, userUpdateSpouseCanidateTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -603,6 +675,7 @@ export default function* saga() {
 		watchGetUserActivityFavorite(),
 		watchGetUserActivitySmiled(),
 		watchUserBlocked(),
-		watchUserReports()
+		watchUserReports(),
+		wathcUserUpdateSpouseCandidate()
 	]);
 }
