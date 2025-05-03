@@ -57,7 +57,7 @@ const SpouseCandidateModal = ({
             useAlcohol: alcohol,
             educationStatus: educationStatus,
             salary: salary,
-            notCompromise: notCompromise.length > 0 ? notCompromise : undefined,
+            notCompromise: notCompromise.length > 0 ? notCompromise.join(',') : undefined,
             community: community,
             sect: sect,
             doYouPray: pray,
@@ -70,7 +70,7 @@ const SpouseCandidateModal = ({
             skinColor: skinColor,
             bodyType: bodyType,
             wantAChild: wantAChild,
-            lookingQualities: lookingQuality.length > 0 ? lookingQuality : undefined,
+            lookingQualities: lookingQuality.length > 0 ? lookingQuality.join(',') : undefined,
         });
     }
 
@@ -78,6 +78,7 @@ const SpouseCandidateModal = ({
         if(userUpdateSpouseCandidateInfoComplete) {
             userUpdateSpouseCandidateReset();
             setMessageVisible(true);
+            onClose();
         }
     },[userUpdateSpouseCandidateInfoComplete]);
 
