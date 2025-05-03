@@ -66,7 +66,11 @@ import {
 	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
 	USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED,
 	USER_UPDATE_SPOUSE_CANDIDATE_FAILED,
-	USER_UPDATE_SPOUSE_CANIDATE_RESET
+	USER_UPDATE_SPOUSE_CANIDATE_RESET,
+	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_FAILED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -396,4 +400,23 @@ export const userUpdateSpouseCandidateError = error => ({
 
 export const userUpdateSpouseCandidateReset = () => ({
 	type: USER_UPDATE_SPOUSE_CANIDATE_RESET
+});
+
+export const userUpdateCaracteristicFeature = values => ({
+	type: USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
+	payload: values
+});
+
+export const userUpdateCaracteristicFeatureSuccess = data => ({
+	type: USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED,
+	payload: data
+});	
+
+export const userUpdateCaracteristicFeatureError = error => ({
+	type: USER_UPDATE_CARACTERISTIC_FEATURE_FAILED,
+	payload: error
+});
+
+export const userUpdateCaracteristicFeatureReset = () => ({
+	type: USER_UPDATE_CARACTERISTIC_FEATURE_RESET
 });

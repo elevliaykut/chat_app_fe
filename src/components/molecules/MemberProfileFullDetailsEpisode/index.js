@@ -34,34 +34,14 @@ const MemberProfileFullDetailsEpisode = ({
             {visibleSection === 0 && (
                 <>
                     <div className={styles.descriptionContainer} style={{ marginTop: '10px'}}>
-                
-                        <div className={styles.descriptionEpisode}>
-                            <div className={styles.descriptionContainerTitle}>
-                                <label>Tesettür</label>
-                                <label style={{ marginLeft: 'auto'}}>:</label>
-                            </div>
-                            <div className={styles.descriptionContainerContent}>
-                                <span>{details?.detail?.headscarf ? details?.detail?.headscarf : 'Belirtilmemiş'}</span>
-                            </div>
-                        </div>
-                        
-                        <div className={styles.descriptionEpisode}>
-                            <div className={styles.descriptionContainerTitle}>
-                                <label>Boy</label>
-                                <label style={{ marginLeft: 'auto'}}>:</label>
-                            </div>
-                            <div className={styles.descriptionContainerContent}>
-                                <span>{details?.detail?.tall ? details?.detail?.tall : 'Belirtilmemiş'}</span>
-                            </div>
-                        </div>
 
                         <div className={styles.descriptionEpisode}>
                             <div className={styles.descriptionContainerTitle}>
-                                <label>Kilo</label>
+                                <label>Burç</label>
                                 <label style={{ marginLeft: 'auto'}}>:</label>
                             </div>
                             <div className={styles.descriptionContainerContent}>
-                                <span>{details?.detail?.weight ? details?.detail?.weight : 'Belirtilmemiş'}</span>
+                                <span>{details?.detail?.horoscope ? details?.detail?.horoscope : 'Belirtilmemiş'}</span>
                             </div>
                         </div>
 
@@ -92,6 +72,36 @@ const MemberProfileFullDetailsEpisode = ({
                             </div>
                             <div className={styles.descriptionContainerContent}>
                                 <span>{details?.detail?.marital_status_value ? details?.detail?.marital_status_value : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Tesettür</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.detail?.headscarf ? details?.detail?.headscarf : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+                        
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Boy</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.detail?.tall ? details?.detail?.tall : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Kilo</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.detail?.weight ? details?.detail?.weight : 'Belirtilmemiş'}</span>
                             </div>
                         </div>
 
@@ -385,6 +395,97 @@ const MemberProfileFullDetailsEpisode = ({
                         
                         <div className={styles.descriptionEpisode}>
                             <div className={styles.descriptionContainerTitle}>
+                                <label>Hakkında</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.about ? details?.spouse_candidate?.about : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Boy</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.tall ? details?.spouse_candidate?.tall : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Kilo</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.weight ? details?.spouse_candidate?.weight : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Göz Rengi</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.eye_color ? details?.spouse_candidate?.eye_color : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Saç Rengi</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.hair_color ? details?.spouse_candidate?.hair_color : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Ten Rengi</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.skin_color ? details?.spouse_candidate?.skin_color : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+                        
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Vucut Tipi</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.body_type ? details?.spouse_candidate?.body_type : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Çocuk İstesinmi</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.want_a_child ? details?.spouse_candidate?.want_a_child : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Aradığınız Özellikler</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.spouse_candidate?.looking_qualities ? details?.spouse_candidate?.looking_qualities : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
                                 <label>Yaş Aralığı</label>
                                 <label style={{ marginLeft: 'auto'}}>:</label>
                             </div>
@@ -399,7 +500,7 @@ const MemberProfileFullDetailsEpisode = ({
                                 <label style={{ marginLeft: 'auto'}}>:</label>
                             </div>
                             <div className={styles.descriptionContainerContent}>
-                                <span>{details?.spouse_candidate?.marital_status_value ? details?.spouse_candidate?.marital_status_value : 'Belirtilmemiş'}</span>
+                                <span>{details?.spouse_candidate?.marital_status ? details?.spouse_candidate?.marital_status : 'Belirtilmemiş'}</span>
                             </div>
                         </div>
 
@@ -500,6 +601,133 @@ const MemberProfileFullDetailsEpisode = ({
                             </div>
                             <div className={styles.descriptionContainerContent}>
                                 <span>{details?.spouse_candidate?.physical_disability ? details?.spouse_candidate?.physical_disability : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </>
+            )}
+
+            {visibleSection === 2 && (
+                <>
+                    <div className={styles.descriptionContainer} style={{ marginTop: '10px'}}>
+                        
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Tanışmak istediğiniz kişide aradığınız 3 özellik</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_one ? details?.caracterisric_feature?.question_one : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Tanışmak istediğiniz kişide istemediğiniz 3 özellik</label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_two ? details?.caracterisric_feature?.question_two : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Yanından ayırmadığı 3 şey
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_three ? details?.caracterisric_feature?.question_three : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Kitap tercihiz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_four ? details?.caracterisric_feature?.question_four : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Hayvanları seviyor musunuz?
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_five ? details?.caracterisric_feature?.question_five : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Müzik zevkiniz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_six ? details?.caracterisric_feature?.question_six : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Spora ilginiz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_seven ? details?.caracterisric_feature?.question_seven : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Tatil tercihiz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_eight ? details?.caracterisric_feature?.question_eight : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Damak zevkiz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_nine ? details?.caracterisric_feature?.question_nine : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Oyun zevkiniz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_ten ? details?.caracterisric_feature?.question_ten : 'Belirtilmemiş'}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.descriptionEpisode}>
+                            <div className={styles.descriptionContainerTitle}>
+                                <label>Favori çizgi filmleriniz
+                                </label>
+                                <label style={{ marginLeft: 'auto'}}>:</label>
+                            </div>
+                            <div className={styles.descriptionContainerContent}>
+                                <span>{details?.caracterisric_feature?.question_eleven ? details?.caracterisric_feature?.question_eleven : 'Belirtilmemiş'}</span>
                             </div>
                         </div>
 

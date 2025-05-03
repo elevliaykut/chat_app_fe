@@ -11,6 +11,7 @@ import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
+import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 
 const MyProfilePage = ({
     userMe = {},
@@ -37,7 +38,10 @@ const MyProfilePage = ({
     districts = [],
     userUpdateSpouseCandidateInfoComplete = false,
     userUpdateSpouseCandidate = () => {},
-    userUpdateSpouseCandidateReset = () => {}
+    userUpdateSpouseCandidateReset = () => {},
+    userUpdateCaracteristicFeatureComplete = false,
+    userUpdateCaracteristicFeature = () => {},
+    userUpdateCaracteristicFeatureReset = () => {}
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [memberPostVisible, setMemberPostVisible] = useState(false);
@@ -45,6 +49,7 @@ const MyProfilePage = ({
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
+    const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
 
     useEffect(() => {
         getCities();
@@ -53,6 +58,24 @@ const MyProfilePage = ({
     useEffect(() => {
         getUserMe();
     },[]);
+    
+    useEffect(() => {
+        if(updateUserPersonalInfoComplete) {
+            getUserMe();
+        }
+    },[updateUserPersonalInfoComplete]);
+
+    useEffect(() => {
+        if(userUpdateSpouseCandidateInfoComplete) {
+            getUserMe();
+        }
+    },[userUpdateSpouseCandidateInfoComplete]);
+
+    useEffect(() => {
+        if(userUpdateCaracteristicFeatureComplete) {
+            getUserMe();
+        }
+    },[userUpdateCaracteristicFeatureComplete]);
 
     useEffect(() => {
         if(!userMeLoading) {
@@ -74,6 +97,10 @@ const MyProfilePage = ({
 
     const spouseCandidateModalOnClose = () => {
         setSpouseCandidateModalVisible(false);
+    } 
+
+    const caracteristicFeatureModalOnClose = () => {
+        setCaracteristicFeatureModalVisible(false);
     } 
 
     return (
@@ -137,6 +164,19 @@ const MyProfilePage = ({
                     />
                 </>
             )}
+
+            {caracteristicFeatureModalVisible && (
+                <>
+                    <CaracteristicFeatureModal
+                        onClose={caracteristicFeatureModalOnClose}
+                        isLoading={isLoading}
+                        userUpdateCaracteristicFeatureComplete={userUpdateCaracteristicFeatureComplete}
+                        userUpdateCaracteristicFeature={userUpdateCaracteristicFeature}
+                        userUpdateCaracteristicFeatureReset={userUpdateCaracteristicFeatureReset}
+                        userMe={userMe}
+                    />
+                </>
+            )}
             <TopBanner/>
             
             <div className={styles.frame}>
@@ -155,6 +195,7 @@ const MyProfilePage = ({
                                     setBasicInfoModalVisible={setBasicInfoModalVisible}
                                     setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                                     setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
+                                    setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 />
                             </div>
                         </>

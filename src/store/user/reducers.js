@@ -67,7 +67,11 @@ import {
 	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
 	USER_UPDATE_SPOUSE_CANDIDATE_SUCCEEDED,
 	USER_UPDATE_SPOUSE_CANDIDATE_FAILED,
-	USER_UPDATE_SPOUSE_CANIDATE_RESET
+	USER_UPDATE_SPOUSE_CANIDATE_RESET,
+	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_FAILED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_RESET
 } from './types';
 
 const initialState = {
@@ -104,6 +108,7 @@ const initialState = {
 	userBlockedComplete: false,
 	userReportsComplete: false,
 	userUpdateSpouseCandidateInfoComplete: false,
+	userUpdateCaracteristicFeatureComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -532,6 +537,30 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				userUpdateSpouseCandidateInfoComplete: false
+			};
+		case USER_UPDATE_CARACTERISTIC_FEATURE_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userUpdateCaracteristicFeatureComplete: false
+			};
+		case USER_UPDATE_CARACTERISTIC_FEATURE_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userUpdateCaracteristicFeatureComplete: true
+			};
+		case USER_UPDATE_CARACTERISTIC_FEATURE_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userUpdateCaracteristicFeatureComplete: false,
+				error: payload
+			};
+		case USER_UPDATE_CARACTERISTIC_FEATURE_RESET:
+			return {
+				...state,
+				userUpdateCaracteristicFeatureComplete: false
 			};
 		default:
 			return state;

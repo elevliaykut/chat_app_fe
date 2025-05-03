@@ -63,24 +63,24 @@ const PersonalInfoModal = ({
             useCigarette: cigarette,
             useAlcohol: alcohol,
             educationStatus: educationStatus,
-		    foreignLanguage: foreighLanguages.length > 0 ? foreighLanguages : undefined,
+		    foreignLanguage: foreighLanguages.length > 0 ? foreighLanguages.join(',') : undefined,
             job: job,
             salary: salary,
             workStatus: workStatus,
             liveWith:liveWith,
             clothingStyle: clothingStyle,
-            notCompromise: notCompromise.length > 0 ? notCompromise : undefined,
+            notCompromise: notCompromise.length > 0 ? notCompromise.join(',') : undefined,
             community: community,
             sect: sect,
             doYouPray: pray,
             doYouKnowQuran: quran,
             areYouFasting: fasting,
-            considerImportantInIslam: considerIslam.length > 0 ? considerIslam : undefined,
-            listeningMusicType: musicType.length > 0  ? musicType : undefined,
-            readingBookTypes: bookType.length > 0 ? bookType : undefined,
-            lookingQualities: lookingQuality.length > 0 ? lookingQuality : undefined,
-            yourHobbies: hoobies.length > 0 ? hoobies : undefined,
-            yourPersonality: yourPersonality.length > 0 ? yourPersonality : undefined,
+            considerImportantInIslam: considerIslam.length > 0 ? considerIslam.join(',') : undefined,
+            listeningMusicType: musicType.length > 0  ? musicType.join(',') : undefined,
+            readingBookTypes: bookType.length > 0 ? bookType.join(',') : undefined,
+            lookingQualities: lookingQuality.length > 0 ? lookingQuality.join(',') : undefined,
+            yourHobbies: hoobies.length > 0 ? hoobies.join(',') : undefined,
+            yourPersonality: yourPersonality.length > 0 ? yourPersonality.join(',') : undefined,
             physicalDisability: disability
         });
     }
@@ -88,6 +88,7 @@ const PersonalInfoModal = ({
     useEffect(() => {
         if(updateUserPersonalInfoComplete) {
             resetUpdateUserPersonalInfoComplete();
+            onClose();
             setMessageVisible(true);
         }
     },[updateUserPersonalInfoComplete]);

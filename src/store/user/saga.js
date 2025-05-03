@@ -21,7 +21,8 @@ import {
 	USER_ACTIVITY_SMILED_STARTED,
 	USER_BLOCKED_STARTED,
 	USER_REPORTS_STARTED,
-	USER_UPDATE_SPOUSE_CANDIDATE_STARTED
+	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
+	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED
 } from './types';
 
 import {
@@ -62,7 +63,9 @@ import {
 	userReportsSuccess,
 	userReportsError,
 	userUpdateSpouseCandidateSuccess,
-	userUpdateSpouseCandidateError
+	userUpdateSpouseCandidateError,
+	userUpdateCaracteristicFeatureSuccess,
+	userUpdateCaracteristicFeatureError
 } from './actions';
 
 const cookies = new Cookies();
@@ -578,6 +581,51 @@ function* userUpdateSpouseCanidateTask(action) {
 	}
 }
 
+function* userUpdateCaracteristicFeatureTask(action) {
+	const { payload } = action;
+	const { 
+		questionOne,
+		questionTwo,
+		questionThree,
+		questionFour,
+		questionFive,
+		questionSix,
+		questionSeven,
+		questionEight,
+		questionNine,
+		questionTen,
+		questionEleven,
+	} = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.put, `${BASE_URL}/user/caracteristic-feature`,
+			{
+				question_one: questionOne,
+				question_two: questionTwo,
+				question_three: questionThree,
+				question_four: questionFour,
+				question_five: questionFive,
+				question_six: questionSix,
+				question_seven: questionSeven,
+				question_eight: questionEight,
+				question_nine: questionNine,
+				question_ten: questionTen,
+				question_eleven: questionEleven,
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userUpdateCaracteristicFeatureSuccess(data));
+	} catch (error) {
+		yield put(userUpdateCaracteristicFeatureError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -656,6 +704,10 @@ function* wathcUserUpdateSpouseCandidate() {
 	yield takeLatest(USER_UPDATE_SPOUSE_CANDIDATE_STARTED, userUpdateSpouseCanidateTask);
 }
 
+function* watchUserUpdateCaracteristicFeature() {
+	yield takeLatest(USER_UPDATE_CARACTERISTIC_FEATURE_STARTED, userUpdateCaracteristicFeatureTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -676,6 +728,7 @@ export default function* saga() {
 		watchGetUserActivitySmiled(),
 		watchUserBlocked(),
 		watchUserReports(),
-		wathcUserUpdateSpouseCandidate()
+		wathcUserUpdateSpouseCandidate(),
+		watchUserUpdateCaracteristicFeature()
 	]);
 }

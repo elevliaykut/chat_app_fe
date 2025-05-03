@@ -14,7 +14,8 @@ const MyProfileCard = ({
     setProfileTextModalVisible = () => {},
     setBasicInfoModalVisible = () => {},
     setPersonalInfoModalVisible = () => {},
-    setSpouseCandidateModalVisible = () => {}
+    setSpouseCandidateModalVisible = () => {},
+    setCaracteristicFeatureModalVisible = () => {}
 }) => {
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
@@ -178,7 +179,7 @@ const MyProfileCard = ({
                                 <path d="M12 2a9 9 0 0 1 9 9v2a5 5 0 0 1-5 5h-1l-1 4h-4l-1-4H8a5 5 0 0 1-5-5v-2a9 9 0 0 1 9-9Z"/>
                             </svg>
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setCaracteristicFeatureModalVisible(true)}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Karakter Analizi</label>
                         </div>
                     </div>
