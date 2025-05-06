@@ -23,7 +23,8 @@ import {
 	USER_REPORTS_STARTED,
 	USER_UPDATE_SPOUSE_CANDIDATE_STARTED,
 	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
-	GET_MY_POSTS_STARTED
+	GET_MY_POSTS_STARTED,
+	CREATE_USER_PROFILE_VISIT_LOG_STARTED
 } from './types';
 
 import {
@@ -68,7 +69,9 @@ import {
 	userUpdateCaracteristicFeatureSuccess,
 	userUpdateCaracteristicFeatureError,
 	getMyPostsSuccess,
-	getMyPostsError
+	getMyPostsError,
+	createUserProfileVisitLogSuccess,
+	createUserProfileVisitLogError
 } from './actions';
 
 const cookies = new Cookies();
@@ -647,6 +650,27 @@ function* getMyPostsTask(action) {
 	}
 }
 
+function* createUserProfileVisitLogTask(action) {
+	const { payload } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/profile/visit/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(createUserProfileVisitLogSuccess(data));
+	} catch (error) {
+		yield put(createUserProfileVisitLogError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -733,6 +757,10 @@ function* watchGetMyPosts() {
 	yield takeLatest(GET_MY_POSTS_STARTED, getMyPostsTask);
 }
 
+function* watchCreateUserProfileVisitLog() {
+	yield takeLatest(CREATE_USER_PROFILE_VISIT_LOG_STARTED, createUserProfileVisitLogTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -755,6 +783,7 @@ export default function* saga() {
 		watchUserReports(),
 		wathcUserUpdateSpouseCandidate(),
 		watchUserUpdateCaracteristicFeature(),
-		watchGetMyPosts()
+		watchGetMyPosts(),
+		watchCreateUserProfileVisitLog()
 	]);
 }

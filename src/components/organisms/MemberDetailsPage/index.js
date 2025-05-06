@@ -39,7 +39,8 @@ const MemberDetailsPage = ({
     userReportsComplete = false,
     userBlocked = () => {},
     userBlockedReset = () => {},
-    userBlockedComplete = false
+    userBlockedComplete = false,
+    createUserProfileVisitLog = () => {}
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -47,6 +48,14 @@ const MemberDetailsPage = ({
     const [memberPostVisible, setMemberPostVisible]                     = useState(false);
     const [reportModalVisible, setReportModalVisible]                   = useState(false);
     const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
+
+    useEffect(() => {
+        if(memberId) {
+            createUserProfileVisitLog({
+                userId: memberId
+            });
+        }
+    },[memberId]);
 
     useEffect(() => {
         if(!userMeLoading) {

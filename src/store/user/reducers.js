@@ -74,7 +74,10 @@ import {
 	USER_UPDATE_CARACTERISTIC_FEATURE_RESET,
 	GET_MY_POSTS_STARTED,
 	GET_MY_POSTS_SUCCEEDED,
-	GET_MY_POSTS_FAILED
+	GET_MY_POSTS_FAILED,
+	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
+	CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED,
+	CREATE_USER_PROFILE_VISIT_LOG_FAILED
 } from './types';
 
 const initialState = {
@@ -578,6 +581,22 @@ const user = (state = initialState, action) => {
 				myPosts: payload?.data
 			};
 		case GET_MY_POSTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case CREATE_USER_PROFILE_VISIT_LOG_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false
+			};
+		case CREATE_USER_PROFILE_VISIT_LOG_FAILED:
 			return {
 				...state,
 				isLoading: false,

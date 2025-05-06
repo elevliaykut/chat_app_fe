@@ -73,7 +73,10 @@ import {
 	USER_UPDATE_CARACTERISTIC_FEATURE_RESET,
 	GET_MY_POSTS_STARTED,
 	GET_MY_POSTS_SUCCEEDED,
-	GET_MY_POSTS_FAILED
+	GET_MY_POSTS_FAILED,
+	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
+	CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED,
+	CREATE_USER_PROFILE_VISIT_LOG_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -436,5 +439,20 @@ export const getMyPostsSuccess = data => ({
 
 export const getMyPostsError = error => ({
 	type: GET_MY_POSTS_FAILED,
+	payload: error
+});
+
+export const createUserProfileVisitLog = values => ({
+	type: CREATE_USER_PROFILE_VISIT_LOG_STARTED,
+	payload: values
+});
+
+export const createUserProfileVisitLogSuccess = data => ({
+	type: CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED,
+	payload: data
+});
+
+export const createUserProfileVisitLogError = error => ({
+	type: CREATE_USER_PROFILE_VISIT_LOG_FAILED,
 	payload: error
 });
