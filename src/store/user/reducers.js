@@ -77,7 +77,10 @@ import {
 	GET_MY_POSTS_FAILED,
 	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
 	CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED,
-	CREATE_USER_PROFILE_VISIT_LOG_FAILED
+	CREATE_USER_PROFILE_VISIT_LOG_FAILED,
+	GET_USER_PROFILE_VISIT_STARTED,
+	GET_USER_PROFILE_VISIT_SUCCEEDED,
+	GET_USER_PROFILE_VISIT_FAILED
 } from './types';
 
 const initialState = {
@@ -115,7 +118,8 @@ const initialState = {
 	userReportsComplete: false,
 	userUpdateSpouseCandidateInfoComplete: false,
 	userUpdateCaracteristicFeatureComplete: false,
-	myPosts: []
+	myPosts: [],
+	visitProfiles: [],
 };
 
 const user = (state = initialState, action) => {
@@ -597,6 +601,23 @@ const user = (state = initialState, action) => {
 				isLoading: false
 			};
 		case CREATE_USER_PROFILE_VISIT_LOG_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case GET_USER_PROFILE_VISIT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case GET_USER_PROFILE_VISIT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				visitProfiles: payload?.data
+			};
+		case GET_USER_PROFILE_VISIT_FAILED:
 			return {
 				...state,
 				isLoading: false,

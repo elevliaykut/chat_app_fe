@@ -10,10 +10,12 @@ import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 
-const GetMyFavoriteUsersPage = ({
+const VisitProfilesPage = ({
     isLoading = false,
     error = null,
     pageLoading = false,
+    getUsers = () => {},
+    members = [],
     getUserMe = () => {},
     userMe = {},
     userMeLoading = false,
@@ -28,8 +30,8 @@ const GetMyFavoriteUsersPage = ({
     getDistricts = () => {},
     cities = [],
     districts = [],
-    getMyFavoriteUsers = () => {},
-    favoriteUsers = [],
+    getUserProfileVisit = () => {},
+    visitProfiles = [],
     userUpdateSpouseCandidate = () => {},
     userUpdateSpouseCandidateReset = () => {},
     userUpdateCaracteristicFeature = () => {},
@@ -48,7 +50,9 @@ const GetMyFavoriteUsersPage = ({
 
     useEffect(() => {
         getUserMe();
-        getMyFavoriteUsers();
+    },[]);
+
+    useEffect(() => {
         getCities();
     },[]);
 
@@ -58,7 +62,6 @@ const GetMyFavoriteUsersPage = ({
         }
     },[userMeLoading]);
 
-    
     const profileTextModalOnClose = () => {
         setProfileTextModalVisible(false);
     }
@@ -72,6 +75,10 @@ const GetMyFavoriteUsersPage = ({
             setMemberVisible(true);
         }
     },[isLoading]);
+
+    useEffect(() => {
+        getUserProfileVisit();
+    },[]);
 
     const personalInfoModalOnClose = () => {
         setPersonalInfoModalVisible(false);
@@ -87,6 +94,7 @@ const GetMyFavoriteUsersPage = ({
 
     return (
         <>
+
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -183,17 +191,19 @@ const GetMyFavoriteUsersPage = ({
                     )}
 
                     <div className={styles.memberEpisode}>
+                        
                         {memberVisible && (
                             <>
-                                {favoriteUsers?.map(item => (
+                                {visitProfiles?.map(item => (
                                     <>
-                                        <SearchUserProfile
+                                        <SearchUserProfile 
                                             user={item?.user}
                                         />
                                     </>
                                 ))}
                             </>
                         )}
+                        
                     </div>
                 </div>
             </div>
@@ -201,4 +211,4 @@ const GetMyFavoriteUsersPage = ({
         </>
     )
 }
-export default GetMyFavoriteUsersPage;
+export default VisitProfilesPage;

@@ -76,7 +76,10 @@ import {
 	GET_MY_POSTS_FAILED,
 	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
 	CREATE_USER_PROFILE_VISIT_LOG_SUCCEEDED,
-	CREATE_USER_PROFILE_VISIT_LOG_FAILED
+	CREATE_USER_PROFILE_VISIT_LOG_FAILED,
+	GET_USER_PROFILE_VISIT_STARTED,
+	GET_USER_PROFILE_VISIT_SUCCEEDED,
+	GET_USER_PROFILE_VISIT_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -454,5 +457,20 @@ export const createUserProfileVisitLogSuccess = data => ({
 
 export const createUserProfileVisitLogError = error => ({
 	type: CREATE_USER_PROFILE_VISIT_LOG_FAILED,
+	payload: error
+});
+
+export const getUserProfileVisit = values => ({
+	type: GET_USER_PROFILE_VISIT_STARTED,
+	payload: values
+});
+
+export const getUserProfileVisitSuccess = data => ({
+	type: GET_USER_PROFILE_VISIT_SUCCEEDED,
+	payload: data
+});
+
+export const getUserProfileVisitError = error => ({
+	type: GET_USER_PROFILE_VISIT_FAILED,
 	payload: error
 });

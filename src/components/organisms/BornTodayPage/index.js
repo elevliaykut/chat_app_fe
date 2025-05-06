@@ -6,6 +6,9 @@ import ProfileEpisode from "../../molecules/ProfileEpisode";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import SearchUserProfile from "../../molecules/SearchUserProfile";
+import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
+import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
+import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 
 const BornTodayPage = ({
     isLoading = false,
@@ -26,13 +29,22 @@ const BornTodayPage = ({
     getCities =  () => {},
     getDistricts = () => {},
     cities = [],
-    districts = []
+    districts = [],
+    userUpdateSpouseCandidate = () => {},
+    userUpdateSpouseCandidateReset = () => {},
+    userUpdateCaracteristicFeature = () => {},
+    userUpdateCaracteristicFeatureReset = () => {},
+    userUpdateSpouseCandidateInfoComplete = false,
+    userUpdateCaracteristicFeatureComplete = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
+    const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
+    const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
+    const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
 
     useEffect(() => {
         getUserMe();
@@ -72,6 +84,18 @@ const BornTodayPage = ({
         }
     },[isLoading]);
 
+    const personalInfoModalOnClose = () => {
+        setPersonalInfoModalVisible(false);
+    }
+
+    const spouseCandidateModalOnClose = () => {
+        setSpouseCandidateModalVisible(false);
+    } 
+
+    const caracteristicFeatureModalOnClose = () => {
+        setCaracteristicFeatureModalVisible(false);
+    } 
+
     return (
         <>
 
@@ -102,6 +126,51 @@ const BornTodayPage = ({
                 </>
             )}
 
+{personalInfoModalVisible && (
+                <>
+                    <PersonalInfoModal
+                        onClose={personalInfoModalOnClose}
+                        isLoading={isLoading}
+                        updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
+                        updateUserPersonalInfo={updateUserPersonalInfo}
+                        resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
+                        userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
+                    />
+                </>
+            )}
+
+            {spouseCandidateModalVisible && (
+                <>
+                    <SpouseCandidateModal
+                        onClose={spouseCandidateModalOnClose}
+                        isLoading={isLoading}
+                        userUpdateSpouseCandidateInfoComplete={userUpdateSpouseCandidateInfoComplete}
+                        userUpdateSpouseCandidate={userUpdateSpouseCandidate}
+                        userUpdateSpouseCandidateReset={userUpdateSpouseCandidateReset}
+                        userMe={userMe}
+                        cities={cities}
+                        districts={districts}
+                        getDistricts={getDistricts}
+                    />
+                </>
+            )}
+
+            {caracteristicFeatureModalVisible && (
+                <>
+                    <CaracteristicFeatureModal
+                        onClose={caracteristicFeatureModalOnClose}
+                        isLoading={isLoading}
+                        userUpdateCaracteristicFeatureComplete={userUpdateCaracteristicFeatureComplete}
+                        userUpdateCaracteristicFeature={userUpdateCaracteristicFeature}
+                        userUpdateCaracteristicFeatureReset={userUpdateCaracteristicFeatureReset}
+                        userMe={userMe}
+                    />
+                </>
+            )}
+
             <TopBanner/>
             <StorySlider/>
 
@@ -118,6 +187,9 @@ const BornTodayPage = ({
                                 userMe={userMe}
                                 setProfileTextModalVisible={setProfileTextModalVisible}
                                 setBasicInfoModalVisible={setBasicInfoModalVisible}
+                                setPersonalInfoModalVisible={setPersonalInfoModalVisible}
+                                setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
+                                setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                             />
                         </>
                     )}

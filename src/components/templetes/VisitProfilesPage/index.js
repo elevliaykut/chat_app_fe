@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import GetMyFavoriteUsersPageOrganisms from '../../organisms/GetMyFavoriteUsersPage';
+import VisitProfilesPageOrganisms from '../../organisms/VisitProfilesPage';
 
 import {
     getUserMe,
@@ -8,7 +8,7 @@ import {
     resetUploadProfilePhotoComplete,
     updateUserPersonalInfo,
     resetUpdateUserPersonalInfoComplete,
-    getMyFavoriteUsers,
+    getUserProfileVisit,
     userUpdateSpouseCandidate,
     userUpdateSpouseCandidateReset,
     userUpdateCaracteristicFeature,
@@ -24,6 +24,7 @@ const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
     error: state?.user?.error,
     pageLoading: state?.user?.pageLoading,
+    pageLoading: state?.user?.pageLoading,
     userMe: state?.user?.userMe,
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
@@ -31,9 +32,9 @@ const mapStateToProps = state => ({
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMeLoading: state?.user?.userMeLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
-    favoriteUsers: state?.user?.favoriteUsers,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
+    visitProfiles: state?.user?.visitProfiles
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -44,11 +45,11 @@ const mapDispatchToProps = dispatch => ({
     resetUpdateUserPersonalInfoComplete: () => dispatch(resetUpdateUserPersonalInfoComplete()),
     getCities: () => dispatch(getCities()),
     getDistricts: payload => dispatch(getDistricts(payload)),
-    getMyFavoriteUsers: () => dispatch(getMyFavoriteUsers()),
+    getUserProfileVisit: payload => dispatch(getUserProfileVisit(payload)),
     userUpdateSpouseCandidate: payload => dispatch(userUpdateSpouseCandidate(payload)),
     userUpdateSpouseCandidateReset: payload => dispatch(userUpdateSpouseCandidateReset(payload)),
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GetMyFavoriteUsersPageOrganisms);
+export default connect(mapStateToProps, mapDispatchToProps)(VisitProfilesPageOrganisms);
