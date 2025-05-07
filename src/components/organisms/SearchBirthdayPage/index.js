@@ -8,7 +8,19 @@ import SearchUserProfile from "../../molecules/SearchUserProfile";
 const SearchBirthdayPage = ({
     getUsers = () => {},
     members = [],
-    isLoading = false
+    isLoading = false,
+    userActivitySmiled = () => {},
+    userActivitySmiledReset = () => {},
+    userActivitySmiledCompleted = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false,
+    userActivityFavorite = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivityFavoriteCompleted = false,
+    userActivityLiked = () => {},
+    userActivityLikedReset = () => {},
+    userActivityLikedCompleted = false
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
@@ -21,6 +33,65 @@ const SearchBirthdayPage = ({
             bornTodayDate: formattedDate
         });
         
+    },[]);
+
+    useEffect(() => {
+       if(userActivitySmiledCompleted) {
+            const now = new Date();
+            const formattedDate = now.toISOString().split('T')[0]; // "yyyy-mm-dd"
+            
+            getUsers({
+                bornTodayDate: formattedDate
+            });
+
+            userActivitySmiledReset();
+       }
+    },[userActivitySmiledCompleted]);
+
+    useEffect(() => {
+        if(userBlockedComplete) {
+             const now = new Date();
+             const formattedDate = now.toISOString().split('T')[0]; // "yyyy-mm-dd"
+             
+             getUsers({
+                 bornTodayDate: formattedDate
+             });
+
+             userBlockedReset();
+        }
+     },[userBlockedComplete]);
+
+     useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+             const now = new Date();
+             const formattedDate = now.toISOString().split('T')[0]; // "yyyy-mm-dd"
+             
+             getUsers({
+                 bornTodayDate: formattedDate
+             });
+
+             userActivityFavoriteReset();
+        }
+     },[userActivityFavoriteCompleted]);
+
+     useEffect(() => {
+        if(userActivityLikedCompleted) {
+             const now = new Date();
+             const formattedDate = now.toISOString().split('T')[0]; // "yyyy-mm-dd"
+             
+             getUsers({
+                 bornTodayDate: formattedDate
+             });
+
+             userActivityLikedReset();
+        }
+     },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        userActivitySmiledReset();
+        userBlockedReset();
+        userActivityFavoriteReset();
+        userActivityLikedReset();
     },[]);
 
     useEffect(() => {
@@ -43,6 +114,10 @@ const SearchBirthdayPage = ({
                                     <>
                                         <SearchUserProfile
                                             user={item}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
                                         />
                                     </>
                                 ))}

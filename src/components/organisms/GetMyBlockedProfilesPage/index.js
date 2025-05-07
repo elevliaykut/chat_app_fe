@@ -35,7 +35,19 @@ const GetMyBlockedProfilesPage = ({
     userUpdateCaracteristicFeature = () => {},
     userUpdateCaracteristicFeatureReset = () => {},
     userUpdateSpouseCandidateInfoComplete = false,
-    userUpdateCaracteristicFeatureComplete = false
+    userUpdateCaracteristicFeatureComplete = false,
+    userActivitySmiled = () => {},
+    userActivitySmiledReset = () => {},
+    userActivitySmiledCompleted = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false,
+    userActivityFavorite = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivityFavoriteCompleted = false,
+    userActivityLiked = () => {},
+    userActivityLikedReset = () => {},
+    userActivityLikedCompleted = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -50,6 +62,41 @@ const GetMyBlockedProfilesPage = ({
         getUserMe();
         getMyBlockedProfiles();
         getCities();
+    },[]);
+
+    useEffect(() => {
+        if(userActivitySmiledCompleted) {
+            getMyBlockedProfiles();
+            userActivitySmiledReset();
+        }
+    },[userActivitySmiledCompleted]);
+
+    useEffect(() => {
+        if(userBlockedComplete) {
+            getMyBlockedProfiles();
+            userBlockedReset();
+        }
+    },[userBlockedComplete]);
+
+    useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+            getMyBlockedProfiles();
+            userActivityFavoriteReset();
+        }
+    },[userActivityFavoriteCompleted]);
+
+    useEffect(() => {
+        if(userActivityLikedCompleted) {
+            getMyBlockedProfiles();
+            userActivityLikedReset();
+        }
+    },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        userActivitySmiledReset();
+        userBlockedReset();
+        userActivityFavoriteReset();
+        userActivityLikedReset();
     },[]);
 
     useEffect(() => {
@@ -188,6 +235,10 @@ const GetMyBlockedProfilesPage = ({
                                     <>
                                         <SearchUserProfile
                                             user={item}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
                                         />
                                     </>
                                 ))}

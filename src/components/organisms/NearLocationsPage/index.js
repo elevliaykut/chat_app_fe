@@ -35,7 +35,19 @@ const NearLocationsPage = ({
     userUpdateCaracteristicFeature = () => {},
     userUpdateCaracteristicFeatureReset = () => {},
     userUpdateSpouseCandidateInfoComplete = false,
-    userUpdateCaracteristicFeatureComplete = false
+    userUpdateCaracteristicFeatureComplete = false,
+    userActivitySmiled = () => {},
+    userActivitySmiledReset = () => {},
+    userActivitySmiledCompleted = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false,
+    userActivityFavorite = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivityFavoriteCompleted = false,
+    userActivityLiked = () => {},
+    userActivityLikedReset = () => {},
+    userActivityLikedCompleted = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -65,7 +77,65 @@ const NearLocationsPage = ({
         }
     },[userMeLoading]);
 
-    
+    useEffect(() => {
+        if(userActivitySmiledCompleted) {
+
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            
+            setProfileVisible(true);
+
+            userActivitySmiledReset();
+        }
+    },[userActivitySmiledCompleted]);
+
+    useEffect(() => {
+        if(userBlockedComplete) {
+
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            
+            setProfileVisible(true);
+
+            userBlockedReset();
+        }
+    },[userBlockedComplete]);
+
+    useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            
+            setProfileVisible(true);
+
+            userActivityFavoriteReset();
+        }
+    },[userActivityFavoriteCompleted]);
+
+    useEffect(() => {
+        if(userActivityLikedCompleted) {
+
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            
+            setProfileVisible(true);
+
+            userActivityLikedReset();
+        }
+    },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        userActivitySmiledReset();
+        userBlockedReset();
+        userActivityFavoriteReset();
+        userActivityLikedReset();
+    },[]);
+
     const profileTextModalOnClose = () => {
         setProfileTextModalVisible(false);
     }
@@ -197,6 +267,10 @@ const NearLocationsPage = ({
                                     <>
                                         <SearchUserProfile
                                             user={item}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
                                         />
                                     </>
                                 ))}

@@ -3,7 +3,15 @@ import { connect } from "react-redux";
 import SearchBirthdayOrganisms from "../../organisms/SearchBirthdayPage";
 
 import {
-    getUsers
+    getUsers,
+    userActivitySmiled,
+    userActivitySmiledReset,
+    userBlocked,
+    userBlockedReset,
+    userActivityFavorite,
+    userActivityFavoriteReset,
+    userActivityLiked,
+    userActivityLikedReset
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -11,10 +19,22 @@ const mapStateToProps = state => ({
     pageLoading: state?.user?.pageLoading,
     error: state?.user?.error,
     members: state?.user?.members,
+    userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
+    userBlockedComplete: state?.user?.userBlockedComplete,
+    userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
+    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
-    getUsers: (payload) => dispatch(getUsers(payload))
+    getUsers: (payload) => dispatch(getUsers(payload)),
+    userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
+    userActivitySmiledReset: () => dispatch(userActivitySmiledReset()),
+    userBlocked: payload => dispatch(userBlocked(payload)),
+    userBlockedReset: () => dispatch(userBlockedReset()),
+    userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
+    userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
+    userActivityLiked: payload => dispatch(userActivityLiked(payload)),
+    userActivityLikedReset: () => dispatch(userActivityLikedReset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBirthdayOrganisms);

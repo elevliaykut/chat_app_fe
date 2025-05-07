@@ -11,6 +11,18 @@ const SearchNearPage = ({
     members = [],
     userMeLoading = false,
     isLoading = false,
+    userActivitySmiled = () => {},
+    userActivitySmiledReset = () => {},
+    userActivitySmiledCompleted = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false,
+    userActivityFavorite = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivityFavoriteCompleted = false,
+    userActivityLiked = () => {},
+    userActivityLikedReset = () => {},
+    userActivityLikedCompleted = false
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
 
@@ -25,6 +37,49 @@ const SearchNearPage = ({
             });
         }
     },[userMeLoading]);
+
+    useEffect(() => {
+        if(userActivitySmiledCompleted) {
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            userActivitySmiledReset();
+        }
+    },[userActivitySmiledCompleted]);
+
+    useEffect(() => {
+        if(userBlockedComplete) {
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            userBlockedReset();
+        }
+    },[userBlockedComplete]);
+
+    useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            userActivityFavoriteReset();
+        }
+    },[userActivityFavoriteCompleted]);
+
+    useEffect(() => {
+        if(userActivityLikedCompleted) {
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+            userActivityLikedReset();
+        }
+    },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        userActivitySmiledReset();
+        userBlockedReset();
+        userActivityFavoriteReset();
+        userActivityLikedReset();
+    },[]);
 
     useEffect(() => {
         if(!isLoading) {
@@ -46,6 +101,10 @@ const SearchNearPage = ({
                                     <>
                                         <SearchUserProfile
                                             user={item}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
                                         />
                                     </>
                                 ))}

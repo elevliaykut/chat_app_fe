@@ -12,13 +12,60 @@ const SearchOnlinePage = ({
     getOnlineProfiles = () => {},
     isLoading = false,
     pageLoading = false,
-    error = null
+    error = null,
+    userActivitySmiled = () => {},
+    userActivitySmiledReset = () => {},
+    userActivitySmiledCompleted = false,
+    userBlocked = () => {},
+    userBlockedReset = () => {},
+    userBlockedComplete = false,
+    userActivityFavorite = () => {},
+    userActivityFavoriteReset = () => {},
+    userActivityFavoriteCompleted = false,
+    userActivityLiked = () => {},
+    userActivityLikedReset = () => {},
+    userActivityLikedCompleted = false
 }) => {
 
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        getOnlineProfiles()
+        getOnlineProfiles();
+    },[]);
+
+    useEffect(() => {
+        if(userActivitySmiledCompleted) {
+            getOnlineProfiles();
+            userActivitySmiledReset();
+        }
+    },[userActivitySmiledCompleted]);
+
+    useEffect(() => {
+        if(userBlockedComplete) {
+            getOnlineProfiles();
+            userBlockedReset();
+        }
+    },[userBlockedComplete]);
+
+    useEffect(() => {
+        if(userActivityFavoriteCompleted) {
+            getOnlineProfiles();
+            userActivityFavoriteReset();
+        }
+    },[userActivityFavoriteCompleted]);
+
+    useEffect(() => {
+        if(userActivityLikedCompleted) {
+            getOnlineProfiles();
+            userActivityLikedReset();
+        }
+    },[userActivityLikedCompleted]);
+
+    useEffect(() => {
+        userActivitySmiledReset();
+        userBlockedReset();
+        userActivityFavoriteReset();
+        userActivityLikedReset();
     },[]);
 
     useEffect(() => {
@@ -44,6 +91,10 @@ const SearchOnlinePage = ({
                                     <>
                                         <SearchUserProfile
                                             user={item}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
                                         />
                                     </>
                                 ))}
