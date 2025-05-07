@@ -29,5 +29,6 @@
 
 .menu label {
     font-size: 13px;
+    cursor: pointer;
 }
 

@@ -1,0 +1,64 @@
+.container {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.frame {
+    width: 70%;
+    display: flex;
+    margin: auto;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Esnek kolon yapısı */
+    gap: 20px; /* Kartlar arasındaki boşluk */
+    width: 100%;
+    max-width: 1200px; /* Maksimum genişlik */
+    margin: 0 auto; /* Ortalayalım */
+    align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .spinner {
+    border: 4px solid #f3f3f3; /* Dış renk */
+    border-top: 4px solid #3498db; /* Üst renk */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin-top: 20px;
+  }
+
+  .filterEpisode {
+    width: 350px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 12px;
+  }
+
+  .filterButtonEpisode {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .inputLineEpisode {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .inputLineEpisode label{
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
