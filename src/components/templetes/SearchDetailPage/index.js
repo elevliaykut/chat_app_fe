@@ -11,7 +11,8 @@ import {
     userActivityFavoriteReset,
     userActivityLiked,
     userActivityLikedReset,
-    getUserMe
+    getUserMe,
+    getUsers
 } from '../../../store/user/actions';
 
 import {
@@ -28,7 +29,9 @@ const mapStateToProps = state => ({
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
     cities: state?.definitions?.cities,
     isLoadingDefinition: state?.definitions?.isLoading,
-    userMe: state?.user?.userMe
+    userMe: state?.user?.userMe,
+    members: state?.user?.members,
+    memberIsLoading: state?.user?.memberIsLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,12 +40,12 @@ const mapDispatchToProps = dispatch => ({
     userBlocked: payload => dispatch(userBlocked(payload)),
     userBlockedReset: () => dispatch(userBlockedReset()),
     userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
+    getUsers: (payload) => dispatch(getUsers(payload)),
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     getCities: () => dispatch(getCities()),
     getUserMe: () => dispatch(getUserMe()),
-    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDetailOrganisms);

@@ -293,7 +293,7 @@ function* updateUserPersonalInfoTask(action) {
 }
 
 function* getUsersTask(action) {
-	const { payload } = action;
+	const { payload = {} } = action;
 	const { id, nearUsers, bornTodayDate, gender, startsBetween } = payload;
 
 	const token = cookies.get('chatAppToken');
@@ -303,6 +303,8 @@ function* getUsersTask(action) {
 					&filter[born_today_date]=${bornTodayDate ? bornTodayDate : ''}
 					&filter[gender]=${gender ? gender : ''}
 					&filter[starts_between]=${startsBetween ? startsBetween : ''}`;
+
+	
 	try {
 		const response = yield call(axios.get, `${BASE_URL}/user/activity/filter${query}`,
 			{

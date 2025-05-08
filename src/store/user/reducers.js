@@ -299,12 +299,14 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: true,
+				memberIsLoading: true,
 				pageLoading: false
 			};
 		case GET_USERS_SUCCEEDED:
 			return {
 				...state,
 				isLoading: false,
+				memberIsLoading: false,
 				pageLoading: true,
 				members: payload?.data
 			};
@@ -312,6 +314,7 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				memberIsLoading: false,
 				pageLoading: false,
 				error: payload
 			};

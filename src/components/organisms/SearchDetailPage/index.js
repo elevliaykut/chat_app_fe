@@ -1,4 +1,3 @@
-'use client'; 
 import React, { useEffect, useState } from "react";
 import TopBanner from "../../molecules/TopBanner";
 import SearchMenu from "../../molecules/SearchMenu";
@@ -29,7 +28,10 @@ const SearchDetailPage = ({
     getCities = () => {},
     isLoadingDefinition = false,
     getUserMe = () => {},
-    userMe = {}
+    userMe = {},
+    getUsers = () => {},
+    members = [],
+    memberIsLoading = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -49,7 +51,8 @@ const SearchDetailPage = ({
     const [salary, setSalary] = useState();
     const [physicalDisability, setPhysicalDisability] = useState();
 
-    const [citiesVisible, setCitiesVisible] = useState(false);
+    const [citiesVisible, setCitiesVisible]     = useState(false);
+    const [memberVisible, setMemberVisible] = useState(false);
 
     useEffect(() => {
         if(!isLoadingDefinition) {
@@ -58,8 +61,15 @@ const SearchDetailPage = ({
     },[isLoadingDefinition]);
 
     useEffect(() => {
+        if(memberIsLoading) {
+            setMemberVisible(true);
+        }
+    },[memberIsLoading]);
+
+    useEffect(() => {
         getCities();
         getUserMe();
+        getUsers();
     },[]);
 
     useEffect(() => {
@@ -102,16 +112,28 @@ const SearchDetailPage = ({
         userActivityLikedReset();
     },[]);
 
-    const filterHandleSubmit = () => {
-
-    }
-
     const clear = () => {
 
     }
 
     const filterOnClick = () => {
-
+        console.log("username: ", username);
+        console.log("minAge: ", minAge);
+        console.log("maxAge: ", maxAge);
+        console.log("minTall: ", minTall);
+        console.log("maxTall: ", maxTall);
+        console.log("minWeight: ", minWeight);
+        console.log("maxWeight: ", maxWeight);
+        console.log("cityId: ", cityId);
+        console.log("job: ", job);
+        console.log("maturity: ", maturityStatus);
+        console.log("headcraft: ", headCraft);
+        console.log("child: ", child);
+        console.log("cigarette: ", cigarette);
+        console.log("alcohol: ", alcohol);
+        console.log("education: ", education);
+        console.log("salary: ", salary);
+        console.log("physicalDisability: ", physicalDisability);
     }
 
     const cityOnChange = (e) => {
@@ -127,9 +149,7 @@ const SearchDetailPage = ({
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.filterEpisode}>
-                        <form onSubmit={filterHandleSubmit}>
-                            
-                            <div className={styles.filterButtonEpisode}>
+                        <div className={styles.filterButtonEpisode}>
                                 <div>
                                     <button
                                         onClick={clear}
@@ -157,7 +177,6 @@ const SearchDetailPage = ({
                                     </button>
                                 </div>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Rumuz</label>
                                 <input
@@ -166,7 +185,6 @@ const SearchDetailPage = ({
 									onChange={(e) => setUsername(e.target.value)}
 								/>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Min Yaş</label>
                                 <input
@@ -204,7 +222,7 @@ const SearchDetailPage = ({
                                 <input
 									type="text"
 									placeholder="Minumum Kilo"
-									onChange={(e) => setMinAge(e.target.value)}
+									onChange={(e) => setMinWeight(e.target.value)}
 								/>
                             </div>
                             <div className={styles.inputLineEpisode}>
@@ -212,10 +230,9 @@ const SearchDetailPage = ({
                                 <input
 									type="text"
 									placeholder="Maximum Kilo"
-									onChange={(e) => setMaxAge(e.target.value)}
+									onChange={(e) => setMaxWeight(e.target.value)}
 								/>
                             </div>
-
                             {citiesVisible && (
                                 <>
                                     <div className={styles.inputLineEpisode}>
@@ -234,7 +251,6 @@ const SearchDetailPage = ({
                                     </div>
                                 </>
                             )}
-                            
                             <div className={styles.inputLineEpisode}>
                                 <label>Meslek</label>
                                 <select
@@ -286,7 +302,6 @@ const SearchDetailPage = ({
                                     <option value="Yayıncılık">Yayıncılık</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Medeni Hal</label>
                                 <select
@@ -298,7 +313,6 @@ const SearchDetailPage = ({
                                     <option value="Hiç evlenmemiş">Hiç evlenmemiş</option>
                                 </select>
                             </div>
-
                             {userMe?.gender === 0 && (
                                         <>
                                             <div className={styles.inputLineEpisode}>
@@ -312,7 +326,6 @@ const SearchDetailPage = ({
                                             </div>
                                         </>
                             )}
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Çocuğu Varmı? </label>
                                 <select
@@ -323,7 +336,6 @@ const SearchDetailPage = ({
                                     <option value="Çocuğum benimle yaşıyor">Çocuğu kendisiyle yaşasın</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Sigara </label>
                                 <select
@@ -334,7 +346,6 @@ const SearchDetailPage = ({
                                     <option value="Arasıra içiyorum">Arasıra İçsin</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Alkol </label>
                                 <select
@@ -346,7 +357,6 @@ const SearchDetailPage = ({
                                     <option value="Kullanıyorum">Kullansın</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Eğitim </label>
                                 <select
@@ -359,7 +369,6 @@ const SearchDetailPage = ({
                                     <option value="Lisans Üstü">Lisans Üstü</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Geliri </label>
                                 <select
@@ -373,7 +382,6 @@ const SearchDetailPage = ({
                                     <option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
                                 </select>
                             </div>
-
                             <div className={styles.inputLineEpisode}>
                                 <label>Fiziksel Engel</label>
                                 <select
@@ -386,11 +394,17 @@ const SearchDetailPage = ({
                                     <option value="Diğer">Diğer</option>
                                 </select>
                             </div>
-                        </form>
                     </div>
-
                     <div className={styles.content}>
-                        content
+                        {memberVisible && (
+                            <>
+                                {members.map(user => (
+                                    <>
+                                        <SearchUserProfile user={user}/>
+                                    </>
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
