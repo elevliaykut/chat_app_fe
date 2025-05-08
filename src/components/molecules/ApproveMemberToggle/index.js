@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from './Index.module.css';
 
-const ApproveMemberToggle = () => {
+const ApproveMemberToggle = ({
+  setApproveMemberToggleStatus = () => {}
+}) => {
   const [isOnline, setIsOnline] = useState(false);
 
   const toggleOnline = () => {
     setIsOnline(prev => !prev);
+    setApproveMemberToggleStatus(prev => !prev);
   };
 
   return (

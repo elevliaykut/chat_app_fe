@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import styles from './Index.module.css';
 
-const OnlineToggle = () => {
+const OnlineToggle = ({
+  setOnlineToggleIsStatus = () => {},
+}) => {
+  
   const [isOnline, setIsOnline] = useState(false);
 
   const toggleOnline = () => {
     setIsOnline(prev => !prev);
+    setOnlineToggleIsStatus(prev => !prev);
   };
 
   return (

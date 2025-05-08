@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TopBanner from "../../molecules/TopBanner";
 import SearchMenu from "../../molecules/SearchMenu";
-import styles from "./Index.module.css";
+import styles from './Index.module.css';
 import SearchUserProfile from "../../molecules/SearchUserProfile";
 
-const SearchOnlinePage = ({
-    onlineProfiles = [],
-    getOnlineProfiles = () => {},
+const SearchApprovePage = ({
+    getUsers = () => {},
+    members = [],
     isLoading = false,
-    pageLoading = false,
-    error = null,
     userActivitySmiled = () => {},
     userActivitySmiledReset = () => {},
     userActivitySmiledCompleted = false,
@@ -23,37 +21,46 @@ const SearchOnlinePage = ({
     userActivityLikedReset = () => {},
     userActivityLikedCompleted = false
 }) => {
-
-    const [visible, setVisible] = useState(false);
+    const [memberVisible, setMemberVisible] = useState(false);
 
     useEffect(() => {
-        getOnlineProfiles();
+        getUsers({
+            status: 1
+        });
     },[]);
 
     useEffect(() => {
         if(userActivitySmiledCompleted) {
-            getOnlineProfiles();
+            getUsers({
+                status: 1
+            });
             userActivitySmiledReset();
         }
     },[userActivitySmiledCompleted]);
 
     useEffect(() => {
         if(userBlockedComplete) {
-            getOnlineProfiles();
+            getUsers({
+                status: 1
+            });
             userBlockedReset();
         }
     },[userBlockedComplete]);
 
     useEffect(() => {
         if(userActivityFavoriteCompleted) {
-            getOnlineProfiles();
+            getUsers({
+                status: 1
+            });
             userActivityFavoriteReset();
         }
     },[userActivityFavoriteCompleted]);
 
     useEffect(() => {
         if(userActivityLikedCompleted) {
-            getOnlineProfiles();
+            getUsers({
+                status: 1
+            });
             userActivityLikedReset();
         }
     },[userActivityLikedCompleted]);
@@ -66,25 +73,22 @@ const SearchOnlinePage = ({
     },[]);
 
     useEffect(() => {
-        if(!pageLoading) {
-            setVisible(true);
+        if(!isLoading) {
+            setMemberVisible(true);
         }
-    },[pageLoading]);
+    },[isLoading]);
 
     return (
         <>
             <TopBanner/>
             <SearchMenu/>
-            {
-                //<FilterWithToggleEpisode/>
-            }
+
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.content}>
-
-                        {visible && (
+                        {memberVisible && (
                             <>
-                                {onlineProfiles?.map(item => (
+                                {members?.map(item => (
                                     <>
                                         <SearchUserProfile
                                             user={item}
@@ -97,18 +101,10 @@ const SearchOnlinePage = ({
                                 ))}
                             </>
                         )}
-
-                        {!visible && (
-                            <>
-                                <div className={styles.loader}>
-                                    <div className={styles.spinner}></div>
-                                </div>
-                            </>
-                        )}
                     </div>
                 </div>
             </div>
         </>
     )
 }
-export default SearchOnlinePage;
+export default SearchApprovePage;

@@ -294,7 +294,7 @@ function* updateUserPersonalInfoTask(action) {
 
 function* getUsersTask(action) {
 	const { payload = {} } = action;
-	const { id, nearUsers, bornTodayDate, gender, startsBetween } = payload;
+	const { id, nearUsers, bornTodayDate, gender, startsBetween, status } = payload;
 
 	const token = cookies.get('chatAppToken');
 
@@ -302,6 +302,7 @@ function* getUsersTask(action) {
 					&filter[near_users]=${nearUsers ? nearUsers : ''}
 					&filter[born_today_date]=${bornTodayDate ? bornTodayDate : ''}
 					&filter[gender]=${gender ? gender : ''}
+					&filter[status]=${status ? status : ''}
 					&filter[starts_between]=${startsBetween ? startsBetween : ''}`;
 
 	

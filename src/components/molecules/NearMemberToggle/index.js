@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from './Index.module.css';
 
-const NearMemberToggle = () => {
+const NearMemberToggle = ({
+  setNearMemberToggleStatus = () => {}
+}) => {
   const [isOnline, setIsOnline] = useState(false);
 
   const toggleOnline = () => {
     setIsOnline(prev => !prev);
+    setNearMemberToggleStatus(prev => !prev);
   };
 
   return (

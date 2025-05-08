@@ -28,14 +28,8 @@ const SearchNewMemberPage = ({
         const now = new Date();
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(now.getDate() - 7);
-    
         const formatDate = (date) => date.toISOString().split('T')[0];
-    
-        console.log("nowDate: ", formatDate(now));
-        console.log("oneWeekAgo: ", formatDate(oneWeekAgo));
-
         const merge = formatDate(oneWeekAgo) + ',' + formatDate(now);
-
         getUsers({
             startsBetween: merge
         });

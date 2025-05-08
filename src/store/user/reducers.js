@@ -400,7 +400,8 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				pageLoading: false,
-				onlineProfiles: payload?.data
+				onlineProfiles: payload?.data,
+				members: payload?.data
 			};
 		case GET_ONLINE_PROFILES_FAILED:
 			return {

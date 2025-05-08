@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import SearchDetailOrganisms from '../../organisms/SearchDetailPage';
+import SearchApproveOrganisms from "../../organisms/SearchApprovePage";
 
 import {
+    getUsers,
     userActivitySmiled,
     userActivitySmiledReset,
     userBlocked,
@@ -10,45 +11,30 @@ import {
     userActivityFavorite,
     userActivityFavoriteReset,
     userActivityLiked,
-    userActivityLikedReset,
-    getUserMe,
-    getUsers,
-    getOnlineProfiles
+    userActivityLikedReset
 } from '../../../store/user/actions';
-
-import {
-    getCities
-} from '../../../store/definitions/actions';
 
 const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
     pageLoading: state?.user?.pageLoading,
     error: state?.user?.error,
+    members: state?.user?.members,
     userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
     userBlockedComplete: state?.user?.userBlockedComplete,
     userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
-    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
-    cities: state?.definitions?.cities,
-    isLoadingDefinition: state?.definitions?.isLoading,
-    userMe: state?.user?.userMe,
-    members: state?.user?.members,
-    memberIsLoading: state?.user?.memberIsLoading,
-    userMeLoading: state?.user?.userMeLoading,
+    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
+    getUsers: (payload) => dispatch(getUsers(payload)),
     userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
     userActivitySmiledReset: () => dispatch(userActivitySmiledReset()),
     userBlocked: payload => dispatch(userBlocked(payload)),
     userBlockedReset: () => dispatch(userBlockedReset()),
     userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
-    getUsers: (payload) => dispatch(getUsers(payload)),
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
-    userActivityLikedReset: () => dispatch(userActivityLikedReset()),
-    getCities: () => dispatch(getCities()),
-    getUserMe: () => dispatch(getUserMe()),
-    getOnlineProfiles: () => dispatch(getOnlineProfiles())
+    userActivityLikedReset: () => dispatch(userActivityLikedReset())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchDetailOrganisms);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchApproveOrganisms);

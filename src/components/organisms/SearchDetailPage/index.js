@@ -31,7 +31,8 @@ const SearchDetailPage = ({
     userMe = {},
     getUsers = () => {},
     members = [],
-    memberIsLoading = false
+    memberIsLoading = false,
+    userMeLoading = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -53,6 +54,56 @@ const SearchDetailPage = ({
 
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
+
+
+    // toggle
+    const [onlineToggleIsStatus, setOnlineToggleIsStatus] = useState(false);
+    const [newMemberIsStatus, setNewMemberIsStatus] = useState(false);
+    const [nearMemberToggleStatus, setNearMemberToggleStatus] = useState(false);
+    const [approveMemberToggleStatus, setApproveMemberToggleStatus] = useState(false);
+
+    useEffect(() => {
+        if(onlineToggleIsStatus) {
+            getOnlineProfiles();
+        } else {
+            getUsers();
+        }
+    },[onlineToggleIsStatus]);
+
+    useEffect(() => {
+        if(newMemberIsStatus) {
+            const now = new Date();
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(now.getDate() - 7);
+            const formatDate = (date) => date.toISOString().split('T')[0];
+            const merge = formatDate(oneWeekAgo) + ',' + formatDate(now);
+            getUsers({
+                startsBetween: merge
+            });
+        } else {
+            getUsers();
+        }
+    },[newMemberIsStatus]);
+
+    useEffect(() => {
+        if(nearMemberToggleStatus) {
+            getUsers({
+                nearUsers: userMe?.detail?.district?.id
+            });
+        } else {
+            getUsers();
+        }
+    },[nearMemberToggleStatus]);
+
+    useEffect(() => {
+        if(approveMemberToggleStatus) {
+            getUsers({
+                status: 1
+            });
+        } else {
+            getUsers();
+        }
+    },[approveMemberToggleStatus]);
 
     useEffect(() => {
         if(!isLoadingDefinition) {
@@ -116,6 +167,10 @@ const SearchDetailPage = ({
 
     }
 
+    const cityOnChange = (e) => {
+        setCityId(e?.target?.value);
+    }
+
     const filterOnClick = () => {
         console.log("username: ", username);
         console.log("minAge: ", minAge);
@@ -136,15 +191,16 @@ const SearchDetailPage = ({
         console.log("physicalDisability: ", physicalDisability);
     }
 
-    const cityOnChange = (e) => {
-        setCityId(e?.target?.value);
-    }
-
     return (
         <>
             <TopBanner/>
             <SearchMenu/>
-            <FilterWithToggleEpisode/>
+            <FilterWithToggleEpisode
+                setOnlineToggleIsStatus={setOnlineToggleIsStatus}
+                setNewMemberIsStatus={setNewMemberIsStatus}
+                setNearMemberToggleStatus={setNearMemberToggleStatus}
+                setApproveMemberToggleStatus={setApproveMemberToggleStatus}
+            />
 
             <div className={styles.container}>
                 <div className={styles.frame}>
