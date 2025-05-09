@@ -7,6 +7,7 @@ import MemberProfileFullDetailsEpisode from "../../molecules/MemberProfileFullDe
 import ListPostBox from "../../molecules/ListPostBox";
 import UserReportModal from "../../molecules/Modals/UserReportModal";
 import ToastMessage from "../../molecules/TostMessage";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const MemberDetailsPage = ({
     isLoading = false,
@@ -197,6 +198,7 @@ const MemberDetailsPage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

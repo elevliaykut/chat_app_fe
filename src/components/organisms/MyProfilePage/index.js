@@ -12,6 +12,7 @@ import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const MyProfilePage = ({
     userMe = {},
@@ -238,6 +239,7 @@ const MyProfilePage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

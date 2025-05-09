@@ -5,6 +5,7 @@ import styles from "./Index.module.css";
 import SearchUserProfile from "../../molecules/SearchUserProfile";
 import FilterWithToggleEpisode from "../../molecules/FilterWithToggleEpisode";
 import ThemeConfig from "@/src/utils/ThemeConfig";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const SearchDetailPage = ({
     getOnlineProfiles = () => {},
@@ -291,8 +292,8 @@ const SearchDetailPage = ({
                 setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}
             />
 
-            <div className={styles.container}>
-                <div className={styles.frame}>
+            <div className={styles.frame}>
+                <div className={styles.content}>
                     
                     <div className={styles.filterEpisode}>
                         <div className={styles.filterButtonEpisode}>
@@ -546,7 +547,7 @@ const SearchDetailPage = ({
                             </div>
                     </div>
                     
-                    <div className={styles.content}>
+                    <div className={styles.memberEpisode}>
                         {memberVisible && (
                             <>
                                 {members.map(user => (
@@ -563,8 +564,10 @@ const SearchDetailPage = ({
                             </>
                         )}
                     </div>
-                </div>
+                </div>        
+                    
             </div>
+            <FooterBanner/>
         </>
     )
 }

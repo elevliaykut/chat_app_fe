@@ -3,7 +3,7 @@ import TopBanner from "../../molecules/TopBanner";
 import SearchMenu from "../../molecules/SearchMenu";
 import styles from './Index.module.css';
 import SearchUserProfile from "../../molecules/SearchUserProfile";
-
+import FooterBanner from "../../molecules/FooterBanner";
 
 const SearchBirthdayPage = ({
     getUsers = () => {},
@@ -126,6 +126,7 @@ const SearchBirthdayPage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

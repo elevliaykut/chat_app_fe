@@ -9,6 +9,7 @@ import SearchUserProfile from "../../molecules/SearchUserProfile";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const BornTodayPage = ({
     isLoading = false,
@@ -197,7 +198,7 @@ const BornTodayPage = ({
                 </>
             )}
 
-{personalInfoModalVisible && (
+            {personalInfoModalVisible && (
                 <>
                     <PersonalInfoModal
                         onClose={personalInfoModalOnClose}
@@ -285,7 +286,8 @@ const BornTodayPage = ({
                     </div>
                 </div>
             </div>
-
+            
+            <FooterBanner/>
         </>
     )
 }

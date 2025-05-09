@@ -3,6 +3,7 @@ import TopBanner from "../../molecules/TopBanner";
 import SearchMenu from "../../molecules/SearchMenu";
 import styles from "./Index.module.css";
 import SearchUserProfile from "../../molecules/SearchUserProfile";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const SearchOnlinePage = ({
     onlineProfiles = [],
@@ -108,6 +109,7 @@ const SearchOnlinePage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

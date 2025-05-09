@@ -19,12 +19,24 @@ const FilterWithToggleEpisode = ({
         <>
             <div className={styles.container}>
                 <div className={styles.frame}>
-                    <OnlineToggle setOnlineToggleIsStatus={setOnlineToggleIsStatus}/>
-                    <NewMemberToggle setNewMemberIsStatus={setNewMemberIsStatus}/>
-                    <NearMemberToggle setNearMemberToggleStatus={setNearMemberToggleStatus}/>
-                    <ApproveMemberToggle setApproveMemberToggleStatus={setApproveMemberToggleStatus}/>
-                    <WithPhotoToggle setHasPhotoMemberToggleStatus={setHasPhotoMemberToggleStatus}/>
-                    <NonePhotoToggle setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}/>
+                    <OnlineToggle 
+                        setOnlineToggleIsStatus={setOnlineToggleIsStatus}
+                    />
+                    <NewMemberToggle 
+                        setNewMemberIsStatus={setNewMemberIsStatus}
+                    />
+                    <NearMemberToggle 
+                        setNearMemberToggleStatus={setNearMemberToggleStatus}
+                    />
+                    <ApproveMemberToggle 
+                        setApproveMemberToggleStatus={setApproveMemberToggleStatus}
+                    />
+                    <WithPhotoToggle 
+                        setHasPhotoMemberToggleStatus={setHasPhotoMemberToggleStatus}
+                    />
+                    <NonePhotoToggle 
+                        setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}
+                    />
                 </div>
             </div>
         </>

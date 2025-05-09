@@ -3,6 +3,7 @@ import TopBanner from "../../molecules/TopBanner";
 import SearchMenu from "../../molecules/SearchMenu";
 import styles from './Index.module.css';
 import SearchUserProfile from "../../molecules/SearchUserProfile";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const SearchNearPage = ({
     getUserMe = () => {},
@@ -113,6 +114,7 @@ const SearchNearPage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

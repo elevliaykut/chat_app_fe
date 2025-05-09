@@ -1,30 +1,35 @@
-.container {
-  width: 100%;
-  margin-top: 25px;
-}
-
 .frame {
   width: 70%;
   margin: auto; /* Ortalamak için */
-  display: flex;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Esnek kolon yapısı */
-  gap: 10px; /* Kartlar arasındaki boşluk */
-  width: 100%;
-  padding-left: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
 }
 
 .filterEpisode {
-  display: block;
-  max-width: 300px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
-  padding: 16px;
-  background-color: #fff;
-  box-sizing: border-box; /* Padding hesaplaması için */
+    width: 350px;
+    display: block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.memberEpisode {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Esnek kolon yapısı */
+  gap: 20px; /* Kartlar arasındaki boşluk */
+  width: 100%;
+  margin: 0 auto; /* Ortalayalım */
+  align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
+  margin-top: 20px;
+  margin-bottom: 20px;
+
 }
 
 .filterButtonEpisode {
@@ -58,25 +63,4 @@
   height: 30px;
   animation: spin 2s linear infinite;
   margin-top: 20px;
-}
-
-@keyframes spin {
-  0% {
-      transform: rotate(0deg);
-  }
-  100% {
-      transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 992px) {
-  .content {
-      grid-template-columns: repeat(2, 1fr); /* Tablet */
-  }
-}
-
-@media (max-width: 600px) {
-  .content {
-      grid-template-columns: 1fr; /* Mobil */
-  }
 }

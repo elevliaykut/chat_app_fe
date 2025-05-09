@@ -10,6 +10,7 @@ import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const HomePage = ({
     posts = [],
@@ -249,6 +250,7 @@ const HomePage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

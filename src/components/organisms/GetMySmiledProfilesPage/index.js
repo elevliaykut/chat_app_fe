@@ -9,6 +9,7 @@ import SearchUserProfile from "../../molecules/SearchUserProfile";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const GetMySmiledProfilesPage = ({
     isLoading = false,
@@ -248,7 +249,7 @@ const GetMySmiledProfilesPage = ({
                     </div>
                 </div>
             </div>
-
+            <FooterBanner/>            
         </>
     )
 }
