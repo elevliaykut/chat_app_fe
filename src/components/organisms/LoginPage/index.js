@@ -70,14 +70,10 @@ const LoginPage = ({
 
 	const loginHandleSubmit = async (e) => {
 		e.preventDefault();
-
-		console.log("username: ", username);
-		console.log("password: ", password);
-
 		loginUser({
 			username: username,
 			password: password
-		})
+		});
 	}
 
 	const genderHandleChange = (e) => {

@@ -89,12 +89,12 @@ function* loginUserTask(action) {
 		});
 		const { data } = response;
 		yield put(loginUserSuccess(data));
-		cookies.set('chatAppToken', data?.token, {
-			path: '/',
-		});
+		cookies.set('chatAppToken', data?.token);
+		window.location = '/home';
+		
 		cookies.set('userName', data?.data?.name);
 		cookies.set('userSurname', data?.data?.surname);
-		window.location = '/home';
+
 	} catch (error) {
 		yield put(loginUserError(error?.response?.data));
 		console.log(error?.response);

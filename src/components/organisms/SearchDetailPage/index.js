@@ -64,7 +64,7 @@ const SearchDetailPage = ({
     const [approveMemberToggleStatus, setApproveMemberToggleStatus] = useState(false);
     const [hasPhotoMemberToggleStatus, setHasPhotoMemberToggleStatus] = useState(false);
     const [hasNotPhotoMemberToggleStatus, setHasNotPhotoMemberToggleStatus] = useState(false);
-
+    
     useEffect(() => {
         if(onlineToggleIsStatus) {
             getOnlineProfiles();
@@ -291,7 +291,6 @@ const SearchDetailPage = ({
                 setHasPhotoMemberToggleStatus={setHasPhotoMemberToggleStatus}
                 setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}
             />
-
             <div className={styles.frame}>
                 <div className={styles.content}>
                     
