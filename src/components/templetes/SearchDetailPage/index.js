@@ -34,6 +34,7 @@ const mapStateToProps = state => ({
     members: state?.user?.members,
     memberIsLoading: state?.user?.memberIsLoading,
     userMeLoading: state?.user?.userMeLoading,
+    filterUserIsLoading: state?.user?.filterUserIsLoading,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,7 +7,6 @@ import FilterWithToggleEpisode from "../../molecules/FilterWithToggleEpisode";
 import ThemeConfig from "@/src/utils/ThemeConfig";
 
 const SearchDetailPage = ({
-    onlineProfiles = [],
     getOnlineProfiles = () => {},
     isLoading = false,
     pageLoading = false,
@@ -32,7 +31,8 @@ const SearchDetailPage = ({
     getUsers = () => {},
     members = [],
     memberIsLoading = false,
-    userMeLoading = false
+    userMeLoading = false,
+    filterUserIsLoading = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -52,6 +52,7 @@ const SearchDetailPage = ({
     const [salary, setSalary] = useState();
     const [physicalDisability, setPhysicalDisability] = useState();
 
+    // visibles
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
 
@@ -125,33 +126,100 @@ const SearchDetailPage = ({
 
     useEffect(() => {
         if(userActivitySmiledCompleted) {
-
-            
+            getUsers({
+                username: username,
+                minAgeRange: minAge,
+                maxAgeRange: maxAge,
+                minTall: minTall,
+                maxTall: maxTall,
+                minWeight: minWeight,
+                maxWeight: maxWeight,
+                cityId: cityId,
+                job: job,
+                maritalStatus: maturityStatus,
+                headCraft: headCraft,
+                haveAChild: child,
+                useCigarette: cigarette,
+                useAlcohol: alcohol,
+                education: education,
+                salary: salary,
+                physical: physicalDisability
+            });
             userActivitySmiledReset();
         }
     },[userActivitySmiledCompleted]);
 
     useEffect(() => {
         if(userBlockedComplete) {
-
-            
+            getUsers({
+                username: username,
+                minAgeRange: minAge,
+                maxAgeRange: maxAge,
+                minTall: minTall,
+                maxTall: maxTall,
+                minWeight: minWeight,
+                maxWeight: maxWeight,
+                cityId: cityId,
+                job: job,
+                maritalStatus: maturityStatus,
+                headCraft: headCraft,
+                haveAChild: child,
+                useCigarette: cigarette,
+                useAlcohol: alcohol,
+                education: education,
+                salary: salary,
+                physical: physicalDisability
+            });
             userBlockedReset();
         }
     },[userBlockedComplete]);
 
     useEffect(() => {
         if(userActivityFavoriteCompleted) {
-
-            
+            getUsers({
+                username: username,
+                minAgeRange: minAge,
+                maxAgeRange: maxAge,
+                minTall: minTall,
+                maxTall: maxTall,
+                minWeight: minWeight,
+                maxWeight: maxWeight,
+                cityId: cityId,
+                job: job,
+                maritalStatus: maturityStatus,
+                headCraft: headCraft,
+                haveAChild: child,
+                useCigarette: cigarette,
+                useAlcohol: alcohol,
+                education: education,
+                salary: salary,
+                physical: physicalDisability
+            });
             userActivityFavoriteReset();
         }
     },[userActivityFavoriteCompleted]);
 
     useEffect(() => {
         if(userActivityLikedCompleted) {
-
-            
-
+            getUsers({
+                username: username,
+                minAgeRange: minAge,
+                maxAgeRange: maxAge,
+                minTall: minTall,
+                maxTall: maxTall,
+                minWeight: minWeight,
+                maxWeight: maxWeight,
+                cityId: cityId,
+                job: job,
+                maritalStatus: maturityStatus,
+                headCraft: headCraft,
+                haveAChild: child,
+                useCigarette: cigarette,
+                useAlcohol: alcohol,
+                education: education,
+                salary: salary,
+                physical: physicalDisability
+            });
             userActivityLikedReset();
         }
     },[userActivityLikedCompleted]);
@@ -163,32 +231,30 @@ const SearchDetailPage = ({
         userActivityLikedReset();
     },[]);
 
-    const clear = () => {
-
-    }
-
     const cityOnChange = (e) => {
         setCityId(e?.target?.value);
     }
 
     const filterOnClick = () => {
-        console.log("username: ", username);
-        console.log("minAge: ", minAge);
-        console.log("maxAge: ", maxAge);
-        console.log("minTall: ", minTall);
-        console.log("maxTall: ", maxTall);
-        console.log("minWeight: ", minWeight);
-        console.log("maxWeight: ", maxWeight);
-        console.log("cityId: ", cityId);
-        console.log("job: ", job);
-        console.log("maturity: ", maturityStatus);
-        console.log("headcraft: ", headCraft);
-        console.log("child: ", child);
-        console.log("cigarette: ", cigarette);
-        console.log("alcohol: ", alcohol);
-        console.log("education: ", education);
-        console.log("salary: ", salary);
-        console.log("physicalDisability: ", physicalDisability);
+        getUsers({
+            username: username,
+            minAgeRange: minAge,
+            maxAgeRange: maxAge,
+            minTall: minTall,
+            maxTall: maxTall,
+            minWeight: minWeight,
+            maxWeight: maxWeight,
+            cityId: cityId,
+            job: job,
+            maritalStatus: maturityStatus,
+            headCraft: headCraft,
+            haveAChild: child,
+            useCigarette: cigarette,
+            useAlcohol: alcohol,
+            education: education,
+            salary: salary,
+            physical: physicalDisability
+        });
     }
 
     return (
@@ -204,11 +270,12 @@ const SearchDetailPage = ({
 
             <div className={styles.container}>
                 <div className={styles.frame}>
+                    
                     <div className={styles.filterEpisode}>
                         <div className={styles.filterButtonEpisode}>
                                 <div>
                                     <button
-                                        onClick={clear}
+                                        onClick={() => getUsers()}
                                         disabled={false}
                                         style={{
                                             width: '120px',
@@ -223,13 +290,13 @@ const SearchDetailPage = ({
                                 <div style={{ marginLeft: '15px'}}>
                                     <button
                                         onClick={filterOnClick}
-                                        disabled={false}
+                                        disabled={filterUserIsLoading}
                                         style={{
                                             width: '120px',
                                             height: '50px',
                                         }}
                                     >
-                                        Ara
+                                        {filterUserIsLoading ? 'Aranıyor' : 'Ara'}
                                     </button>
                                 </div>
                             </div>
@@ -369,7 +436,9 @@ const SearchDetailPage = ({
                                     <option value="Hiç evlenmemiş">Hiç evlenmemiş</option>
                                 </select>
                             </div>
-                            {userMe?.gender === 0 && (
+                            {userMeLoading && (
+                                <>
+                                    {userMe?.gender === 1 && (
                                         <>
                                             <div className={styles.inputLineEpisode}>
                                                 <label>Tessetür</label>
@@ -381,6 +450,8 @@ const SearchDetailPage = ({
                                                 </select>
                                             </div>
                                         </>
+                                    )}
+                                </>
                             )}
                             <div className={styles.inputLineEpisode}>
                                 <label>Çocuğu Varmı? </label>
@@ -451,12 +522,19 @@ const SearchDetailPage = ({
                                 </select>
                             </div>
                     </div>
+                    
                     <div className={styles.content}>
                         {memberVisible && (
                             <>
                                 {members.map(user => (
                                     <>
-                                        <SearchUserProfile user={user}/>
+                                        <SearchUserProfile 
+                                            user={user}
+                                            userActivitySmiled={userActivitySmiled}
+                                            userBlocked={userBlocked}
+                                            userActivityFavorite={userActivityFavorite}
+                                            userActivityLiked={userActivityLiked}
+                                        />
                                     </>
                                 ))}
                             </>

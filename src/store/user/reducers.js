@@ -300,6 +300,7 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: true,
 				memberIsLoading: true,
+				filterUserIsLoading: true,
 				pageLoading: false
 			};
 		case GET_USERS_SUCCEEDED:
@@ -307,6 +308,7 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				memberIsLoading: false,
+				filterUserIsLoading: false,
 				pageLoading: true,
 				members: payload?.data
 			};
@@ -315,6 +317,7 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				memberIsLoading: false,
+				filterUserIsLoading: false,
 				pageLoading: false,
 				error: payload
 			};
