@@ -318,7 +318,8 @@ function* getUsersTask(action) {
 		useAlcohol,
 		education,
 		salary,
-		physical
+		physical,
+		hasPhotos
 	} = payload;
 
 	const token = cookies.get('chatAppToken');
@@ -347,6 +348,7 @@ function* getUsersTask(action) {
 					&filter[use_alcohol]=${useAlcohol ? useAlcohol : ''}
 					&filter[education]=${education ? education : ''}
 					&filter[salary]=${salary ? salary : ''}
+					&filter[has_photos]=${hasPhotos ? hasPhotos : ''}
 					&filter[physical]=${physical ? physical : ''}`;
 	try {
 		const response = yield call(axios.get, `${BASE_URL}/user/activity/filter${query}`,

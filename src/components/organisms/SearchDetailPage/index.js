@@ -56,12 +56,13 @@ const SearchDetailPage = ({
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
 
-
     // toggle
     const [onlineToggleIsStatus, setOnlineToggleIsStatus] = useState(false);
     const [newMemberIsStatus, setNewMemberIsStatus] = useState(false);
     const [nearMemberToggleStatus, setNearMemberToggleStatus] = useState(false);
     const [approveMemberToggleStatus, setApproveMemberToggleStatus] = useState(false);
+    const [hasPhotoMemberToggleStatus, setHasPhotoMemberToggleStatus] = useState(false);
+    const [hasNotPhotoMemberToggleStatus, setHasNotPhotoMemberToggleStatus] = useState(false);
 
     useEffect(() => {
         if(onlineToggleIsStatus) {
@@ -105,6 +106,26 @@ const SearchDetailPage = ({
             getUsers();
         }
     },[approveMemberToggleStatus]);
+
+    useEffect(() => {
+        if(hasPhotoMemberToggleStatus) {
+            getUsers({
+                hasPhotos: "1"
+            });
+        } else {
+            getUsers();
+        }
+    },[hasPhotoMemberToggleStatus]);
+
+    useEffect(() => {
+        if(hasNotPhotoMemberToggleStatus) {
+            getUsers({
+                hasPhotos: "0"
+            });
+        } else {
+            getUsers();
+        }
+    },[hasNotPhotoMemberToggleStatus]);
 
     useEffect(() => {
         if(!isLoadingDefinition) {
@@ -266,6 +287,8 @@ const SearchDetailPage = ({
                 setNewMemberIsStatus={setNewMemberIsStatus}
                 setNearMemberToggleStatus={setNearMemberToggleStatus}
                 setApproveMemberToggleStatus={setApproveMemberToggleStatus}
+                setHasPhotoMemberToggleStatus={setHasPhotoMemberToggleStatus}
+                setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}
             />
 
             <div className={styles.container}>

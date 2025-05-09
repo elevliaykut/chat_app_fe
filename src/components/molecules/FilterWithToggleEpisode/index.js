@@ -11,7 +11,9 @@ const FilterWithToggleEpisode = ({
     setOnlineToggleIsStatus = () => {},
     setNewMemberIsStatus = () => {},
     setNearMemberToggleStatus = () => {},
-    setApproveMemberToggleStatus = () => {}
+    setApproveMemberToggleStatus = () => {},
+    setHasPhotoMemberToggleStatus = () => {},
+    setHasNotPhotoMemberToggleStatus = () => {}
 }) => {
     return (
         <>
@@ -21,8 +23,8 @@ const FilterWithToggleEpisode = ({
                     <NewMemberToggle setNewMemberIsStatus={setNewMemberIsStatus}/>
                     <NearMemberToggle setNearMemberToggleStatus={setNearMemberToggleStatus}/>
                     <ApproveMemberToggle setApproveMemberToggleStatus={setApproveMemberToggleStatus}/>
-                    <WithPhotoToggle/>
-                    <NonePhotoToggle/>
+                    <WithPhotoToggle setHasPhotoMemberToggleStatus={setHasPhotoMemberToggleStatus}/>
+                    <NonePhotoToggle setHasNotPhotoMemberToggleStatus={setHasNotPhotoMemberToggleStatus}/>
                 </div>
             </div>
         </>

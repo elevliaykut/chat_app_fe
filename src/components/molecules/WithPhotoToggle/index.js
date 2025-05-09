@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from './Index.module.css';
 
-const WithPhotoToggle = () => {
+const WithPhotoToggle = ({
+  setHasPhotoMemberToggleStatus = () => {}
+}) => {
   const [isOnline, setIsOnline] = useState(false);
 
   const toggleOnline = () => {
     setIsOnline(prev => !prev);
+    setHasPhotoMemberToggleStatus(prev => !prev);
   };
 
   return (
