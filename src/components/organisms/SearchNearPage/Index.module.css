@@ -16,6 +16,7 @@
     max-width: 1200px; /* Maksimum genişlik */
     margin: 0 auto; /* Ortalayalım */
     align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
+    margin-bottom: 25px;
   }
 
   .loader {
@@ -32,6 +33,39 @@
     height: 30px;
     animation: spin 2s linear infinite;
     margin-top: 20px;
+  }
+
+  .matchesEpisode {
+    display: flex;
+    width: 170px;
+    margin-left: auto;
+    margin-top: 25px;
+  }
+  
+  .listButton {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .listButton label {
+    padding-top: 1px;
+    padding-left: 4px;
+    font-size: 19px;
+    cursor: pointer;
+    color: #ff4081;
+  }
+  
+  .matchButton {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  .matchButton label {
+    padding-top: 1px;
+    padding-left: 4px;
+    font-size: 19px;
+    cursor: pointer;
+    color: #131313;
   }
 
   @keyframes spin {

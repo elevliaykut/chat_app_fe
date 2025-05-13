@@ -79,7 +79,15 @@ import {
 	CREATE_USER_PROFILE_VISIT_LOG_FAILED,
 	GET_USER_PROFILE_VISIT_STARTED,
 	GET_USER_PROFILE_VISIT_SUCCEEDED,
-	GET_USER_PROFILE_VISIT_FAILED
+	GET_USER_PROFILE_VISIT_FAILED,
+	GET_USER_MATCH_STARTED,
+	GET_USER_MATCH_SUCCEEDED,
+	GET_USER_MATCH_FAILED,
+	RESET_USER_MATCH,
+	GET_MATCH_PREVIUS_USER_STARTED,
+	GET_MATCH_PREVIUS_USER_SUCCEEDED,
+	GET_MATCH_PREVIUS_USER_FAILED,
+	RESET_MATCH_PREVIUS_USER
 } from './types';
 
 export const loginUser = values => ({
@@ -473,4 +481,42 @@ export const getUserProfileVisitSuccess = data => ({
 export const getUserProfileVisitError = error => ({
 	type: GET_USER_PROFILE_VISIT_FAILED,
 	payload: error
+});
+
+export const getUserMatch = values => ({
+	type: GET_USER_MATCH_STARTED,
+	payload: values
+});
+
+export const getUserMatchSuccess = data => ({
+	type: GET_USER_MATCH_SUCCEEDED,
+	payload: data
+});
+
+export const getUserMatchError = error => ({
+	type: GET_USER_MATCH_FAILED,
+	payload: error
+});
+
+export const resetUserMatch = () => ({
+	type: RESET_USER_MATCH
+});
+
+export const getMatchPreviusUser = values => ({
+	type: GET_MATCH_PREVIUS_USER_STARTED,
+	payload: values
+});
+
+export const getMatchPreviusUserSuccess = data => ({
+	type: GET_MATCH_PREVIUS_USER_SUCCEEDED,
+	payload: data
+});
+
+export const getMatchPreviusUserError = error => ({
+	type: GET_MATCH_PREVIUS_USER_FAILED,
+	payload: error
+});
+
+export const resetMatchPreviusUser = () => ({
+	type: RESET_MATCH_PREVIUS_USER
 });

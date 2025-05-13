@@ -25,7 +25,9 @@ import {
 	USER_UPDATE_CARACTERISTIC_FEATURE_STARTED,
 	GET_MY_POSTS_STARTED,
 	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
-	GET_USER_PROFILE_VISIT_STARTED
+	GET_USER_PROFILE_VISIT_STARTED,
+	GET_USER_MATCH_STARTED,
+	GET_MATCH_PREVIUS_USER_STARTED
 } from './types';
 
 import {
@@ -74,7 +76,11 @@ import {
 	createUserProfileVisitLogSuccess,
 	createUserProfileVisitLogError,
 	getUserProfileVisitSuccess,
-	getUserProfileVisitError
+	getUserProfileVisitError,
+	getUserMatchSuccess,
+	getUserMatchError,
+	getMatchPreviusUserSuccess,
+	getMatchPreviusUserError
 } from './actions';
 
 const cookies = new Cookies();
@@ -739,6 +745,97 @@ function* getUserProfileVisitTask(action) {
 	}
 }
 
+function* getUserMatchTask(action) {
+	const { payload = {} } = action;
+	const { 
+		id, 
+		creatorUserId,
+		status,
+		nearUsers, 
+		bornTodayDate, 
+		gender, 
+		startsBetween, 
+		username,
+		minAgeRange,
+		maxAgeRange,
+		minTall,
+		maxTall,
+		minWeight,
+		maxWeight,
+		cityId,
+		job,
+		maritalStatus,
+		headCraft,
+		haveAChild,
+		useCigarette,
+		useAlcohol,
+		education,
+		salary,
+		physical,
+		hasPhotos
+	} = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	const query = `?filter[id]=${id ? id : ''}
+					&filter[creator_user_id]=${creatorUserId ? creatorUserId : ''}
+					&filter[status]=${status ? status : ''}
+					&filter[near_users]=${nearUsers ? nearUsers : ''}
+					&filter[born_today_date]=${bornTodayDate ? bornTodayDate : ''}
+					&filter[gender]=${gender ? gender : ''}
+					&filter[starts_between]=${startsBetween ? startsBetween : ''}
+					
+					&filter[username]=${username ? username : ''}
+					&filter[min_age_range]=${minAgeRange ? minAgeRange : ''}
+					&filter[max_age_range]=${maxAgeRange ? maxAgeRange : ''}
+					&filter[min_tall]=${minTall ? minTall : ''}
+					&filter[max_tall]=${maxTall ? maxTall : ''}
+					&filter[min_weight]=${minWeight ? minWeight : ''}
+					&filter[max_weight]=${maxWeight ? maxWeight : ''}
+					&filter[city_id]=${cityId ? cityId : ''}
+					&filter[job]=${job ? job : ''}
+					&filter[marital_status]=${maritalStatus ? maritalStatus : ''}
+					&filter[head_craft]=${headCraft ? headCraft : ''}
+					&filter[have_a_child]=${haveAChild ? haveAChild : ''}
+					&filter[use_cigarette]=${useCigarette ? useCigarette : ''}
+					&filter[use_alcohol]=${useAlcohol ? useAlcohol : ''}
+					&filter[education]=${education ? education : ''}
+					&filter[salary]=${salary ? salary : ''}
+					&filter[has_photos]=${hasPhotos ? hasPhotos : ''}
+					&filter[physical]=${physical ? physical : ''}`;
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/match${query}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getUserMatchSuccess(data));
+	} catch (error) {
+		yield put(getUserMatchError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getMatchPreviusUserTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/match/previus`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getMatchPreviusUserSuccess(data));
+	} catch (error) {
+		yield put(getMatchPreviusUserError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -833,6 +930,14 @@ function* watchGetUserProfileVisit() {
 	yield takeLatest(GET_USER_PROFILE_VISIT_STARTED, getUserProfileVisitTask);
 }
 
+function* watchGetUserMatch() {
+	yield takeLatest(GET_USER_MATCH_STARTED, getUserMatchTask);
+}
+
+function* watchGetMatchPreviusUser() {
+	yield takeLatest(GET_MATCH_PREVIUS_USER_STARTED, getMatchPreviusUserTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -857,6 +962,8 @@ export default function* saga() {
 		watchUserUpdateCaracteristicFeature(),
 		watchGetMyPosts(),
 		watchCreateUserProfileVisitLog(),
-		watchGetUserProfileVisit()
+		watchGetUserProfileVisit(),
+		watchGetUserMatch(),
+		watchGetMatchPreviusUser()
 	]);
 }

@@ -80,7 +80,15 @@ import {
 	CREATE_USER_PROFILE_VISIT_LOG_FAILED,
 	GET_USER_PROFILE_VISIT_STARTED,
 	GET_USER_PROFILE_VISIT_SUCCEEDED,
-	GET_USER_PROFILE_VISIT_FAILED
+	GET_USER_PROFILE_VISIT_FAILED,
+	GET_USER_MATCH_STARTED,
+	GET_USER_MATCH_SUCCEEDED,
+	GET_USER_MATCH_FAILED,
+	RESET_USER_MATCH,
+	GET_MATCH_PREVIUS_USER_STARTED,
+	GET_MATCH_PREVIUS_USER_SUCCEEDED,
+	GET_MATCH_PREVIUS_USER_FAILED,
+	RESET_MATCH_PREVIUS_USER
 } from './types';
 
 const initialState = {
@@ -120,6 +128,9 @@ const initialState = {
 	userUpdateCaracteristicFeatureComplete: false,
 	myPosts: [],
 	visitProfiles: [],
+	matchUser: {},
+	matchUserComplete: false,
+	matchPreviusUserComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -629,6 +640,56 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				error: payload
+			};
+		case GET_USER_MATCH_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				matchUserComplete: false
+			};
+		case GET_USER_MATCH_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				matchUser: payload?.data,
+				matchUserComplete: true
+			};
+		case GET_USER_MATCH_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				matchUserComplete: false,
+				error: payload
+			};
+		case RESET_USER_MATCH:
+			return {
+				...state,
+				matchUserComplete: false
+			};
+		case GET_MATCH_PREVIUS_USER_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				matchPreviusUserComplete: false
+			};
+		case GET_MATCH_PREVIUS_USER_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				matchPreviusUserComplete: true,
+				matchUser: payload?.data
+			};
+		case GET_MATCH_PREVIUS_USER_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				matchPreviusUserComplete: false,
+				error: payload
+			};
+		case RESET_MATCH_PREVIUS_USER:
+			return {
+				...state,
+				matchPreviusUserComplete: false
 			};
 		default:
 			return state;
