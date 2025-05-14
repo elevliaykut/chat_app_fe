@@ -194,7 +194,10 @@ const HomePage = ({
                 </>
             )}
             
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={profileVisible}
+            />
             <StorySlider/>
             <div className={styles.frame}>
                 <div className={styles.content}>

@@ -54,10 +54,17 @@ const MyProfilePage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getCities();
     },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         getUserMe();
@@ -190,7 +197,10 @@ const MyProfilePage = ({
                     />
                 </>
             )}
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             
             <div className={styles.frame}>
                 <div className={styles.content}>

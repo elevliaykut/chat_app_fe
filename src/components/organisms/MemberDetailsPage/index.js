@@ -13,6 +13,7 @@ const MemberDetailsPage = ({
     isLoading = false,
     error = null,
     userMe = {},
+    getUserMe = () => {},
     getMemberDetails = () => {},
     memberId = '',
     userMeLoading = false,
@@ -150,7 +151,10 @@ const MemberDetailsPage = ({
                 </>
             )}
 
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={profileVisible}
+            />
             
             <div className={styles.frame}>
                 <div className={styles.content}>

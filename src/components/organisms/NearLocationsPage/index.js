@@ -58,10 +58,17 @@ const NearLocationsPage = ({
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getUserMe();
     },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         getCities();
@@ -238,7 +245,10 @@ const NearLocationsPage = ({
                 </>
             )}
 
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <StorySlider/>
 
             <div className={styles.frame}>

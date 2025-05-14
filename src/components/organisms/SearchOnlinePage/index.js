@@ -22,10 +22,24 @@ const SearchOnlinePage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    userMe = {},
+    userMeLoading = false,
+    getUserMe = () => {}
 }) => {
 
     const [visible, setVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getUserMe();
+    },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         getOnlineProfiles();
@@ -67,14 +81,17 @@ const SearchOnlinePage = ({
     },[]);
 
     useEffect(() => {
-        if(!pageLoading) {
+        if(!isLoading) {
             setVisible(true);
         }
-    },[pageLoading]);
+    },[isLoading]);
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
             <div className={styles.frame}>
                 <div className={styles.matchesEpisode}>
@@ -125,7 +142,7 @@ const SearchOnlinePage = ({
                 <div className={styles.frame}>
                     <div className={styles.content}>
 
-                        {visible && (
+                        {visible ? (
                             <>
                                 {onlineProfiles?.map(item => (
                                     <>
@@ -139,13 +156,9 @@ const SearchOnlinePage = ({
                                     </>
                                 ))}
                             </>
-                        )}
-
-                        {!visible && (
+                        ) : (
                             <>
-                                <div className={styles.loader}>
-                                    <div className={styles.spinner}></div>
-                                </div>
+                                <label>Yükleniyor...</label>
                             </>
                         )}
                     </div>

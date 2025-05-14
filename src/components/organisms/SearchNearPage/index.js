@@ -26,10 +26,17 @@ const SearchNearPage = ({
     userActivityLikedCompleted = false
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getUserMe();
     },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         if(!userMeLoading) {
@@ -90,7 +97,10 @@ const SearchNearPage = ({
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
             <div className={styles.frame}>
                 <div className={styles.matchesEpisode}>
@@ -140,7 +150,7 @@ const SearchNearPage = ({
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.content}>
-                        {memberVisible && (
+                        {memberVisible ? (
                             <>
                                 {members?.map(item => (
                                     <>
@@ -153,6 +163,10 @@ const SearchNearPage = ({
                                         />
                                     </>
                                 ))}
+                            </>
+                        ) : (
+                            <>
+                                <label>Yükleniyor...</label>
                             </>
                         )}
                     </div>

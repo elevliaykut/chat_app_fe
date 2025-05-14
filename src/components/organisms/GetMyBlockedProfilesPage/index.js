@@ -58,12 +58,19 @@ const GetMyBlockedProfilesPage = ({
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getUserMe();
         getMyBlockedProfiles();
         getCities();
     },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         if(userActivitySmiledCompleted) {
@@ -206,7 +213,10 @@ const GetMyBlockedProfilesPage = ({
                 </>
             )}
 
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <StorySlider/>
 
             <div className={styles.frame}>

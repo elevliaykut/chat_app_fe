@@ -13,7 +13,7 @@ import {
     userActivityLikedReset,
     getUserMe,
     getUsers,
-    getOnlineProfiles
+    getOnlineProfiles,
 } from '../../../store/user/actions';
 
 import {

@@ -20,9 +20,23 @@ const SearchApprovePage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    userMe = {},
+    userMeLoading = false,
+    getUserMe = () => {}
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getUserMe();
+    },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         getUsers({
@@ -81,7 +95,10 @@ const SearchApprovePage = ({
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
             <div className={styles.frame}>
                 <div className={styles.matchesEpisode}>
@@ -131,7 +148,7 @@ const SearchApprovePage = ({
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.content}>
-                        {memberVisible && (
+                        {memberVisible ? (
                             <>
                                 {members?.map(item => (
                                     <>
@@ -144,6 +161,10 @@ const SearchApprovePage = ({
                                         />
                                     </>
                                 ))}
+                            </>
+                        ) : (
+                            <>
+                                <label>Yükleniyor...</label>
                             </>
                         )}
                     </div>

@@ -50,6 +50,13 @@ const SearchLikePage = ({
     // visibles
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         getCities();
@@ -80,7 +87,10 @@ const SearchLikePage = ({
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
 
             <div className={styles.frame}>
@@ -390,7 +400,7 @@ const SearchLikePage = ({
                     )}
 
                     <div className={styles.memberEpisode}>
-                        {memberVisible && (
+                        {memberVisible ? (
                             <>
                                 <MatchUserCard
                                     user={matchUser}
@@ -399,6 +409,12 @@ const SearchLikePage = ({
                                     userActivityLikedReset={userActivityLikedReset}
                                     getMatchPreviusUser={getMatchPreviusUser}
                                 />
+                            </>
+                        ) : (
+                            <>
+                                <div style={{ height: '100vh'}}>
+                                    <label>Yükleniyor</label>
+                                </div>
                             </>
                         )}
                     </div>

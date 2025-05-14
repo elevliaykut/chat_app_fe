@@ -20,10 +20,24 @@ const SearchBirthdayPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    userMe = {},
+    userMeLoading = false,
+    getUserMe = () => {}
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState();
+
+    useEffect(() => {
+        getUserMe();
+    },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         const now = new Date();
@@ -102,7 +116,10 @@ const SearchBirthdayPage = ({
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
             <div className={styles.frame}>
                 <div className={styles.matchesEpisode}>

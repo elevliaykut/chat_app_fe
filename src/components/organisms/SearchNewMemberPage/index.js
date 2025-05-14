@@ -20,10 +20,24 @@ const SearchNewMemberPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    userMe = {},
+    userMeLoading = false,
+    getUserMe = () => {}
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getUserMe();
+    },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
 
     useEffect(() => {
         const now = new Date();
@@ -136,7 +150,10 @@ const SearchNewMemberPage = ({
     
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+            />
             <SearchMenu/>
             <div className={styles.frame}>
                 <div className={styles.matchesEpisode}>
@@ -186,7 +203,7 @@ const SearchNewMemberPage = ({
             <div className={styles.container}>
                 <div className={styles.frame}>
                     <div className={styles.content}>
-                        {memberVisible && (
+                        {memberVisible ? (
                             <>
                                 {members?.map(item => (
                                     <>
@@ -199,6 +216,10 @@ const SearchNewMemberPage = ({
                                         />
                                     </>
                                 ))}
+                            </>
+                        ) : (
+                            <>
+                                <label>Yükleniyor...</label>
                             </>
                         )}
                     </div>
