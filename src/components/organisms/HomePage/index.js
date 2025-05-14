@@ -124,6 +124,7 @@ const HomePage = ({
                 <>
                     <ProfileTextModal
                         onClose={profileTextModalOnClose}
+                        isLoading={isLoading}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
@@ -136,6 +137,7 @@ const HomePage = ({
                 <>
                     <BasicInfoModal
                         onClose={basicInfoModalOnClose}
+                        isLoading={isLoading}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}

@@ -9,7 +9,7 @@ const ProfileTextModal = ({
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
     resetUpdateUserPersonalInfoComplete = () => {},
-    userMe = {}
+    userMe = {},
 }) => {
 
     const [content, setContent] = useState();
@@ -25,6 +25,7 @@ const ProfileTextModal = ({
         if(updateUserPersonalInfoComplete) {
             resetUpdateUserPersonalInfoComplete();
             setMessageVisible(true);
+            onClose();
         }
     },[updateUserPersonalInfoComplete]);
 

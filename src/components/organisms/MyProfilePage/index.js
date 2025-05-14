@@ -121,6 +121,7 @@ const MyProfilePage = ({
                 <>
                     <ProfileTextModal
                         onClose={profileTextModalOnClose}
+                        isLoading={isLoading}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}
@@ -133,6 +134,7 @@ const MyProfilePage = ({
                 <>
                     <BasicInfoModal
                         onClose={basicInfoModalOnClose}
+                        isLoading={isLoading}
                         updateUserPersonalInfoComplete={updateUserPersonalInfoComplete}
                         updateUserPersonalInfo={updateUserPersonalInfo}
                         resetUpdateUserPersonalInfoComplete={resetUpdateUserPersonalInfoComplete}

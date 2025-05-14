@@ -37,6 +37,7 @@ const BasicInfoModal = ({
         if(updateUserPersonalInfoComplete) {
             resetUpdateUserPersonalInfoComplete();
             setMessageVisible(true);
+            onClose();
         }
     },[updateUserPersonalInfoComplete]);
 
