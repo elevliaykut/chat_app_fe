@@ -43,7 +43,14 @@
     display: flex;
     margin-left: 30px;
     padding-top: 13px;
-    padding-bottom: 20px;
+    padding-bottom: 13px;
+    cursor: pointer;
+}
+
+.noneIconmenu {
+    margin-left: 30px;
+    padding-top: 13px;
+    padding-bottom: 19px;
     cursor: pointer;
 }
 

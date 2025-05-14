@@ -197,79 +197,79 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/new-members'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/new-members'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YENİ ÜYELER</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/near-locations'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/near-locations'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YAKIN KONUMDA</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/born-today'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/born-today'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BUGÜN DOĞANLAR</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/visit-profiles'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/visit-profiles'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>PROFİLİNİ GEZDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-favorite-users'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/my-favorite-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>FAVORİLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-smiled-users'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/my-smiled-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>GÜLÜMSEDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-liked-users'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/my-liked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BEĞENDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu} onClick={() => window.location = '/my-blocked-users'}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/my-blocked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ENGELLENEN ÜYE</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÖDEME FORMU</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>İLETİŞİM</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YARDIM</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>AYARLAR</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
+                    <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÇIKIŞ</label>
                         </div>
