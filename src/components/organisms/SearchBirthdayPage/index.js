@@ -25,11 +25,18 @@ const SearchBirthdayPage = ({
     userMeLoading = false,
     getUserMe = () => {},
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState();
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -128,6 +135,8 @@ const SearchBirthdayPage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <SearchMenu/>
             <div className={styles.frame}>

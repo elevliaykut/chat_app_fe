@@ -35,7 +35,10 @@ const SearchDetailPage = ({
     userMeLoading = false,
     filterUserIsLoading = false,
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -68,6 +71,10 @@ const SearchDetailPage = ({
     const [hasNotPhotoMemberToggleStatus, setHasNotPhotoMemberToggleStatus] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
     
+    useEffect(() => {
+        getNotifications();
+    },[]);
+
     useEffect(() => {
         if (!isUserLoggedIn) {
           window.location = '/';
@@ -300,6 +307,8 @@ const SearchDetailPage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <SearchMenu/>
             <div className={styles.frame}>

@@ -46,7 +46,10 @@ const MyProfilePage = ({
     getMyPosts = () => {},
     myPosts = [],
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [memberPostVisible, setMemberPostVisible] = useState(false);
@@ -57,6 +60,10 @@ const MyProfilePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -209,6 +216,8 @@ const MyProfilePage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             
             <div className={styles.frame}>

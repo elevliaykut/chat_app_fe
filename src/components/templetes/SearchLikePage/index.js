@@ -17,6 +17,10 @@ import {
     getCities
 } from '../../../store/definitions/actions';
 
+import {
+    getNotifications    
+} from '../../../store/notifications/actions';
+
 const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
     pageLoading: state?.user?.pageLoading,
@@ -29,7 +33,9 @@ const mapStateToProps = state => ({
     matchUser: state?.user?.matchUser,
     matchUserComplete: state?.user?.matchUserComplete,
     matchPreviusUserComplete: state?.user?.matchPreviusUserComplete,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.notificationIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -41,7 +47,8 @@ const mapDispatchToProps = dispatch => ({
     resetUserMatch: () => dispatch(resetUserMatch()),
     getMatchPreviusUser: () => dispatch(getMatchPreviusUser()),
     resetMatchPreviusUser: () => dispatch(resetMatchPreviusUser()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: payload => dispatch(getNotifications(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchLikeOrganisms);

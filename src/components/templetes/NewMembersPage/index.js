@@ -25,6 +25,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
+    getNotifications    
+} from '../../../store/notifications/actions';
+
+import {
     getCities,
     getDistricts
 } from '../../../store/definitions/actions';
@@ -48,7 +52,9 @@ const mapStateToProps = state => ({
     userBlockedComplete: state?.user?.userBlockedComplete,
     userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.notificationIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -72,7 +78,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: payload => dispatch(getNotifications(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewMembersPageOrganisms);

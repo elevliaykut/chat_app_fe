@@ -29,7 +29,10 @@ const SearchLikePage = ({
     resetMatchPreviusUser = () => {},
     matchPreviusUserComplete = false,
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -53,6 +56,10 @@ const SearchLikePage = ({
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -99,6 +106,8 @@ const SearchLikePage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <SearchMenu/>
 

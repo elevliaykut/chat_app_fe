@@ -50,7 +50,10 @@ const BornTodayPage = ({
     userActivityLikedReset = () => {},
     userActivityLikedCompleted = false,
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -61,6 +64,10 @@ const BornTodayPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -262,6 +269,8 @@ const BornTodayPage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <StorySlider/>
 

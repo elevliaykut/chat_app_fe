@@ -16,6 +16,10 @@ import {
     userLogout
 } from '../../../store/user/actions';
 
+import {
+    getNotifications
+} from '../../../store/notifications/actions';
+
 const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
     pageLoading: state?.user?.pageLoading,
@@ -27,7 +31,9 @@ const mapStateToProps = state => ({
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
     userMe: state?.user?.userMe,
     userMeLoading: state?.user?.userMeLoading,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.notificationIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -41,7 +47,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     getUserMe: () => dispatch(getUserMe()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: payload => dispatch(getNotifications(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchApproveOrganisms);

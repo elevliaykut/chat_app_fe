@@ -50,7 +50,10 @@ const GetMyLikedProfilesPage = ({
     userActivityLikedReset = () => {},
     userActivityLikedCompleted = false,
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -61,6 +64,10 @@ const GetMyLikedProfilesPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -225,6 +232,8 @@ const GetMyLikedProfilesPage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <StorySlider/>
 

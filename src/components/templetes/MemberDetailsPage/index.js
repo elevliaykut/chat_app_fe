@@ -8,6 +8,10 @@ import {
 } from '../../../store/member/actions';
 
 import {
+    getNotifications    
+} from '../../../store/notifications/actions';
+
+import {
     postActivityLike,
     postActivityFavorite,
     postActivitySmiled
@@ -46,7 +50,9 @@ const mapStateToProps = state => ({
     userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
     userReportsComplete: state?.user?.userReportsComplete,
     userBlockedComplete: state?.user?.userBlockedComplete,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.notificationIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -67,7 +73,8 @@ const mapDispatchToProps = dispatch => ({
     userBlocked: payload => dispatch(userBlocked(payload)),
     userBlockedReset: () => dispatch(userBlockedReset()),
     createUserProfileVisitLog: payload => dispatch(createUserProfileVisitLog(payload)),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: payload => dispatch(getNotifications(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);

@@ -44,7 +44,10 @@ const MemberDetailsPage = ({
     userBlockedComplete = false,
     createUserProfileVisitLog = () => {},
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -52,6 +55,10 @@ const MemberDetailsPage = ({
     const [memberPostVisible, setMemberPostVisible]                     = useState(false);
     const [reportModalVisible, setReportModalVisible]                   = useState(false);
     const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -163,6 +170,8 @@ const MemberDetailsPage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={profileVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             
             <div className={styles.frame}>

@@ -18,6 +18,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
+    getNotifications    
+} from '../../../store/notifications/actions';
+
+import {
     getCities
 } from '../../../store/definitions/actions';
 
@@ -36,7 +40,9 @@ const mapStateToProps = state => ({
     memberIsLoading: state?.user?.memberIsLoading,
     userMeLoading: state?.user?.userMeLoading,
     filterUserIsLoading: state?.user?.filterUserIsLoading,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.notificationIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -52,7 +58,8 @@ const mapDispatchToProps = dispatch => ({
     getCities: () => dispatch(getCities()),
     getUserMe: () => dispatch(getUserMe()),
     getOnlineProfiles: () => dispatch(getOnlineProfiles()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: payload => dispatch(getNotifications(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDetailOrganisms);
