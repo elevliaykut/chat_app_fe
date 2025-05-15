@@ -4,23 +4,32 @@ import Cookies from 'universal-cookie';
 import { BASE_URL } from '../../utils/urls';
 
 import {
-    GET_NOTIFICATIONS_STARTED
+    GET_NOTIFICATIONS_STARTED,
+	READ_NOTIFICATION_STARTED,
+	GET_ALL_NOTIFICATION_STARTED
 } from './types';
 
 import {
     getNotificationsSuccess,
-    getNotificationsError
+    getNotificationsError,
+	readNotificationSuccess,
+	readNotificationError,
+	getAllNotificationSuccess,
+	getAllNotificationError
 } from './actions';
 
 const cookies = new Cookies();
 
 function* getNotificationsTask(action) {
-	const { payload } = action;
-
+	const { payload = {} } = action;
 	const token = cookies.get('chatAppToken');
 
+	const filterQuery = payload.read !== undefined
+		? `?filter[is_that_read]=${payload.read}`
+		: '';
+
 	try {
-		const response = yield call(axios.get, `${BASE_URL}/notification?filter[is_that_read]=false`,
+		const response = yield call(axios.get, `${BASE_URL}/notification${filterQuery}`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			}
@@ -33,14 +42,61 @@ function* getNotificationsTask(action) {
 	}
 }
 
+function* readNotificationTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/notification/read-all`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(readNotificationSuccess(data));
+	} catch (error) {
+		yield put(readNotificationError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getAllNotificationTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/notification`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(getAllNotificationSuccess(data));
+	} catch (error) {
+		yield put(getAllNotificationError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
 	yield takeLatest(GET_NOTIFICATIONS_STARTED, getNotificationsTask);
 }
 
+function* watchReadNotification() {
+	yield takeLatest(READ_NOTIFICATION_STARTED, readNotificationTask);
+}
+
+function* watchGetAllNotification() {
+	yield takeLatest(GET_ALL_NOTIFICATION_STARTED, getAllNotificationTask);
+}
+
 export default function* saga() {
     yield all([
-        watchGetNotifications()
+        watchGetNotifications(),
+		watchReadNotification(),
+		watchGetAllNotification()
     ]);
 }

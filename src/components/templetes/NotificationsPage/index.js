@@ -8,7 +8,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
-    getNotifications
+    getNotifications,
+    readNotification,
+    readNotificationReset,
+    getAllNotification
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -20,12 +23,17 @@ const mapStateToProps = state => ({
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
     notificationIsLoading: state?.notifications?.isLoading,
+    readNotificationComplete: state?.notifications?.readNotificationComplete,
+    allNotifications: state?.notifications?.allNotifications,
 });
 
 const mapDispatchToProps = dispatch => ({
     getUserMe: () => dispatch(getUserMe()),
     userLogout: () => dispatch(userLogout()),
-    getNotifications: () => dispatch(getNotifications())
+    getNotifications: (payload) => dispatch(getNotifications(payload)),
+    readNotification: () => dispatch(readNotification()),
+    readNotificationReset:() => dispatch(readNotificationReset()),
+    getAllNotification: () => dispatch(getAllNotification())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationPageOrganisms);

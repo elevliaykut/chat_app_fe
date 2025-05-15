@@ -13,13 +13,19 @@ const NotificationsPage = ({
     getNotifications = () => {},
     notifications = [],
     notificationIsLoading = false,
-    getUserMe = () => {}
+    getUserMe = () => {},
+    readNotificationComplete = false,
+    readNotification = () => {},
+    readNotificationReset = () => {},
+    getAllNotification = () => {},
+    allNotifications = []
 }) => {
     const [notifVisible, setNotifVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getUserMe();
+        readNotification();
     },[]);
 
     useEffect(() => {
@@ -35,7 +41,8 @@ const NotificationsPage = ({
     },[notificationIsLoading]);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
+        getAllNotification();
     },[]);
 
     return (
@@ -53,11 +60,11 @@ const NotificationsPage = ({
                     <div className={styles.container}>
                         <h1 className={styles.title}>Tüm Bildirimler</h1>
                         <ul className={styles.list}>
-                            {notifications.length === 0 ? (
+                            {allNotifications?.data?.length === 0 ? (
                                 <p className={styles.empty}>Henüz bildirim yok.</p>
                             ) : (
                                 <>
-                                    {notifications?.data?.map(item => (
+                                    {allNotifications?.map(item => (
                                         <>
                                             <li key={item.id} className={styles.item}>
                                                 <div className={styles.info}>

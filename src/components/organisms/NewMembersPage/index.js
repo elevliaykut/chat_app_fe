@@ -67,7 +67,7 @@ const NewMembersPage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {

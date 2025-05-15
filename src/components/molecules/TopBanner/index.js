@@ -21,6 +21,14 @@ const TopBanner = ({
         }
     },[notificationIsLoading]);
 
+    const notificationVisibleOnClick = () => {
+        if(notifications?.meta?.total > 0) {
+            setNotificationVisible(!notificationVisible);
+        } else {
+            window.location = '/notifications';
+        }
+    }
+
     return (
         <>
             <div className={styles.container}>
@@ -30,6 +38,7 @@ const TopBanner = ({
                             src={LOGO}
                         />
                     </div>
+                    
                     <div className={styles.content}>
                         <div className={styles.cubuk}/>
                         {profileVisible && (
@@ -71,9 +80,10 @@ const TopBanner = ({
                                 <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
                             </svg>
                         </div>
+
                         {notifFirstVisible && (
                             <>
-                                <div style={{ paddingTop: '20px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}} onClick={() => setNotificationVisible(!notificationVisible)}>
+                                <div style={{ paddingTop: '20px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}} onClick={notificationVisibleOnClick}>
                                     <div style={{ position: 'relative'}}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +133,7 @@ const TopBanner = ({
                                                                         </>
                                                                     )}
                                                                     <div className={styles.text}>
-                                                                        <span className={styles.username}>{item?.user?.username}</span>{' '}
+                                                                        <span className={styles.username} onClick={() => window.location = '/member/' + item?.user?.id}>{item?.user?.username}</span>{' '}
                                                                         <span className={styles.message}>{item.message}</span>
                                                                     </div>
                                                                 </li>

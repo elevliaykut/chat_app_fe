@@ -35,7 +35,7 @@ const SearchBirthdayPage = ({
     const [userMeVisible, setUserMeVisible] = useState();
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {

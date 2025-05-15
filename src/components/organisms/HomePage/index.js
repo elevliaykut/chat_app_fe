@@ -63,7 +63,7 @@ const HomePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {

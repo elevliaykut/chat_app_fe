@@ -66,7 +66,7 @@ const GetMyFavoriteUsersPage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {

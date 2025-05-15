@@ -37,7 +37,7 @@ const SearchOnlinePage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {

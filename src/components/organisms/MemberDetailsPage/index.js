@@ -57,7 +57,7 @@ const MemberDetailsPage = ({
     const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
 
     useEffect(() => {
-        getNotifications();
+        getNotifications({ read: false });
     },[]);
 
     useEffect(() => {
