@@ -23,10 +23,18 @@ const SearchNearPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         getUserMe();
@@ -100,6 +108,7 @@ const SearchNearPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             <SearchMenu/>
             <div className={styles.frame}>

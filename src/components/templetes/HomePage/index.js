@@ -14,7 +14,8 @@ import {
     userUpdateSpouseCandidate,
     userUpdateSpouseCandidateReset,
     userUpdateCaracteristicFeature,
-    userUpdateCaracteristicFeatureReset
+    userUpdateCaracteristicFeatureReset,
+    userLogout
 } from '../../../store/user/actions';
 
 import {
@@ -46,7 +47,8 @@ const mapStateToProps = state => ({
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
     postIsLoading: state?.post?.isLoading,
-    postError: state?.post?.error
+    postError: state?.post?.error,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -66,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
     userUpdateSpouseCandidate: payload => dispatch(userUpdateSpouseCandidate(payload)),
     userUpdateSpouseCandidateReset: payload => dispatch(userUpdateSpouseCandidateReset(payload)),
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
-    userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset())
+    userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

@@ -23,11 +23,19 @@ const SearchNewMemberPage = ({
     userActivityLikedCompleted = false,
     userMe = {},
     userMeLoading = false,
-    getUserMe = () => {}
+    getUserMe = () => {},
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         getUserMe();
@@ -153,6 +161,7 @@ const SearchNewMemberPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             <SearchMenu/>
             <div className={styles.frame}>

@@ -13,7 +13,6 @@ import {
     userUpdateSpouseCandidateReset,
     userUpdateCaracteristicFeature,
     userUpdateCaracteristicFeatureReset,
-
     userActivitySmiled,
     userActivitySmiledReset,
     userBlocked,
@@ -21,7 +20,8 @@ import {
     userActivityFavorite,
     userActivityFavoriteReset,
     userActivityLiked,
-    userActivityLikedReset
+    userActivityLikedReset,
+    userLogout
 } from '../../../store/user/actions';
 
 import {
@@ -44,11 +44,11 @@ const mapStateToProps = state => ({
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
     cities: state?.definitions?.cities,
     districts: state?.definitions?.districts,
-
     userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
     userBlockedComplete: state?.user?.userBlockedComplete,
     userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
-    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted
+    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,7 +64,6 @@ const mapDispatchToProps = dispatch => ({
     userUpdateSpouseCandidateReset: payload => dispatch(userUpdateSpouseCandidateReset(payload)),
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
-    
     userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
     userActivitySmiledReset: () => dispatch(userActivitySmiledReset()),
     userBlocked: payload => dispatch(userBlocked(payload)),
@@ -72,7 +71,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
-    userActivityLikedReset: () => dispatch(userActivityLikedReset())
+    userActivityLikedReset: () => dispatch(userActivityLikedReset()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewMembersPageOrganisms);

@@ -25,7 +25,8 @@ import {
     userReportsReset,
     userBlocked,
     userBlockedReset,
-    createUserProfileVisitLog
+    createUserProfileVisitLog,
+    userLogout
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -45,6 +46,7 @@ const mapStateToProps = state => ({
     userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
     userReportsComplete: state?.user?.userReportsComplete,
     userBlockedComplete: state?.user?.userBlockedComplete,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,7 +66,8 @@ const mapDispatchToProps = dispatch => ({
     userReportsReset: () => dispatch(userReportsReset()),
     userBlocked: payload => dispatch(userBlocked(payload)),
     userBlockedReset: () => dispatch(userBlockedReset()),
-    createUserProfileVisitLog: payload => dispatch(createUserProfileVisitLog(payload))
+    createUserProfileVisitLog: payload => dispatch(createUserProfileVisitLog(payload)),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);

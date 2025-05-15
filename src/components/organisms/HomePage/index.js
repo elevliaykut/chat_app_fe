@@ -46,7 +46,9 @@ const HomePage = ({
     userUpdateCaracteristicFeature = () => {},
     userUpdateCaracteristicFeatureReset = () => {},
     userUpdateSpouseCandidateInfoComplete = false,
-    userUpdateCaracteristicFeatureComplete = false
+    userUpdateCaracteristicFeatureComplete = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -57,7 +59,12 @@ const HomePage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
 
-
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+      }, [isUserLoggedIn]);
+    
     useEffect(() => {
         if(updateUserPersonalInfoComplete) {
             getUserMe();
@@ -197,6 +204,7 @@ const HomePage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={profileVisible}
+                userLogout={userLogout}
             />
             <StorySlider/>
             <div className={styles.frame}>

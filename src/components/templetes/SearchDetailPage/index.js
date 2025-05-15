@@ -14,6 +14,7 @@ import {
     getUserMe,
     getUsers,
     getOnlineProfiles,
+    userLogout
 } from '../../../store/user/actions';
 
 import {
@@ -35,6 +36,7 @@ const mapStateToProps = state => ({
     memberIsLoading: state?.user?.memberIsLoading,
     userMeLoading: state?.user?.userMeLoading,
     filterUserIsLoading: state?.user?.filterUserIsLoading,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -49,7 +51,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     getCities: () => dispatch(getCities()),
     getUserMe: () => dispatch(getUserMe()),
-    getOnlineProfiles: () => dispatch(getOnlineProfiles())
+    getOnlineProfiles: () => dispatch(getOnlineProfiles()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDetailOrganisms);

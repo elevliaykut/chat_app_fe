@@ -50,7 +50,9 @@ const VisitProfilesPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -61,6 +63,12 @@ const VisitProfilesPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         getUserMe();
@@ -225,7 +233,9 @@ const VisitProfilesPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
+            
             <StorySlider/>
 
             <div className={styles.frame}>

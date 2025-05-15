@@ -12,7 +12,8 @@ const LoginPage = ({
 	isLoading = true,
 	resetError = () => {},
 	registerCompleted = false,
-	userRegisterCompletedReset = () => {}
+	userRegisterCompletedReset = () => {},
+	loginIsLoaing = false
 }) => {
 	const [gender, setGender] 								= useState();
 	const [username, setUsername]							= useState();
@@ -150,14 +151,14 @@ const LoginPage = ({
 								/>
 								<button 
 									type="submit" 
-									disabled={isLoading} 
+									disabled={loginIsLoaing} 
 									style={{ 
 										height: '52px',
 										marginTop: '12px',
 										borderRadius: '8px', 
 										fontSize: '18px'
 									}}>
-									{isLoading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+									{loginIsLoaing ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
 								</button>
 								<label style={{
 									fontSize: '16px',

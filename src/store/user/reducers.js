@@ -88,7 +88,10 @@ import {
 	GET_MATCH_PREVIUS_USER_STARTED,
 	GET_MATCH_PREVIUS_USER_SUCCEEDED,
 	GET_MATCH_PREVIUS_USER_FAILED,
-	RESET_MATCH_PREVIUS_USER
+	RESET_MATCH_PREVIUS_USER,
+	USER_LOGOUT_STARTED,
+	USER_LOGOUT_SUCCEEDED,
+	USER_LOGOUT_FAILED
 } from './types';
 
 const initialState = {
@@ -130,7 +133,8 @@ const initialState = {
 	visitProfiles: [],
 	matchUser: {},
 	matchUserComplete: false,
-	matchPreviusUserComplete: false
+	matchPreviusUserComplete: false,
+	loginIsLoaing: false
 };
 
 const user = (state = initialState, action) => {
@@ -140,7 +144,7 @@ const user = (state = initialState, action) => {
 		case USER_LOGIN_STARTED:
 			return {
 				...state,
-				isLoading: true
+				loginIsLoaing: true
 			};
 		case USER_LOGIN_SUCCEEDED:
 			return {
@@ -152,14 +156,27 @@ const user = (state = initialState, action) => {
 				phone: payload?.data?.phone,
 				email: payload?.data?.email,
 				status: payload?.data?.status,
-				isLoading: false
+				loginIsLoaing: false
 			};
         case USER_LOGIN_FAILED:
             return {
                 ...state,
-                isLoading: false,
+                loginIsLoaing: false,
                 error: payload
             };
+		case USER_LOGOUT_STARTED:
+			return {
+				...state,
+			};
+		case USER_LOGOUT_SUCCEEDED:
+			return {
+				...state,
+				isUserLoggedIn: false
+			};
+		case USER_LOGOUT_FAILED:
+			return {
+				...state,
+			};
 		case USER_RESET_ERROR:
 			return {
 				...state,

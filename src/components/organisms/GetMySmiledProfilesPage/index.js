@@ -48,7 +48,9 @@ const GetMySmiledProfilesPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -59,6 +61,12 @@ const GetMySmiledProfilesPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         getUserMe();
@@ -217,6 +225,7 @@ const GetMySmiledProfilesPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             <StorySlider/>
 

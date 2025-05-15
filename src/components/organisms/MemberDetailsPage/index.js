@@ -42,7 +42,9 @@ const MemberDetailsPage = ({
     userBlocked = () => {},
     userBlockedReset = () => {},
     userBlockedComplete = false,
-    createUserProfileVisitLog = () => {}
+    createUserProfileVisitLog = () => {},
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -50,6 +52,12 @@ const MemberDetailsPage = ({
     const [memberPostVisible, setMemberPostVisible]                     = useState(false);
     const [reportModalVisible, setReportModalVisible]                   = useState(false);
     const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         if(memberId) {
@@ -154,6 +162,7 @@ const MemberDetailsPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={profileVisible}
+                userLogout={userLogout}
             />
             
             <div className={styles.frame}>

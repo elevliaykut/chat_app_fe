@@ -27,7 +27,8 @@ import {
 	CREATE_USER_PROFILE_VISIT_LOG_STARTED,
 	GET_USER_PROFILE_VISIT_STARTED,
 	GET_USER_MATCH_STARTED,
-	GET_MATCH_PREVIUS_USER_STARTED
+	GET_MATCH_PREVIUS_USER_STARTED,
+	USER_LOGOUT_STARTED
 } from './types';
 
 import {
@@ -80,7 +81,8 @@ import {
 	getUserMatchSuccess,
 	getUserMatchError,
 	getMatchPreviusUserSuccess,
-	getMatchPreviusUserError
+	getMatchPreviusUserError,
+	userLogoutSuccess
 } from './actions';
 
 const cookies = new Cookies();
@@ -836,6 +838,11 @@ function* getMatchPreviusUserTask(action) {
 	}
 }
 
+function* userLogoutTask(action) {
+	yield put(userLogoutSuccess());
+	window.location = '/';
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchLoginUser() {
@@ -938,6 +945,10 @@ function* watchGetMatchPreviusUser() {
 	yield takeLatest(GET_MATCH_PREVIUS_USER_STARTED, getMatchPreviusUserTask);
 }
 
+function* watchUserLogout() {
+	yield takeLatest(USER_LOGOUT_STARTED, userLogoutTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -964,6 +975,7 @@ export default function* saga() {
 		watchCreateUserProfileVisitLog(),
 		watchGetUserProfileVisit(),
 		watchGetUserMatch(),
-		watchGetMatchPreviusUser()
+		watchGetMatchPreviusUser(),
+		watchUserLogout()
 	]);
 }

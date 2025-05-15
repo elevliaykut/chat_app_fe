@@ -12,7 +12,8 @@ import {
     userUpdateSpouseCandidateReset,
     userUpdateCaracteristicFeature,
     userUpdateCaracteristicFeatureReset,
-    getMyPosts
+    getMyPosts,
+    userLogout
 } from '../../../store/user/actions';
 
 import {
@@ -41,8 +42,8 @@ const mapStateToProps = state => ({
     districts: state?.definitions?.districts,
     myPosts: state?.user?.myPosts,
     postIsLoading: state?.post?.isLoading,
-    postError: state?.post?.error
-
+    postError: state?.post?.error,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -60,7 +61,8 @@ const mapDispatchToProps = dispatch => ({
     userUpdateSpouseCandidateReset: () => dispatch(userUpdateSpouseCandidateReset()),
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
-    getMyPosts: payload => dispatch(getMyPosts(payload))
+    getMyPosts: payload => dispatch(getMyPosts(payload)),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyProfileOrganisms);

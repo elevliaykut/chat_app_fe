@@ -44,7 +44,9 @@ const MyProfilePage = ({
     userUpdateCaracteristicFeature = () => {},
     userUpdateCaracteristicFeatureReset = () => {},
     getMyPosts = () => {},
-    myPosts = []
+    myPosts = [],
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [memberPostVisible, setMemberPostVisible] = useState(false);
@@ -55,6 +57,12 @@ const MyProfilePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         getCities();
@@ -200,6 +208,7 @@ const MyProfilePage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             
             <div className={styles.frame}>

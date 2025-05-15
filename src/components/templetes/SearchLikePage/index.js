@@ -9,7 +9,8 @@ import {
     getUserMatch,
     resetUserMatch,
     getMatchPreviusUser,
-    resetMatchPreviusUser
+    resetMatchPreviusUser,
+    userLogout
 } from '../../../store/user/actions';
 
 import {
@@ -27,7 +28,8 @@ const mapStateToProps = state => ({
     isLoadingDefinition: state?.definitions?.isLoading,
     matchUser: state?.user?.matchUser,
     matchUserComplete: state?.user?.matchUserComplete,
-    matchPreviusUserComplete: state?.user?.matchPreviusUserComplete
+    matchPreviusUserComplete: state?.user?.matchPreviusUserComplete,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,7 +40,8 @@ const mapDispatchToProps = dispatch => ({
     getUserMatch: payload => dispatch(getUserMatch(payload)),
     resetUserMatch: () => dispatch(resetUserMatch()),
     getMatchPreviusUser: () => dispatch(getMatchPreviusUser()),
-    resetMatchPreviusUser: () => dispatch(resetMatchPreviusUser())
+    resetMatchPreviusUser: () => dispatch(resetMatchPreviusUser()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchLikeOrganisms);

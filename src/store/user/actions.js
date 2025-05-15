@@ -87,7 +87,10 @@ import {
 	GET_MATCH_PREVIUS_USER_STARTED,
 	GET_MATCH_PREVIUS_USER_SUCCEEDED,
 	GET_MATCH_PREVIUS_USER_FAILED,
-	RESET_MATCH_PREVIUS_USER
+	RESET_MATCH_PREVIUS_USER,
+	USER_LOGOUT_STARTED,
+	USER_LOGOUT_SUCCEEDED,
+	USER_LOGOUT_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -519,4 +522,19 @@ export const getMatchPreviusUserError = error => ({
 
 export const resetMatchPreviusUser = () => ({
 	type: RESET_MATCH_PREVIUS_USER
+});
+
+export const userLogout = values => ({
+	type: USER_LOGOUT_STARTED,
+	payload: values
+});
+
+export const userLogoutSuccess = data => ({
+	type: USER_LOGOUT_SUCCEEDED,
+	payload: data
+});
+
+export const userLogoutError = error => ({
+	type: USER_LOGOUT_FAILED,
+	payload: error
 });

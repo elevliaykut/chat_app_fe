@@ -49,7 +49,9 @@ const NewMembersPage = ({
     userActivityFavoriteCompleted = false,
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
-    userActivityLikedCompleted = false
+    userActivityLikedCompleted = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -60,6 +62,12 @@ const NewMembersPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+    }, [isUserLoggedIn]);
 
     useEffect(() => {
         const now = new Date();
@@ -293,6 +301,7 @@ const NewMembersPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             <StorySlider/>
 

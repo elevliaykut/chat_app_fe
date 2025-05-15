@@ -12,7 +12,8 @@ import {
     userActivityFavoriteReset,
     userActivityLiked,
     userActivityLikedReset,
-    getUserMe
+    getUserMe,
+    userLogout
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -26,6 +27,7 @@ const mapStateToProps = state => ({
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
     userMe: state?.user?.userMe,
     userMeLoading: state?.user?.userMeLoading,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,7 +40,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
-    getUserMe: () => dispatch(getUserMe())
+    getUserMe: () => dispatch(getUserMe()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchApproveOrganisms);

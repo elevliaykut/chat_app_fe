@@ -33,7 +33,9 @@ const SearchDetailPage = ({
     members = [],
     memberIsLoading = false,
     userMeLoading = false,
-    filterUserIsLoading = false
+    filterUserIsLoading = false,
+    isUserLoggedIn = false,
+    userLogout = () => {}
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -65,6 +67,12 @@ const SearchDetailPage = ({
     const [hasPhotoMemberToggleStatus, setHasPhotoMemberToggleStatus] = useState(false);
     const [hasNotPhotoMemberToggleStatus, setHasNotPhotoMemberToggleStatus] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+    
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+          window.location = '/';
+        }
+      }, [isUserLoggedIn]);
     
     useEffect(() => {
         if(!userMeLoading) {
@@ -291,6 +299,7 @@ const SearchDetailPage = ({
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={userMeVisible}
+                userLogout={userLogout}
             />
             <SearchMenu/>
             <div className={styles.frame}>

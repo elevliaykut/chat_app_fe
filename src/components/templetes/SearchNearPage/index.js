@@ -12,7 +12,8 @@ import {
     userActivityFavorite,
     userActivityFavoriteReset,
     userActivityLiked,
-    userActivityLikedReset
+    userActivityLikedReset,
+    userLogout
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -25,7 +26,8 @@ const mapStateToProps = state => ({
     userActivitySmiledCompleted: state?.user?.userActivitySmiledCompleted,
     userBlockedComplete: state?.user?.userBlockedComplete,
     userActivityFavoriteCompleted: state?.user?.userActivityFavoriteCompleted,
-    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted
+    userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
+    isUserLoggedIn: state?.user?.isUserLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -38,7 +40,8 @@ const mapDispatchToProps = dispatch => ({
     userActivityFavorite: payload => dispatch(userActivityFavorite(payload)),
     userActivityFavoriteReset: () => dispatch(userActivityFavoriteReset()),
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
-    userActivityLikedReset: () => dispatch(userActivityLikedReset())
+    userActivityLikedReset: () => dispatch(userActivityLikedReset()),
+    userLogout: () => dispatch(userLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchNearOrganisms);

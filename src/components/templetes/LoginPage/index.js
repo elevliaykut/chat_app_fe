@@ -15,7 +15,8 @@ const mapStateToProps = state => ({
 	error: state?.user?.error,
 	token: state?.user?.token,
 	isLoading: state?.user?.isLoading,
-	registerCompleted: state?.user?.registerCompleted
+	registerCompleted: state?.user?.registerCompleted,
+	loginIsLoaing: state?.user?.loginIsLoaing
 });
 
 const mapDispatchToProps = dispatch => ({
