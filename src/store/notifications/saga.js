@@ -6,7 +6,8 @@ import { BASE_URL } from '../../utils/urls';
 import {
     GET_NOTIFICATIONS_STARTED,
 	READ_NOTIFICATION_STARTED,
-	GET_ALL_NOTIFICATION_STARTED
+	GET_ALL_NOTIFICATION_STARTED,
+	DELETE_NOTIFICATION_STARTED
 } from './types';
 
 import {
@@ -15,7 +16,9 @@ import {
 	readNotificationSuccess,
 	readNotificationError,
 	getAllNotificationSuccess,
-	getAllNotificationError
+	getAllNotificationError,
+	deleteNotificationSuccess,
+	deleteNotificationError
 } from './actions';
 
 const cookies = new Cookies();
@@ -79,6 +82,26 @@ function* getAllNotificationTask(action) {
 	}
 }
 
+function* deleteNotificationTask(action) {
+	const { payload = {} } = action;
+	const { id } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/notification/${id}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(deleteNotificationSuccess(data));
+	} catch (error) {
+		yield put(deleteNotificationError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
@@ -93,10 +116,15 @@ function* watchGetAllNotification() {
 	yield takeLatest(GET_ALL_NOTIFICATION_STARTED, getAllNotificationTask);
 }
 
+function* watchDeleteNotification() {
+	yield takeLatest(DELETE_NOTIFICATION_STARTED, deleteNotificationTask);
+}
+
 export default function* saga() {
     yield all([
         watchGetNotifications(),
 		watchReadNotification(),
-		watchGetAllNotification()
+		watchGetAllNotification(),
+		watchDeleteNotification()
     ]);
 }

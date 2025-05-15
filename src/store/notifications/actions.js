@@ -9,6 +9,10 @@ import {
     GET_ALL_NOTIFICATION_STARTED,
     GET_ALL_NOTIFICATION_SUCCEEDED,
     GET_ALL_NOTIFICATION_FAILED,
+    DELETE_NOTIFICATION_STARTED,
+    DELETE_NOTIFICATION_SUCCEEDED,
+    DELETE_NOTIFICATION_FAILED,
+    RESET_DELETE_NOTIFICATION
 } from './types';
 
 export const getNotifications = values => ({
@@ -58,4 +62,23 @@ export const getAllNotificationSuccess = data => ({
 export const getAllNotificationError = error => ({
     type: GET_ALL_NOTIFICATION_FAILED,
     payload: error
+});
+
+export const deleteNotification = values => ({
+    type: DELETE_NOTIFICATION_STARTED,
+    payload: values
+});
+
+export const deleteNotificationSuccess = data => ({
+    type: DELETE_NOTIFICATION_SUCCEEDED,
+    payload: data
+});
+
+export const deleteNotificationError = error => ({
+    type: DELETE_NOTIFICATION_FAILED,
+    payload: error
+});
+
+export const resetDeleteNotification = () => ({
+    type: RESET_DELETE_NOTIFICATION
 });

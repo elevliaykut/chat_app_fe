@@ -8,7 +8,11 @@ import {
     READ_NOTIFICATION_RESET,
     GET_ALL_NOTIFICATION_STARTED,
     GET_ALL_NOTIFICATION_SUCCEEDED,
-    GET_ALL_NOTIFICATION_FAILED
+    GET_ALL_NOTIFICATION_FAILED,
+    DELETE_NOTIFICATION_STARTED,
+    DELETE_NOTIFICATION_SUCCEEDED,
+    DELETE_NOTIFICATION_FAILED,
+    RESET_DELETE_NOTIFICATION
 } from './types';
 
 const initialState = {
@@ -16,7 +20,8 @@ const initialState = {
     error: null,
     notifications: [],
     allNotifications: [],
-    readNotificationComplete: false
+    readNotificationComplete: false,
+    deleteNotificationComplete: false
 };
 
 const notifications = (state = initialState, action) => {
@@ -80,6 +85,29 @@ const notifications = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: payload
+            };
+        case DELETE_NOTIFICATION_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                deleteNotificationComplete: false
+            };
+        case DELETE_NOTIFICATION_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                deleteNotificationComplete: true
+            };
+        case DELETE_NOTIFICATION_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                deleteNotificationComplete: false 
+            };
+        case RESET_DELETE_NOTIFICATION:
+            return {
+                ...state,
+                deleteNotificationComplete: false
             };
         default:
             return state;

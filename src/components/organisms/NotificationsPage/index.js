@@ -18,10 +18,20 @@ const NotificationsPage = ({
     readNotification = () => {},
     readNotificationReset = () => {},
     getAllNotification = () => {},
-    allNotifications = []
+    allNotifications = [],
+    deleteNotification = () => {},
+    resetDeleteNotification = () => {},
+    deleteNotificationComplete = () => {}
 }) => {
     const [notifVisible, setNotifVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if(deleteNotificationComplete) {
+            getAllNotification();
+            resetDeleteNotification();
+        }
+    },[deleteNotificationComplete]);
 
     useEffect(() => {
         getUserMe();
@@ -97,7 +107,7 @@ const NotificationsPage = ({
                                                         <span className={styles.message}>{item.message}</span>
                                                     </div>
                                                 </div>
-                                                <button className={styles.deleteButton} onClick={() => deleteNotification(item.id)}>
+                                                <button className={styles.deleteButton} onClick={() => deleteNotification({ id: item?.id})}>
                                                     🗑️
                                                 </button>
                                             </li>

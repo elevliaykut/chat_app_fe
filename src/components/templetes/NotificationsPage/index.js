@@ -11,7 +11,9 @@ import {
     getNotifications,
     readNotification,
     readNotificationReset,
-    getAllNotification
+    getAllNotification,
+    deleteNotification,
+    resetDeleteNotification
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -25,6 +27,7 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.isLoading,
     readNotificationComplete: state?.notifications?.readNotificationComplete,
     allNotifications: state?.notifications?.allNotifications,
+    deleteNotificationComplete: state?.notifications?.deleteNotificationComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,7 +36,9 @@ const mapDispatchToProps = dispatch => ({
     getNotifications: (payload) => dispatch(getNotifications(payload)),
     readNotification: () => dispatch(readNotification()),
     readNotificationReset:() => dispatch(readNotificationReset()),
-    getAllNotification: () => dispatch(getAllNotification())
+    getAllNotification: () => dispatch(getAllNotification()),
+    deleteNotification: payload => dispatch(deleteNotification(payload)),
+    resetDeleteNotification: () => dispatch(resetDeleteNotification())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationPageOrganisms);
