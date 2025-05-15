@@ -1,4 +1,3 @@
-import { userReportReset } from './actions';
 import {
 	USER_LOGIN_STARTED,
 	USER_LOGIN_SUCCEEDED,

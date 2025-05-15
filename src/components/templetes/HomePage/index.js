@@ -19,6 +19,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
+    getNotifications
+} from '../../../store/notifications/actions';
+
+import {
     getCities,
     getDistricts
 } from '../../../store/definitions/actions';
@@ -48,7 +52,9 @@ const mapStateToProps = state => ({
     districts: state?.definitions?.districts,
     postIsLoading: state?.post?.isLoading,
     postError: state?.post?.error,
-    isUserLoggedIn: state?.user?.isUserLoggedIn
+    isUserLoggedIn: state?.user?.isUserLoggedIn,
+    notifications: state?.notifications?.notifications,
+    notificationIsLoading: state?.notifications?.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,7 +75,8 @@ const mapDispatchToProps = dispatch => ({
     userUpdateSpouseCandidateReset: payload => dispatch(userUpdateSpouseCandidateReset(payload)),
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
-    userLogout: () => dispatch(userLogout())
+    userLogout: () => dispatch(userLogout()),
+    getNotifications: () => dispatch(getNotifications())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

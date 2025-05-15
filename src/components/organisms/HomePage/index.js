@@ -48,7 +48,10 @@ const HomePage = ({
     userUpdateSpouseCandidateInfoComplete = false,
     userUpdateCaracteristicFeatureComplete = false,
     isUserLoggedIn = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -58,6 +61,10 @@ const HomePage = ({
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+
+    useEffect(() => {
+        getNotifications();
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -205,6 +212,8 @@ const HomePage = ({
                 onlineMemberCount={userMe?.online_member_count}
                 profileVisible={profileVisible}
                 userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
             />
             <StorySlider/>
             <div className={styles.frame}>

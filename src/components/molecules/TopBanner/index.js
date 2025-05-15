@@ -7,8 +7,20 @@ import ThemeConfig from "@/src/utils/ThemeConfig";
 const TopBanner = ({
     onlineMemberCount = "",
     profileVisible = false,
-    userLogout = () => {}
+    userLogout = () => {},
+    notifications = [],
+    notificationIsLoading = false
 }) => {
+
+    const [notificationVisible, setNotificationVisible] = useState(false);
+    const [notifFirstVisible, setNotifFirstVisible] = useState(false);
+
+    useEffect(() => {
+        if(!notificationIsLoading) {
+            setNotifFirstVisible(true);
+        }
+    },[notificationIsLoading]);
+
     return (
         <>
             <div className={styles.container}>
@@ -59,17 +71,72 @@ const TopBanner = ({
                                 <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
                             </svg>
                         </div>
-                        <div style={{ paddingTop: '20px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="white"
-                                >
-                                <path d="M12 22c1.1 0 1.99-.9 1.99-2h-4a2 2 0 002.01 2zM18 16v-5c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
-                            </svg>
-                        </div>
+                        {notifFirstVisible && (
+                            <>
+                                <div style={{ paddingTop: '20px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}} onClick={() => setNotificationVisible(!notificationVisible)}>
+                                    <div style={{ position: 'relative'}}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="white"
+                                            >
+                                            <path d="M12 22c1.1 0 1.99-.9 1.99-2h-4a2 2 0 002.01 2zM18 16v-5c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                                        </svg>
+                                        {notifications?.data?.length > 0 && (
+                                            <span className={styles.notificationCount}>
+                                                {notifications?.meta?.total}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {notificationVisible && (
+                                        <>
+                                            <div className={styles.dropdown}>
+                                                <div className={styles.header}>Bildirimler</div>
+                                                    <ul className={styles.list}>
+                                                        {notifications?.data.slice(0, 3).map(item => (
+                                                            <>
+                                                                <li key={item.id} className={styles.item}>
+                                                                    {item?.user?.profile_photo_path ? (
+                                                                        <>
+                                                                            <img src={item?.user?.profile_photo_path} alt="avatar" className={styles.avatar} />
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            <div className={styles.avatar}>
+                                                                                <svg
+                                                                                    width="35"
+                                                                                    height="35"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    fill="#ccc"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    >
+                                                                                    <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                                                                    <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                                                                    <path
+                                                                                        d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                                                        fill="#BDBDBD"
+                                                                                />
+                                                                                </svg>
+                                                                            </div>
+                                                                        </>
+                                                                    )}
+                                                                    <div className={styles.text}>
+                                                                        <span className={styles.username}>{item?.user?.username}</span>{' '}
+                                                                        <span className={styles.message}>{item.message}</span>
+                                                                    </div>
+                                                                </li>
+                                                            </>
+                                                        ))}
+                                                    </ul>
+                                                    <div className={styles.footer} onClick={() => window.location = '/notifications'}>Tümünü Gör</div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </>
+                        )}
                         <div style={{ paddingTop: '20px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}} onClick={() => window.location = '/my-settings'}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

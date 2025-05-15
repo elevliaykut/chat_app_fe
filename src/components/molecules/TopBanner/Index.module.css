@@ -25,3 +25,110 @@
     height: 60px;
     background-color: white;
 }
+
+.wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .iconButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+  }
+  
+  .iconButton:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .dropdown {
+    position: absolute;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  .header {
+    padding: 12px 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .list {
+    max-height: 300px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .username {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222;
+  }
+  
+  .message {
+    font-size: 13px;
+    color: #555;
+  }
+  
+  .footer {
+    padding: 10px;
+    text-align: center;
+    color: #0070f3;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .footer:hover {
+    text-decoration: underline;
+  }
+
+  .notificationCount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+    z-index: 1;
+    box-shadow: 0 0 0 2px white;
+  }
+  
+  
