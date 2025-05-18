@@ -103,7 +103,7 @@ const NotificationsPage = ({
                                                         </div>
                                                     )}
                                                     <div className={styles.text}>
-                                                        <span className={styles.username}>{item.user?.username}</span>
+                                                        <span className={styles.username} onClick={() => window.location = '/member/' + item?.user?.id}>{item.user?.username}</span>
                                                         <span className={styles.message}>{item.message}</span>
                                                     </div>
                                                 </div>

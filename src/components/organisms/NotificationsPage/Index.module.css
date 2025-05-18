@@ -63,6 +63,11 @@
   .username {
     font-weight: 600;
     color: #222;
+    cursor: pointer;
+  }
+
+  .username:hover {
+    text-decoration: underline;
   }
   
   .message {
