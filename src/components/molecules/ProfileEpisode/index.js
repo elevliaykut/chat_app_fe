@@ -251,13 +251,13 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.noneIconmenu}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/contact'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>İLETİŞİM</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.noneIconmenu}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/help'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YARDIM</label>
                         </div>
