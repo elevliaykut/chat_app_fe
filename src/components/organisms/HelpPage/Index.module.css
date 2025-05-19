@@ -78,7 +78,7 @@
   .active {
     background-color: #f0f0f0; /* Arka plan rengini ihtiyacınıza göre değiştirin */
     font-weight: bold;
-    border-left: 4px solid #0070f3; /* İsteğe bağlı: sol kenara bir vurgu */
+    border-left: 4px solid #e72a7f; /* İsteğe bağlı: sol kenara bir vurgu */
   }
   
   .container {

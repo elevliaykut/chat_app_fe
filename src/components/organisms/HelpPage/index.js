@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
 
-const HelpPage = () => {
+const HelpPage = ({
+    getUserMe = () => {},
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = {},
+    userMe = {},
+    userMeLoading = false,
+    notificationIsLoading = false
+}) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [generalAccordionVisible, setGeneralAccordionVisible] = useState(false);
     const [paymentAccordionVisible, setPaymentAccordionVisible] = useState(true);
     const [memberShipAccordionVisible, setMemberShipAccordionVisible] = useState(false);
     const [photoAccordionVisible, setPhotoAccordionVisible] = useState(false);
     const [activeMenu, setActiveMenu] = useState("payment");
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     const toggleAccordion = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
     
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
+
+    useEffect(() => {
+        getUserMe();
+        getNotifications({ read: false });
+    },[]);
+
     const paymentData = [
         {
             question: 'Yurt dışında yaşıyorum nasıl ödeme yapabilirim?',
@@ -208,7 +228,13 @@ const HelpPage = () => {
 
     return (
         <>
-            <TopBanner/>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                profileVisible={userMeVisible}
+                userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
+            />
             <div className={styles?.frame}>
                 <div className={styles.headerTextEpisode}>
                     <h1>Yardım</h1>
