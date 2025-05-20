@@ -12,7 +12,16 @@ import {
     DELETE_NOTIFICATION_STARTED,
     DELETE_NOTIFICATION_SUCCEEDED,
     DELETE_NOTIFICATION_FAILED,
-    RESET_DELETE_NOTIFICATION
+    RESET_DELETE_NOTIFICATION,
+    GET_MESSAGE_LOGS_STARTED,
+    GET_MESSAGE_LOGS_SUCCEEDED,
+    GET_MESSAGE_LOGS_FAILED,
+    GET_OUTGOING_MESSAGE_LOGS_STARTED,
+    GET_OUTGOING_MESSAGE_LOGS_SUCCEEDED,
+    GET_OUTGOING_MESSAGE_LOGS_FAILED,
+    GET_MESSAGES_STARTED,
+    GET_MESSAGES_SUCCEEDED,
+    GET_MESSAGES_FAILED,
 } from './types';
 
 export const getNotifications = values => ({
@@ -81,4 +90,49 @@ export const deleteNotificationError = error => ({
 
 export const resetDeleteNotification = () => ({
     type: RESET_DELETE_NOTIFICATION
+});
+
+export const getMessageLogs = values => ({
+    type: GET_MESSAGE_LOGS_STARTED,
+    payload: values
+});
+
+export const getMessageLogsSuccess = data => ({
+    type: GET_MESSAGE_LOGS_SUCCEEDED,
+    payload: data
+});
+
+export const getMessageLogsError = error => ({
+    type: GET_MESSAGE_LOGS_FAILED,
+    payload: error
+});
+
+export const getOutGoingMessageLogs = values => ({
+    type: GET_OUTGOING_MESSAGE_LOGS_STARTED,
+    payload: values
+});
+
+export const getOutGoingMessageLogsSuccess = data => ({
+    type: GET_OUTGOING_MESSAGE_LOGS_SUCCEEDED,
+    payload: data
+});
+
+export const getOutGoingMessageLogsError = error => ({
+    type: GET_OUTGOING_MESSAGE_LOGS_FAILED,
+    payload: error
+});
+
+export const getMessages = values => ({
+    type: GET_MESSAGES_STARTED,
+    payload: values
+});
+
+export const getMessagesSuccess = data => ({
+    type: GET_MESSAGES_SUCCEEDED,
+    payload: data
+});
+
+export const getMessagesError = error => ({
+    type: GET_MESSAGES_FAILED,
+    payload: error
 });

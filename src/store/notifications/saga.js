@@ -7,7 +7,10 @@ import {
     GET_NOTIFICATIONS_STARTED,
 	READ_NOTIFICATION_STARTED,
 	GET_ALL_NOTIFICATION_STARTED,
-	DELETE_NOTIFICATION_STARTED
+	DELETE_NOTIFICATION_STARTED,
+	GET_MESSAGE_LOGS_STARTED,
+	GET_OUTGOING_MESSAGE_LOGS_STARTED,
+	GET_MESSAGES_STARTED
 } from './types';
 
 import {
@@ -18,7 +21,13 @@ import {
 	getAllNotificationSuccess,
 	getAllNotificationError,
 	deleteNotificationSuccess,
-	deleteNotificationError
+	deleteNotificationError,
+	getMessageLogsSuccess,
+	getMessageLogsError,
+	getOutGoingMessageLogsSuccess,
+	getOutGoingMessageLogsError,
+	getMessagesSuccess,
+	getMessagesError
 } from './actions';
 
 const cookies = new Cookies();
@@ -102,6 +111,62 @@ function* deleteNotificationTask(action) {
 	}
 }
 
+function* getMessageLogsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/incoming-message-logs`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(getMessageLogsSuccess(data));
+	} catch (error) {
+		yield put(getMessageLogsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getOutGoingMessageLogsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/outgoing-message-logs`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(getOutGoingMessageLogsSuccess(data));
+	} catch (error) {
+		yield put(getOutGoingMessageLogsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getMessagesTask(action) {
+	const { payload = {} } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/messages/${userId}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(getMessagesSuccess(data));
+	} catch (error) {
+		yield put(getMessagesError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
@@ -120,11 +185,26 @@ function* watchDeleteNotification() {
 	yield takeLatest(DELETE_NOTIFICATION_STARTED, deleteNotificationTask);
 }
 
+function* watchGetMessageLogs() {
+	yield takeLatest(GET_MESSAGE_LOGS_STARTED, getMessageLogsTask);
+}
+
+function* watchGetOutGoingMessageLogs() {
+	yield takeLatest(GET_OUTGOING_MESSAGE_LOGS_STARTED, getOutGoingMessageLogsTask);
+}
+
+function* watchGetMessages() {
+	yield takeLatest(GET_MESSAGES_STARTED, getMessagesTask);
+}
+
 export default function* saga() {
     yield all([
         watchGetNotifications(),
 		watchReadNotification(),
 		watchGetAllNotification(),
-		watchDeleteNotification()
+		watchDeleteNotification(),
+		watchGetMessageLogs(),
+		watchGetOutGoingMessageLogs(),
+		watchGetMessages()
     ]);
 }

@@ -12,7 +12,16 @@ import {
     DELETE_NOTIFICATION_STARTED,
     DELETE_NOTIFICATION_SUCCEEDED,
     DELETE_NOTIFICATION_FAILED,
-    RESET_DELETE_NOTIFICATION
+    RESET_DELETE_NOTIFICATION,
+    GET_MESSAGE_LOGS_STARTED,
+    GET_MESSAGE_LOGS_SUCCEEDED,
+    GET_MESSAGE_LOGS_FAILED,
+    GET_OUTGOING_MESSAGE_LOGS_STARTED,
+    GET_OUTGOING_MESSAGE_LOGS_SUCCEEDED,
+    GET_OUTGOING_MESSAGE_LOGS_FAILED,
+    GET_MESSAGES_STARTED,
+    GET_MESSAGES_SUCCEEDED,
+    GET_MESSAGES_FAILED
 } from './types';
 
 const initialState = {
@@ -21,7 +30,11 @@ const initialState = {
     notifications: [],
     allNotifications: [],
     readNotificationComplete: false,
-    deleteNotificationComplete: false
+    deleteNotificationComplete: false,
+    messageLogs: [],
+    outGoingMessageLogs: [],
+    messageIsLoading: false,
+    messages: []
 };
 
 const notifications = (state = initialState, action) => {
@@ -108,6 +121,60 @@ const notifications = (state = initialState, action) => {
             return {
                 ...state,
                 deleteNotificationComplete: false
+            };
+        case GET_MESSAGE_LOGS_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case GET_MESSAGE_LOGS_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                messageLogs: payload?.data
+            };
+        case GET_MESSAGE_LOGS_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                error: payload
+            };
+        case GET_OUTGOING_MESSAGE_LOGS_STARTED:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case GET_OUTGOING_MESSAGE_LOGS_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                outGoingMessageLogs: payload?.data
+            };
+        case GET_OUTGOING_MESSAGE_LOGS_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                error: payload
+            };
+        case GET_MESSAGES_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                messageIsLoading: true
+            };
+        case GET_MESSAGES_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                messageIsLoading: false,
+                messages: payload?.data
+            };
+        case GET_MESSAGES_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                messageIsLoading: false,
+                error: payload
             };
         default:
             return state;

@@ -72,7 +72,7 @@ const TopBanner = ({
                         </div>
                         {profileVisible && (
                             <>
-                                <div style={{ paddingTop: '22px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}}>
+                                <div style={{ paddingTop: '22px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}} onClick={() => window.location = '/messages'}>
                                     <div style={{ position: 'relative'}}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"

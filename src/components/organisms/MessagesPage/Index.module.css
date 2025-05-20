@@ -1,0 +1,114 @@
+.frame {
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+}
+
+/* İçerik düzeni */
+.content {
+  display: flex;
+}
+
+/* pages/messages/Index.module.css */
+
+.sidebar {
+  width: 350px;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 16px 0;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+}
+
+.tabs button:hover {
+  color: #000;
+}
+
+.active {
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+  color: #000;
+}
+
+.messageContent {
+  flex: 1;
+  padding: 16px;
+  background-color: #fff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.userList {
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.userItem {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.placeholder {
+  color: #999;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.userItem:hover {
+  background-color: #f0f0f0;
+}
+
+.messages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.messageItem {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+  display: inline-block;
+}
+
+.incoming {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #333;
+  border-top-left-radius: 4px;
+}
+
+.outgoing {
+  align-self: flex-end;
+  background-color: #0070f3;
+  color: white;
+  border-top-right-radius: 4px;
+}
+
