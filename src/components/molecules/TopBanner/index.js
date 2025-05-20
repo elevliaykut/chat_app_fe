@@ -6,6 +6,7 @@ import ThemeConfig from "@/src/utils/ThemeConfig";
 
 const TopBanner = ({
     onlineMemberCount = "",
+    messageCount = "",
     profileVisible = false,
     userLogout = () => {},
     notifications = [],
@@ -69,17 +70,30 @@ const TopBanner = ({
                                 EŞ ADAYI ARA
                             </label>
                         </div>
-                        <div style={{ paddingTop: '22px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="white"
-                            >
-                                <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-                            </svg>
-                        </div>
+                        {profileVisible && (
+                            <>
+                                <div style={{ paddingTop: '22px',paddingLeft: '10px', paddingRight: '10px', cursor: 'pointer'}}>
+                                    <div style={{ position: 'relative'}}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="white"
+                                        >
+                                            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+                                        </svg>
+                                        {messageCount !== 0 && (
+                                            <>
+                                                <span className={styles.messageCount}>
+                                                    {messageCount}
+                                                </span>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </>
+                        )}
 
                         {notifFirstVisible && (
                             <>

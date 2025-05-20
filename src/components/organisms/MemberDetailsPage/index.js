@@ -168,6 +168,7 @@ const MemberDetailsPage = ({
 
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
+                messageCount={userMe?.message_count}
                 profileVisible={profileVisible}
                 userLogout={userLogout}
                 notifications={notifications}

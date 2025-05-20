@@ -230,6 +230,7 @@ const HelpPage = ({
         <>
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
+                messageCount={userMe?.message_count}
                 profileVisible={userMeVisible}
                 userLogout={userLogout}
                 notifications={notifications}
