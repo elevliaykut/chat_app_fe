@@ -11,7 +11,9 @@ import {
     getNotifications,
     getMessageLogs,
     getOutGoingMessageLogs,
-    getMessages    
+    getMessages,
+    sendMessage,
+    resetSendMessageCompleted    
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -27,7 +29,8 @@ const mapStateToProps = state => ({
     messageLogs: state?.notifications?.messageLogs,
     outGoingMessageLogs: state?.notifications?.outGoingMessageLogs,
     messageIsLoading: state?.notifications?.messageIsLoading,
-    messages: state?.notifications?.messages
+    messages: state?.notifications?.messages,
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,6 +40,8 @@ const mapDispatchToProps = dispatch => ({
     getMessageLogs: () => dispatch(getMessageLogs()),
     getOutGoingMessageLogs: () => dispatch(getOutGoingMessageLogs()),
     getMessages: payload => dispatch(getMessages(payload)),
+    sendMessage: payload => dispatch(sendMessage(payload)),
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPageOrganisms);

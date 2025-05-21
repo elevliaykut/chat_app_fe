@@ -21,7 +21,11 @@ import {
     GET_OUTGOING_MESSAGE_LOGS_FAILED,
     GET_MESSAGES_STARTED,
     GET_MESSAGES_SUCCEEDED,
-    GET_MESSAGES_FAILED
+    GET_MESSAGES_FAILED,
+    SEND_MESSAGE_STARTED,
+    SEND_MESSAGE_SUCCEEDED,
+    SEND_MESSAGE_FAILED,
+    RESET_SEND_MESSAGE_COMPLETED
 } from './types';
 
 const initialState = {
@@ -34,7 +38,8 @@ const initialState = {
     messageLogs: [],
     outGoingMessageLogs: [],
     messageIsLoading: false,
-    messages: []
+    messages: [],
+    sendMessageCompleted: false
 };
 
 const notifications = (state = initialState, action) => {
@@ -175,6 +180,31 @@ const notifications = (state = initialState, action) => {
                 isLoading: false,
                 messageIsLoading: false,
                 error: payload
+            };
+        case SEND_MESSAGE_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                sendMessageCompleted: false
+            };
+        case SEND_MESSAGE_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                sendMessageCompleted: true,
+            };
+        case SEND_MESSAGE_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                sendMessageCompleted: false,
+                error: payload
+            };
+        case RESET_SEND_MESSAGE_COMPLETED:
+            return {
+                ...state,
+                isLoading: false,
+                sendMessageCompleted: false,
             };
         default:
             return state;

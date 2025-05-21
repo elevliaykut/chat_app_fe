@@ -10,7 +10,8 @@ import {
 	DELETE_NOTIFICATION_STARTED,
 	GET_MESSAGE_LOGS_STARTED,
 	GET_OUTGOING_MESSAGE_LOGS_STARTED,
-	GET_MESSAGES_STARTED
+	GET_MESSAGES_STARTED,
+	SEND_MESSAGE_STARTED
 } from './types';
 
 import {
@@ -27,7 +28,9 @@ import {
 	getOutGoingMessageLogsSuccess,
 	getOutGoingMessageLogsError,
 	getMessagesSuccess,
-	getMessagesError
+	getMessagesError,
+	sendMessageSuccess,
+	sendMessageError
 } from './actions';
 
 const cookies = new Cookies();
@@ -167,6 +170,30 @@ function* getMessagesTask(action) {
 	}
 }
 
+function* sendMessageTask(action) {
+	const { payload = {} } = action;
+	const { receiverId, message } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/messages/send`,
+			{
+				receiver_id: receiverId,
+				message: message
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(sendMessageSuccess(data));
+	} catch (error) {
+		yield put(sendMessageError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
@@ -197,6 +224,10 @@ function* watchGetMessages() {
 	yield takeLatest(GET_MESSAGES_STARTED, getMessagesTask);
 }
 
+function* watchSendMessage() {
+	yield takeLatest(SEND_MESSAGE_STARTED, sendMessageTask);
+}
+
 export default function* saga() {
     yield all([
         watchGetNotifications(),
@@ -205,6 +236,7 @@ export default function* saga() {
 		watchDeleteNotification(),
 		watchGetMessageLogs(),
 		watchGetOutGoingMessageLogs(),
-		watchGetMessages()
+		watchGetMessages(),
+		watchSendMessage()
     ]);
 }

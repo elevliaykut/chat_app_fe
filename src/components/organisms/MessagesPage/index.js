@@ -16,7 +16,10 @@ const MessagesPage = ({
     outGoingMessageLogs = [],
     messageIsLoading = false,
     messages = [],
-    getMessages = () => {}
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    sendMessageCompleted = false
 }) => {
     const [messageVisible, setMessageVisible] = useState(false);
     const [messageContentVisible, setMessageContentVisible] = useState(false);
@@ -24,6 +27,7 @@ const MessagesPage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
     const [activeTab, setActiveTab] = useState('inbox');
     const [userId, setUserId] = useState();
+    const [newMessage, setNewMessage] = useState();
 
     useEffect(() => {
         if(messageIsLoading) {
@@ -43,6 +47,7 @@ const MessagesPage = ({
     },[userMeLoading]);
 
     useEffect(() => {
+        resetSendMessageCompleted();
         getMessageLogs();
         getOutGoingMessageLogs();
     },[]);
@@ -58,6 +63,21 @@ const MessagesPage = ({
             getMessages({ userId: userId });
         }
     },[userId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: userId });
+        }
+    },[sendMessageCompleted]);
+
+    const handleSendMessage = () => {
+        sendMessage({
+            receiverId: userId,
+            message: newMessage
+        });
+        resetSendMessageCompleted();
+        setNewMessage("");
+    }
 
     return (
         <>
@@ -133,6 +153,28 @@ const MessagesPage = ({
                                         <div className={styles.placeholder}>Henüz mesaj yok.</div>
                                     </>
                                 )}
+
+                                {/* 💬 Mesaj Gönderme Alanı */}
+                                <div className={styles.messageInputContainer}>
+                                    <input
+                                        type="text"
+                                        value={newMessage}
+                                        onChange={(e) => setNewMessage(e.target.value)}
+                                        className={styles.messageInput}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" && newMessage.trim()) {
+                                                handleSendMessage();
+                                            }
+                                        }}
+                                        placeholder="Mesajınızı yazın..."
+                                    />
+                                    <button
+                                        className={styles.sendButton}
+                                        onClick={handleSendMessage}
+                                    >
+                                        Gönder
+                                    </button>
+                                </div>
                             </>
                         ) : (
                             <>

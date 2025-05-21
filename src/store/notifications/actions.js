@@ -22,6 +22,10 @@ import {
     GET_MESSAGES_STARTED,
     GET_MESSAGES_SUCCEEDED,
     GET_MESSAGES_FAILED,
+    SEND_MESSAGE_STARTED,
+    SEND_MESSAGE_SUCCEEDED,
+    SEND_MESSAGE_FAILED,
+    RESET_SEND_MESSAGE_COMPLETED
 } from './types';
 
 export const getNotifications = values => ({
@@ -135,4 +139,23 @@ export const getMessagesSuccess = data => ({
 export const getMessagesError = error => ({
     type: GET_MESSAGES_FAILED,
     payload: error
+});
+
+export const sendMessage = values => ({
+    type: SEND_MESSAGE_STARTED,
+    payload: values
+});
+
+export const sendMessageSuccess = data => ({
+    type: SEND_MESSAGE_SUCCEEDED,
+    payload: data
+});
+
+export const sendMessageError = error => ({
+    type: SEND_MESSAGE_FAILED,
+    payload: error
+});
+
+export const resetSendMessageCompleted = () => ({
+    type: RESET_SEND_MESSAGE_COMPLETED
 });

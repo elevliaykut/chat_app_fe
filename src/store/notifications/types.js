@@ -31,4 +31,9 @@ export const GET_MESSAGES_STARTED = `${category}__GET_MESSAGES__STARTED`;
 export const GET_MESSAGES_SUCCEEDED = `${category}__GET_MESSAGES__SUCCEEDED`;
 export const GET_MESSAGES_FAILED = `${category}__GET_MESSAGES__FAILED`;
 
+export const SEND_MESSAGE_STARTED = `${category}__SEND_MESSAGE__STARTED`;
+export const SEND_MESSAGE_SUCCEEDED = `${category}__SEND_MESSAGE__SUCCEEDED`;
+export const SEND_MESSAGE_FAILED = `${category}__SEND_MESSAGE__FAILED`;
+export const RESET_SEND_MESSAGE_COMPLETED = `${category}__RESET_SEND_MESSAGE__COMPLETED`;
+
 
