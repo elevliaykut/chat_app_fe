@@ -11,7 +11,11 @@ const MemberProfileCard = ({
     userActivityFavorite = () => {},
     userActivitySmiled = () => {},
     userBlocked = () => {},
-    setReportModalVisible = () => {}
+    setReportModalVisible = () => {},
+    setMessageModalVisible = () => {},
+    setSelectedMessageUserId = () => {},
+    setSelectedUsername = () => {},
+    setSelectedUserStatus = () => {}
 }) => {
 
     const likedOnClick = () => {
@@ -36,6 +40,13 @@ const MemberProfileCard = ({
         userBlocked({
             userId: details?.id
         });
+    }
+
+    const selectedOnClick = () => {
+        setSelectedMessageUserId(details?.id);
+        setSelectedUsername(details?.username);
+        setSelectedUserStatus(details?.is_online);
+        setMessageModalVisible(true);
     }
 
     return (
@@ -88,7 +99,7 @@ const MemberProfileCard = ({
                                 <path d="M22 2L15 22L11 13L2 9L22 2Z" />
                             </svg>
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={selectedOnClick}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Mesaj Gönder</label>
                         </div>
                     </div>

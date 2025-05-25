@@ -7,6 +7,10 @@ const MatchUserCard = ({
     userActivityLiked = () => {},
     userActivityLikedReset = () => {},
     getMatchPreviusUser = () => {},
+    setMessageModalVisible = () => {},
+    setSelectedMessageUserId = () => {},
+    setSelectedUsername = () => {},
+    setSelectedUserStatus = () => {}
 }) => {
 
     const matchButtonOnClick  = () => {
@@ -25,6 +29,13 @@ const MatchUserCard = ({
         getMatchPreviusUser();
     }
 
+    const selectedOnClick = () => {
+        setSelectedMessageUserId(user?.id);
+        setSelectedUsername(user?.username);
+        setSelectedUserStatus(user?.is_online);
+        setMessageModalVisible(true);
+    }
+    
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
@@ -39,7 +50,7 @@ const MatchUserCard = ({
             </>
         )}
         <div className={styles.checkIcon}>✔</div>
-        <div className={styles.sendIcon}>
+        <div className={styles.sendIcon} onClick={selectedOnClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" fill="none" stroke="#d63384" strokeWidth="3" viewBox="0 0 24 24">
                 <path d="M22 2L11 13" />
                 <path d="M22 2L15 22L11 13L2 9L22 2Z" />

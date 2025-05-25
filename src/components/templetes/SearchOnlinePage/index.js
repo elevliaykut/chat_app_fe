@@ -17,7 +17,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
-    getNotifications    
+    getNotifications,
+    getMessages,
+    sendMessage,
+    resetSendMessageCompleted    
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -33,7 +36,10 @@ const mapStateToProps = state => ({
     userMeLoading: state?.user?.userMeLoading,
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
-    notificationIsLoading: state?.notifications?.notificationIsLoading
+    notificationIsLoading: state?.notifications?.notificationIsLoading,
+    messageIsLoading: state?.notifications?.messageIsLoading,
+    messages: state?.notifications?.messages,
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -48,7 +54,10 @@ const mapDispatchToProps = dispatch => ({
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     getUserMe: () => dispatch(getUserMe()),
     userLogout: () => dispatch(userLogout()),
-    getNotifications: payload => dispatch(getNotifications(payload))
+    getNotifications: payload => dispatch(getNotifications(payload)),
+    getMessages: payload => dispatch(getMessages(payload)),
+    sendMessage: payload => dispatch(sendMessage(payload)),
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchOnlineOrganisms);

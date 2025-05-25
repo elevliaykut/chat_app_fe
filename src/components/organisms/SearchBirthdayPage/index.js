@@ -4,6 +4,7 @@ import SearchMenu from "../../molecules/SearchMenu";
 import styles from './Index.module.css';
 import SearchUserProfile from "../../molecules/SearchUserProfile";
 import FooterBanner from "../../molecules/FooterBanner";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const SearchBirthdayPage = ({
     getUsers = () => {},
@@ -28,11 +29,21 @@ const SearchBirthdayPage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState();
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -129,8 +140,40 @@ const SearchBirthdayPage = ({
         }
     },[isLoading]);
 
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(selectedMessageUserId) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[selectedMessageUserId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[sendMessageCompleted]);
+
     return (
         <>
+            {messageModalVisible && (
+                <>
+                    <MessageModal
+                        onClose={messageModalOnClose}
+                        isLoading={notificationIsLoading}
+                        messages={messages}
+                        messageIsLoading={messageIsLoading}
+                        sendMessage={sendMessage}
+                        resetSendMessageCompleted={resetSendMessageCompleted}
+                        userMe={userMe}
+                        selectedMessageUserId={selectedMessageUserId}
+                        selectedUsername={selectedUsername}
+                        selectedUserStatus={selectedUserStatus}
+                    />
+                </>
+            )}
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 messageCount={userMe?.message_count}
@@ -198,6 +241,10 @@ const SearchBirthdayPage = ({
                                             userBlocked={userBlocked}
                                             userActivityFavorite={userActivityFavorite}
                                             userActivityLiked={userActivityLiked}
+                                            setMessageModalVisible={setMessageModalVisible}
+                                            setSelectedMessageUserId={setSelectedMessageUserId}
+                                            setSelectedUsername={setSelectedUsername}
+                                            setSelectedUserStatus={setSelectedUserStatus}
                                         />
                                     </>
                                 ))}

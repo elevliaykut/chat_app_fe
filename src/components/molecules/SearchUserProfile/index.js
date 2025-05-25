@@ -13,7 +13,11 @@ const SearchUserProfile = ({
     userActivitySmiled = () => {},
     userBlocked = () => {},
     userActivityFavorite = () => {},
-    userActivityLiked = () => {}
+    userActivityLiked = () => {},
+    setMessageModalVisible = () => {},
+    setSelectedMessageUserId = "",
+    setSelectedUsername = "",
+    setSelectedUserStatus = false
 }) => {
 
     const smiledOnClick = () => {
@@ -40,9 +44,15 @@ const SearchUserProfile = ({
         });
     }
 
+    const selectedOnClick = () => {
+        setSelectedMessageUserId(user?.id);
+        setSelectedUsername(user?.username);
+        setSelectedUserStatus(user?.is_online)
+    }
+
     return(
         <>
-            <div className={styles.container}>
+            <div className={styles.container} onClick={selectedOnClick}>
                 <div>
                     {user?.profile_photo_path ? (
                             <>
@@ -84,7 +94,7 @@ const SearchUserProfile = ({
                     <label>{user?.is_online ? 'Çevrimiçi' : 'Çevrimdışı'}</label>
                 </div>
                 <div className={styles.buttons}>
-                    <div className={styles.buttonItem}>
+                    <div className={styles.buttonItem} onClick={() => setMessageModalVisible(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path d="M22 2L11 13" />
                             <path d="M22 2L15 22L11 13L2 9L22 2Z" />

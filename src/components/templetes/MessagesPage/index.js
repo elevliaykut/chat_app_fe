@@ -28,6 +28,7 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.isLoading,
     messageLogs: state?.notifications?.messageLogs,
     outGoingMessageLogs: state?.notifications?.outGoingMessageLogs,
+    
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted
@@ -39,6 +40,7 @@ const mapDispatchToProps = dispatch => ({
     getNotifications: payload => dispatch(getNotifications(payload)),
     getMessageLogs: () => dispatch(getMessageLogs()),
     getOutGoingMessageLogs: () => dispatch(getOutGoingMessageLogs()),
+    
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
     resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())

@@ -10,6 +10,7 @@ import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const VisitProfilesPage = ({
     isLoading = false,
@@ -55,7 +56,13 @@ const VisitProfilesPage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -66,6 +73,11 @@ const VisitProfilesPage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -162,9 +174,40 @@ const VisitProfilesPage = ({
         setCaracteristicFeatureModalVisible(false);
     } 
 
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(selectedMessageUserId) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[selectedMessageUserId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[sendMessageCompleted]);
+
     return (
         <>
-
+            {messageModalVisible && (
+                <>
+                    <MessageModal
+                        onClose={messageModalOnClose}
+                        isLoading={notificationIsLoading}
+                        messages={messages}
+                        messageIsLoading={messageIsLoading}
+                        sendMessage={sendMessage}
+                        resetSendMessageCompleted={resetSendMessageCompleted}
+                        userMe={userMe}
+                        selectedMessageUserId={selectedMessageUserId}
+                        selectedUsername={selectedUsername}
+                        selectedUserStatus={selectedUserStatus}
+                    />
+                </>
+            )}
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -280,6 +323,10 @@ const VisitProfilesPage = ({
                                             userBlocked={userBlocked}
                                             userActivityFavorite={userActivityFavorite}
                                             userActivityLiked={userActivityLiked}
+                                            setMessageModalVisible={setMessageModalVisible}
+                                            setSelectedMessageUserId={setSelectedMessageUserId}
+                                            setSelectedUsername={setSelectedUsername}
+                                            setSelectedUserStatus={setSelectedUserStatus}
                                         />
                                     </>
                                 ))}

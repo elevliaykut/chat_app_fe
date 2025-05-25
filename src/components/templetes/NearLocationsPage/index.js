@@ -26,7 +26,10 @@ import {
 
 
 import {
-    getNotifications    
+    getNotifications,
+    getMessages,
+    sendMessage,
+    resetSendMessageCompleted
 } from '../../../store/notifications/actions';
 
 import {
@@ -55,7 +58,11 @@ const mapStateToProps = state => ({
     userActivityLikedCompleted: state?.user?.userActivityLikedCompleted,
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
-    notificationIsLoading: state?.notifications?.notificationIsLoading
+    notificationIsLoading: state?.notifications?.notificationIsLoading,
+    
+    messageIsLoading: state?.notifications?.messageIsLoading,
+    messages: state?.notifications?.messages,
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -80,7 +87,11 @@ const mapDispatchToProps = dispatch => ({
     userActivityLiked: payload => dispatch(userActivityLiked(payload)),
     userActivityLikedReset: () => dispatch(userActivityLikedReset()),
     userLogout: () => dispatch(userLogout()),
-    getNotifications: payload => dispatch(getNotifications(payload))
+    getNotifications: payload => dispatch(getNotifications(payload)),
+    
+    getMessages: payload => dispatch(getMessages(payload)),
+    sendMessage: payload => dispatch(sendMessage(payload)),
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NearLocationsPageOrganisms);

@@ -6,6 +6,7 @@ import FilterWithToggleEpisode from "../../molecules/FilterWithToggleEpisode";
 import ThemeConfig from "@/src/utils/ThemeConfig";
 import FooterBanner from "../../molecules/FooterBanner";
 import MatchUserCard from "../../molecules/MatchUserCard";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const SearchLikePage = ({
     userActivityLiked = () => {},
@@ -32,7 +33,13 @@ const SearchLikePage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -56,6 +63,11 @@ const SearchLikePage = ({
     const [citiesVisible, setCitiesVisible]     = useState(false);
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -100,8 +112,46 @@ const SearchLikePage = ({
         setCityId(e?.target?.value);
     }
 
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(selectedMessageUserId) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[selectedMessageUserId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[sendMessageCompleted]);
+
+    const selectedOnClick = () => {
+        setSelectedMessageUserId(user?.id);
+        setSelectedUsername(user?.username);
+        setSelectedUserStatus(user?.is_online)
+    }
+    
     return (
         <>
+            {messageModalVisible && (
+                <>
+                    <MessageModal
+                        onClose={messageModalOnClose}
+                        isLoading={notificationIsLoading}
+                        messages={messages}
+                        messageIsLoading={messageIsLoading}
+                        sendMessage={sendMessage}
+                        resetSendMessageCompleted={resetSendMessageCompleted}
+                        userMe={userMe}
+                        selectedMessageUserId={selectedMessageUserId}
+                        selectedUsername={selectedUsername}
+                        selectedUserStatus={selectedUserStatus}
+                    />
+                </>
+            )}
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 messageCount={userMe?.message_count}
@@ -427,6 +477,10 @@ const SearchLikePage = ({
                                     userActivityLiked={userActivityLiked}
                                     userActivityLikedReset={userActivityLikedReset}
                                     getMatchPreviusUser={getMatchPreviusUser}
+                                    setMessageModalVisible={setMessageModalVisible}
+                                    setSelectedMessageUserId={setSelectedMessageUserId}
+                                    setSelectedUsername={setSelectedUsername}
+                                    setSelectedUserStatus={setSelectedUserStatus}
                                 />
                             </>
                         ) : (

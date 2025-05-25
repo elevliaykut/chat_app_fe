@@ -8,6 +8,7 @@ import ListPostBox from "../../molecules/ListPostBox";
 import UserReportModal from "../../molecules/Modals/UserReportModal";
 import ToastMessage from "../../molecules/TostMessage";
 import FooterBanner from "../../molecules/FooterBanner";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const MemberDetailsPage = ({
     isLoading = false,
@@ -47,7 +48,13 @@ const MemberDetailsPage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -55,6 +62,10 @@ const MemberDetailsPage = ({
     const [memberPostVisible, setMemberPostVisible]                     = useState(false);
     const [reportModalVisible, setReportModalVisible]                   = useState(false);
     const [reportToastMessageVisible, setReportToastMessageVisible]     = useState(false);
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -147,8 +158,40 @@ const MemberDetailsPage = ({
         }
     },[userReportsComplete]);
 
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(memberId) {
+            getMessages({ userId: memberId });
+        }
+    },[memberId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: memberId });
+        }
+    },[sendMessageCompleted]);
+
     return (
         <>
+            {messageModalVisible && (
+                <>
+                    <MessageModal
+                        onClose={messageModalOnClose}
+                        isLoading={notificationIsLoading}
+                        messages={messages}
+                        messageIsLoading={messageIsLoading}
+                        sendMessage={sendMessage}
+                        resetSendMessageCompleted={resetSendMessageCompleted}
+                        userMe={userMe}
+                        selectedMessageUserId={selectedMessageUserId}
+                        selectedUsername={selectedUsername}
+                        selectedUserStatus={selectedUserStatus}
+                    />
+                </>
+            )}
             {reportToastMessageVisible && (
                 <>
                     <ToastMessage message="Şikayet kaydınız başarılı bir şekilde oluşturuldu."/>
@@ -188,6 +231,10 @@ const MemberDetailsPage = ({
                                     userActivitySmiled={userActivitySmiled}
                                     userBlocked={userBlocked}
                                     setReportModalVisible={setReportModalVisible}
+                                    setMessageModalVisible={setMessageModalVisible}
+                                    setSelectedMessageUserId={setSelectedMessageUserId}
+                                    setSelectedUsername={setSelectedUsername}
+                                    setSelectedUserStatus={setSelectedUserStatus}
                                 />
                             </div>
                         </>
