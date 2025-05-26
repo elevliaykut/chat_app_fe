@@ -170,6 +170,7 @@ const LoginPage = ({
     				</div>
 				</>
 			)}
+			
 			<div className={styles.container}>
 				<div className={styles.frame}>
 					<div className={styles.header}>
@@ -375,6 +376,87 @@ const LoginPage = ({
 								Hemen aramıza katıl!
 							</h2>
 						</div>
+					</div>				
+				</div>
+			</div>
+
+			<div className={styles.frame}>
+				<section className={styles.statsSection}>
+					<div className={styles.statBox}>
+						<div className={styles.iconArea}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="36" height="36" fill="#b4005c">
+							<path d="M96 128a64 64 0 1 1 128 0 64 64 0 1 1-128 0zm96 96c53 0 96 43 96 96v32H0v-32c0-53 43-96 96-96h96zM464 320h176v-32c0-53-43-96-96-96h-42.7c9.5 15.4 14.7 33.4 14.7 52.7V320zM448 256a64 64 0 1 0-128 0 64 64 0 1 0 128 0zm32 64v32H304v-32c0-53 43-96 96-96s96 43 96 96z"/>
+						</svg>
+						</div>
+						<div className={styles.divider}></div>
+						<div className={styles.textArea}>
+						<div className={styles.number}>29.000</div>
+						<div className={styles.label}>Üye</div>
+						</div>
+					</div>
+
+					<div className={styles.statBox}>
+						<div className={styles.iconArea}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="36" height="36" fill="#8e008b">
+							<path d="M192 96c0-17.7 14.3-32 32-32h64V32h64v32h64c17.7 0 32 14.3 32 32v32H192V96zm304 48c0 13.3-10.7 24-24 24H168c-13.3 0-24-10.7-24-24V96c0-35.3 28.7-64 64-64h224c35.3 0 64 28.7 64 64v48zm-96 160a80 80 0 1 1-160 0 80 80 0 1 1 160 0zm-80-48a48 48 0 1 0 0 96 48 48 0 1 0 0-96z"/>
+						</svg>
+
+						</div>
+						<div className={styles.divider}></div>
+						<div className={styles.textArea}>
+						<div className={styles.number}>15.000</div>
+						<div className={styles.label}>Mutlu Çift</div>
+						</div>
+					</div>
+
+					<div className={styles.statBox}>
+						<div className={styles.iconArea}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="36" height="36" fill="#b0006e">
+							<path d="M224 96c-17.7 0-32 14.3-32 32v16h-64v64h32v32h64v-32h64v-64h-64V128c0-17.7-14.3-32-32-32zm0 48h32v32h-32v-32zm0 64h32v32h-32v-32zm-64-32h32v32h-32v-32zm-48 96c-44.2 0-80 35.8-80 80v32h320v-32c0-44.2-35.8-80-80-80H112z"/>
+						</svg>	
+
+						</div>
+						<div className={styles.divider}></div>
+						<div className={styles.textArea}>
+						<div className={styles.number}>7000</div>
+						<div className={styles.label}>Eşleşme</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<div className={styles.frame}>
+				<div className={styles.sectionOne}>
+					<div className={styles.sectionOneLeftEpisode}>
+						<img src={"/home-one.png"}/>
+					</div>
+					<div className={styles.sectionOneRightEpisode}>
+						<div className={styles.sectionOneTitle}>
+							<h1>İslami Evlilik Sitesi</h1>
+						</div>		
+						<div className={styles.sectionOneContentText}>
+							<label>
+								Gönülden sevenler islami evlilik sitesi, evlilik amacıyla yola çıkan ve ciddi bir şekilde evlilik gerçekleştirmek isteyen bireyleri bir araya getiren online evlilik sitesidir. Türkiye’nin ilk ve en büyük evlilik sitesi Gönülden Sevenler; arkadaşlık, dostluk ya da çöpçatan sitesi değildir. İslami evlilik sitesi olan gönülden sevenlere yalnızca niyeti evlilik olan kullanıcılar üye olmaktadır. Üye olan kullanıcılar titizlikle editörler tarafından incelenerek onaylanır. Niyetinin evlilik olmadığı anlaşılan kullanıcılar ise siteden uzaklaştırılır. Sistemimize ulaşan mesaj ve kullanıcı şikayetleri anında değerlendirmeye alınarak gerekli işlemler yapılır. Evli olmayan gençlerimizin başarılı bir evlilik geçirmesi adına mutlu ve huzurlu bir yuva kurmalarına yardımcı olmaktayız. Sizler için diğer üyelerimiz ile rahat iletişim sağlayacağınız bir mesaj sistemi oluşturulmuştur.	
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className={styles.frame}>
+				<div className={styles.sectionTwo}>
+					<div className={styles.sectionTwoLeftEpisode}>
+						<div className={styles.sectionTwoTitle}>
+							<h1>Detaylı Arama</h1>
+						</div>		
+						<div className={styles.sectionTwoContentText}>
+							<label>
+								İslami evlilik sitesi gönülden sevenler detaylı arama özelliği ile siteye kayıtlı milyonlarca üyeyi karşınıza çıkarır. Bu milyonlarca üye arasından ruh eşinizi ise akıllı filtreleme özelliği ile kolayca ulaşabilirsiniz. Gönülden sevenler sunmuş olduğu çok gelişmiş filtreleme seçeneği ile size en uygun karakter ve hayat tarzına uygun eş adayını diğer üyelerden ayırarak bulmanıza olanak tanır. Gönülden sevenler ile doğru eş adayına ulaşmak çok kolay! İslami arkadaşlık sitesi gönülden sevenler, detaylı profil filtreleme özelliği sayesinde size en uygun kişilerin listesini oluşturarak, ideal eş adayınızı bulma konusunda yardımcı olur.
+							</label>
+						</div>
+					</div>
+					<div className={styles.sectionTwoRightEpisode}>
+						<img src={"/home-two.png"}/>
 					</div>
 				</div>
 			</div>
