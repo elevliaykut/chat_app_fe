@@ -98,8 +98,10 @@ function* loginUserTask(action) {
 		const { data } = response;
 		yield put(loginUserSuccess(data));
 		cookies.set('chatAppToken', data?.token);
-		window.location = '/home';
-		
+		setTimeout(() => {
+			window.location = '/home';
+		},[400]);
+
 		cookies.set('userName', data?.data?.name);
 		cookies.set('userSurname', data?.data?.surname);
 

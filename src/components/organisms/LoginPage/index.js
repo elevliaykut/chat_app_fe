@@ -51,6 +51,7 @@ const LoginPage = ({
 				data.append('birth_date', birthDate);
 				data.append('type', 1);
 				data.append('marital_status', maritalStatus);
+				
 				userRegister({
 					formData: data
 				});
@@ -63,10 +64,8 @@ const LoginPage = ({
 
 	useEffect(() => {
 		if(registerCompleted) {
-			loginUser({
-				username: username,
-				password: password
-			})
+			userRegisterCompletedReset();
+			setLoginModalVisible(true);
 		}
 	},[registerCompleted]);
 
@@ -220,7 +219,6 @@ const LoginPage = ({
 												<option value="">Seçin</option>
 												<option value="1">Erkek</option>
 												<option value="0">Kadın</option>
-												<option value="other">Diğer</option>
 											</select>
 										</div>
 										<div className={styles.formGroup}>
