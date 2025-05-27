@@ -427,14 +427,14 @@ const LoginPage = ({
 
 			<div className={styles.frame}>
 				<div className={styles.sectionOne}>
-					<div className={styles.sectionOneLeftEpisode}>
+					<div className={styles.sectionLeftEpisode}>
 						<img src={"/home-one.png"}/>
 					</div>
-					<div className={styles.sectionOneRightEpisode}>
-						<div className={styles.sectionOneTitle}>
+					<div className={styles.sectionRightEpisode}>
+						<div className={styles.sectionTitle}>
 							<h1>İslami Evlilik Sitesi</h1>
 						</div>		
-						<div className={styles.sectionOneContentText}>
+						<div className={styles.sectionContentText}>
 							<label>
 								Gönülden sevenler islami evlilik sitesi, evlilik amacıyla yola çıkan ve ciddi bir şekilde evlilik gerçekleştirmek isteyen bireyleri bir araya getiren online evlilik sitesidir. Türkiye’nin ilk ve en büyük evlilik sitesi Gönülden Sevenler; arkadaşlık, dostluk ya da çöpçatan sitesi değildir. İslami evlilik sitesi olan gönülden sevenlere yalnızca niyeti evlilik olan kullanıcılar üye olmaktadır. Üye olan kullanıcılar titizlikle editörler tarafından incelenerek onaylanır. Niyetinin evlilik olmadığı anlaşılan kullanıcılar ise siteden uzaklaştırılır. Sistemimize ulaşan mesaj ve kullanıcı şikayetleri anında değerlendirmeye alınarak gerekli işlemler yapılır. Evli olmayan gençlerimizin başarılı bir evlilik geçirmesi adına mutlu ve huzurlu bir yuva kurmalarına yardımcı olmaktayız. Sizler için diğer üyelerimiz ile rahat iletişim sağlayacağınız bir mesaj sistemi oluşturulmuştur.	
 							</label>
@@ -445,20 +445,104 @@ const LoginPage = ({
 
 			<div className={styles.frame}>
 				<div className={styles.sectionTwo}>
-					<div className={styles.sectionTwoLeftEpisode}>
-						<div className={styles.sectionTwoTitle}>
+					<div className={styles.sectionLeftEpisode}>
+						<div className={styles.sectionTitle}>
 							<h1>Detaylı Arama</h1>
 						</div>		
-						<div className={styles.sectionTwoContentText}>
+						<div className={styles.sectionContentText}>
 							<label>
 								İslami evlilik sitesi gönülden sevenler detaylı arama özelliği ile siteye kayıtlı milyonlarca üyeyi karşınıza çıkarır. Bu milyonlarca üye arasından ruh eşinizi ise akıllı filtreleme özelliği ile kolayca ulaşabilirsiniz. Gönülden sevenler sunmuş olduğu çok gelişmiş filtreleme seçeneği ile size en uygun karakter ve hayat tarzına uygun eş adayını diğer üyelerden ayırarak bulmanıza olanak tanır. Gönülden sevenler ile doğru eş adayına ulaşmak çok kolay! İslami arkadaşlık sitesi gönülden sevenler, detaylı profil filtreleme özelliği sayesinde size en uygun kişilerin listesini oluşturarak, ideal eş adayınızı bulma konusunda yardımcı olur.
 							</label>
 						</div>
 					</div>
-					<div className={styles.sectionTwoRightEpisode}>
+					<div className={styles.sectionRightEpisode}>
 						<img src={"/home-two.png"}/>
 					</div>
 				</div>
+			</div>
+
+			<div className={styles.frame}>
+				<div className={styles.sectionThree}>
+					<div className={styles.sectionLeftEpisode}>
+						<img src={"/home-one.png"}/>
+					</div>
+					<div className={styles.sectionRightEpisode}>
+						<div className={styles.sectionTitle}>
+							<h1>Eşleşme Zamanı</h1>
+						</div>		
+						<div className={styles.sectionContentText}>
+							<label>
+								İslami evlilik sitesi gönülden sevenler detaylı arama özelliği ile sizin ideal eş adayınız ile tanışmanıza olanak tanır. Detaylı aramada seçmiş olduğunuz filtreler ile ana sayfada sadece sizin filtrelediğiniz uygun eş adayları sıralanır. Ana sayfanızda listelenen eş adaylarından size en uygun eş adayına karar vererek hemen sohbet etmeye başlayabilirsiniz. Eş adayınız ile ilk olarak iletişim bilgilerinizi paylaşmadan gönülden sevenler üzerinden sohbet edebilirsiniz. Sohbet sırasında evlilik sitesine aykırı herhangi olumsuz bir durumda kuralları ihlal eden üye üyelikten atılır ve tekrar aynı bilgilerle üye olamaz. Aktif ve güvenilir bireylerin yer aldığı Gönülden Sevenler’de doğruluğundan emin olmadığımız insanlara sitemizde yer vermiyoruz.
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className={styles.frame}>
+				<div className={styles.sectionBlogContainer}>
+					<div className={styles.sectionBlog}>
+						<img src={"/blog.jpeg"}/>
+						<h1>Mutlu Olmanın Yolları</h1>	
+						<label>Hepimiz hayatımızın geri kalanını birlikte geçireceğimiz eş adaylarımızı ararken sosyal anlamda kendimizi iyi ifade…...</label>	
+						<button
+                            onClick={() => window.location = '/'}
+                            style={{
+                                width: '120px',
+                                height: '42px',
+                                backgroundColor: '#d63384',
+                                color: ThemeConfig.white,
+                                cursor: 'pointer',
+								marginTop: '15px',
+								marginBottom: '15px'
+                            }}
+                        >
+                            Devamını Oku
+                        </button>
+					</div>
+					<div className={styles.sectionBlog}>
+						<img src={"/blog.jpeg"}/>
+						<h1>Mutlu Olmanın Yolları</h1>	
+						<label>Hepimiz hayatımızın geri kalanını birlikte geçireceğimiz eş adaylarımızı ararken sosyal anlamda kendimizi iyi ifade…...</label>		
+						<button
+                            onClick={() => window.location = '/'}
+                            style={{
+                                width: '120px',
+                                height: '42px',
+                                backgroundColor: '#d63384',
+                                color: ThemeConfig.white,
+                                cursor: 'pointer',
+								marginTop: '15px',
+								marginBottom: '15px'
+                            }}
+                        >
+                            Devamını Oku
+                        </button>
+					</div>
+					<div className={styles.sectionBlog}>
+						<img src={"/blog.jpeg"}/>
+						<h1>Mutlu Olmanın Yolları</h1>
+						<label>Hepimiz hayatımızın geri kalanını birlikte geçireceğimiz eş adaylarımızı ararken sosyal anlamda kendimizi iyi ifade…...</label>		
+						<button
+                            onClick={() => window.location = '/'}
+                            style={{
+                                width: '120px',
+                                height: '42px',
+                                backgroundColor: '#d63384',
+                                color: ThemeConfig.white,
+                                cursor: 'pointer',
+								marginTop: '15px',
+								marginBottom: '15px'
+                            }}
+                        >
+                            Devamını Oku
+                        </button>
+					</div>	
+				</div>
+			</div>
+
+			<div className={styles.frame}>
+				
 			</div>
 		</>
 	);

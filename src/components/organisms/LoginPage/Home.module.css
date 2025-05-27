@@ -295,67 +295,79 @@
   margin-top: 2rem;
 }
 
-.sectionOneLeftEpisode {
+.sectionThree {
+  background-color: #F4F4F4;
+  padding: 0px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-radius: 20px;
+  min-height: 250px;
+  margin-top: 2rem;
+}
+
+.sectionLeftEpisode {
 
 }
 
-.sectionTwoLeftEpisode {
-
+.sectionLeftEpisode img {
 }
 
-.sectionOneLeftEpisode img {
-}
-
-.sectionTwoLeftEpisode img {
-}
-
-.sectionOneRightEpisode {
+.sectionRightEpisode {
   display: block;
 }
 
-.sectionTwoRightEpisode {
-  display: block;
+.sectionTitle {
 }
 
-.sectionOneTitle {
-}
-
-.sectionTwoTitle {
-}
-
-.sectionOneTitle h1 {
+.sectionTitle h1 {
   text-align: center;
   color: #CB1A4E;
   font-size: 20px;
 }
 
-.sectionTwoTitle h1 {
-  text-align: center;
-  color: #CB1A4E;
-  font-size: 20px;
-}
-
-.sectionOneContentText {
+.sectionContentText {
   margin-top: 10px;
   line-height: 25px;
 }
 
-.sectionTwoContentText {
-  margin-top: 10px;
-  line-height: 25px;
-}
-
-.sectionOneContentText label{
+.sectionContentText label{
   font-size: 14px;
   color: #8D8D8D;
   text-align: center;
 }
 
-.sectionTwoContentText label{
-  font-size: 14px;
-  color: #8D8D8D;
-  text-align: center;
+.sectionBlogContainer {
+    display: flex;
+    gap: 25px;
 }
+
+.sectionBlog {
+  display: block;
+  width: 33%;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px #ddd;/* Hafif gölge efekti */
+  margin-top: 2rem;
+  border-radius: 8px;
+}
+
+.sectionBlog img {
+  width: 100%;
+}
+
+.sectionBlog h1 {
+  font-size: 21px;
+  margin-top: 12px;
+}
+
+.sectionBlog label {
+  font-size: 15px;
+  padding: 5px;
+  line-height: 21px;
+  margin-top: 3px;
+}
+
 
 @keyframes spin {
   to {
