@@ -1,7 +1,6 @@
 .container {
     width: 100%;
     height: 100%;
-    padding: 20px;
     background-color: #d63384;
 }
 
@@ -16,6 +15,8 @@
     gap: 40px;
     justify-content: center;
     margin-top: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .menu {
@@ -30,7 +31,8 @@
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-top: 30px;
+    gap: 220px;
+    margin-bottom: 40px;
 }
 
 .item {
@@ -40,10 +42,20 @@
 
 .follow {
     display: block;
+    text-align: center;
+}
+
+.follow h1 {
+    display: block;
+    color: #fff;
+    font-size: 18px;
 }
 
 .social {
     display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 15px;
 }
 
 .item h1{
@@ -55,4 +67,23 @@
     font-size: 13px;
     color: #fff;
     margin-top: 8px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    opacity: 0.5;
+    background-color: #fff;
+}
+
+.copyrightEpisode{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.copyrightEpisode label {
+    color: #fff;
+    font-size: 14px;
 }
