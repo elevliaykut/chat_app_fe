@@ -4,6 +4,7 @@ import LOGO from '../../../utils/imgs/logo.png';
 import DARKLOGO from '../../../utils/imgs/gs-logo-dark.png';
 import Image from 'next/image';
 import ThemeConfig from '@/src/utils/ThemeConfig';
+import Footer from '../../molecules/Footer';
 
 const LoginPage = ({
 	loginUser = () => {},
@@ -541,9 +542,7 @@ const LoginPage = ({
 				</div>
 			</div>
 
-			<div className={styles.frame}>
-				
-			</div>
+			<Footer/>
 		</>
 	);
 };
