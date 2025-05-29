@@ -1,0 +1,143 @@
+  /* Genel container */
+  .frame {
+    width: 70%;
+    margin: auto;
+  }
+  
+  .wrapper {
+    width: 100%;
+    display: block;
+    margin-top: 100px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #eee;
+  }
+
+  .title {
+    display: block;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .title h1 {
+    font-size: 22px;
+    color: #252422;
+    font-weight: 400;
+  }
+
+  .title label {
+    font-size: 16px;
+    color: #9A9A9A;
+    font-weight: 400;
+    margin-top: 10px;
+  }
+
+  .menuContainer {
+    display: flex;
+    margin-top: 30px;
+  }
+  
+  .menus {
+    width: 20%;
+    display: block;
+  }
+
+  .menus label {
+    text-align: center;
+    position: absolute;
+    margin-left: 8rem;
+    margin-top: 10px;
+  }
+
+  .episode {
+    display: flex;
+  }
+
+  .circle {
+    width: 130px;
+    height: 75px;
+    border-radius: 400px;
+    border: 3px solid #ec3b8c;
+    text-align: center;
+  }
+
+  .formOne {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .formTwo {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .formThree {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .formFour {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .formFive {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .twoInputLineEpisode {
+    display: flex;
+    width: 100%;
+  }
+
+  .singleInputEpisode {
+    display: block;
+    width: 100%;
+  }
+
+  .leftInputEpisode {
+    width: 50%;
+  }
+
+  .leftInputEpisode label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .rightInputEpisode label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .singleInputEpisode label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .rightInputEpisode {
+    width: 50%;
+    margin-left: 20px;
+  }
+
+  .input {
+    height: 40px;
+    margin-top: 5px;
+  }
+
+  .input :active {
+      border: none;
+  }
+
+  .buttonEpisode {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .backButton {
+
+  }
+
+  .nextButton {
+    margin-left: auto;
+  }

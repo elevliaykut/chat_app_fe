@@ -30,7 +30,7 @@ const ThemeConfig = {
 	primarySoft: '#F9FCFF',
 	softText: '#99AED9',
 	navyGreey: '#8490AA',
-	purple: '#3133CF'
+	purple: '#ec3b8c'
 };
 
 export default ThemeConfig;
