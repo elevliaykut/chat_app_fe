@@ -98,6 +98,11 @@ function* loginUserTask(action) {
 		const { data } = response;
 		yield put(loginUserSuccess(data));
 		cookies.set('chatAppToken', data?.token);
+		if(data?.data?.personal_info_complete) {
+			window.location = '/home';
+		} else {
+			window.location = '/info';
+		}
 		setTimeout(() => {
 			window.location = '/home';
 		},[400]);

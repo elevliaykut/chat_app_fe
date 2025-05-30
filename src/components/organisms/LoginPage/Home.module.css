@@ -52,11 +52,11 @@
 }
 
 .leftContentEpisode {
-  width: 50%;
+  width: 35%;
 }
 
 .rightContentEpisode {
-  width: 50%;
+  width: 65%;
   text-align: right;
   margin-top: 20px;
 }

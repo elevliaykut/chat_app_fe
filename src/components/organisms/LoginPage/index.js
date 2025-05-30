@@ -28,7 +28,6 @@ const LoginPage = ({
 	const [isPrivacyChecked, setIsPrivacyChecked] 			= useState(false);
 	const [loginPrivacyChecked, setLoginPrivacyChecked] 	= useState(false);
 	const [emailPrivacyChecked, setEmailPrivacyChecked] 	= useState(false);
-	const [maritalStatus, setMaritalStatus]					= useState();
 
 	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
 	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
@@ -50,7 +49,6 @@ const LoginPage = ({
 				data.append('gender', gender);
 				data.append('birth_date', birthDate);
 				data.append('type', 1);
-				data.append('marital_status', maritalStatus);
 				
 				userRegister({
 					formData: data
@@ -79,10 +77,6 @@ const LoginPage = ({
 
 	const genderHandleChange = (e) => {
 		setGender(e?.target?.value);
-	}
-
-	const martialStatusChange = (e) => {
-		setMaritalStatus(e?.target?.value);
 	}
 	
 	const formOneButtonOnClick = () => {
@@ -192,172 +186,167 @@ const LoginPage = ({
 							<div className={styles.formContainer}>
 								<form onSubmit={handleSubmit}>
 								
-								{sectionOneVisible && (
-									<>
-										{formOneHeaderVisible && (
-											<>
-												<div className={styles.sectionRoute}>
-													<div className={styles.sectionRouteOne} onClick={sectionOneHeaderOnClick}>
-														1
+									{sectionOneVisible && (
+										<>
+											{formOneHeaderVisible && (
+												<>
+													<div className={styles.sectionRoute}>
+														<div className={styles.sectionRouteOne} onClick={sectionOneHeaderOnClick}>
+															1
+														</div>
+														<div style={{ color: 'white'}}>
+															----
+														</div>
+														<div className={styles.sectionRouteTwo} onClick={sectionOneHeaderOnClick}>
+															2
+														</div>
 													</div>
-													<div style={{ color: 'white'}}>
-														----
-													</div>
-													<div className={styles.sectionRouteTwo} onClick={sectionOneHeaderOnClick}>
-														2
-													</div>
-												</div>
-											</>
-										)}
-										<div className={styles.formGroup}>
-											<select
-												id="gender"
-												name="gender"
-												onChange={genderHandleChange}
-												required
-											>
-												<option value="">Seçin</option>
-												<option value="1">Erkek</option>
-												<option value="0">Kadın</option>
-											</select>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="text" 
-												id="username" 
-												placeholder="Rumuz" 
-												onChange={(e) => setUsername(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="email" 
-												id="email" 
-												placeholder="Email" 
-												onChange={(e) => setEmail(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="password" 
-												id="password" 
-												placeholder="Şifre" 
-												onChange={(e) => setPassword(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input
-												type={birthDate ? "date" : "text"}
-												id="birthDate"
-												value={birthDate}
-												onFocus={(e) => e.target.type = 'date'}
-												onBlur={(e) => !e.target.value && (e.target.type = 'text')}
-												onChange={(e) => setBirthDate(e.target.value)}
-												placeholder="Doğum tarihinizi seçin"
-												required
-											/>
-										</div>
-										<button className={styles.submitButton} onClick={formOneButtonOnClick}>ÜCRETSİZ ÜYE OL</button>
-										<div style={{ marginTop: '20px'}}> 
-											<label style={{ display: "flex" }}>
-												<input
-													style={{ width: '15px'}}
-													type="checkbox"
-													checked={isPrivacyChecked}
-													onChange={(e) => setIsPrivacyChecked(e.target.checked)}
+												</>
+											)}
+											<div className={styles.formGroup}>
+												<select
+													id="gender"
+													name="gender"
+													onChange={genderHandleChange}
+													required
+												>
+													<option value="">Seçin</option>
+													<option value="1">Erkek</option>
+													<option value="0">Kadın</option>
+												</select>
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="text" 
+													id="username" 
+													placeholder="Rumuz" 
+													onChange={(e) => setUsername(e.target.value)}
 													required
 												/>
-												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
-											</label>
-										</div>
-									</>
-								)}
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="email" 
+													id="email" 
+													placeholder="Email" 
+													onChange={(e) => setEmail(e.target.value)}
+													required
+												/>
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="password" 
+													id="password" 
+													placeholder="Şifre" 
+													onChange={(e) => setPassword(e.target.value)}
+													required
+												/>
+											</div>
+											<div className={styles.formGroup}>
+												<input
+													type={birthDate ? "date" : "text"}
+													id="birthDate"
+													value={birthDate}
+													onFocus={(e) => e.target.type = 'date'}
+													onBlur={(e) => !e.target.value && (e.target.type = 'text')}
+													onChange={(e) => setBirthDate(e.target.value)}
+													placeholder="Doğum tarihinizi seçin"
+													required
+												/>
+											</div>
+											<button className={styles.submitButton} onClick={formOneButtonOnClick}>ÜCRETSİZ ÜYE OL</button>
+											<div style={{ marginTop: '20px'}}> 
+												<label style={{ display: "flex" }}>
+													<input
+														style={{ width: '15px'}}
+														type="checkbox"
+														checked={isPrivacyChecked}
+														onChange={(e) => setIsPrivacyChecked(e.target.checked)}
+														required
+													/>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
+												</label>
+											</div>
+										</>
+									)}
 
-								{sectionTwoVisible && (
-									<>
-										<div className={styles.sectionRoute}>
-											<div className={styles.sectionRouteOne} 
-											onClick={sectionTwoHeaderOnClick}>
-												1
+									{sectionTwoVisible && (
+										<>
+											<div className={styles.sectionRoute}>
+												<div className={styles.sectionRouteOne} 
+												onClick={sectionTwoHeaderOnClick}>
+													1
+												</div>
+												<div style={{ color: 'white'}}>
+													----
+												</div>
+												<div className={styles.sectionRouteTwo}>
+													2
+												</div>
 											</div>
-											<div style={{ color: 'white'}}>
-												----
-											</div>
-											<div className={styles.sectionRouteTwo}>
-												2
-											</div>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="text" 
-												id="name" 
-												placeholder="İsim" 
-												onChange={(e) => setName(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="text" 
-												id="surname" 
-												placeholder="Soyisim" 
-												onChange={(e) => setSurname(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="text" 
-												id="age" 
-												placeholder="Yaş" 
-												onChange={(e) => setAge(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<input 
-												type="number" 
-												id="phone" 
-												placeholder="Telefon" 
-												onChange={(e) => setPhone(e.target.value)}
-											/>
-										</div>
-										<div className={styles.formGroup}>
-											<select
-												id="marital_status"
-												name="marital_status"
-												onChange={martialStatusChange}
-												required
-											>
-												<option value="1">Evli</option>
-												<option value="2">Boşanmış</option>
-												<option value="3">Bekar</option>
-											</select>
-										</div>
-										<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
-										<div style={{ marginTop: '20px'}}> 
-											<label style={{ display: "flex" }}>
-												<input
-													style={{ width: '15px'}}
-													type="checkbox"
-													checked={loginPrivacyChecked}
-													onChange={(e) => setLoginPrivacyChecked(e.target.checked)}
+											<div className={styles.formGroup}>
+												<input 
+													type="text" 
+													id="name" 
+													placeholder="İsim" 
+													onChange={(e) => setName(e.target.value)}
 													required
 												/>
-												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Üyelik Sözleşmesini okudum,kabul ediyorum.</span>
-											</label>
-										</div>
-										<div style={{ marginTop: '5px'}}> 
-											<label style={{ display: "flex" }}>
-												<input
-													style={{ width: '15px'}}
-													type="checkbox"
-													checked={emailPrivacyChecked}
-													onChange={(e) => setEmailPrivacyChecked(e.target.checked)}
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="text" 
+													id="surname" 
+													placeholder="Soyisim" 
+													onChange={(e) => setSurname(e.target.value)}
 													required
 												/>
-												<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
-											</label>
-										</div>
-									</>
-								)}
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="text" 
+													id="age" 
+													placeholder="Yaş" 
+													onChange={(e) => setAge(e.target.value)}
+													required
+												/>
+											</div>
+											<div className={styles.formGroup}>
+												<input 
+													type="number" 
+													id="phone" 
+													placeholder="Telefon" 
+													onChange={(e) => setPhone(e.target.value)}
+													required
+												/>
+											</div>
+											<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
+											<div style={{ marginTop: '20px'}}> 
+												<label style={{ display: "flex" }}>
+													<input
+														style={{ width: '15px'}}
+														type="checkbox"
+														checked={loginPrivacyChecked}
+														onChange={(e) => setLoginPrivacyChecked(e.target.checked)}
+														required
+													/>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Üyelik Sözleşmesini okudum,kabul ediyorum.</span>
+												</label>
+											</div>
+											<div style={{ marginTop: '5px'}}> 
+												<label style={{ display: "flex" }}>
+													<input
+														style={{ width: '15px'}}
+														type="checkbox"
+														checked={emailPrivacyChecked}
+														onChange={(e) => setEmailPrivacyChecked(e.target.checked)}
+														required
+													/>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
+												</label>
+											</div>
+										</>
+									)}
 							</form>
 							</div>
 						</div>
