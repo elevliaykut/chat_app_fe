@@ -19,7 +19,7 @@
     display: block;
     border-bottom: 1px solid #ccc;
   
-    max-height: 263px; /* 👈 Maksimum yükseklik belirliyoruz */
+    max-height: 400px; /* 👈 Maksimum yükseklik belirliyoruz */
     overflow-y: auto;  /* 👈 İçerik taşarsa dikey scroll aktif olur */
   }
 

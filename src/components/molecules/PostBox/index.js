@@ -113,15 +113,13 @@ const PostBox = ({
             <div className={styles.footer}>
               <div className={styles.footerLeft}>
                 <div 
-                  style={{ paddingTop: '15px',paddingLeft: '15px', cursor: 'pointer'}}
-                  onClick={() => document.getElementById('fileInput').click()} // Kamera ikonuna tıklanınca input tetikleniyor
-                  >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  style={{ paddingTop: '15px',paddingLeft: '15px', cursor: 'pointer'}}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" onClick={() => document.getElementById('postFileInput').click()} >
                     <path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-9 1c0-1.1.9-2 2-2h2.1l1.83-2.44A2 2 0 0 1 10.53 5h2.94c.64 0 1.24.3 1.63.81L17.9 8H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8Zm9 9a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" />
                   </svg>
                 </div>
                 <input
-                  id="fileInput" // Bu inputu gizli yapıyoruz
+                  id="postFileInput" // Bu inputu gizli yapıyoruz
                   type="file"
                   accept="image/*"
                   style={{ display: 'none' }}

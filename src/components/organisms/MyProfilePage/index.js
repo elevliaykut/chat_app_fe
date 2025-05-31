@@ -52,7 +52,6 @@ const MyProfilePage = ({
     notificationIsLoading = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
-    const [memberPostVisible, setMemberPostVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);

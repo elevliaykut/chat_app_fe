@@ -192,7 +192,7 @@ const MyProfileCard = ({
                             <path d="M10 12h4" />
                         </svg>
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => window.location = '/archive'}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Arşivim</label>
                         </div>
                     </div>

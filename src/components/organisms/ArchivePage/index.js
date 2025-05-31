@@ -1,10 +1,12 @@
-import React, { useEffect,useState } from "react";
-import styles from './Home.module.css';
-import TopBanner from '../../molecules/TopBanner';
-import StorySlider from "../../molecules/StorySlider";
-import ProfileEpisode from "../../molecules/ProfileEpisode";
-import PostBox from "../../molecules/PostBox";
+import React, { useEffect, useState } from "react";
+import styles from './Index.module.css';
+import TopBanner from "../../molecules/TopBanner";
+import MyProfileCard from "../../molecules/MyProfileCard";
+import MemberProfileTextCard from "../../molecules/MemberProfileTextCard";
+import MemberProfileFullDetailsEpisode from "../../molecules/MemberProfileFullDetailsEpisode";
 import ListPostBox from "../../molecules/ListPostBox";
+import UserReportModal from "../../molecules/Modals/UserReportModal";
+import ToastMessage from "../../molecules/TostMessage";
 import ProfileTextModal from "../../molecules/Modals/ProfileTextModal";
 import BasicInfoModal from "../../molecules/Modals/BasicInfoModal";
 import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
@@ -12,23 +14,22 @@ import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
 
-const HomePage = ({
-    posts = [],
+const ArchivePage = ({
+    userMe = {},
     isLoading = false,
     error = null,
-    userPostList = () => {},
     pageLoading = false,
-    createPostLoading = false,
-    createPostComplete = false,
-    userCreatePost = () => {},
-    resetCreatePostComplete = () => {},
+    getUserMe = () => {},
+    userMeLoading = false,
+    postActivityLike = () => {},
+    postIsLoading = false,
+    postError = false,
+    postActivityFavorite = () => {},
+    postActivitySmiled = () => {},
     uploadProfilePhotoComplete = false,
     uploadProfilePhotoIsLoading = false,
     userUploadProfilePhoto = () => {},
     resetUploadProfilePhotoComplete = () => {},
-    getUserMe = () => {},
-    userMe = {},
-    userMeLoading = false,
     updateUserPersonalInfoComplete = false,
     updateUserPersonalInfo = () => {},
     resetUpdateUserPersonalInfoComplete = () => {},
@@ -36,31 +37,28 @@ const HomePage = ({
     getDistricts = () => {},
     cities = [],
     districts = [],
-    postActivityLike = () => {},
-    postIsLoading = false,
-    postError = null,
-    postActivityFavorite = () => {},
-    postActivitySmiled = () => {},
+    userUpdateSpouseCandidateInfoComplete = false,
     userUpdateSpouseCandidate = () => {},
     userUpdateSpouseCandidateReset = () => {},
+    userUpdateCaracteristicFeatureComplete = false,
     userUpdateCaracteristicFeature = () => {},
     userUpdateCaracteristicFeatureReset = () => {},
-    userUpdateSpouseCandidateInfoComplete = false,
-    userUpdateCaracteristicFeatureComplete = false,
+    getMyPosts = () => {},
+    myPosts = [],
     isUserLoggedIn = false,
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
     notificationIsLoading = false
 }) => {
-
-    const [visible, setVisible]                                         = useState(false);
-    const [profileVisible, setProfileVisible]                           = useState(false);
+    const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
     const [basicInfoModalVisible, setBasicInfoModalVisible]             = useState(false);
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+    const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible] = useState(false);
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -70,20 +68,28 @@ const HomePage = ({
         if (!isUserLoggedIn) {
           window.location = '/';
         }
-      }, [isUserLoggedIn]);
+    }, [isUserLoggedIn]);
+
+    useEffect(() => {
+        getCities();
+    },[]);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
+
+    useEffect(() => {
+        getUserMe();
+        getMyPosts();
+    },[]);
     
     useEffect(() => {
         if(updateUserPersonalInfoComplete) {
             getUserMe();
         }
     },[updateUserPersonalInfoComplete]);
-
-    useEffect(() => {
-        if(uploadProfilePhotoComplete) {
-            resetUploadProfilePhotoComplete();
-            getUserMe();
-        }
-    },[uploadProfilePhotoComplete]);
 
     useEffect(() => {
         if(userUpdateSpouseCandidateInfoComplete) {
@@ -96,22 +102,6 @@ const HomePage = ({
             getUserMe();
         }
     },[userUpdateCaracteristicFeatureComplete]);
-
-    useEffect(() => {
-        getCities();
-    },[]);
-
-    useEffect(() => {
-        getUserMe();
-        resetCreatePostComplete();
-        userPostList();
-    },[]);
-
-    useEffect(() => {
-        if(!pageLoading) {
-            setVisible(true);
-        }
-    },[pageLoading]);
 
     useEffect(() => {
         if(!userMeLoading) {
@@ -139,8 +129,15 @@ const HomePage = ({
         setCaracteristicFeatureModalVisible(false);
     } 
 
+    useEffect(() => {
+        if(!isLoading) {
+            setMyPostEpisodeVisible(true);
+        }
+    },[isLoading]);
+
     return (
         <>
+
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -214,67 +211,49 @@ const HomePage = ({
                     />
                 </>
             )}
-            
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 messageCount={userMe?.message_count}
-                profileVisible={profileVisible}
+                profileVisible={userMeVisible}
                 userLogout={userLogout}
                 notifications={notifications}
                 notificationIsLoading={notificationIsLoading}
             />
-            <StorySlider/>
+            
             <div className={styles.frame}>
                 <div className={styles.content}>
                     
                     {profileVisible && (
                         <>
-                            <ProfileEpisode
-                                uploadProfilePhotoComplete={uploadProfilePhotoComplete}
-                                uploadProfilePhotoIsLoading={uploadProfilePhotoIsLoading}
-                                userUploadProfilePhoto={userUploadProfilePhoto}
-                                resetUploadProfilePhotoComplete={resetUploadProfilePhotoComplete}
-                                userMe={userMe}
-                                setProfileTextModalVisible={setProfileTextModalVisible}
-                                setBasicInfoModalVisible={setBasicInfoModalVisible}
-                                setPersonalInfoModalVisible={setPersonalInfoModalVisible}
-                                setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
-                                setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
-                            />
+                            <div className={styles.profileEpisode}>
+                                <MyProfileCard
+                                    uploadProfilePhotoComplete={uploadProfilePhotoComplete}
+                                    uploadProfilePhotoIsLoading={uploadProfilePhotoIsLoading}
+                                    userUploadProfilePhoto={userUploadProfilePhoto}
+                                    resetUploadProfilePhotoComplete={resetUploadProfilePhotoComplete}
+                                    details={userMe}
+                                    setProfileTextModalVisible={setProfileTextModalVisible}
+                                    setBasicInfoModalVisible={setBasicInfoModalVisible}
+                                    setPersonalInfoModalVisible={setPersonalInfoModalVisible}
+                                    setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
+                                    setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                                />
+                            </div>
                         </>
                     )}
-                    
-                    <div style={{ width: '100%'}}>
+
+                    <div style={{ width: '100%', marginTop: '-25px' }}>
                         
-                        {profileVisible && (
-                            <>
-                                <PostBox
-                                    createPostComplete={createPostComplete}
-                                    createPostLoading={createPostLoading}
-                                    userCreatePost={userCreatePost}
-                                    userPostList={userPostList}
-                                    userMe={userMe}
-                                />
-                            </>
-                        )}
-                        
-                        {visible && (
+                        {myPostEpisodeVisible && (
                             <>
                                 <ListPostBox
-                                    posts={posts}
+                                    posts={myPosts}
                                     postActivityLike={postActivityLike}
                                     postIsLoading={postIsLoading}
+                                    postError={postError}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
                                 />
-                            </>
-                        )}
-
-                        {!visible && (
-                            <>
-                                <div className={styles.loader}>
-                                    <div className={styles.spinner}></div>
-                                </div>
                             </>
                         )}
                     </div>
@@ -284,4 +263,4 @@ const HomePage = ({
         </>
     )
 }
-export default HomePage;
+export default ArchivePage;

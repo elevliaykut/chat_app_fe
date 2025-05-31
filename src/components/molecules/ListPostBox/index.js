@@ -84,7 +84,7 @@ const ListPostBox = ({
                                     </div>
                                     <div className={styles.rightEpisode}>
                                         <label>
-                                            Tarih
+                                            {item?.created_at}
                                         </label>
                                     </div>
                                 </div>

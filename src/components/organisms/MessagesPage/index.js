@@ -116,7 +116,7 @@ const MessagesPage = ({
                                         <>
                                             {messageLogs.map(user => (
                                                 <div key={user?.sender?.id} className={styles.userItem} onClick={() => setUserId(user?.sender?.id)}>
-                                                    {user.sender?.name} { } {user?.sender?.surname}
+                                                    {user.sender?.username}
                                                 </div>
                                             ))}
                                         </>
@@ -124,7 +124,7 @@ const MessagesPage = ({
                                         <>
                                             {outGoingMessageLogs.map(user => (
                                                 <div key={user?.receiver?.id} className={styles.userItem} onClick={() => setUserId(user?.receiver?.id)}>
-                                                    {user.receiver?.name} { } {user?.receiver?.surname}
+                                                    {user.receiver?.username}
                                                 </div>
                                             ))}
                                         </>
