@@ -25,7 +25,15 @@ import {
     SEND_MESSAGE_STARTED,
     SEND_MESSAGE_SUCCEEDED,
     SEND_MESSAGE_FAILED,
-    RESET_SEND_MESSAGE_COMPLETED
+    RESET_SEND_MESSAGE_COMPLETED,
+    INCOMING_MESSAGE_DELETE_STARTED,
+    INCOMING_MESSAGE_DELETE_SUCCEEDED,
+    INCOMING_MESSAGE_DELETE_FAILED,
+    RESET_INCOMING_MESSAGE_DELETE_COMPLETE,
+    OUTGOING_MESSAGE_DELETE_STARTED,
+    OUTGOING_MESSAGE_DELETE_SUCCEEDED,
+    OUTGOING_MESSAGE_DELETE_FAILED,
+    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
 } from './types';
 
 const initialState = {
@@ -39,7 +47,9 @@ const initialState = {
     outGoingMessageLogs: [],
     messageIsLoading: false,
     messages: [],
-    sendMessageCompleted: false
+    sendMessageCompleted: false,
+    incomingMessageDeleteComplete: false,
+    outgoingMessageDeleteComplete: false
 };
 
 const notifications = (state = initialState, action) => {
@@ -205,6 +215,54 @@ const notifications = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 sendMessageCompleted: false,
+            };
+        case INCOMING_MESSAGE_DELETE_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                incomingMessageDeleteComplete: false
+            };
+        case INCOMING_MESSAGE_DELETE_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                incomingMessageDeleteComplete: true
+            };
+        case INCOMING_MESSAGE_DELETE_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                incomingMessageDeleteComplete: false,
+                error: payload
+            };
+        case RESET_INCOMING_MESSAGE_DELETE_COMPLETE:
+            return {
+                ...state,
+                incomingMessageDeleteComplete: false,
+            };
+        case OUTGOING_MESSAGE_DELETE_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                outgoingMessageDeleteComplete: false
+            };
+        case OUTGOING_MESSAGE_DELETE_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                outgoingMessageDeleteComplete: true
+            };
+        case OUTGOING_MESSAGE_DELETE_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                outgoingMessageDeleteComplete: false,
+                error: payload
+            };
+        case RESET_OUTGOING_MESSAGE_DELETE_COMPLETE:
+            return {
+                ...state,
+                outgoingMessageDeleteComplete: false
             };
         default:
             return state;

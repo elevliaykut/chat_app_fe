@@ -66,6 +66,17 @@
   padding: 10px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
+  display: flex;
+}
+
+.usernameEpisode {
+  margin-bottom: 20px;
+}
+
+.usernameEpisode label{
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .placeholder {

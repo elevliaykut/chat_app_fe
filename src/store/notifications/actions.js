@@ -25,7 +25,15 @@ import {
     SEND_MESSAGE_STARTED,
     SEND_MESSAGE_SUCCEEDED,
     SEND_MESSAGE_FAILED,
-    RESET_SEND_MESSAGE_COMPLETED
+    RESET_SEND_MESSAGE_COMPLETED,
+    INCOMING_MESSAGE_DELETE_STARTED,
+    INCOMING_MESSAGE_DELETE_SUCCEEDED,
+    INCOMING_MESSAGE_DELETE_FAILED,
+    RESET_INCOMING_MESSAGE_DELETE_COMPLETE,
+    OUTGOING_MESSAGE_DELETE_STARTED,
+    OUTGOING_MESSAGE_DELETE_SUCCEEDED,
+    OUTGOING_MESSAGE_DELETE_FAILED,
+    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
 } from './types';
 
 export const getNotifications = values => ({
@@ -158,4 +166,42 @@ export const sendMessageError = error => ({
 
 export const resetSendMessageCompleted = () => ({
     type: RESET_SEND_MESSAGE_COMPLETED
+});
+
+export const incomingMessageDelete = values => ({
+    type: INCOMING_MESSAGE_DELETE_STARTED,
+    payload: values
+});
+
+export const incomingMessageDeleteSuccess = data => ({
+    type: INCOMING_MESSAGE_DELETE_SUCCEEDED,
+    payload: data
+});
+
+export const incomingMessageDeleteError = data => ({
+    type: INCOMING_MESSAGE_DELETE_FAILED,
+    payload: data
+});
+
+export const resetIncomingMessageDeleteComplete = () => ({
+    type: RESET_INCOMING_MESSAGE_DELETE_COMPLETE
+});
+
+export const outgoingMessageDelete = values => ({
+    type: OUTGOING_MESSAGE_DELETE_STARTED,
+    payload: values
+});
+
+export const outgoingMessageDeleteSuccess = data => ({
+    type: OUTGOING_MESSAGE_DELETE_SUCCEEDED,
+    payload: data
+}); 
+
+export const outgoingMessageDeleteError = error => ({
+    type: OUTGOING_MESSAGE_DELETE_FAILED,
+    payload: error
+}); 
+
+export const resetOutgoingMessageDeleteComplete = () => ({
+    type: RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
 });

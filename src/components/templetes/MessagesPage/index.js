@@ -13,7 +13,11 @@ import {
     getOutGoingMessageLogs,
     getMessages,
     sendMessage,
-    resetSendMessageCompleted    
+    resetSendMessageCompleted,
+    incomingMessageDelete,
+    resetIncomingMessageDeleteComplete,
+    outgoingMessageDelete,
+    resetOutgoingMessageDeleteComplete    
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -31,7 +35,11 @@ const mapStateToProps = state => ({
     
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
-    sendMessageCompleted: state?.notifications?.sendMessageCompleted
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
+
+    incomingMessageDeleteComplete: state?.notifications?.incomingMessageDeleteComplete,
+
+    outgoingMessageDeleteComplete: state?.notifications?.outgoingMessageDeleteComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -43,7 +51,13 @@ const mapDispatchToProps = dispatch => ({
     
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
-    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
+
+    incomingMessageDelete: payload => dispatch(incomingMessageDelete(payload)),
+    resetIncomingMessageDeleteComplete: () => dispatch(resetIncomingMessageDeleteComplete()),
+
+    outgoingMessageDelete: payload => dispatch(outgoingMessageDelete(payload)),
+    resetOutgoingMessageDeleteComplete: () => dispatch(resetOutgoingMessageDeleteComplete())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPageOrganisms);

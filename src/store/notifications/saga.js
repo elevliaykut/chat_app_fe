@@ -11,7 +11,9 @@ import {
 	GET_MESSAGE_LOGS_STARTED,
 	GET_OUTGOING_MESSAGE_LOGS_STARTED,
 	GET_MESSAGES_STARTED,
-	SEND_MESSAGE_STARTED
+	SEND_MESSAGE_STARTED,
+	INCOMING_MESSAGE_DELETE_STARTED,
+	OUTGOING_MESSAGE_DELETE_STARTED
 } from './types';
 
 import {
@@ -30,7 +32,11 @@ import {
 	getMessagesSuccess,
 	getMessagesError,
 	sendMessageSuccess,
-	sendMessageError
+	sendMessageError,
+	incomingMessageDeleteSuccess,
+	incomingMessageDeleteError,
+	outgoingMessageDeleteSuccess,
+	outgoingMessageDeleteError
 } from './actions';
 
 const cookies = new Cookies();
@@ -194,6 +200,46 @@ function* sendMessageTask(action) {
 	}
 }
 
+function* incomingMessageDeleteTask(action) {
+	const { payload = {} } = action;
+	const { senderId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/user/incoiming-message/${senderId}`,	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(incomingMessageDeleteSuccess(data));
+	} catch (error) {
+		yield put(incomingMessageDeleteError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* outgoingMessageDeleteTask(action) {
+	const { payload = {} } = action;
+	const { receiverId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/user/outgoing-message/${receiverId}`,	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(outgoingMessageDeleteSuccess(data));
+	} catch (error) {
+		yield put(outgoingMessageDeleteError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
@@ -228,6 +274,14 @@ function* watchSendMessage() {
 	yield takeLatest(SEND_MESSAGE_STARTED, sendMessageTask);
 }
 
+function* watchIncomingMessageDelete() {
+	yield takeLatest(INCOMING_MESSAGE_DELETE_STARTED, incomingMessageDeleteTask);
+}
+
+function* watchOutgoingMessageDelete() {
+	yield takeLatest(OUTGOING_MESSAGE_DELETE_STARTED, outgoingMessageDeleteTask);
+}
+
 export default function* saga() {
     yield all([
         watchGetNotifications(),
@@ -237,6 +291,8 @@ export default function* saga() {
 		watchGetMessageLogs(),
 		watchGetOutGoingMessageLogs(),
 		watchGetMessages(),
-		watchSendMessage()
+		watchSendMessage(),
+		watchIncomingMessageDelete(),
+		watchOutgoingMessageDelete()
     ]);
 }

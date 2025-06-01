@@ -19,7 +19,14 @@ const MessagesPage = ({
     getMessages = () => {},
     sendMessage = () => {},
     resetSendMessageCompleted = () => {},
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    incomingMessageDeleteComplete = false,
+    incomingMessageDelete = () => {},
+    resetIncomingMessageDeleteComplete = () => {},
+
+    outgoingMessageDeleteComplete = false,
+    outgoingMessageDelete = () => {},
+    resetOutgoingMessageDeleteComplete = () => {}
 }) => {
     const [messageVisible, setMessageVisible] = useState(false);
     const [messageContentVisible, setMessageContentVisible] = useState(false);
@@ -28,6 +35,7 @@ const MessagesPage = ({
     const [activeTab, setActiveTab] = useState('inbox');
     const [userId, setUserId] = useState();
     const [newMessage, setNewMessage] = useState();
+    const [username, setUsername] = useState();
 
     useEffect(() => {
         if(messageIsLoading) {
@@ -51,6 +59,20 @@ const MessagesPage = ({
         getMessageLogs();
         getOutGoingMessageLogs();
     },[]);
+
+    useEffect(() => {
+        if(incomingMessageDeleteComplete) {
+            resetIncomingMessageDeleteComplete();
+            getMessageLogs();
+        }
+    },[incomingMessageDeleteComplete]);
+
+    useEffect(() => {
+        if(outgoingMessageDeleteComplete) {
+            resetOutgoingMessageDeleteComplete();
+            getOutGoingMessageLogs();
+        }
+    },[outgoingMessageDeleteComplete]);
 
     useEffect(() => {
         if(!notificationIsLoading) {
@@ -77,6 +99,24 @@ const MessagesPage = ({
         });
         resetSendMessageCompleted();
         setNewMessage("");
+    }
+
+    const inboxMenuOnClick = (user) => {
+        setUserId(user?.sender?.id);
+        setUsername(user?.sender?.username)
+    }
+
+    const deleteIncomingMessage = (user) => {
+        incomingMessageDelete({ senderId: user?.sender?.id });
+    }
+
+    const deleteOutgoingMessage = (user) => {
+        outgoingMessageDelete({ receiverId: user?.receiver?.id });
+    }
+
+    const goingMenuOnClick = (user) => {
+        setUserId(user?.receiver?.id);
+        setUsername(user?.receiver?.username)
     }
 
     return (
@@ -115,16 +155,32 @@ const MessagesPage = ({
                                     {activeTab === 'inbox' ? (
                                         <>
                                             {messageLogs.map(user => (
-                                                <div key={user?.sender?.id} className={styles.userItem} onClick={() => setUserId(user?.sender?.id)}>
-                                                    {user.sender?.username}
+                                                <div key={user?.sender?.id} className={styles.userItem}>
+                                                    <div onClick={() => inboxMenuOnClick(user)} 
+                                                        style={{ width: '90%'}}>
+                                                        {user.sender?.username}
+                                                    </div>
+                                                    <div style={{ marginLeft: 'auto', width: '10%'}} onClick={() => deleteIncomingMessage(user)}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9M7 6H17V19H7V6Z" />
+                                                        </svg>
+                                                    </div>
+
                                                 </div>
                                             ))}
                                         </>
                                     ) : (
                                         <>
                                             {outGoingMessageLogs.map(user => (
-                                                <div key={user?.receiver?.id} className={styles.userItem} onClick={() => setUserId(user?.receiver?.id)}>
-                                                    {user.receiver?.username}
+                                                <div key={user?.receiver?.id} className={styles.userItem}>
+                                                    <div onClick={() => goingMenuOnClick(user)} style={{ width: '90%'}}>
+                                                        {user.receiver?.username}
+                                                    </div>
+                                                    <div style={{ marginLeft: 'auto', width: '10%'}} onClick={() => deleteOutgoingMessage(user)}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9M7 6H17V19H7V6Z" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </>
@@ -141,6 +197,9 @@ const MessagesPage = ({
                                 {messages.length > 0 ? (
                                     <>
                                         <div className={styles.messages}>
+                                            <div className={styles.usernameEpisode}>
+                                                <label>{username}</label>
+                                            </div>
                                             {messages.map(msg => (
                                                 <div key={msg.id} className={`${styles.messageItem} ${ msg.sender?.id === userMe?.id ? styles.outgoing : styles.incoming}`}>
                                                     {msg.message}
