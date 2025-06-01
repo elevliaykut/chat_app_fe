@@ -47,6 +47,20 @@
     cursor: pointer;
 }
 
+.menuLabel {
+    font-size: 16px;
+    color: #000;
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .menuLabel {
+    transform: translateX(-5px); /* sola kaydırır */
+}
+
+.noneIconmenu:hover .menuLabel {
+    transform: translateX(-5px); /* sola kaydırır */
+}
+
 .noneIconmenu {
     margin-left: 30px;
     padding-top: 13px;

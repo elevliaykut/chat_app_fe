@@ -112,7 +112,7 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Fotoğraflar</label>
+                            <label className={styles.menuLabel}>Fotoğraflar</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -123,7 +123,7 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setProfileTextModalVisible(true)}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Profil Yazısı</label>
+                            <label className={styles.menuLabel}>Profil Yazısı</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -134,7 +134,7 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setBasicInfoModalVisible(true)}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Temel Bilgiler</label>
+                            <label className={styles.menuLabel}>Temel Bilgiler</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -154,7 +154,7 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setPersonalInfoModalVisible(true)}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Kişisel Bilgiler</label>
+                            <label className={styles.menuLabel}>Kişisel Bilgiler</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -169,7 +169,7 @@ const ProfileEpisode = ({
                             </svg>      
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px', cursor: 'pointer'}} onClick={() => setSpouseCandidateModalVisible(true)}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Eş Adayı Özellikleri</label>
+                            <label className={styles.menuLabel}>Eş Adayı Özellikleri</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -180,7 +180,7 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setCaracteristicFeatureModalVisible(true)}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Karakter Analizi</label>
+                            <label className={styles.menuLabel}>Karakter Analizi</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
@@ -193,85 +193,101 @@ const ProfileEpisode = ({
                             </svg>
                         </div>
                         <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => window.location = '/archive'}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Arşivim</label>
+                            <label className={styles.menuLabel}>Arşivim</label>
                         </div>
                     </div>
+                    {userMe?.gender === 1 && (
+                        <>
+                            <div className={styles.line}/>
+                                <div className={styles.menu}>
+                                    <div style={{ marginTop: '14px'}}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFD700" viewBox="0 0 24 24">
+                                            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.4 8.168L12 18.896l-7.334 3.864 1.4-8.168L.132 9.21l8.2-1.192z"/>
+                                        </svg>
+                                    </div>
+                                    <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => window.location = '/be-gold-member'}>
+                                        <label className={styles.menuLabel}>ALTIN ÜYE OL</label>
+                                        <label className={styles.menuLabel} style={{ paddingTop: '5px'}}>Tüm Kısıtlamaları Kaldır</label>
+                                    </div>
+                                </div>
+                        </>
+                    )}
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/new-members'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YENİ ÜYELER</label>
+                            <label className={styles.menuLabel}>YENİ ÜYELER</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/near-locations'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YAKIN KONUMDA</label>
+                            <label className={styles.menuLabel}>YAKIN KONUMDA</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/born-today'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BUGÜN DOĞANLAR</label>
+                            <label className={styles.menuLabel}>BUGÜN DOĞANLAR</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/visit-profiles'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>PROFİLİNİ GEZDİKLERİN</label>
+                            <label className={styles.menuLabel}>PROFİLİNİ GEZDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/my-favorite-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>FAVORİLERİN</label>
+                            <label className={styles.menuLabel}>FAVORİLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/my-smiled-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>GÜLÜMSEDİKLERİN</label>
+                            <label className={styles.menuLabel}>GÜLÜMSEDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/my-liked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>BEĞENDİKLERİN</label>
+                            <label className={styles.menuLabel}>BEĞENDİKLERİN</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/my-blocked-users'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ENGELLENEN ÜYE</label>
+                            <label className={styles.menuLabel}>ENGELLENEN ÜYE</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÖDEME FORMU</label>
+                            <label className={styles.menuLabel}>ÖDEME FORMU</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/contact'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>İLETİŞİM</label>
+                            <label className={styles.menuLabel}>İLETİŞİM</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/help'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>YARDIM</label>
+                            <label className={styles.menuLabel}>YARDIM</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>AYARLAR</label>
+                            <label className={styles.menuLabel}>AYARLAR</label>
                         </div>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>ÇIKIŞ</label>
+                            <label className={styles.menuLabel}>ÇIKIŞ</label>
                         </div>
                     </div>
                 </div>
