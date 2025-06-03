@@ -38,21 +38,35 @@ const BeGoldMemberPage = ({
           branch: '1009',
           account: '5698526588',
           iban: 'TR88 3255 0000 5885 1000 8698 10',
-          logo: '/yapikredi.png',
+          logo: '/yapıkredi.png',
         },
         {
           name: 'Türkiye İş Bankası',
           branch: '1009',
           account: '5698526588',
           iban: 'TR88 3255 0000 5885 1000 8698 10',
-          logo: '/isbankasi.png',
+          logo: '/is_bankasi.png',
         },
         {
           name: 'Ziraat Bankası',
           branch: '1009',
           account: '5698526588',
           iban: 'TR88 3255 0000 5885 1000 8698 10',
-          logo: '/ziraat.png',
+          logo: '/zirat.jpg',
+        },
+        {
+            name: 'Ziraat Bankası',
+            branch: '1009',
+            account: '5698526588',
+            iban: 'TR88 3255 0000 5885 1000 8698 10',
+            logo: '/zirat.jpg',
+        },
+        {
+            name: 'Ziraat Bankası',
+            branch: '1009',
+            account: '5698526588',
+            iban: 'TR88 3255 0000 5885 1000 8698 10',
+            logo: '/zirat.jpg',
         },
         // Daha fazla banka ekleyebilirsin
       ];
@@ -109,15 +123,15 @@ const BeGoldMemberPage = ({
                 <div className={styles.infoBox}>
                     <h4>Bilmeniz Gerekenler</h4>
                     <ul>
-                    <li>Kredi kartı bilgileriniz kesinlikle kaydedilemez.</li>
-                    <li>Üyeliğiniz asla yenilenmez ve geçiştiril bahanelerle tekrar tahsilat yapılmaz.</li>
-                    <li>Tüm bankaların kredi kartları geçerlidir.</li>
-                    <li>Altın üyeliğiniz ödemeniz yapıldığında anında açılır.</li>
-                    <li>
-                        Bu harcamanız kredi kartı ekstrenizde <em>"Mint Bilgi Teknolojileri Tic. Ltd. Şti."</em> olarak gözükür.
-                    </li>
-                    <li>Ödemeler tek çekim yapılır, taksit imkanı bulunmamaktadır.</li>
-                    <li>Güvenlik kodu kartınızın arkasındaki 3 haneli numaradır.</li>
+                        <li>Kredi kartı bilgileriniz kesinlikle kaydedilemez.</li>
+                        <li>Üyeliğiniz asla yenilenmez ve geçiştiril bahanelerle tekrar tahsilat yapılmaz.</li>
+                        <li>Tüm bankaların kredi kartları geçerlidir.</li>
+                        <li>Altın üyeliğiniz ödemeniz yapıldığında anında açılır.</li>
+                        <li>
+                            Bu harcamanız kredi kartı ekstrenizde <em>"Mint Bilgi Teknolojileri Tic. Ltd. Şti."</em> olarak gözükür.
+                        </li>
+                        <li>Ödemeler tek çekim yapılır, taksit imkanı bulunmamaktadır.</li>
+                        <li>Güvenlik kodu kartınızın arkasındaki 3 haneli numaradır.</li>
                     </ul>
                 </div>
             </div>

@@ -79,7 +79,21 @@
     padding: 15px;
     width: fit-content;
     border-radius: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+
+  .summaryBox h4{
+    font-size: 14px;
+  }
+
+  .summaryBox p{
+    font-size: 14px;
+    padding-top: 5px;
+  }
+
+  .summaryBox button{
+    width: 100%;
   }
   
   .confirmButton {
@@ -101,5 +115,13 @@
     background-color: #fff;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+  }
+
+  .infoBox h4 {
+    margin-bottom: 10px;
+  }
+
+  .infoBox li {
+    line-height: 20px;
   }
   
