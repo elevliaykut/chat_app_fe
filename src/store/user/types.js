@@ -142,3 +142,7 @@ export const RESET_MATCH_PREVIUS_USER = `${category}__RESET_MATCH_PREVIUS_USER`;
 export const USER_LOGOUT_STARTED = `${category}__USER_LOGOUT__STARTED`;
 export const USER_LOGOUT_SUCCEEDED = `${category}__USER_LOGOUT__SUCCEEDED`;
 export const USER_LOGOUT_FAILED = `${category}__USER_LOGOUT__FAILED`;
+
+export const GET_STORY_STARTED = `${category}__GET_STORY_STARTED`;
+export const GET_STORY_SUCCEEDED = `${category}__GET_STORY_SUCCEEDED`;
+export const GET_STORY_FAILED = `${category}__GET_STORY_FAILED`;

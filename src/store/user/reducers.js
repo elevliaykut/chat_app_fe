@@ -90,7 +90,10 @@ import {
 	RESET_MATCH_PREVIUS_USER,
 	USER_LOGOUT_STARTED,
 	USER_LOGOUT_SUCCEEDED,
-	USER_LOGOUT_FAILED
+	USER_LOGOUT_FAILED,
+	GET_STORY_STARTED,
+	GET_STORY_SUCCEEDED,
+	GET_STORY_FAILED
 } from './types';
 
 const initialState = {
@@ -133,7 +136,8 @@ const initialState = {
 	matchUser: {},
 	matchUserComplete: false,
 	matchPreviusUserComplete: false,
-	loginIsLoaing: false
+	loginIsLoaing: false,
+	stories: []
 };
 
 const user = (state = initialState, action) => {
@@ -706,6 +710,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				matchPreviusUserComplete: false
+			};
+		case GET_STORY_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case GET_STORY_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				stories: payload?.data
+			};
+		case GET_STORY_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;

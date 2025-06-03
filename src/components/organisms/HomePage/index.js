@@ -11,6 +11,7 @@ import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
+import StoryBanner from "../../molecules/StoryBanner";
 
 const HomePage = ({
     posts = [],
@@ -51,7 +52,9 @@ const HomePage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    getStory = () => {},
+    stories = []
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -61,9 +64,17 @@ const HomePage = ({
     const [personalInfoModalVisible, setPersonalInfoModalVisible]       = useState(false);
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
+    const [storyVisible, setStoryVisible] = useState();
+
+    useEffect(() => {
+        if(!isLoading) {
+            setStoryVisible(true);
+        }
+    },[isLoading]);
 
     useEffect(() => {
         getNotifications({ read: false });
+        getStory();
     },[]);
 
     useEffect(() => {
@@ -223,8 +234,14 @@ const HomePage = ({
                 notifications={notifications}
                 notificationIsLoading={notificationIsLoading}
             />
-            <StorySlider/>
             <div className={styles.frame}>
+                {storyVisible && (
+                    <>
+                        <StoryBanner
+                            users={stories}
+                        />
+                    </>
+                )}
                 <div className={styles.content}>
                     
                     {profileVisible && (

@@ -90,7 +90,10 @@ import {
 	RESET_MATCH_PREVIUS_USER,
 	USER_LOGOUT_STARTED,
 	USER_LOGOUT_SUCCEEDED,
-	USER_LOGOUT_FAILED
+	USER_LOGOUT_FAILED,
+	GET_STORY_STARTED,
+	GET_STORY_SUCCEEDED,
+	GET_STORY_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -536,5 +539,20 @@ export const userLogoutSuccess = data => ({
 
 export const userLogoutError = error => ({
 	type: USER_LOGOUT_FAILED,
+	payload: error
+});
+
+export const getStory = values => ({
+	type: GET_STORY_STARTED,
+	payload: values
+});
+
+export const getStorySuccess = data => ({
+	type: GET_STORY_SUCCEEDED,
+	payload: data
+});
+
+export const getStoryError = error => ({
+	type: GET_STORY_FAILED,
 	payload: error
 });

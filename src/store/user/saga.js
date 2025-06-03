@@ -28,7 +28,8 @@ import {
 	GET_USER_PROFILE_VISIT_STARTED,
 	GET_USER_MATCH_STARTED,
 	GET_MATCH_PREVIUS_USER_STARTED,
-	USER_LOGOUT_STARTED
+	USER_LOGOUT_STARTED,
+	GET_STORY_STARTED,
 } from './types';
 
 import {
@@ -82,7 +83,9 @@ import {
 	getUserMatchError,
 	getMatchPreviusUserSuccess,
 	getMatchPreviusUserError,
-	userLogoutSuccess
+	userLogoutSuccess,
+	getStorySuccess,
+	getStoryError
 } from './actions';
 
 const cookies = new Cookies();
@@ -845,6 +848,24 @@ function* getMatchPreviusUserTask(action) {
 	}
 }
 
+function* getStoryTask(action) {
+	const { payload } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/story`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getStorySuccess(data));
+	} catch (error) {
+		yield put(getStoryError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -956,6 +977,10 @@ function* watchUserLogout() {
 	yield takeLatest(USER_LOGOUT_STARTED, userLogoutTask);
 }
 
+function* watchGetStory() {
+	yield takeLatest(GET_STORY_STARTED, getStoryTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -983,6 +1008,7 @@ export default function* saga() {
 		watchGetUserProfileVisit(),
 		watchGetUserMatch(),
 		watchGetMatchPreviusUser(),
-		watchUserLogout()
+		watchUserLogout(),
+		watchGetStory()
 	]);
 }

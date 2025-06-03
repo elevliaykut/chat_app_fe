@@ -15,7 +15,8 @@ import {
     userUpdateSpouseCandidateReset,
     userUpdateCaracteristicFeature,
     userUpdateCaracteristicFeatureReset,
-    userLogout
+    userLogout,
+    getStory
 } from '../../../store/user/actions';
 
 import {
@@ -44,6 +45,7 @@ const mapStateToProps = state => ({
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMe: state?.user?.userMe,
+    stories: state?.user?.stories,
     userMeLoading: state?.user?.userMeLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
     userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
@@ -76,7 +78,8 @@ const mapDispatchToProps = dispatch => ({
     userUpdateCaracteristicFeature: payload => dispatch(userUpdateCaracteristicFeature(payload)),
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
     userLogout: () => dispatch(userLogout()),
-    getNotifications: (payload) => dispatch(getNotifications(payload))
+    getNotifications: (payload) => dispatch(getNotifications(payload)),
+    getStory: () => dispatch(getStory())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);
