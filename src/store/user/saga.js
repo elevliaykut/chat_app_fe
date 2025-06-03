@@ -849,11 +849,13 @@ function* getMatchPreviusUserTask(action) {
 }
 
 function* getStoryTask(action) {
-	const { payload } = action;
+	const { payload = {} } = action;
+	const { me } = payload;
+
 	const token = cookies.get('chatAppToken');
 
 	try {
-		const response = yield call(axios.get, `${BASE_URL}/user/story`,
+		const response = yield call(axios.get, `${BASE_URL}/user/story?me=${me ? me : ''}`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},

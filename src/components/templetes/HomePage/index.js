@@ -79,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
     userLogout: () => dispatch(userLogout()),
     getNotifications: (payload) => dispatch(getNotifications(payload)),
-    getStory: () => dispatch(getStory())
+    getStory: payload => dispatch(getStory(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);
