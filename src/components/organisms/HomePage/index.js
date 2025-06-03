@@ -240,7 +240,6 @@ const HomePage = ({
                         <StoryBanner
                             users={stories}
                             userMe={userMe}
-                            getStory={getStory}
                         />
                     </>
                 )}

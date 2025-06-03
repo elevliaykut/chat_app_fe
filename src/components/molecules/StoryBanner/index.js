@@ -4,7 +4,6 @@ import styles from './Index.module.css';
 const StoryBanner = ({
     users = [],
     userMe = {},
-    getStory = () => {}
 }) => {
     const [activeUserIndex, setActiveUserIndex] = useState(null);
     const [activeStoryIndex, setActiveStoryIndex] = useState(0);
@@ -64,19 +63,13 @@ const StoryBanner = ({
         }
       };
 
-    const currentAvatarOnClick = () => {
-        getStory({ me: true });
-        openStory(0);
-    }
-
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.storyList}>
+                
                 <div className={styles.profileWrapper}>
-                        <div className={styles.avatarBox}
-                            onClick={currentAvatarOnClick}
-                        >
+                        <div className={styles.avatarBox}>
                             <img
                                 src={storyImage ? storyImage : userMe?.profile_photo_path} // kullanıcının profil fotoğrafı
                                 alt="Profil"
