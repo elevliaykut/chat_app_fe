@@ -33,7 +33,8 @@ import {
     userBlocked,
     userBlockedReset,
     createUserProfileVisitLog,
-    userLogout
+    userLogout,
+    getUserPhoto
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
@@ -58,7 +59,9 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.notificationIsLoading,
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
-    sendMessageCompleted: state?.notifications?.sendMessageCompleted
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
+    photos: state?.user?.photos,
+    userPhotoIsLoading: state?.user?.userPhotoIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -83,7 +86,8 @@ const mapDispatchToProps = dispatch => ({
     getNotifications: payload => dispatch(getNotifications(payload)),
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
-    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
+    getUserPhoto: payload => dispatch(getUserPhoto(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);

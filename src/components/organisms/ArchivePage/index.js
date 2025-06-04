@@ -13,6 +13,7 @@ import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
+import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
 
 const ArchivePage = ({
     userMe = {},
@@ -49,7 +50,11 @@ const ArchivePage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    userUploadPhoto = () => {},
+    getUserPhoto = () => {},
+    photos = [],
+    userPhotoIsLoading = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -59,6 +64,17 @@ const ArchivePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+    const [photoModalVisible, setPhotoModalVisible] = useState(false);
+    
+    useEffect(() => {
+        if(userMe?.id) {
+            getUserPhoto({ userId: userMe?.id});
+        }
+    },[userMe?.id]);
+
+    const userPhotoModalOnClose = () => {
+        setPhotoModalVisible(false);
+    }
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -137,6 +153,17 @@ const ArchivePage = ({
 
     return (
         <>
+            {photoModalVisible && (
+                <>
+                    <UserPhotoModal
+                        onClose={userPhotoModalOnClose}
+                        isLoading={isLoading}
+                        error={error}
+                        userUploadPhoto={userUploadPhoto}
+                        photos={photos}
+                    />
+                </>
+            )}
 
             {profileTextModalVisible && (
                 <>
@@ -237,6 +264,7 @@ const ArchivePage = ({
                                     setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                                     setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                     setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                                    setPhotoModalVisible={setPhotoModalVisible}
                                 />
                             </div>
                         </>

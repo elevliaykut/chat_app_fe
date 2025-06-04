@@ -30,6 +30,9 @@ import {
 	GET_MATCH_PREVIUS_USER_STARTED,
 	USER_LOGOUT_STARTED,
 	GET_STORY_STARTED,
+	CREATE_STORY_STARTED,
+	USER_UPLOAD_PHOTO_STARTED,
+	GET_USER_PHOTO_STARTED
 } from './types';
 
 import {
@@ -85,7 +88,13 @@ import {
 	getMatchPreviusUserError,
 	userLogoutSuccess,
 	getStorySuccess,
-	getStoryError
+	getStoryError,
+	createStorySuccess,
+	createStoryError,
+	userUploadPhotoSuccess,
+	userUploadPhotoError,
+	getUserPhotoSuccess,
+	getUserPhotoError
 } from './actions';
 
 const cookies = new Cookies();
@@ -866,6 +875,68 @@ function* getStoryTask(action) {
 	}
 }
 
+function* creteStoryTask(action) {
+	const { payload = {} } = action;
+	const { formData } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/story`,
+			formData,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(createStorySuccess(data));
+	} catch (error) {
+		yield put(createStoryError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userUploadPhotoTask(action) {
+	const { payload = {} } = action;
+	const { formData } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/photo`,
+			formData,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(userUploadPhotoSuccess(data));
+	} catch (error) {
+		yield put(userUploadPhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getUserPhotoTask(action) {
+	const { payload = {} } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/photo/${userId}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getUserPhotoSuccess(data));
+	} catch (error) {
+		yield put(getUserPhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -981,6 +1052,18 @@ function* watchGetStory() {
 	yield takeLatest(GET_STORY_STARTED, getStoryTask);
 }
 
+function* watchCreateStory() {
+	yield takeLatest(CREATE_STORY_STARTED, creteStoryTask);
+}
+
+function* watchUserUploadPhoto() {
+	yield takeLatest(USER_UPLOAD_PHOTO_STARTED, userUploadPhotoTask);
+}
+
+function* watchGetUserPhoto() {
+	yield takeLatest(GET_USER_PHOTO_STARTED, getUserPhotoTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1009,6 +1092,9 @@ export default function* saga() {
 		watchGetUserMatch(),
 		watchGetMatchPreviusUser(),
 		watchUserLogout(),
-		watchGetStory()
+		watchGetStory(),
+		watchCreateStory(),
+		watchUserUploadPhoto(),
+		watchGetUserPhoto()
 	]);
 }

@@ -8,6 +8,10 @@ import SpouseCandidateModal from '../../molecules/Modals/SpouseCandidateModal';
 import CaracteristicFeatureModal from '../../molecules/Modals/CaracteristicFeatureModal';
 import TopBanner from '../../molecules/TopBanner';
 import ProfileEpisode from '../../molecules/ProfileEpisode';
+import ToastMessage from "../../molecules/TostMessage";
+import StoryBanner from "../../molecules/StoryBanner";
+import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 export default function Home({
   isLoading = false,
@@ -51,7 +55,15 @@ export default function Home({
   userLogout = () => {},
   getNotifications = () => {},
   notifications = [],
-  notificationIsLoading = false
+  notificationIsLoading = false,
+  getStory = () => {},
+  stories = [],
+  createStory = () => {},
+  resetCreateStoryComplete = () => {},
+  createStoryComplete = false,
+  userUploadPhoto = () => {},
+  getUserPhoto = () => {},
+  photos = []
 }) {
 
   const [profileVisible, setProfileVisible]                           = useState(false);
@@ -63,9 +75,38 @@ export default function Home({
   const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
   const [userMeVisible, setUserMeVisible] = useState(false);
 
+  const [storyVisible, setStoryVisible] = useState();
+  const [shareSelectNotif, setShareSelectNotif] = useState(false);
+  const [photoModalVisible, setPhotoModalVisible] = useState(false);
+
+  const userPhotoModalOnClose = () => {
+    setPhotoModalVisible(false);
+}
+
+useEffect(() => {
+    if(createStoryComplete) {
+        resetCreateStoryComplete();
+        setShareSelectNotif(true);
+    }
+},[createStoryComplete]);
+
+useEffect(() => {
+    if(!isLoading) {
+        setStoryVisible(true);
+    }
+},[isLoading]);
+
   useEffect(() => {
     getNotifications({ read: false });
+    getStory();
   },[]);
+
+  useEffect(() => {
+    if(userMe?.id) {
+        getUserPhoto({ userId: userMe?.id})
+    }
+  },[userMe?.id]);
+
 
   useEffect(() => {
     if (!isUserLoggedIn) {
@@ -115,6 +156,23 @@ export default function Home({
 
   return (
     <>
+      {shareSelectNotif && (
+                <>
+                    <ToastMessage message={"Hikayeniz başarılı bir şekilde yaplaşıldı ✅"}/>
+                </>
+      )}
+
+      {photoModalVisible && (
+                <>
+                    <UserPhotoModal
+                        onClose={userPhotoModalOnClose}
+                        isLoading={isLoading}
+                        error={error}
+                        userUploadPhoto={userUploadPhoto}
+                        photos={photos}
+                    />
+                </>
+            )}
 
       {profileTextModalVisible && (
                 <>
@@ -198,6 +256,15 @@ export default function Home({
         />
 
         <div className={styles?.frame}>
+          {storyVisible && (
+                    <>
+                        <StoryBanner
+                            users={stories}
+                            userMe={userMe}
+                            createStory={createStory}
+                        />
+                    </>
+          )}
           <div className={styles?.content}>
               {profileVisible && (
                 <>
@@ -212,6 +279,7 @@ export default function Home({
                       setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                       setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                       setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                      setPhotoModalVisible={setPhotoModalVisible}
                     />
                 </>
               )}

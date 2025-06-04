@@ -16,7 +16,11 @@ import {
     userUpdateCaracteristicFeature,
     userUpdateCaracteristicFeatureReset,
     userLogout,
-    getStory
+    getStory,
+    createStory,
+    resetCreateStoryComplete,
+    userUploadPhoto,
+    getUserPhoto
 } from '../../../store/user/actions';
 
 import {
@@ -45,7 +49,9 @@ const mapStateToProps = state => ({
     uploadProfilePhotoComplete: state?.user?.uploadProfilePhotoComplete,
     uploadProfilePhotoIsLoading: state?.user?.uploadProfilePhotoIsLoading,
     userMe: state?.user?.userMe,
+    photos: state?.user?.photos,
     stories: state?.user?.stories,
+    createStoryComplete: state?.user?.createStoryComplete,
     userMeLoading: state?.user?.userMeLoading,
     updateUserPersonalInfoComplete: state?.user?.updateUserPersonalInfoComplete,
     userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
@@ -79,7 +85,11 @@ const mapDispatchToProps = dispatch => ({
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
     userLogout: () => dispatch(userLogout()),
     getNotifications: (payload) => dispatch(getNotifications(payload)),
-    getStory: payload => dispatch(getStory(payload))
+    getStory: payload => dispatch(getStory(payload)),
+    createStory: payload => dispatch(createStory(payload)),
+    resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
+    userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
+    getUserPhoto: payload => dispatch(getUserPhoto(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

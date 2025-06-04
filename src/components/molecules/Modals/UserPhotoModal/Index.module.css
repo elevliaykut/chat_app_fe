@@ -1,0 +1,83 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 750px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .modalHeader {
+    display: flex;
+  }
+
+  .modalHeader label {
+    font-weight: bold;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 2%;
+    color: #555;
+    transition: background-color 0.2s ease;
+  }
+  
+  .closeButton:hover {
+    background-color: #eee;
+  }
+
+  .photoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  .addPhotoBox {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #fafafa;
+    transition: background-color 0.2s;
+  }
+  
+  .addPhotoBox:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .photoThumb {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  

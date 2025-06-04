@@ -12,6 +12,8 @@ import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
 import StoryBanner from "../../molecules/StoryBanner";
+import ToastMessage from "../../molecules/TostMessage";
+import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
 
 const HomePage = ({
     posts = [],
@@ -54,7 +56,13 @@ const HomePage = ({
     notifications = [],
     notificationIsLoading = false,
     getStory = () => {},
-    stories = []
+    stories = [],
+    createStory = () => {},
+    resetCreateStoryComplete = () => {},
+    createStoryComplete = false,
+    userUploadPhoto = () => {},
+    getUserPhoto = () => {},
+    photos = []
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -65,6 +73,15 @@ const HomePage = ({
     const [spouseCandidateModalVisible, setSpouseCandidateModalVisible] = useState(false);
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [storyVisible, setStoryVisible] = useState();
+    const [shareSelectNotif, setShareSelectNotif] = useState(false);
+    const [photoModalVisible, setPhotoModalVisible] = useState(false);
+
+    useEffect(() => {
+        if(createStoryComplete) {
+            resetCreateStoryComplete();
+            setShareSelectNotif(true);
+        }
+    },[createStoryComplete]);
 
     useEffect(() => {
         if(!isLoading) {
@@ -76,6 +93,12 @@ const HomePage = ({
         getNotifications({ read: false });
         getStory();
     },[]);
+
+    useEffect(() => {
+        if(userMe?.id) {
+            getUserPhoto({ userId: userMe });
+        }
+    },[userMe?.id]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -150,8 +173,29 @@ const HomePage = ({
         setCaracteristicFeatureModalVisible(false);
     } 
 
+    const userPhotoModalOnClose = () => {
+        setPhotoModalVisible(false);
+    }
+
     return (
         <>
+            {shareSelectNotif && (
+                <>
+                    <ToastMessage message={"Hikayeniz başarılı bir şekilde yaplaşıldı ✅"}/>
+                </>
+            )}
+
+            {photoModalVisible && (
+                <>
+                    <UserPhotoModal
+                        onClose={userPhotoModalOnClose}
+                        isLoading={isLoading}
+                        error={error}
+                        userUploadPhoto={userUploadPhoto}
+                        photos={photos}
+                    />
+                </>
+            )}
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal
@@ -240,6 +284,7 @@ const HomePage = ({
                         <StoryBanner
                             users={stories}
                             userMe={userMe}
+                            createStory={createStory}
                         />
                     </>
                 )}
@@ -258,6 +303,7 @@ const HomePage = ({
                                 setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                                setPhotoModalVisible={setPhotoModalVisible}
                             />
                         </>
                     )}

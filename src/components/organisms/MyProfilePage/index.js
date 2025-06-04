@@ -13,6 +13,8 @@ import PersonalInfoModal from "../../molecules/Modals/PersonalInfoModal";
 import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
+import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
+import MemberPhotoCard from "../../molecules/MemberPhotoCard";
 
 const MyProfilePage = ({
     userMe = {},
@@ -49,7 +51,11 @@ const MyProfilePage = ({
     userLogout = () => {},
     getNotifications = () => {},
     notifications = [],
-    notificationIsLoading = false
+    notificationIsLoading = false,
+    userUploadPhoto = () => {},
+    getUserPhoto = () => {},
+    photos = [],
+    userPhotoIsLoading = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -59,6 +65,24 @@ const MyProfilePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+    const [photoModalVisible, setPhotoModalVisible] = useState(false);
+    const [photoGalleryVisible, setPhotoGalleryVisible] = useState(false);
+
+    useEffect(() => {
+        if(userPhotoIsLoading) {
+            setPhotoGalleryVisible(true);
+        }
+    },[userPhotoIsLoading]);
+
+    useEffect(() => {
+        if(userMe?.id) {
+            getUserPhoto({ userId: userMe?.id});
+        }
+    },[userMe?.id]);
+    
+    const userPhotoModalOnClose = () => {
+        setPhotoModalVisible(false);
+    }
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -137,6 +161,17 @@ const MyProfilePage = ({
 
     return (
         <>
+            {photoModalVisible && (
+                <>
+                    <UserPhotoModal
+                        onClose={userPhotoModalOnClose}
+                        isLoading={isLoading}
+                        error={error}
+                        userUploadPhoto={userUploadPhoto}
+                        photos={photos}
+                    />
+                </>
+            )}
 
             {profileTextModalVisible && (
                 <>
@@ -211,6 +246,7 @@ const MyProfilePage = ({
                     />
                 </>
             )}
+            
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 messageCount={userMe?.message_count}
@@ -237,12 +273,22 @@ const MyProfilePage = ({
                                     setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                                     setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                     setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                                    setPhotoModalVisible={setPhotoModalVisible}
                                 />
                             </div>
                         </>
                     )}
 
                     <div style={{ width: '100%' }}>
+                        
+                        {photoGalleryVisible && (
+                            <>
+                                <MemberPhotoCard
+                                    photos={photos}
+                                />
+                            </>
+                        )}
+
                         {profileVisible && (
                             <>
                                     <MemberProfileTextCard
@@ -254,6 +300,7 @@ const MyProfilePage = ({
                                     />
                             </>
                         )}
+                        
                         {myPostEpisodeVisible && (
                             <>
                                 <ListPostBox
@@ -266,6 +313,7 @@ const MyProfilePage = ({
                                 />
                             </>
                         )}
+
                     </div>
                 </div>
             </div>

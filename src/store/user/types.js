@@ -146,3 +146,16 @@ export const USER_LOGOUT_FAILED = `${category}__USER_LOGOUT__FAILED`;
 export const GET_STORY_STARTED = `${category}__GET_STORY_STARTED`;
 export const GET_STORY_SUCCEEDED = `${category}__GET_STORY_SUCCEEDED`;
 export const GET_STORY_FAILED = `${category}__GET_STORY_FAILED`;
+
+export const CREATE_STORY_STARTED = `${category}__CREATE_STORY__STARTED`;
+export const CREATE_STORY_SUCCEEDED = `${category}__CREATE_STORY__SUCCEEDED`;
+export const CREATE_STORY_FAILED = `${category}__CREATE_STORY_FAILED`;
+export const RESET_CREATE_STORY_COMPLETE =  `${category}__RESET_CREATE_STORY_COMPLETE`;
+
+export const USER_UPLOAD_PHOTO_STARTED = `${category}__USER_UPLOAD_PHOTO__STARTED`;
+export const USER_UPLOAD_PHOTO_SUCCEEDED = `${category}__USER_UPLOAD_PHOTO__SUCCEEDED`;
+export const USER_UPLOAD_PHOTO_FAILED = `${category}__USER_UPLOAD_PHOTO__FAILED`;
+
+export const GET_USER_PHOTO_STARTED = `${category}__GET_USER_PHOTO__STARTED`;
+export const GET_USER_PHOTO_SUCCEEDED = `${category}__GET_USER_PHOTO__SUCCEEDED`;
+export const GET_USER_PHOTO_FAILED = `${category}__GET_USER_PHOTO__FAILED`;

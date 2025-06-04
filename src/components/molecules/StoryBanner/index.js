@@ -4,13 +4,13 @@ import styles from './Index.module.css';
 const StoryBanner = ({
     users = [],
     userMe = {},
+    createStory = () => {}
 }) => {
     const [activeUserIndex, setActiveUserIndex] = useState(null);
     const [activeStoryIndex, setActiveStoryIndex] = useState(0);
     const activeUser = users[activeUserIndex];
     const [storyImage, setStoryImage] = useState();
     const progressBarRef = useRef(null); 
-    const [isUserMeActive, setIsUserMeActive] = useState(false);
     
 
     const openStory = (userIndex) => {
@@ -58,8 +58,9 @@ const StoryBanner = ({
       const handleStorySelect = (e) => {
         const file = e.target.files[0];
         if (file) {
-          const imageUrl = URL.createObjectURL(file); // geçici önizleme URL'si
-          setStoryImage(imageUrl);
+          const data = new FormData();
+          data.append('media', file);
+          createStory({ formData: data });
         }
       };
 
@@ -71,7 +72,7 @@ const StoryBanner = ({
                 <div className={styles.profileWrapper}>
                         <div className={styles.avatarBox}>
                             <img
-                                src={storyImage ? storyImage : userMe?.profile_photo_path} // kullanıcının profil fotoğrafı
+                                src={userMe?.profile_photo_path}
                                 alt="Profil"
                                 className={styles.avatarProfile}
                             />
@@ -95,7 +96,30 @@ const StoryBanner = ({
                 {users.map((user, index) => (
                     <div key={user.user_id} onClick={() => openStory(index)} className={styles.avatarWrapper}>
                         <div className={styles.avatarContainer}>
-                            <img src={user.profile_photo_url} alt={user.name} className={styles.avatar} />
+                            {user?.profile_photo_url ? (
+                                <>
+                                    <img src={user.profile_photo_url} alt={user.name} className={styles.avatar} />
+                                </>
+                            ) : (
+                                <>
+                                    <div className={styles.avatar}>
+                                        <svg
+                                            width="94"
+                                            height="94"
+                                            viewBox="0 0 24 24"
+                                            fill="#ccc"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                            <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                            <path
+                                                d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                fill="#BDBDBD"
+                                        />
+                                        </svg>
+                                    </div>
+                                </>
+                            )}
                         </div>
                         <p className={styles.name}>{user.username}</p>
                     </div>

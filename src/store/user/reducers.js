@@ -93,7 +93,17 @@ import {
 	USER_LOGOUT_FAILED,
 	GET_STORY_STARTED,
 	GET_STORY_SUCCEEDED,
-	GET_STORY_FAILED
+	GET_STORY_FAILED,
+	CREATE_STORY_STARTED,
+	CREATE_STORY_SUCCEEDED,
+	CREATE_STORY_FAILED,
+	RESET_CREATE_STORY_COMPLETE,
+	USER_UPLOAD_PHOTO_STARTED,
+	USER_UPLOAD_PHOTO_SUCCEEDED,
+	USER_UPLOAD_PHOTO_FAILED,
+	GET_USER_PHOTO_STARTED,
+	GET_USER_PHOTO_SUCCEEDED,
+	GET_USER_PHOTO_FAILED
 } from './types';
 
 const initialState = {
@@ -137,7 +147,10 @@ const initialState = {
 	matchUserComplete: false,
 	matchPreviusUserComplete: false,
 	loginIsLoaing: false,
-	stories: []
+	stories: [],
+	createStoryComplete: false,
+	photos: [],
+	userPhotoIsLoading: false
 };
 
 const user = (state = initialState, action) => {
@@ -726,6 +739,66 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: false,
+				error: payload
+			};
+		case CREATE_STORY_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				createStoryComplete: false,
+			};
+		case CREATE_STORY_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				createStoryComplete: true,
+			};
+		case CREATE_STORY_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				createStoryComplete: false,
+				error: payload
+			};
+		case RESET_CREATE_STORY_COMPLETE:
+			return {
+				...state,
+				createStoryComplete: false,
+			};
+		case USER_UPLOAD_PHOTO_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case USER_UPLOAD_PHOTO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+			};
+		case USER_UPLOAD_PHOTO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case GET_USER_PHOTO_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userPhotoIsLoading: true,
+			};
+		case GET_USER_PHOTO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userPhotoIsLoading: false,
+				photos: payload?.data
+			};
+		case GET_USER_PHOTO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userPhotoIsLoading: false,
 				error: payload
 			};
 		default:

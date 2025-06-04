@@ -15,7 +15,8 @@ const MyProfileCard = ({
     setBasicInfoModalVisible = () => {},
     setPersonalInfoModalVisible = () => {},
     setSpouseCandidateModalVisible = () => {},
-    setCaracteristicFeatureModalVisible = () => {}
+    setCaracteristicFeatureModalVisible = () => {},
+    setPhotoModalVisible = () => {}
 }) => {
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
@@ -111,7 +112,7 @@ const MyProfileCard = ({
                                 <path fill="#505050" d="M20 5h-3.172l-1.414-1.414A2 2 0 0 0 13.172 3H10.83a2 2 0 0 0-1.414.586L8 5H4a2 2 0 0 0-2 2v11a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a2 2 0 0 0-2-2Zm0 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1.586l3.293-3.293a1 1 0 0 1 1.414 0l2.086 2.086a1 1 0 0 0 1.414 0L17 11l3 3v4ZM8.5 10.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/>
                             </svg>
                         </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
+                        <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => setPhotoModalVisible(true)}>
                             <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Fotoğraflar</label>
                         </div>
                     </div>

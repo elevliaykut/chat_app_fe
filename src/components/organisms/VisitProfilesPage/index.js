@@ -11,6 +11,9 @@ import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
 import MessageModal from "../../molecules/Modals/MessageModal";
+import ToastMessage from "../../molecules/TostMessage";
+import StoryBanner from "../../molecules/StoryBanner";
+import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
 
 const VisitProfilesPage = ({
     isLoading = false,
@@ -62,7 +65,15 @@ const VisitProfilesPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    getStory = () => {},
+    stories = [],
+    createStory = () => {},
+    resetCreateStoryComplete = () => {},
+    createStoryComplete = false,
+    userUploadPhoto = () => {},
+    getUserPhoto = () => {},
+    photos = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -79,9 +90,37 @@ const VisitProfilesPage = ({
     const [selectedUsername, setSelectedUsername] = useState();
     const [selectedUserStatus, setSelectedUserStatus] = useState();
 
+    const [storyVisible, setStoryVisible] = useState();
+    const [shareSelectNotif, setShareSelectNotif] = useState(false);
+    const [photoModalVisible, setPhotoModalVisible] = useState(false);
+
+    const userPhotoModalOnClose = () => {
+        setPhotoModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(createStoryComplete) {
+            resetCreateStoryComplete();
+            setShareSelectNotif(true);
+        }
+    },[createStoryComplete]);
+
+    useEffect(() => {
+        if(!isLoading) {
+            setStoryVisible(true);
+        }
+    },[isLoading]);
+
     useEffect(() => {
         getNotifications({ read: false });
+        getStory();
     },[]);
+
+    useEffect(() => {
+        if(userMe?.id) {
+            getUserPhoto({ userId: userMe?.id})
+        }
+    },[userMe?.id]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {
@@ -192,6 +231,24 @@ const VisitProfilesPage = ({
 
     return (
         <>
+            {shareSelectNotif && (
+                <>
+                    <ToastMessage message={"Hikayeniz başarılı bir şekilde yaplaşıldı ✅"}/>
+                </>
+            )}
+
+            {photoModalVisible && (
+                <>
+                    <UserPhotoModal
+                        onClose={userPhotoModalOnClose}
+                        isLoading={isLoading}
+                        error={error}
+                        userUploadPhoto={userUploadPhoto}
+                        photos={photos}
+                    />
+                </>
+            )}
+
             {messageModalVisible && (
                 <>
                     <MessageModal
@@ -289,9 +346,16 @@ const VisitProfilesPage = ({
                 notificationIsLoading={notificationIsLoading}
             />
             
-            <StorySlider/>
-
             <div className={styles.frame}>
+                {storyVisible && (
+                    <>
+                        <StoryBanner
+                            users={stories}
+                            userMe={userMe}
+                            createStory={createStory}
+                        />
+                    </>
+                )}
                 <div className={styles.content}>
 
                     {profileVisible && (
@@ -307,6 +371,7 @@ const VisitProfilesPage = ({
                                 setPersonalInfoModalVisible={setPersonalInfoModalVisible}
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
+                                setPhotoModalVisible={setPhotoModalVisible}
                             />
                         </>
                     )}

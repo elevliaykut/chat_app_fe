@@ -13,7 +13,9 @@ import {
     userUpdateCaracteristicFeature,
     userUpdateCaracteristicFeatureReset,
     getMyPosts,
-    userLogout
+    userLogout,
+    userUploadPhoto,
+    getUserPhoto
 } from '../../../store/user/actions';
 
 import {
@@ -49,7 +51,9 @@ const mapStateToProps = state => ({
     postError: state?.post?.error,
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
-    notificationIsLoading: state?.notifications?.notificationIsLoading
+    notificationIsLoading: state?.notifications?.notificationIsLoading,
+    photos: state?.user?.photos,
+    userPhotoIsLoading: state?.user?.userPhotoIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,7 +73,9 @@ const mapDispatchToProps = dispatch => ({
     userUpdateCaracteristicFeatureReset: () => dispatch(userUpdateCaracteristicFeatureReset()),
     getMyPosts: payload => dispatch(getMyPosts(payload)),
     userLogout: () => dispatch(userLogout()),
-    getNotifications: payload => dispatch(getNotifications(payload))
+    getNotifications: payload => dispatch(getNotifications(payload)),
+    userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
+    getUserPhoto: payload => dispatch(getUserPhoto(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

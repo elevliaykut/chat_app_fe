@@ -21,7 +21,12 @@ import {
     userActivityFavoriteReset,
     userActivityLiked,
     userActivityLikedReset,
-    userLogout
+    userLogout,
+    getStory,
+    createStory,
+    resetCreateStoryComplete,
+    userUploadPhoto,
+    getUserPhoto
 } from '../../../store/user/actions';
 
 import {
@@ -60,7 +65,11 @@ const mapStateToProps = state => ({
 
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
-    sendMessageCompleted: state?.notifications?.sendMessageCompleted
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
+
+    photos: state?.user?.photos,
+    stories: state?.user?.stories,
+    createStoryComplete: state?.user?.createStoryComplete,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,7 +97,12 @@ const mapDispatchToProps = dispatch => ({
     getNotifications: payload => dispatch(getNotifications(payload)),
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
-    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
+    getStory: payload => dispatch(getStory(payload)),
+    createStory: payload => dispatch(createStory(payload)),
+    resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
+    userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
+    getUserPhoto: payload => dispatch(getUserPhoto(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BornTodayPageOrganisms);

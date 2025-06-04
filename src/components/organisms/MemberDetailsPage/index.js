@@ -9,6 +9,7 @@ import UserReportModal from "../../molecules/Modals/UserReportModal";
 import ToastMessage from "../../molecules/TostMessage";
 import FooterBanner from "../../molecules/FooterBanner";
 import MessageModal from "../../molecules/Modals/MessageModal";
+import MemberPhotoCard from "../../molecules/MemberPhotoCard";
 
 const MemberDetailsPage = ({
     isLoading = false,
@@ -54,7 +55,10 @@ const MemberDetailsPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    getUserPhoto = () => {},
+    photos = [],
+    userPhotoIsLoading = false
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -66,6 +70,19 @@ const MemberDetailsPage = ({
     const [selectedMessageUserId, setSelectedMessageUserId] = useState();
     const [selectedUsername, setSelectedUsername] = useState();
     const [selectedUserStatus, setSelectedUserStatus] = useState();
+    const [photoGalleryVisible, setPhotoGalleryVisible] = useState(false);
+
+    useEffect(() => {
+        if(userPhotoIsLoading) {
+            setPhotoGalleryVisible(true);
+        }
+    },[userPhotoIsLoading]);
+
+    useEffect(() => {
+        if(memberId) {
+            getUserPhoto({ userId: memberId});
+        }
+    },[memberId]);
 
     useEffect(() => {
         getNotifications({ read: false });
@@ -241,6 +258,15 @@ const MemberDetailsPage = ({
                     )}
 
                     <div style={{ width: '100%' }}>
+
+                        {photoGalleryVisible && (
+                            <>
+                                <MemberPhotoCard
+                                    photos={photos}
+                                />
+                            </>
+                        )}
+
                         {memberDetailVisible && (
                             <>
                                     <MemberProfileTextCard

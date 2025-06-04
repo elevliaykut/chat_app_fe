@@ -93,7 +93,17 @@ import {
 	USER_LOGOUT_FAILED,
 	GET_STORY_STARTED,
 	GET_STORY_SUCCEEDED,
-	GET_STORY_FAILED
+	GET_STORY_FAILED,
+	CREATE_STORY_STARTED,
+	CREATE_STORY_SUCCEEDED,
+	CREATE_STORY_FAILED,
+	RESET_CREATE_STORY_COMPLETE,
+	USER_UPLOAD_PHOTO_STARTED,
+	USER_UPLOAD_PHOTO_SUCCEEDED,
+	USER_UPLOAD_PHOTO_FAILED,
+	GET_USER_PHOTO_STARTED,
+	GET_USER_PHOTO_SUCCEEDED,
+	GET_USER_PHOTO_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -554,5 +564,54 @@ export const getStorySuccess = data => ({
 
 export const getStoryError = error => ({
 	type: GET_STORY_FAILED,
+	payload: error
+});
+
+export const createStory = values => ({
+	type: CREATE_STORY_STARTED,
+	payload: values
+});
+
+export const createStorySuccess = data => ({
+	type: CREATE_STORY_SUCCEEDED,
+	payload: data
+});
+
+export const createStoryError = error => ({
+	type: CREATE_STORY_FAILED,
+	payload: error
+});
+
+export const resetCreateStoryComplete = () => ({
+	type: RESET_CREATE_STORY_COMPLETE
+});
+
+export const userUploadPhoto = values => ({
+	type: USER_UPLOAD_PHOTO_STARTED,
+	payload: values
+});
+
+export const userUploadPhotoSuccess = data => ({
+	type: USER_UPLOAD_PHOTO_SUCCEEDED,
+	payload: data
+});	
+
+export const userUploadPhotoError = error => ({
+	type: USER_UPLOAD_PHOTO_FAILED,
+	payload: error
+});
+
+export const getUserPhoto = values => ({
+	type: GET_USER_PHOTO_STARTED,
+	payload: values
+});
+
+export const getUserPhotoSuccess = data => ({
+	type: GET_USER_PHOTO_SUCCEEDED,
+	payload: data
+});
+
+export const getUserPhotoError = error => ({
+	type: GET_USER_PHOTO_FAILED,
 	payload: error
 });
