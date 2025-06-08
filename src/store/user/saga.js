@@ -225,6 +225,10 @@ function* getUserMeTask(action) {
 function* updateUserPersonalInfoTask(action) {
 	const { payload } = action;
 	const { 
+		name,
+		surname,
+		age,
+		phone,
 		profileSummary,
 		biography,
 		horoscope,
@@ -268,6 +272,10 @@ function* updateUserPersonalInfoTask(action) {
 	try {
 		const response = yield call(axios.put, `${BASE_URL}/user/personal-information`,
 			{
+				name: name,
+				surname: surname,
+				age: age,
+				phone: phone,
 				profile_summary: profileSummary,
 				biography: biography,
 				horoscope: horoscope,

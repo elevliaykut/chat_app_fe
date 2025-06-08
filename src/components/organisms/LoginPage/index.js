@@ -21,31 +21,20 @@ const LoginPage = ({
 	const [email, setEmail]									= useState();
 	const [password, setPassword]	    					= useState();
 	const [birthDate, setBirthDate]							= useState();
-	const [name, setName]									= useState();
-	const [surname, setSurname]								= useState();
-	const [age, setAge]										= useState();
-	const [phone, setPhone]									= useState();
 	const [isPrivacyChecked, setIsPrivacyChecked] 			= useState(false);
 	const [loginPrivacyChecked, setLoginPrivacyChecked] 	= useState(false);
 	const [emailPrivacyChecked, setEmailPrivacyChecked] 	= useState(false);
 
-	const [sectionOneVisible, setSectionOneVisible] 		= useState(true);
-	const [sectionTwoVisible, setSectionTwoVisible] 		= useState(false);
-	const [formOneHeaderVisible, setFormOneHeaderVisible]   = useState(false);
 	const [loginModalVisible, setLoginModalVisible]			= useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-			if(loginPrivacyChecked && emailPrivacyChecked) {
+			if(isPrivacyChecked && loginPrivacyChecked && emailPrivacyChecked) {
 				const data = new FormData();
-				data.append('name', name);
-				data.append('surname', surname);
-				data.append('age', age);
 				data.append('username',username);
 				data.append('email', email);
 				data.append('password', password);
-				data.append('phone', phone);
 				data.append('gender', gender);
 				data.append('birth_date', birthDate);
 				data.append('type', 1);
@@ -77,24 +66,6 @@ const LoginPage = ({
 
 	const genderHandleChange = (e) => {
 		setGender(e?.target?.value);
-	}
-	
-	const formOneButtonOnClick = () => {
-		if(isPrivacyChecked) {
-			setSectionOneVisible(false);
-			setSectionTwoVisible(true);
-			setFormOneHeaderVisible(true);
-		}
-	}
-
-	const sectionTwoHeaderOnClick = () => {
-		setSectionOneVisible(true);
-		setSectionTwoVisible(false);
-	}
-
-	const sectionOneHeaderOnClick = () => {
-		setSectionOneVisible(false);
-		setSectionTwoVisible(true);
 	}
 
 	const loginButtonOnClick = () => {
@@ -185,25 +156,7 @@ const LoginPage = ({
 						<div className={styles.leftContentEpisode}>
 							<div className={styles.formContainer}>
 								<form onSubmit={handleSubmit}>
-								
-									{sectionOneVisible && (
-										<>
-											{formOneHeaderVisible && (
-												<>
-													<div className={styles.sectionRoute}>
-														<div className={styles.sectionRouteOne} onClick={sectionOneHeaderOnClick}>
-															1
-														</div>
-														<div style={{ color: 'white'}}>
-															----
-														</div>
-														<div className={styles.sectionRouteTwo} onClick={sectionOneHeaderOnClick}>
-															2
-														</div>
-													</div>
-												</>
-											)}
-											<div className={styles.formGroup}>
+									<div className={styles.formGroup}>
 												<select
 													id="gender"
 													name="gender"
@@ -254,7 +207,7 @@ const LoginPage = ({
 													required
 												/>
 											</div>
-											<button className={styles.submitButton} onClick={formOneButtonOnClick}>ÜCRETSİZ ÜYE OL</button>
+											<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
 											<div style={{ marginTop: '20px'}}> 
 												<label style={{ display: "flex" }}>
 													<input
@@ -267,61 +220,7 @@ const LoginPage = ({
 													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
 												</label>
 											</div>
-										</>
-									)}
-
-									{sectionTwoVisible && (
-										<>
-											<div className={styles.sectionRoute}>
-												<div className={styles.sectionRouteOne} 
-												onClick={sectionTwoHeaderOnClick}>
-													1
-												</div>
-												<div style={{ color: 'white'}}>
-													----
-												</div>
-												<div className={styles.sectionRouteTwo}>
-													2
-												</div>
-											</div>
-											<div className={styles.formGroup}>
-												<input 
-													type="text" 
-													id="name" 
-													placeholder="İsim" 
-													onChange={(e) => setName(e.target.value)}
-													required
-												/>
-											</div>
-											<div className={styles.formGroup}>
-												<input 
-													type="text" 
-													id="surname" 
-													placeholder="Soyisim" 
-													onChange={(e) => setSurname(e.target.value)}
-													required
-												/>
-											</div>
-											<div className={styles.formGroup}>
-												<input 
-													type="text" 
-													id="age" 
-													placeholder="Yaş" 
-													onChange={(e) => setAge(e.target.value)}
-													required
-												/>
-											</div>
-											<div className={styles.formGroup}>
-												<input 
-													type="number" 
-													id="phone" 
-													placeholder="Telefon" 
-													onChange={(e) => setPhone(e.target.value)}
-													required
-												/>
-											</div>
-											<button type="submit" className={styles.submitButton} disabled={isLoading}>{isLoading ? <span className={styles.spinner}/> : "ÜYELİĞİ TAMAMLA"}</button>
-											<div style={{ marginTop: '20px'}}> 
+											<div style={{ marginTop: '5px'}}> 
 												<label style={{ display: "flex" }}>
 													<input
 														style={{ width: '15px'}}
@@ -345,8 +244,6 @@ const LoginPage = ({
 													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
 												</label>
 											</div>
-										</>
-									)}
 							</form>
 							</div>
 						</div>

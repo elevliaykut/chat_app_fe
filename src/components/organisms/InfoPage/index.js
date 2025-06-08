@@ -36,6 +36,11 @@ const InfoPage = ({
     const [menuFour, setMenuFour] = useState(false);
     const [menuFive, setMenuFive] = useState(false);
 
+    const [name, setName] = useState();
+    const [surname, setSurname] = useState();
+    const [age, setAge] = useState();
+    const [phone, setPhone] = useState();
+
     const [tall, setTall] = useState();
     const [maritalStatus, setMaritalStatus] = useState(1);
     const [weight, setWeight] = useState();
@@ -67,6 +72,10 @@ const InfoPage = ({
 
     const formSubmitOnClick = () => {
         updateUserPersonalInfo({
+            name: name,
+            surname: surname,
+            age: age,
+            phone: phone,
             tall: tall,
             maritalStatus: maritalStatus,
             weight: weight,
@@ -123,6 +132,26 @@ const InfoPage = ({
 
     const formOneNextOnClick = () => {
         
+        if(name === undefined) {
+            alert('İsim Girin!');
+            return;
+        };
+
+        if(surname === undefined) {
+            alert('Soyisim Girin!');
+            return;
+        };
+
+        if(age === undefined) {
+            alert('Yaş Girin!');
+            return;
+        };
+
+        if(phone === undefined) {
+            alert('Telefon Girin!');
+            return;
+        };
+
         if(tall === undefined) {
             alert('Boyunuzu Girin!');
             return;
@@ -132,7 +161,7 @@ const InfoPage = ({
             alert('Kilonuzu Girin!');
             return;
         };
-
+        
         setInfoOne(false);
         setInfoTwo(true);
         setInfoThree(false);
@@ -377,6 +406,50 @@ const InfoPage = ({
                                         <div className={styles.formOne}>
                                             
                                             <div className={styles.twoInputLineEpisode}>
+                                                
+                                                <div className={styles.leftInputEpisode}>
+                                                    <label>İsim</label>
+                                                    <input
+                                                        defaultValue={name}
+                                                        placeholder="İsim"
+                                                        onChange={(e) => setName(e?.target?.value)}
+                                                        className={styles.input}
+                                                    />
+                                                </div>
+                                                <div className={styles.rightInputEpisode}>
+                                                    <label>Soyisim</label>
+                                                    <input
+                                                        defaultValue={surname}
+                                                        placeholder="Soyisim"
+                                                        onChange={(e) => setSurname(e?.target?.value)}
+                                                        className={styles.input}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.twoInputLineEpisode} style={{ marginTop: '18px'}}>
+                                                
+                                                <div className={styles.leftInputEpisode}>
+                                                    <label>Yaş</label>
+                                                    <input
+                                                        defaultValue={age}
+                                                        placeholder="Yaş"
+                                                        onChange={(e) => setAge(e?.target?.value)}
+                                                        className={styles.input}
+                                                    />
+                                                </div>
+                                                <div className={styles.rightInputEpisode}>
+                                                    <label>Telefon</label>
+                                                    <input
+                                                        defaultValue={phone}
+                                                        placeholder="Telefon"
+                                                        onChange={(e) => setPhone(e?.target?.value)}
+                                                        className={styles.input}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.twoInputLineEpisode} style={{ marginTop: '18px'}}>
                                                 
                                                 <div className={styles.leftInputEpisode}>
                                                     <label>Boyunuz</label>

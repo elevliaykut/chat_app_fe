@@ -71,11 +71,30 @@ const StoryBanner = ({
                 
                 <div className={styles.profileWrapper}>
                         <div className={styles.avatarBox}>
-                            <img
-                                src={userMe?.profile_photo_path}
-                                alt="Profil"
-                                className={styles.avatarProfile}
-                            />
+                            {userMe?.profile_photo_url ? (
+                                <>
+                                    <img src={userMe.profile_photo_url} alt={userMe.name} className={styles.avatar} />
+                                </>
+                            ) : (
+                                <>
+                                    <div className={styles.avatar}>
+                                        <svg
+                                            width="95"
+                                            height="95"
+                                            viewBox="0 0 24 24"
+                                            fill="#ccc"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                            <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                            <path
+                                                d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                fill="#BDBDBD"
+                                        />
+                                        </svg>
+                                    </div>
+                                </>
+                            )}
                             <div
                                 className={styles.plusButton}
                                 onClick={() => document.getElementById("storyUploadInput").click()}
@@ -104,8 +123,8 @@ const StoryBanner = ({
                                 <>
                                     <div className={styles.avatar}>
                                         <svg
-                                            width="94"
-                                            height="94"
+                                            width="95"
+                                            height="95"
                                             viewBox="0 0 24 24"
                                             fill="#ccc"
                                             xmlns="http://www.w3.org/2000/svg"
