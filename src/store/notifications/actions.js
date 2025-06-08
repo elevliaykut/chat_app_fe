@@ -33,7 +33,11 @@ import {
     OUTGOING_MESSAGE_DELETE_STARTED,
     OUTGOING_MESSAGE_DELETE_SUCCEEDED,
     OUTGOING_MESSAGE_DELETE_FAILED,
-    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
+    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE,
+    READ_INCOMING_MESSAGE_STARTED,
+    READ_INCOMING_MESSAGE_SUCCEEDED,
+    READ_INCOMING_MESSAGE_FAILED,
+    RESET_READ_INCOMING_MESSAGE_COMPLETE
 } from './types';
 
 export const getNotifications = values => ({
@@ -204,4 +208,23 @@ export const outgoingMessageDeleteError = error => ({
 
 export const resetOutgoingMessageDeleteComplete = () => ({
     type: RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
+});
+
+export const readIncomingMessage = values => ({
+    type: READ_INCOMING_MESSAGE_STARTED,
+    payload: values
+});
+
+export const readIncomingMessageSuccess = data => ({
+    type: READ_INCOMING_MESSAGE_SUCCEEDED,
+    payload: data 
+});
+
+export const readIncomingMessageError = error => ({
+    type: READ_INCOMING_MESSAGE_FAILED,
+    payload: error
+});
+
+export const resetReadIncomingMessageComplete = () => ({
+    type: RESET_READ_INCOMING_MESSAGE_COMPLETE
 });

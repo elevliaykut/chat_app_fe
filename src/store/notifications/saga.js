@@ -13,7 +13,8 @@ import {
 	GET_MESSAGES_STARTED,
 	SEND_MESSAGE_STARTED,
 	INCOMING_MESSAGE_DELETE_STARTED,
-	OUTGOING_MESSAGE_DELETE_STARTED
+	OUTGOING_MESSAGE_DELETE_STARTED,
+	READ_INCOMING_MESSAGE_STARTED
 } from './types';
 
 import {
@@ -36,7 +37,9 @@ import {
 	incomingMessageDeleteSuccess,
 	incomingMessageDeleteError,
 	outgoingMessageDeleteSuccess,
-	outgoingMessageDeleteError
+	outgoingMessageDeleteError,
+	readIncomingMessageSuccess,
+	readIncomingMessageError
 } from './actions';
 
 const cookies = new Cookies();
@@ -240,6 +243,27 @@ function* outgoingMessageDeleteTask(action) {
 	}
 }
 
+function* readIncomingMessageTask(action) {
+	const { payload = {} } = action;
+	const { senderId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/read-incoming-message/${senderId}`,
+			{},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		);
+		const { data } = response;
+		yield put(readIncomingMessageSuccess(data));
+	} catch (error) {
+		yield put(readIncomingMessageError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 // -------- WATCH FUNCTIONS ---------
 
 function* watchGetNotifications() {
@@ -282,6 +306,10 @@ function* watchOutgoingMessageDelete() {
 	yield takeLatest(OUTGOING_MESSAGE_DELETE_STARTED, outgoingMessageDeleteTask);
 }
 
+function* watchReadIncomingMessage() {
+	yield takeLatest(READ_INCOMING_MESSAGE_STARTED, readIncomingMessageTask);
+}
+
 export default function* saga() {
     yield all([
         watchGetNotifications(),
@@ -293,6 +321,7 @@ export default function* saga() {
 		watchGetMessages(),
 		watchSendMessage(),
 		watchIncomingMessageDelete(),
-		watchOutgoingMessageDelete()
+		watchOutgoingMessageDelete(),
+		watchReadIncomingMessage()
     ]);
 }

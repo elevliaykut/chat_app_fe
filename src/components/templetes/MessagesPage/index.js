@@ -4,7 +4,11 @@ import MessagesPageOrganisms from '../../organisms/MessagesPage';
 
 import {
     getUserMe,
-    userLogout
+    userLogout,
+    userBlocked,
+    userBlockedReset,
+    userReports,
+    userReportsReset,
 } from '../../../store/user/actions';
 
 import {
@@ -17,7 +21,9 @@ import {
     incomingMessageDelete,
     resetIncomingMessageDeleteComplete,
     outgoingMessageDelete,
-    resetOutgoingMessageDeleteComplete    
+    resetOutgoingMessageDeleteComplete,
+    readIncomingMessage,
+    resetReadIncomingMessageComplete    
 } from '../../../store/notifications/actions';
 
 const mapStateToProps = state => ({
@@ -36,10 +42,11 @@ const mapStateToProps = state => ({
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
-
     incomingMessageDeleteComplete: state?.notifications?.incomingMessageDeleteComplete,
-
-    outgoingMessageDeleteComplete: state?.notifications?.outgoingMessageDeleteComplete
+    outgoingMessageDeleteComplete: state?.notifications?.outgoingMessageDeleteComplete,
+    readIncomingMessageComplete: state?.notifications?.readIncomingMessageComplete,
+    userBlockedComplete: state?.user?.userBlockedComplete,
+    userReportsComplete: state?.user?.userReportsComplete,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -57,7 +64,13 @@ const mapDispatchToProps = dispatch => ({
     resetIncomingMessageDeleteComplete: () => dispatch(resetIncomingMessageDeleteComplete()),
 
     outgoingMessageDelete: payload => dispatch(outgoingMessageDelete(payload)),
-    resetOutgoingMessageDeleteComplete: () => dispatch(resetOutgoingMessageDeleteComplete())
+    resetOutgoingMessageDeleteComplete: () => dispatch(resetOutgoingMessageDeleteComplete()),
+    readIncomingMessage: payload => dispatch(readIncomingMessage(payload)),
+    resetReadIncomingMessageComplete: () => dispatch(resetReadIncomingMessageComplete()),
+    userBlocked: payload => dispatch(userBlocked(payload)),
+    userBlockedReset: () => dispatch(userBlockedReset()),
+    userReports: payload => dispatch(userReports(payload)),
+    userReportsReset: () => dispatch(userReportsReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPageOrganisms);

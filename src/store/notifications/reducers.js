@@ -33,7 +33,11 @@ import {
     OUTGOING_MESSAGE_DELETE_STARTED,
     OUTGOING_MESSAGE_DELETE_SUCCEEDED,
     OUTGOING_MESSAGE_DELETE_FAILED,
-    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE
+    RESET_OUTGOING_MESSAGE_DELETE_COMPLETE,
+    READ_INCOMING_MESSAGE_STARTED,
+    READ_INCOMING_MESSAGE_SUCCEEDED,
+    READ_INCOMING_MESSAGE_FAILED,
+    RESET_READ_INCOMING_MESSAGE_COMPLETE
 } from './types';
 
 const initialState = {
@@ -49,7 +53,8 @@ const initialState = {
     messages: [],
     sendMessageCompleted: false,
     incomingMessageDeleteComplete: false,
-    outgoingMessageDeleteComplete: false
+    outgoingMessageDeleteComplete: false,
+    readIncomingMessageComplete: false,
 };
 
 const notifications = (state = initialState, action) => {
@@ -263,6 +268,29 @@ const notifications = (state = initialState, action) => {
             return {
                 ...state,
                 outgoingMessageDeleteComplete: false
+            };
+        case READ_INCOMING_MESSAGE_STARTED:
+            return {
+                ...state,
+                isLoading: true,
+                readIncomingMessageComplete: false
+            };
+        case READ_INCOMING_MESSAGE_SUCCEEDED:
+            return {
+                ...state,
+                isLoading: false,
+                readIncomingMessageComplete: true,
+            };
+        case READ_INCOMING_MESSAGE_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                readIncomingMessageComplete: false,
+            };
+        case RESET_READ_INCOMING_MESSAGE_COMPLETE:
+            return {
+                ...state,
+                readIncomingMessageComplete: false
             };
         default:
             return state;
