@@ -71,9 +71,9 @@ const StoryBanner = ({
                 
                 <div className={styles.profileWrapper}>
                         <div className={styles.avatarBox}>
-                            {userMe?.profile_photo_url ? (
+                            {userMe?.profile_photo_path ? (
                                 <>
-                                    <img src={userMe.profile_photo_url} alt={userMe.name} className={styles.avatar} />
+                                    <img src={userMe?.profile_photo_path} alt={userMe.name} className={styles.avatar} />
                                 </>
                             ) : (
                                 <>

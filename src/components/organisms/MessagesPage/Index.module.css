@@ -76,6 +76,10 @@
 .usernameEpisode label{
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.usernameEpisode label:hover{
   text-decoration: underline;
 }
 

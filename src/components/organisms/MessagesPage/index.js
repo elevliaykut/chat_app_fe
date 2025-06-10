@@ -322,7 +322,7 @@ const MessagesPage = ({
                                 {messages.length > 0 ? (
                                     <>
                                         <div className={styles.messages}>
-                                            <div className={styles.usernameEpisode}>
+                                            <div className={styles.usernameEpisode} onClick={() => window.location = '/member/' + userId}>
                                                 <label>{username}</label>
                                             </div>
                                             {messages.map(msg => (

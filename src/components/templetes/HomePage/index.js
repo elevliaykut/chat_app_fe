@@ -24,7 +24,10 @@ import {
 } from '../../../store/user/actions';
 
 import {
-    getNotifications
+    getNotifications,
+    getMessages,
+    sendMessage,
+    resetSendMessageCompleted
 } from '../../../store/notifications/actions';
 
 import {
@@ -62,7 +65,10 @@ const mapStateToProps = state => ({
     postError: state?.post?.error,
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
-    notificationIsLoading: state?.notifications?.isLoading
+    notificationIsLoading: state?.notifications?.isLoading,
+    messageIsLoading: state?.notifications?.messageIsLoading,
+    messages: state?.notifications?.messages,
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -89,7 +95,10 @@ const mapDispatchToProps = dispatch => ({
     createStory: payload => dispatch(createStory(payload)),
     resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
     userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
-    getUserPhoto: payload => dispatch(getUserPhoto(payload))
+    getUserPhoto: payload => dispatch(getUserPhoto(payload)),
+    getMessages: payload => dispatch(getMessages(payload)),
+    sendMessage: payload => dispatch(sendMessage(payload)),
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

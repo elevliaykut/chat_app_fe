@@ -14,6 +14,7 @@ import FooterBanner from "../../molecules/FooterBanner";
 import StoryBanner from "../../molecules/StoryBanner";
 import ToastMessage from "../../molecules/TostMessage";
 import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const HomePage = ({
     posts = [],
@@ -62,7 +63,13 @@ const HomePage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -75,6 +82,27 @@ const HomePage = ({
     const [storyVisible, setStoryVisible] = useState();
     const [shareSelectNotif, setShareSelectNotif] = useState(false);
     const [photoModalVisible, setPhotoModalVisible] = useState(false);
+
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
+
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(selectedMessageUserId) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[selectedMessageUserId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[sendMessageCompleted]);
 
     useEffect(() => {
         if(createStoryComplete) {
@@ -182,6 +210,23 @@ const HomePage = ({
             {shareSelectNotif && (
                 <>
                     <ToastMessage message={"Hikayeniz başarılı bir şekilde yaplaşıldı ✅"}/>
+                </>
+            )}
+
+            {messageModalVisible && (
+                <>
+                    <MessageModal
+                        onClose={messageModalOnClose}
+                        isLoading={notificationIsLoading}
+                        messages={messages}
+                        messageIsLoading={messageIsLoading}
+                        sendMessage={sendMessage}
+                        resetSendMessageCompleted={resetSendMessageCompleted}
+                        userMe={userMe}
+                        selectedMessageUserId={selectedMessageUserId}
+                        selectedUsername={selectedUsername}
+                        selectedUserStatus={selectedUserStatus}
+                    />
                 </>
             )}
 
@@ -330,6 +375,10 @@ const HomePage = ({
                                     postIsLoading={postIsLoading}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
+                                    setMessageModalVisible={setMessageModalVisible}
+                                    setSelectedMessageUserId={setSelectedMessageUserId}
+                                    setSelectedUsername={setSelectedUsername}
+                                    setSelectedUserStatus={setSelectedUserStatus}
                                 />
                             </>
                         )}

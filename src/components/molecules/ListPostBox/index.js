@@ -11,8 +11,11 @@ const ListPostBox = ({
     postIsLoading = false,
     postError = null,
     postActivityFavorite = () => {},
-    postActivitySmiled = () => {}
-    
+    postActivitySmiled = () => {},
+    setMessageModalVisible = () => {},
+    setSelectedMessageUserId = () => {},
+    setSelectedUsername = () => {},
+    setSelectedUserStatus = () => {}
 }) => {
     const [likedPosts, setLikedPosts] = useState({});
     const [favoritedPosts, setFavoritedPosts] = useState({});
@@ -45,6 +48,13 @@ const ListPostBox = ({
         postActivitySmiled({ postId: postId });
     };
     
+    const selectedOnClick = (user) => {
+        setMessageModalVisible(true);
+        setSelectedMessageUserId(user?.id);
+        setSelectedUsername(user?.username);
+        setSelectedUserStatus(user?.is_online)
+    }
+
     return(
         <>
             {posts?.map(item => {
@@ -124,13 +134,12 @@ const ListPostBox = ({
                                         <div className={styles.line}></div>
                                     </div>
 
-                                    <div className={styles.footerMessage}>
+                                    <div className={styles.footerMessage} onClick={() => selectedOnClick(item?.creator_user)}>
                                         <div style={{ marginLeft: '20px',marginTop: '10px', marginBottom: '10px'}}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                            <path d="M22 2L11 13" />
-                                            <path d="M22 2L15 22L11 13L2 9L22 2Z" />
-                                        </svg>
-
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                                <path d="M22 2L11 13" />
+                                                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                                            </svg>
                                         </div>
                                         <div style={{ marginLeft: '4px', marginTop: '12px', marginRight: '15px'}}>
                                             <label className={styles.footerText}>Mesaj Gönder</label>

@@ -46,6 +46,7 @@ const mapStateToProps = state => ({
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
     notificationIsLoading: state?.notifications?.notificationIsLoading,
+    
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted
