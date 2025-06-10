@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const BeGoldMemberPage = ({
     getUserMe = () => {},
@@ -11,15 +12,7 @@ const BeGoldMemberPage = ({
     userMeLoading = false,
     notificationIsLoading = false
 }) => {
-    const [activeIndex, setActiveIndex] = useState(null);
-    const [generalAccordionVisible, setGeneralAccordionVisible] = useState(false);
-    const [paymentAccordionVisible, setPaymentAccordionVisible] = useState(true);
-    const [memberShipAccordionVisible, setMemberShipAccordionVisible] = useState(false);
-    const [photoAccordionVisible, setPhotoAccordionVisible] = useState(false);
-    const [activeMenu, setActiveMenu] = useState("payment");
     const [userMeVisible, setUserMeVisible] = useState(false);
-
-    
     
     useEffect(() => {
         if(!userMeLoading) {
@@ -135,6 +128,7 @@ const BeGoldMemberPage = ({
                     </ul>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

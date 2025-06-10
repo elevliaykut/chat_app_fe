@@ -206,7 +206,7 @@ const ProfileEpisode = ({
                                             <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782 1.4 8.168L12 18.896l-7.334 3.864 1.4-8.168L.132 9.21l8.2-1.192z"/>
                                         </svg>
                                     </div>
-                                    <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => window.location = '/be-gold-member'}>
+                                    <div style={{ marginLeft: '15px',marginTop: '8px'}} onClick={() => window.location = '/payment'}>
                                         <label className={styles.menuLabel}>ALTIN ÜYE OL</label>
                                         <label className={styles.menuLabel} style={{ paddingTop: '5px'}}>Tüm Kısıtlamaları Kaldır</label>
                                     </div>
