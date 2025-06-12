@@ -103,7 +103,23 @@ import {
 	USER_UPLOAD_PHOTO_FAILED,
 	GET_USER_PHOTO_STARTED,
 	GET_USER_PHOTO_SUCCEEDED,
-	GET_USER_PHOTO_FAILED
+	GET_USER_PHOTO_FAILED,
+	USER_FREEZE_ACCOUNT_STARTED,
+	USER_FREEZE_ACCOUNT_SUCCEEDED,
+	USER_FREEZE_ACCOUNT_FAILED,
+	RESET_USER_FREEZE_ACCOUNT_COMPLETE,
+	USER_DELETE_ACCOUNT_STARTED,
+	USER_DELETE_ACCOUNT_SUCCEEDED,
+	USER_DELETE_ACCOUNT_FAILED,
+	RESET_USER_DELETE_ACCOUNT_COMPLETE,
+	USER_CHANGE_EMAIL_STARTED,
+	USER_CHANGE_EMAIL_SUCCEEDED,
+	USER_CHANGE_EMAIL_FAILED,
+	RESET_USER_CHANGE_EMAIL_COMPLETE,
+	USER_CHANGE_PASSWORD_STARTED,
+	USER_CHANGE_PASSWORD_SUCCEEDED,
+	USER_CHANGE_PASSWORD_FAILED,
+	RESET_USER_CHANGE_PASSWORD_COMPLETE
 } from './types';
 
 const initialState = {
@@ -150,7 +166,11 @@ const initialState = {
 	stories: [],
 	createStoryComplete: false,
 	photos: [],
-	userPhotoIsLoading: false
+	userPhotoIsLoading: false,
+	freezeAccountComplete: false,
+	deleteAccountComplete: false,
+	changeEmailComplete: false,
+	changePasswordComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -800,6 +820,104 @@ const user = (state = initialState, action) => {
 				isLoading: false,
 				userPhotoIsLoading: false,
 				error: payload
+			};
+		case USER_FREEZE_ACCOUNT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				freezeAccountComplete: false
+			};
+		case USER_FREEZE_ACCOUNT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				freezeAccountComplete: true
+			};
+		case USER_FREEZE_ACCOUNT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				freezeAccountComplete: false,
+				error: payload
+			};
+		case RESET_USER_FREEZE_ACCOUNT_COMPLETE:
+			return {
+				...state,
+				freezeAccountComplete: false
+			};
+		case USER_DELETE_ACCOUNT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				deleteAccountComplete: false,
+			};
+		case USER_DELETE_ACCOUNT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				deleteAccountComplete: true
+			};
+		case USER_DELETE_ACCOUNT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				deleteAccountComplete: false,
+				error: payload
+			};
+		case RESET_USER_DELETE_ACCOUNT_COMPLETE:
+			return {
+				...state,
+				deleteAccountComplete: false
+			};
+		case USER_CHANGE_EMAIL_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				changeEmailComplete: false,
+			};
+		case USER_CHANGE_EMAIL_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				changeEmailComplete: true,
+			};
+		case USER_CHANGE_EMAIL_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				changeEmailComplete: false,
+				error: payload
+			};
+		case RESET_USER_CHANGE_EMAIL_COMPLETE:
+			return {
+				...state,
+				changeEmailComplete: false
+			};
+
+
+		case USER_CHANGE_PASSWORD_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				changePasswordComplete: false,
+			};
+		case USER_CHANGE_PASSWORD_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				changePasswordComplete: true,
+			};
+		case USER_CHANGE_PASSWORD_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				changePasswordComplete: false,
+				error: payload
+			};
+		case RESET_USER_CHANGE_PASSWORD_COMPLETE:
+			return {
+				...state,
+				changePasswordComplete: false
 			};
 		default:
 			return state;

@@ -32,7 +32,11 @@ import {
 	GET_STORY_STARTED,
 	CREATE_STORY_STARTED,
 	USER_UPLOAD_PHOTO_STARTED,
-	GET_USER_PHOTO_STARTED
+	GET_USER_PHOTO_STARTED,
+	USER_FREEZE_ACCOUNT_STARTED,
+	USER_DELETE_ACCOUNT_STARTED,
+	USER_CHANGE_EMAIL_STARTED,
+	USER_CHANGE_PASSWORD_STARTED
 } from './types';
 
 import {
@@ -94,7 +98,15 @@ import {
 	userUploadPhotoSuccess,
 	userUploadPhotoError,
 	getUserPhotoSuccess,
-	getUserPhotoError
+	getUserPhotoError,
+	userFreezeAccountSuccess,
+	userFreezeAccountError,
+	userDeleteAccountSuccess,
+	userDeleteAccountError,
+	userChangeEmailSuccess,
+	userChangeEmailError,
+	userChangePasswordSuccess,
+	userChangePasswordError
 } from './actions';
 
 const cookies = new Cookies();
@@ -945,6 +957,91 @@ function* getUserPhotoTask(action) {
 	}
 }
 
+function* userFreezeAccountTask(action) {
+	const { payload = {} } = action;
+	const { status } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/account/freeze/${status}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userFreezeAccountSuccess(data));
+	} catch (error) {
+		yield put(userFreezeAccountError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userDeleteAccountTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/user/account/delete`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userDeleteAccountSuccess(data));
+	} catch (error) {
+		yield put(userDeleteAccountError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userChangeEmailTask(action) {
+	const { payload = {} } = action;
+	const { email } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/account/change-email`,
+			{
+				email: email
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userChangeEmailSuccess(data));
+	} catch (error) {
+		yield put(userChangeEmailError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* userChangePasswordTask(action) {
+	const { payload = {} } = action;
+	const { password, passwordConfirmation } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/change-password`,
+			{
+				password: password,
+				password_confirmation: passwordConfirmation
+			},	
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userChangePasswordSuccess(data));
+	} catch (error) {
+		yield put(userChangePasswordError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1072,6 +1169,22 @@ function* watchGetUserPhoto() {
 	yield takeLatest(GET_USER_PHOTO_STARTED, getUserPhotoTask);
 }
 
+function* watchUserFreezeAccount() {
+	yield takeLatest(USER_FREEZE_ACCOUNT_STARTED, userFreezeAccountTask);
+}
+
+function* watchUserDeleteAccount() {
+	yield takeLatest(USER_DELETE_ACCOUNT_STARTED, userDeleteAccountTask);
+}
+
+function* watchUserChangeEmail() {
+	yield takeLatest(USER_CHANGE_EMAIL_STARTED, userChangeEmailTask);
+}
+
+function* watchUserChangePassword() {
+	yield takeLatest(USER_CHANGE_PASSWORD_STARTED, userChangePasswordTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1103,6 +1216,10 @@ export default function* saga() {
 		watchGetStory(),
 		watchCreateStory(),
 		watchUserUploadPhoto(),
-		watchGetUserPhoto()
+		watchGetUserPhoto(),
+		watchUserFreezeAccount(),
+		watchUserDeleteAccount(),
+		watchUserChangeEmail(),
+		watchUserChangePassword()
 	]);
 }

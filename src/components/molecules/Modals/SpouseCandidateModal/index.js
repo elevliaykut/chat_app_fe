@@ -180,17 +180,17 @@ const SpouseCandidateModal = ({
                         <div style={{ marginTop: '18px'}}>
                             <label>Medeni Hal</label>
                             <select
-                                defaultValue={userMe?.spouse_candidate?.marital_status_value ?? ""}
+                                defaultValue={userMe?.spouse_candidate?.marital_status ?? ""}
                                 style={{ marginTop: '10px'}}
 								onChange={(e) => setMaturity(e?.target?.value)}
 							>
                                 <option value="" disabled>
-                                    {userMe?.spouse_candidate?.marital_status_value}
+                                    {userMe?.spouse_candidate?.marital_status}
                                 </option>
+								<option value="Hiç Evlenmemiş">Hiç Evlenmemiş</option>
+								<option value="Bekar">Bekar</option>
 								<option value="Boşanmış">Boşanmış</option>
-								<option value="Eşi vefat etmiş">Eşi vefat etmiş</option>
-								<option value="Farketmez">Farketmez</option>
-								<option value="Hiç evlenmemiş">Hiç evlenmemiş</option>
+								<option value="Eşi Vefat Etmiş">Eşi Vefat Etmiş</option>
 							</select>
                         </div>
 

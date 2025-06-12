@@ -103,7 +103,23 @@ import {
 	USER_UPLOAD_PHOTO_FAILED,
 	GET_USER_PHOTO_STARTED,
 	GET_USER_PHOTO_SUCCEEDED,
-	GET_USER_PHOTO_FAILED
+	GET_USER_PHOTO_FAILED,
+	USER_FREEZE_ACCOUNT_STARTED,
+	USER_FREEZE_ACCOUNT_SUCCEEDED,
+	USER_FREEZE_ACCOUNT_FAILED,
+	RESET_USER_FREEZE_ACCOUNT_COMPLETE,
+	USER_DELETE_ACCOUNT_STARTED,
+	USER_DELETE_ACCOUNT_SUCCEEDED,
+	USER_DELETE_ACCOUNT_FAILED,
+	RESET_USER_DELETE_ACCOUNT_COMPLETE,
+	USER_CHANGE_EMAIL_STARTED,
+	USER_CHANGE_EMAIL_SUCCEEDED,
+	USER_CHANGE_EMAIL_FAILED,
+	RESET_USER_CHANGE_EMAIL_COMPLETE,
+	USER_CHANGE_PASSWORD_STARTED,
+	USER_CHANGE_PASSWORD_SUCCEEDED,
+	USER_CHANGE_PASSWORD_FAILED,
+	RESET_USER_CHANGE_PASSWORD_COMPLETE
 } from './types';
 
 export const loginUser = values => ({
@@ -614,4 +630,80 @@ export const getUserPhotoSuccess = data => ({
 export const getUserPhotoError = error => ({
 	type: GET_USER_PHOTO_FAILED,
 	payload: error
+});
+
+export const userFreezeAccount = values => ({
+	type: USER_FREEZE_ACCOUNT_STARTED,
+	payload: values
+});
+
+export const userFreezeAccountSuccess = data => ({
+	type: USER_FREEZE_ACCOUNT_SUCCEEDED,
+	payload: data
+});
+
+export const userFreezeAccountError = error => ({
+	type: USER_FREEZE_ACCOUNT_FAILED,
+	payload: error
+});
+
+export const resetUserFreezeAccountComplete = () => ({
+	type: RESET_USER_FREEZE_ACCOUNT_COMPLETE
+});
+
+export const userDeleteAccount = values => ({
+	type: USER_DELETE_ACCOUNT_STARTED,
+	payload: values
+});
+
+export const userDeleteAccountSuccess = data => ({
+	type: USER_DELETE_ACCOUNT_SUCCEEDED,
+	payload: data
+});	
+
+export const userDeleteAccountError = error => ({
+	type: USER_DELETE_ACCOUNT_FAILED,
+	payload: error
+});
+
+export const resetUserDeleteAccountComplete = () => ({
+	type: RESET_USER_DELETE_ACCOUNT_COMPLETE,
+});
+
+export const userChangeEmail = values => ({
+	type: USER_CHANGE_EMAIL_STARTED,
+	payload: values
+});
+
+export const userChangeEmailSuccess = data => ({
+	type: USER_CHANGE_EMAIL_SUCCEEDED,
+	payload: data
+});
+
+export const userChangeEmailError = error => ({
+	type: USER_CHANGE_EMAIL_FAILED,
+	payload: error
+});
+
+export const resetUserChangeEmailComplete = () => ({
+	type: RESET_USER_CHANGE_EMAIL_COMPLETE
+});
+
+export const userChangePassword = values => ({
+	type: USER_CHANGE_PASSWORD_STARTED,
+	payload: values
+});
+
+export const userChangePasswordSuccess = data => ({
+	type: USER_CHANGE_PASSWORD_SUCCEEDED,
+	payload: data
+});
+
+export const userChangePasswordError = error => ({
+	type: USER_CHANGE_PASSWORD_FAILED,
+	payload: error
+});
+
+export const resetUserChangePasswordComplete = () => ({
+	type: RESET_USER_CHANGE_PASSWORD_COMPLETE
 });

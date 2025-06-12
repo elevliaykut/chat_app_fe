@@ -1,0 +1,56 @@
+.container {
+    width: 350px;
+    height: 100%;;
+    display: block;
+    border: 1px solid #e9eaeb;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.frame {
+    margin-top: 40px;
+}
+
+.profilePhoto {
+    margin: auto;
+    width: 100px; /* Hikaye öğesinin genişliği */
+    height: 100px; /* Hikaye öğesinin yüksekliği */
+    border-radius: 50%; /* Yuvarlak yapmak için */
+    overflow: hidden;
+}
+
+.username {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.defination {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.burc {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.menu {
+    display: flex;
+    margin-left: 30px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    cursor: pointer;
+}
+
+.menu label{
+    cursor: pointer;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #e9eaeb;
+}
+

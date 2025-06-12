@@ -280,7 +280,7 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.noneIconmenu}>
+                    <div className={styles.noneIconmenu} onClick={() => window.location = '/my-settings'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label className={styles.menuLabel}>AYARLAR</label>
                         </div>
