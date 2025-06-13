@@ -17,27 +17,63 @@ const MemberProfileCard = ({
 }) => {
 
     const likedOnClick = () => {
-        userActivityLiked({
-            userId: details?.id
-        })
+        if(details?.liked_by_me) {
+            userActivityLiked({
+                userId: details?.id,
+                status: 0
+            });
+        }
+        if(!details?.liked_by_me) {
+            userActivityLiked({
+                userId: details?.id,
+                status: 1
+            });
+        }
     }
 
     const favoriteOnClick = () => {
-        userActivityFavorite({
-            userId: details?.id
-        });
+        if(details?.favorited_by_me) {
+            userActivityFavorite({
+                userId: details?.id,
+                status: 0
+            });
+        }
+        if(!details?.favorited_by_me) {
+            userActivityFavorite({
+                userId: details?.id,
+                status: 1
+            });
+        }
     }
 
     const smiledOnClick = () => {
-        userActivitySmiled({
-            userId: details?.id
-        });
+        if(details?.smiled_by_me) {
+            userActivitySmiled({
+                userId: details?.id,
+                status: 0
+            });
+        }
+        if(!details?.smiled_by_me) {
+            userActivitySmiled({
+                userId: details?.id,
+                status: 1
+            });
+        }
     };
 
     const userBlockedOnClick = () => {
-        userBlocked({
-            userId: details?.id
-        });
+        if(details?.blocked_by_me) {
+            userBlocked({
+                userId: details?.id,
+                status: 0
+            });
+        }
+        if(!details?.blocked_by_me) {
+            userBlocked({
+                userId: details?.id,
+                status: 1
+            });
+        }
     }
 
     const selectedOnClick = () => {

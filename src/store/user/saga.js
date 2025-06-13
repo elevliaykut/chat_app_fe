@@ -509,13 +509,15 @@ function* getOnlineProfilesTask(action) {
 
 function* userActivityLikedTask(action) {
 	const { payload } = action;
-	const { userId } = payload;
+	const { userId, status } = payload;
 
 	const token = cookies.get('chatAppToken');
 
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/activity/like/${userId}`,
-			{},
+			{
+				status: status
+			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},
@@ -531,13 +533,15 @@ function* userActivityLikedTask(action) {
 
 function* userActivityFavoriteTask(action) {
 	const { payload } = action;
-	const { userId } = payload;
+	const { userId, status } = payload;
 
 	const token = cookies.get('chatAppToken');
 
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/activity/favorite/${userId}`,
-			{},
+			{
+				status: status
+			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},
@@ -553,13 +557,15 @@ function* userActivityFavoriteTask(action) {
 
 function* userActivitySmiledTask(action) {
 	const { payload } = action;
-	const { userId } = payload;
+	const { userId, status } = payload;
 
 	const token = cookies.get('chatAppToken');
 
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/activity/smile/${userId}`,
-			{},
+			{
+				status: status
+			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},
@@ -575,13 +581,15 @@ function* userActivitySmiledTask(action) {
 
 function* userBlockedTask(action) {
 	const { payload } = action;
-	const { userId } = payload;
+	const { userId, status } = payload;
 	
 	const token = cookies.get('chatAppToken');
 
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/blocked/${userId}`,
-			{},
+			{
+				status: status
+			},
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},

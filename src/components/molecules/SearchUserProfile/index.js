@@ -21,27 +21,64 @@ const SearchUserProfile = ({
 }) => {
 
     const smiledOnClick = () => {
-        userActivitySmiled({
-            userId: user?.id
-        });
+        if(user?.smiled_by_me) {
+            userActivitySmiled({
+                userId: user?.id,
+                status: 0
+            });
+        }
+        if(!user?.smiled_by_me) {
+            userActivitySmiled({
+                userId: user?.id,
+                status: 1
+            });
+        }
     };
 
     const blockedOnClick = () => {
-        userBlocked({
-            userId: user?.id
-        });
+
+        if(user?.blocked_by_me) {
+            userBlocked({
+              userId: user?.id,
+              status: 0
+            });
+        }
+        if(!user?.blocked_by_me) {
+            userBlocked({
+              userId: user?.id,
+              status: 1
+            });
+        }
     };
 
     const favoriteOnClick = () => {
-        userActivityFavorite({
-            userId: user?.id
-        });
+        if(user?.favorited_by_me) {
+            userActivityFavorite({
+                userId: user?.id,
+                status: 0
+            });
+        }
+        if(!user?.favorited_by_me) {
+            userActivityFavorite({
+                userId: user?.id,
+                status: 1
+            });
+        }
     };
 
     const likeOnClick = () => {
-        userActivityLiked({
-            userId: user?.id
-        });
+        if(user?.liked_by_me) {
+            userActivityLiked({
+                userId: user?.id,
+                status: 0
+            });
+        }
+        if(!user?.liked_by_me) {
+            userActivityLiked({
+                userId: user?.id,
+                status: 1
+            });
+        }
     }
 
     const selectedOnClick = () => {
