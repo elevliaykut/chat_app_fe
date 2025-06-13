@@ -121,3 +121,179 @@
     height: 40px;
   }
   
+  /* 1200px altı */
+@media (max-width: 1200px) {
+  .frame {
+    width: 90%;
+  }
+
+  .container {
+    max-width: 900px;
+    padding: 30px 15px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .card {
+    max-width: 45%;
+    min-width: 250px;
+    padding: 25px;
+  }
+
+  .icon {
+    font-size: 28px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .price span {
+    font-size: 14px;
+  }
+}
+
+/* 768px altı (Tablet ve küçük ekranlar) */
+@media (max-width: 768px) {
+  .frame {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 25px 10px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tab {
+    padding: 8px 20px;
+    margin: 0 auto;
+    flex: 1 1 45%;
+    max-width: 45%;
+    text-align: center;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    max-width: 100%;
+    min-width: auto;
+    padding: 20px;
+    flex: none;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .price {
+    font-size: 24px;
+  }
+
+  .price span {
+    font-size: 13px;
+  }
+
+  .button {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .footerNote {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+  .cardsRow img {
+    height: 30px;
+  }
+}
+
+/* 468px altı (Mobil) */
+@media (max-width: 468px) {
+  .frame {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px 8px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tab {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 10px 0;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .price span {
+    font-size: 12px;
+  }
+
+  .button {
+    width: 100%;
+    padding: 14px 0;
+  }
+
+  .footerNote {
+    font-size: 11px;
+    margin-top: 25px;
+  }
+
+  .cardsRow {
+    gap: 8px;
+  }
+
+  .cardsRow img {
+    height: 25px;
+  }
+}

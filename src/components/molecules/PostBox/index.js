@@ -133,7 +133,7 @@ const PostBox = ({
                   disabled={createPostLoading}
                   className={styles.submitButton}
                   >
-                    {createPostLoading ? 'Gönderiliyor...' : 'Gönder'}
+                    {createPostLoading ? 'Paylaşılıyor...' : 'Paylaş'}
                 </button>
               </div>
             </div>

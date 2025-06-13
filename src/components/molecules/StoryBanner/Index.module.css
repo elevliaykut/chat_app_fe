@@ -6,6 +6,8 @@
     display: flex;
     gap: 1rem;
     overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
   
   .avatarWrapper {
@@ -13,6 +15,8 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    min-width: 100px; /* Taşmayı engellemek için */
+    flex-shrink: 0;
   }
   
   .avatar {
@@ -174,3 +178,97 @@
     to { width: 100%; }
   }
   
+  /* --- Responsive --- */
+
+/* 1200px altı */
+@media (max-width: 1200px) {
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .avatarWrapper {
+    min-width: 90px;
+  }
+
+  .storyContent {
+    min-width: 500px;
+    min-height: 500px;
+  }
+
+  .previewImage {
+    width: 130px;
+  }
+}
+
+/* 768px altı */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .storyList {
+    gap: 0.75rem;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatarWrapper {
+    min-width: 80px;
+  }
+
+  .storyContent {
+    min-width: 90vw; /* Genişliği ekranın %90'ı */
+    min-height: 90vw; /* Kare yapısı korunur */
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .previewImage {
+    width: 120px;
+  }
+}
+
+/* 468px altı */
+@media (max-width: 468px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .storyList {
+    gap: 0.5rem;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .avatarWrapper {
+    min-width: 60px;
+  }
+
+  .storyContent {
+    min-width: 95vw;
+    min-height: 95vw;
+    padding: 5px;
+    margin-top: 20px;
+  }
+
+  .previewImage {
+    width: 100px;
+  }
+
+  .storyUsername {
+    font-size: 12px;
+  }
+
+  .closeBtn {
+    font-size: 1.6rem;
+    top: 5px;
+    right: 5px;
+  }
+}

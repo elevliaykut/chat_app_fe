@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const HelpPage = ({
     getUserMe = () => {},
@@ -344,6 +345,7 @@ const HelpPage = ({
                         </main>
                     </div>
                 </div>
+                <FooterBanner/>
         </>
     )
 }

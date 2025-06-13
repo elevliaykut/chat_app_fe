@@ -14,6 +14,10 @@
 .profileEpisode {
 }
 
+.contentContainer {
+    width: 100%;
+    margin-left: 50px;
+}
 
 /* Post bileşenleri */
 .postBox, .listPostBox {
@@ -47,57 +51,88 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-/* 1024px ve üzeri (Geniş ekranlar) */
-@media (min-width: 1024px) {
-    .frame {
-        width: 70%;
-    }
 
-    .content {
-        display: flex;
-    }
+  /* 💻 1200px ve üzeri */
+@media (min-width: 1200px) {
+  .frame {
+    width: 70%;
+  }
 
-    .profileEpisode {
-        flex: 0 0 30%;
-    }
+  .content {
+    flex-direction: row;
+  }
 
-    .rightSide {
-        flex: 0 0 70%;
-    }
+  .contentContainer {
+    margin-left: 50px;
+  }
 }
 
-/* 768px - 1023px (Tablet) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .frame {
-        width: 90%;
-    }
+/* 📱 Tablet 768px - 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .frame {
+    width: 90%;
+    padding: 15px;
+  }
 
-    .content {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+  .content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-    .profileEpisode {
-        flex: 1 1 100%;
-    }
+  .contentContainer {
+    margin-left: 0;
+    width: 100%;
+  }
 
-    .rightSide {
-        flex: 1 1 100%;
-    }
+  .profileLoader {
+    width: 100%;
+  }
 }
 
-/* 767px ve altı (Mobil) */
-@media (max-width: 767px) {
-    .frame {
-        width: 95%;
-        padding: 10px;
-    }
+/* 📱 Mobil 480px - 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .frame {
+    width: 95%;
+    padding: 10px;
+  }
 
-    .content {
-        flex-direction: column;
-    }
+  .content {
+    flex-direction: column;
+  }
 
-    .profileEpisode, .rightSide {
-        flex: 1 1 100%;
-    }
+  .contentContainer {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .profileLoader {
+    width: 100%;
+  }
+}
+
+/* 📱 Küçük Ekranlar (≤479px) */
+@media (max-width: 479px) {
+  .frame {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .contentContainer {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .spinner {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profileLoader {
+    width: 90%;
+  }
 }

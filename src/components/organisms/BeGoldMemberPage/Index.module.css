@@ -125,3 +125,130 @@
     line-height: 20px;
   }
   
+  /* ------------------ Responsive ------------------ */
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+  .frame {
+    width: 70%;
+  }
+
+  .codeHeader {
+    flex-direction: row;
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .frame {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .headerTextEpisode h1 {
+    font-size: 28px;
+    padding-top: 20px;
+  }
+
+  .codeHeader {
+    flex-direction: column;
+  }
+
+  .codeBox {
+    flex-direction: column;
+  }
+
+  .summaryBox {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .recipient {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+  .frame {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .headerTextEpisode h1 {
+    font-size: 22px;
+    padding-top: 15px;
+  }
+
+  .codeHeader {
+    flex-direction: column;
+  }
+
+  .codeBox {
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+
+  .code {
+    font-size: 16px;
+  }
+
+  .bankGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bankCard {
+    padding: 12px;
+  }
+
+  .bankLogo {
+    width: 80px;
+  }
+
+  .summaryBox {
+    width: 100%;
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .recipient {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .confirmButton {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .infoBox {
+    font-size: 13px;
+    padding-top: 15px;
+  }
+}
+
+/* Küçük Mobil (≤480px) */
+@media (max-width: 480px) {
+  .headerTextEpisode h1 {
+    font-size: 18px;
+    padding-top: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .code {
+    font-size: 14px;
+  }
+
+  .bankLogo {
+    width: 70px;
+  }
+
+  .confirmButton {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}

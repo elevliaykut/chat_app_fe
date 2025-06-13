@@ -121,3 +121,113 @@
     display: flex;
     cursor: pointer;
 }
+
+.menuIconEpisode {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menuTextEpisode {
+    margin-left: 4px;
+    margin-top: 12px;
+    margin-right: 15px;
+}
+
+/* ---------------------- Responsive ---------------------- */
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+    .topEpisode {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .topEpisode {
+        flex-direction: column;
+    }
+
+    .statusEpisode {
+        margin-left: 0;
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .rightEpisode {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: right;
+    }
+
+    .footer {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .contentText label {
+        font-size: 16px;
+    }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+    .topEpisode {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .leftEpisode {
+        flex-direction: column;
+    }
+
+    .statusEpisode,
+    .rightEpisode {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .usernameEpisode label,
+    .info label {
+        font-size: 14px;
+    }
+
+    .contentText {
+        padding: 10px 15px;
+    }
+
+    .contentText label {
+        font-size: 15px;
+        line-height: 28px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    .footerText {
+        font-size: 14px;
+    }
+
+    .menuIconEpisode {
+        margin-left: 0px;
+    }
+
+    .contentImage {
+        margin: 20px auto;  /* Ortala ve biraz boşluk bırak */
+        max-width: 100%;    /* Taşmayı önlemek için maksimum genişlik */
+        overflow: hidden;   /* Taşan içerikleri gizle */
+        text-align: center; /* Metin ortala (zaten var) */
+    }
+
+    .contentImage img {
+        width: 100%;        /* Resmin kapsayıcıya sığmasını sağla */
+        height: auto;       /* Oran korunsun */
+        display: block;     /* alt boşlukları kaldır */
+        border-radius: 6px; /* isteğe bağlı hafif köşe yuvarlama */
+    }
+}

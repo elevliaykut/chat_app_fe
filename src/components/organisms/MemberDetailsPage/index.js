@@ -257,7 +257,7 @@ const MemberDetailsPage = ({
                         </>
                     )}
 
-                    <div style={{ width: '100%' }}>
+                    <div className={styles.contentContainer}>
 
                         {photoGalleryVisible && (
                             <>
@@ -291,6 +291,7 @@ const MemberDetailsPage = ({
                                 />
                             </>
                         )}
+                        
                     </div>
                 </div>
             </div>

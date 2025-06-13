@@ -301,7 +301,7 @@ const InfoPage = ({
                                                         backgroundColor: '#ec3b8c', 
                                                         height: '3px',
                                                         width: '100%',
-                                                        marginTop: '37px'
+                                                        marginTop: '37px',
                                                 }}/>
                                             <div className={styles.circle} style={{ backgroundColor: ThemeConfig.purple}}>
                                                 <div>

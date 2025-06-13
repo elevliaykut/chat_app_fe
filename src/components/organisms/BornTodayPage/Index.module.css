@@ -19,3 +19,65 @@
     width: 100%;
     margin: 0 auto; /* Ortalayalım */
 }
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+    .frame {
+        width: 70%;
+    }
+
+    .content {
+        flex-direction: row;
+    }
+
+    .memberEpisode {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .frame {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .memberEpisode {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+    .frame {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .memberEpisode {
+        grid-template-columns: 1fr; /* Tek sütun */
+        gap: 15px;
+    }
+}
+
+/* Küçük Mobil (≤480px) */
+@media (max-width: 480px) {
+    .frame {
+        padding: 8px;
+    }
+
+    .memberEpisode {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}

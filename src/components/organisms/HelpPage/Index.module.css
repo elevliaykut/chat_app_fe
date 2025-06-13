@@ -121,4 +121,173 @@
     color: #555;
   }
   
+  /* ---------------------- Responsive ---------------------- */
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+  .frame {
+    width: 70%;
+    padding: 20px 40px;
+  }
   
+  .headerTextEpisode h1 {
+    font-size: 35px;
+  }
+
+  .headerTextEpisode h2 {
+    font-size: 18px;
+  }
+
+  .sidebar {
+    width: 220px;
+    padding: 20px;
+  }
+
+  .content {
+    padding: 40px;
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .frame {
+    width: 90%;
+    padding: 15px 20px;
+  }
+  
+  .wrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+  }
+  
+  .content {
+    padding: 20px 15px;
+  }
+  
+  .headerTextEpisode h1 {
+    font-size: 28px;
+  }
+  
+  .headerTextEpisode h2 {
+    font-size: 16px;
+  }
+  
+  .heading {
+    font-size: 20px;
+  }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+  .frame {
+    width: 95%;
+    padding: 10px 15px;
+  }
+  
+  .wrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+  }
+  
+  .sidebarTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .menuItem {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .content {
+    padding: 15px 10px;
+  }
+  
+  .headerTextEpisode h1 {
+    font-size: 24px;
+    padding-top: 15px;
+  }
+  
+  .headerTextEpisode h2 {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+  }
+  
+  .heading {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .question {
+    padding: 15px;
+    font-size: 14px;
+  }
+  
+  .answer {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+}
+
+/* Çok küçük ekranlar (≤480px) */
+@media (max-width: 480px) {
+  .frame {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .sidebar {
+    padding: 10px;
+  }
+  
+  .menuItem {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .headerTextEpisode h1 {
+    font-size: 20px;
+  }
+  
+  .headerTextEpisode h2 {
+    font-size: 13px;
+    padding-bottom: 15px;
+  }
+  
+  .heading {
+    font-size: 16px;
+  }
+  
+  .question {
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .answer {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+}

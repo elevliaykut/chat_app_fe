@@ -248,18 +248,18 @@ const LoginPage = ({
 							</div>
 						</div>
 						<div className={styles.rightContentEpisode}>
-							<h1 style={{ color: 'white', fontSize: '44px'}}>İslami Evlilik Sitesi</h1>
-							<h2 style={{ marginTop: '15px', textAlign: 'right', color: "white", fontSize: '20px'}}>Diğer flört uygulamaları gibi değiliz.</h2>
-							<p style={{ marginTop: '15px', fontSize: '16px', lineHeight: '30px', color: 'white'}}>
+							<h1>İslami Evlilik Sitesi</h1>
+							<h2>Diğer flört uygulamaları gibi değiliz.</h2>
+							<p>
 								Ciddi bir ilişki arayan <br></br>
 								milyonlarca üyeyi bir araya getiren<br></br>
 								Gönülden Sevenler, her gün 1000 den<br></br>
 								fazla çiftin mutluluğuna şahitlik ediyor.
 							</p>
-							<h2 style={{ marginTop: '15px', textAlign: 'right', fontSize: '18px', color: "white"}}>
+							<h3 style={{ marginTop: '15px', textAlign: 'right', fontSize: '18px', color: "white"}}>
 								Sıradaki sen olabilirsin!<br></br>
 								Hemen aramıza katıl!
-							</h2>
+							</h3>
 						</div>
 					</div>				
 				</div>

@@ -78,3 +78,91 @@
     background-color: #e9eaeb;
 }
 
+/* ---------------------- Responsive ---------------------- */
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+    .container {
+        width: 350px;
+    }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        width: 280px;
+        margin: 20px auto;
+    }
+    
+    .menu {
+        margin-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .menuLabel {
+        font-size: 14px;
+    }
+    
+    .noneIconmenu {
+        margin-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 16px;
+    }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        max-width: 320px;
+        margin: 15px auto;
+        padding: 0 10px;
+    }
+
+    .menu {
+        margin-left: 15px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .menuLabel {
+        font-size: 14px;
+    }
+
+    .noneIconmenu {
+        margin-left: 15px;
+        padding-top: 8px;
+        padding-bottom: 14px;
+    }
+}
+
+/* Küçük Mobil (≤480px) */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        max-width: 280px;
+        margin: 10px auto;
+        padding: 0 8px;
+    }
+
+    .menu {
+        margin-left: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .menuLabel {
+        font-size: 13px;
+    }
+
+    .noneIconmenu {
+        margin-left: 10px;
+        padding-top: 6px;
+        padding-bottom: 12px;
+    }
+}

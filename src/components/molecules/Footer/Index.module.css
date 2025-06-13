@@ -87,3 +87,70 @@
     color: #fff;
     font-size: 14px;
 }
+
+@media screen and (max-width: 1024px) {
+    .frame {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+  
+    .centerContainer {
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .topMenu {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  
+    .centerContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+  
+    .item,
+    .follow {
+      text-align: center;
+    }
+  
+    .social {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+  
+    .copyrightEpisode {
+      text-align: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .menu label {
+      font-size: 13px;
+    }
+  
+    .item h1 {
+      font-size: 13px;
+    }
+  
+    .item label {
+      font-size: 12px;
+    }
+  
+    .follow h1 {
+      font-size: 16px;
+    }
+  
+    .copyrightEpisode label {
+      font-size: 13px;
+    }
+  }
+  

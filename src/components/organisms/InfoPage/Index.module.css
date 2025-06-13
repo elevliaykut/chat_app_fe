@@ -142,3 +142,202 @@
   .nextButton {
     margin-left: auto;
   }
+
+  /* Desktop ≥1200px */
+@media (min-width: 1200px) {
+  .frame {
+    width: 70%;
+    margin: auto;
+  }
+  .wrapper {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #eee;
+  }
+  .menuContainer {
+    display: flex;
+    margin-top: 30px;
+  }
+  .menus {
+    width: 20%;
+    display: block;
+  }
+  .menus label {
+    text-align: center;
+    position: absolute;
+    margin-left: 8rem;
+    margin-top: 10px;
+  }
+  .episode {
+    display: flex;
+  }
+  .circle {
+    width: 130px;
+    height: 75px;
+    border-radius: 400px;
+    border: 3px solid #ec3b8c;
+    text-align: center;
+  }
+  .twoInputLineEpisode {
+    display: flex;
+    width: 100%;
+  }
+  .leftInputEpisode, .rightInputEpisode {
+    width: 50%;
+  }
+  .rightInputEpisode {
+    margin-left: 20px;
+  }
+  .buttonEpisode {
+    display: flex;
+    margin-top: 20px;
+  }
+  .nextButton {
+    margin-left: auto;
+  }
+}
+
+/* Tablet 768px - 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .frame {
+    width: 90%;
+    margin: 40px auto;
+  }
+  .wrapper {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1.5px solid #eee;
+  }
+  .menuContainer {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+  .menus {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+  .menus label {
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+    text-align: left;
+  }
+  .episode {
+    flex-direction: column;
+  }
+  .circle {
+    width: 110px;
+    height: 65px;
+    border-radius: 300px;
+    border: 2.5px solid #ec3b8c;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 65px;
+  }
+  .formOne, .formTwo, .formThree, .formFour, .formFive {
+    margin-top: 70px;
+  }
+  .twoInputLineEpisode {
+    flex-direction: column;
+  }
+  .leftInputEpisode, .rightInputEpisode {
+    width: 100%;
+    margin-left: 0;
+  }
+  .rightInputEpisode {
+    margin-top: 15px;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+  }
+  .buttonEpisode {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .nextButton {
+    margin-left: 0;
+  }
+}
+
+/* Mobile ≤767px */
+@media (max-width: 767px) {
+  .frame {
+    width: 95%;
+    margin: 20px auto;
+  }
+  .wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+  }
+  .title h1 {
+    font-size: 18px;
+  }
+  .title label {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .menuContainer {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .menus {
+    width: 100%;
+    position: static;
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+  .menus label {
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+    text-align: left;
+  }
+  .episode {
+    flex-direction: column;
+  }
+  .circle {
+    width: 100px;
+    height: 60px;
+    border-radius: 300px;
+    border: 2px solid #ec3b8c;
+    margin-bottom: 10px;
+    line-height: 60px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .formOne, .formTwo, .formThree, .formFour, .formFive {
+    margin-top: 50px;
+  }
+  .twoInputLineEpisode {
+    flex-direction: column;
+  }
+  .leftInputEpisode, .rightInputEpisode {
+    width: 100%;
+    margin-left: 0;
+  }
+  .rightInputEpisode {
+    margin-top: 15px;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+  }
+  .buttonEpisode {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .nextButton {
+    margin-left: 0;
+  }
+}

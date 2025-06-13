@@ -61,6 +61,33 @@
   margin-top: 20px;
 }
 
+.rightContentEpisode h1{
+  font-size: 44px;
+  color: white;
+}
+
+.rightContentEpisode h2{
+  margin-top: 15px;
+  text-align: right;
+  color: white;
+  font-size: 20px;
+}
+
+.rightContentEpisode p{
+  margin-top: 15px;
+  text-align: right;
+  color: white;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.rightContentEpisode h3{
+  margin-top: 15px;
+  text-align: right;
+  color: white;
+  font-size: 18px;
+}
+
 .formContainer {
   width: 100%;
 }
@@ -372,5 +399,88 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .frame {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .leftContentEpisode {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .rightContentEpisode {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contentEpisode {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .loginButton {
+    width: 100%;
+  }
+
+  .sectionOne,
+  .sectionTwo,
+  .sectionThree {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .sectionLeftEpisode img {
+    width: 100%;
+    height: auto;
+  }
+
+  .sectionBlogContainer {
+    flex-direction: column;
+  }
+
+  .sectionBlog {
+    width: 100%;
+  }
+
+  .statBox {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .submitButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .formGroup input {
+    padding: 8px;
+  }
+
+  .modal {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .closeButton {
+    width: auto;
+  }
+
+  .rightContentEpisode {
+    display: none;
   }
 }

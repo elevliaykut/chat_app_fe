@@ -20,3 +20,59 @@
     margin: 0 auto; /* Ortalayalım */
     align-items: flex-start; /* Kartlar alt satıra geçince yukarı hizalansın */
 }
+
+/* --- Responsive --- */
+
+/* Large desktop ve altı (1200px) */
+@media (max-width: 1200px) {
+    .frame {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .content {
+      gap: 15px;
+    }
+  
+    .memberEpisode {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+    }
+  }
+  
+  /* Tablet (768px) */
+  @media (max-width: 768px) {
+    .frame {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    .content {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .memberEpisode {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+  }
+  
+  /* Small mobile (468px) */
+  @media (max-width: 468px) {
+    .frame {
+      width: 100%;
+      padding: 10px 5px;
+    }
+  
+    .content {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .memberEpisode {
+      grid-template-columns: 1fr; /* Tek kolon */
+      gap: 10px;
+    }
+  }
+  

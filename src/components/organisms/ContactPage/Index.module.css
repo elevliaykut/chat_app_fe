@@ -85,3 +85,90 @@
   width: 100%;
   margin: 0 auto; /* Ortalayalım */
 }
+
+/* Masaüstü (≥1200px) */
+@media (min-width: 1200px) {
+  .frame {
+    width: 70%;
+    padding: 20px;
+  }
+
+  .content {
+    flex-direction: row;
+  }
+
+  .contactEpisode {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .frame {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .contactEpisode {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+}
+
+/* Mobil (≤767px) */
+@media (max-width: 767px) {
+  .frame {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contactEpisode {
+    grid-template-columns: 1fr; /* Tek kolon mobilde */
+    gap: 10px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+
+  .mailTitle {
+    font-size: 16px;
+  }
+
+  .whatsapp {
+    font-size: 18px;
+  }
+}
+
+/* Küçük Mobil (≤480px) */
+@media (max-width: 480px) {
+  .frame {
+    padding: 8px;
+  }
+
+  .greeting, .intro {
+    font-size: 14px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  .mailTitle {
+    font-size: 14px;
+  }
+
+  .whatsapp {
+    font-size: 16px;
+  }
+}

@@ -18,6 +18,19 @@
     overflow: hidden;
 }
 
+.menuIconEpisode {
+    margin-top: 3px;
+}
+
+.menuTextEpisode {
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+.menuTextEpisode label {
+    font-size: 15px;
+}
+
 .username {
     text-align: center;
     margin-top: 20px;
@@ -52,3 +65,52 @@
     background-color: #e9eaeb;
 }
 
+/* -------- Responsive Tasarım -------- */
+
+/* 1200px ve üzeri */
+@media (min-width: 1200px) {
+    .container {
+        width: 300px;
+    }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .menu {
+        margin-left: 20px;
+    }
+}
+
+/* Mobil (0px - 767px) */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .profilePhoto {
+        width: 80px;
+        height: 80px;
+    }
+
+    .username {
+        font-size: 16px;
+    }
+
+    .menu {
+        margin-left: 16px;
+        gap: 8px;
+    }
+
+    .menu label {
+        font-size: 14px;
+    }
+}

@@ -11,3 +11,59 @@
     gap: 40px;
     justify-content: center;
 }
+
+/* Masaüstü (1200px ve üstü) */
+@media (min-width: 1200px) {
+    .container {
+      width: 100%;
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+  
+    .frame {
+      width: 70%;
+      margin: auto;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+  }
+  
+  /* Tablet (768px - 1199px) */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+  
+    .frame {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap; /* Taşmayı engelle */
+    }
+  }
+  
+  /* Mobil (480px ve altı) */
+  @media (max-width: 479px) {
+    .container {
+      width: 100%;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+  
+    .frame {
+      width: 95%;
+      margin: auto;
+      display: block; /* Flex yerine blok yap, dikey sıralama */
+      gap: 20px; /* Flex olmadığı için gap çalışmaz, margin ile ayarla */
+    }
+  
+    .frame > * {
+      margin-bottom: 20px; /* Aralarına boşluk */
+    }
+  }
+  

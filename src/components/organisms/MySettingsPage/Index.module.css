@@ -62,57 +62,66 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-/* 1024px ve üzeri (Geniş ekranlar) */
+
+  /* --- Responsive Ayarlar --- */
+
+/* Geniş ekranlar (1024px ve üstü) */
 @media (min-width: 1024px) {
     .frame {
         width: 70%;
     }
-
     .content {
-        display: flex;
+        flex-direction: row;
     }
-
     .profileEpisode {
         flex: 0 0 30%;
+        max-width: 30%;
     }
-
-    .rightSide {
+    .postBox, .listPostBox {
         flex: 0 0 70%;
+        max-width: 70%;
+    }
+    .settingsEpisodeContainer {
+        margin-left: 20px;
     }
 }
 
-/* 768px - 1023px (Tablet) */
+/* Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .frame {
         width: 90%;
+        padding: 15px;
     }
-
     .content {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
-
-    .profileEpisode {
+    .profileEpisode, .postBox, .listPostBox {
         flex: 1 1 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
     }
-
-    .rightSide {
-        flex: 1 1 100%;
+    .settingsEpisodeContainer {
+        margin-left: 0;
     }
 }
 
-/* 767px ve altı (Mobil) */
+/* Mobil (767px ve altı) */
 @media (max-width: 767px) {
     .frame {
         width: 95%;
         padding: 10px;
     }
-
     .content {
         flex-direction: column;
     }
-
-    .profileEpisode, .rightSide {
+    .profileEpisode, .postBox, .listPostBox {
         flex: 1 1 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+    .settingsEpisodeContainer {
+        margin-left: 0;
     }
 }
