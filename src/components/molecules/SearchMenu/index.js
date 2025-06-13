@@ -17,7 +17,7 @@ const SearchMenu = () => {
         { label: 'YAKIN KONUMDA', path: '/search/near' },
         { label: 'YENİ ÜYELER', path: '/search/new' },
         { label: 'ONAYLI ÜYELER', path: '/search/approve' },
-        { label: 'YENİ FOTOĞRAFLAR', path: '/search/photo' },
+        //{ label: 'YENİ FOTOĞRAFLAR', path: '/search/photo' },
         { label: 'BUGÜN DOĞANLAR', path: '/search/birthday' },
     ];
 

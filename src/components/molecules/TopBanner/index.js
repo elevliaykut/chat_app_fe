@@ -49,10 +49,12 @@ const TopBanner = ({
                                 </div>
                             </>
                         )}
-                        <div className={styles.cubuk}/>
-                        <div style={{ paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}}>
-                            <label style={{ color: ThemeConfig.white, fontSize: '15px', cursor: 'pointer'}}>BLOG</label>
-                        </div>
+                        {
+                            //<div className={styles.cubuk}/>
+                            //<div style={{ paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}}>
+                            //    <label style={{ color: ThemeConfig.white, fontSize: '15px', cursor: 'pointer'}}>BLOG</label>
+                            //</div>
+                        }
                         <div className={styles.cubuk}/>
                         <div style={{ display: 'flex', paddingTop: '22px',paddingLeft: '20px', paddingRight: '20px', cursor: 'pointer'}} onClick={() => window.location = '/search/detail'}>
                             {/* Search Icon */}
