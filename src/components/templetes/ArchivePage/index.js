@@ -15,11 +15,17 @@ import {
     getMyPosts,
     userLogout,
     userUploadPhoto,
-    getUserPhoto
+    getUserPhoto,
+    getStory,
+    createStory,
+    resetCreateStoryComplete,
 } from '../../../store/user/actions';
 
 import {
-    getNotifications    
+    getNotifications,
+    getMessages,
+    sendMessage,
+    resetSendMessageCompleted
 } from '../../../store/notifications/actions';
 
 import {
@@ -29,11 +35,23 @@ import {
 
 import {
     postActivityLike,
+    resetPostActivityLikeComplete,
+
     postActivityFavorite,
-    postActivitySmiled
+    resetPostActivityFavoriteComplete,
+
+    postActivitySmiled,
+    resetPostActivitySmiledComplete
 } from '../../../store/post/actions';
 
 const mapStateToProps = state => ({
+    activityLikeComplete: state?.post?.activityLikeComplete,
+    activityFavoriteComplete: state?.post?.activityFavoriteComplete,
+    activitySmileComplete: state?.post?.activitySmileComplete,
+
+    stories: state?.user?.stories,
+    createStoryComplete: state?.user?.createStoryComplete,
+
     isLoading: state?.user?.isLoading,
     error: state?.user?.error,
     pageLoading: state?.user?.pageLoading,
@@ -52,6 +70,9 @@ const mapStateToProps = state => ({
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
     notificationIsLoading: state?.notifications?.notificationIsLoading,
+    messageIsLoading: state?.notifications?.messageIsLoading,
+    messages: state?.notifications?.messages,
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
     photos: state?.user?.photos,
     userPhotoIsLoading: state?.user?.userPhotoIsLoading
 });
@@ -75,7 +96,17 @@ const mapDispatchToProps = dispatch => ({
     userLogout: () => dispatch(userLogout()),
     getNotifications: payload => dispatch(getNotifications(payload)),
     userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
-    getUserPhoto: payload => dispatch(getUserPhoto(payload))
+    getUserPhoto: payload => dispatch(getUserPhoto(payload)),
+    getMessages: payload => dispatch(getMessages(payload)),
+    sendMessage: payload => dispatch(sendMessage(payload)),
+    resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
+    getStory: payload => dispatch(getStory(payload)),
+    createStory: payload => dispatch(createStory(payload)),
+    resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
+    
+    resetPostActivityLikeComplete: () => dispatch(resetPostActivityLikeComplete()),
+    resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
+    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

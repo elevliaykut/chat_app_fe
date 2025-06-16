@@ -69,7 +69,15 @@ const HomePage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+
+    resetPostActivityLikeComplete = () => {},
+    resetPostActivityFavoriteComplete = () => {},
+    resetPostActivitySmiledComplete = () => {},
+    activityLikeComplete = false,
+    activityFavoriteComplete = false,
+    activitySmileComplete = false
+
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -168,6 +176,27 @@ const HomePage = ({
         resetCreatePostComplete();
         userPostList();
     },[]);
+
+    useEffect(() => {
+        if(activityLikeComplete) {
+            resetPostActivityLikeComplete();
+            userPostList();
+        }
+    },[activityLikeComplete]);
+
+    useEffect(() => {
+        if(activityFavoriteComplete) {
+            resetPostActivityFavoriteComplete();
+            userPostList();
+        }
+    },[activityFavoriteComplete]);
+
+    useEffect(() => {
+        if(activitySmileComplete) {
+            resetPostActivitySmiledComplete();
+            userPostList();
+        }
+    },[activitySmileComplete]);
 
     useEffect(() => {
         if(!pageLoading) {
@@ -375,6 +404,7 @@ const HomePage = ({
                                     postIsLoading={postIsLoading}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
+                                    
                                     setMessageModalVisible={setMessageModalVisible}
                                     setSelectedMessageUserId={setSelectedMessageUserId}
                                     setSelectedUsername={setSelectedUsername}

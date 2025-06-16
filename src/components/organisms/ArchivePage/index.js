@@ -14,6 +14,8 @@ import SpouseCandidateModal from "../../molecules/Modals/SpouseCandidateModal";
 import CaracteristicFeatureModal from "../../molecules/Modals/CaracteristicFeatureModal";
 import FooterBanner from "../../molecules/FooterBanner";
 import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
+import StoryBanner from "../../molecules/StoryBanner";
+import MessageModal from "../../molecules/Modals/MessageModal";
 
 const ArchivePage = ({
     userMe = {},
@@ -51,10 +53,28 @@ const ArchivePage = ({
     getNotifications = () => {},
     notifications = [],
     notificationIsLoading = false,
+    getStory = () => {},
+    stories = [],
+    createStory = () => {},
+    resetCreateStoryComplete = () => {},
+    createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
     photos = [],
-    userPhotoIsLoading = false
+    getMessages = () => {},
+    sendMessage = () => {},
+    resetSendMessageCompleted = () => {},
+    messageIsLoading = false,
+    messages = [],
+    sendMessageCompleted = false,
+    userPhotoIsLoading = false,
+
+    resetPostActivityLikeComplete = () => {},
+    resetPostActivityFavoriteComplete = () => {},
+    resetPostActivitySmiledComplete = () => {},
+    activityLikeComplete = false,
+    activityFavoriteComplete = false,
+    activitySmileComplete = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -64,8 +84,44 @@ const ArchivePage = ({
     const [caracteristicFeatureModalVisible, setCaracteristicFeatureModalVisible] = useState(false);
     const [myPostEpisodeVisible, setMyPostEpisodeVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
+    const [storyVisible, setStoryVisible] = useState();
+    const [shareSelectNotif, setShareSelectNotif] = useState(false);
     const [photoModalVisible, setPhotoModalVisible] = useState(false);
+
+    const [messageModalVisible, setMessageModalVisible] = useState(false);
+    const [selectedMessageUserId, setSelectedMessageUserId] = useState();
+    const [selectedUsername, setSelectedUsername] = useState();
+    const [selectedUserStatus, setSelectedUserStatus] = useState();
     
+    const messageModalOnClose = () => {
+        setMessageModalVisible(false);
+    }
+
+    useEffect(() => {
+        if(selectedMessageUserId) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[selectedMessageUserId]);
+
+    useEffect(() => {
+        if(sendMessageCompleted) {
+            getMessages({ userId: selectedMessageUserId });
+        }
+    },[sendMessageCompleted]);
+
+    useEffect(() => {
+        if(createStoryComplete) {
+            resetCreateStoryComplete();
+            setShareSelectNotif(true);
+        }
+    },[createStoryComplete]);
+    
+    useEffect(() => {
+        if(!isLoading) {
+            setStoryVisible(true);
+        }
+    },[isLoading]);
+
     useEffect(() => {
         if(userMe?.id) {
             getUserPhoto({ userId: userMe?.id});
@@ -78,6 +134,7 @@ const ArchivePage = ({
 
     useEffect(() => {
         getNotifications({ read: false });
+        getStory();
     },[]);
 
     useEffect(() => {
@@ -101,6 +158,27 @@ const ArchivePage = ({
         getMyPosts();
     },[]);
     
+    useEffect(() => {
+        if(activityLikeComplete) {
+            resetPostActivityLikeComplete();
+            getMyPosts();
+        }
+    },[activityLikeComplete]);
+
+    useEffect(() => {
+        if(activityFavoriteComplete) {
+            resetPostActivityFavoriteComplete();
+            getMyPosts();
+        }
+    },[activityFavoriteComplete]);
+
+    useEffect(() => {
+        if(activitySmileComplete) {
+            resetPostActivitySmiledComplete();
+            getMyPosts();
+        }
+    },[activitySmileComplete]);
+
     useEffect(() => {
         if(updateUserPersonalInfoComplete) {
             getUserMe();
@@ -153,6 +231,12 @@ const ArchivePage = ({
 
     return (
         <>
+            {shareSelectNotif && (
+                <>
+                    <ToastMessage message={"Hikayeniz başarılı bir şekilde yaplaşıldı ✅"}/>
+                </>
+            )}
+
             {photoModalVisible && (
                 <>
                     <UserPhotoModal
@@ -238,6 +322,7 @@ const ArchivePage = ({
                     />
                 </>
             )}
+            
             <TopBanner
                 onlineMemberCount={userMe?.online_member_count}
                 messageCount={userMe?.message_count}
@@ -248,6 +333,15 @@ const ArchivePage = ({
             />
             
             <div className={styles.frame}>
+                {storyVisible && (
+                    <>
+                        <StoryBanner
+                            users={stories}
+                            userMe={userMe}
+                            createStory={createStory}
+                        />
+                    </>
+                )}
                 <div className={styles.content}>
                     
                     {profileVisible && (
@@ -278,7 +372,6 @@ const ArchivePage = ({
                                     posts={myPosts}
                                     postActivityLike={postActivityLike}
                                     postIsLoading={postIsLoading}
-                                    postError={postError}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
                                 />

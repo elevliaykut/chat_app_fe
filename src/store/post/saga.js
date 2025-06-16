@@ -23,12 +23,14 @@ const cookies = new Cookies();
 
 function* postActivityLikeTask(action) {
 	const { payload } = action;
-	const { postId } = payload;
+	const { postId, status } = payload;
 	const token = cookies.get('chatAppToken');
     
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/post/like/${postId}`, 
-        {},
+        {
+			status: status
+		},
         {
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -42,12 +44,14 @@ function* postActivityLikeTask(action) {
 
 function* postActivityFavoriteTask(action) {
 	const { payload } = action;
-	const { postId } = payload;
+	const { postId, status } = payload;
 	const token = cookies.get('chatAppToken');
     
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/post/favorite/${postId}`, 
-        {},
+        {
+			status: status
+		},
         {
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -61,12 +65,14 @@ function* postActivityFavoriteTask(action) {
 
 function* postActivitySmiledTask(action) {
 	const { payload } = action;
-	const { postId } = payload;
+	const { postId, status } = payload;
 	const token = cookies.get('chatAppToken');
     
 	try {
 		const response = yield call(axios.post, `${BASE_URL}/user/post/smile/${postId}`, 
-        {},
+        {
+			status
+		},
         {
             headers: { Authorization: `Bearer ${token}` },
         });

@@ -2,12 +2,17 @@ import {
     POST_ACTIVITY_LIKE_STARTED,
     POST_ACTIVITY_LIKE_SUCCEEDED,
     POST_ACTIVITY_LIKE_FAILED,
+    RESET_POST_ACTIVITY_LIKE_COMPLETE,
+
     POST_ACTIVITY_FAVORITE_STARTED,
     POST_ACTIVITY_FAVORITE_SUCCEEDED,
     POST_ACTIVITY_FAVORITE_FAILED,
+    RESET_POST_ACTIVITY_FAVORITE_COMPLETE,
+
     POST_ACTIVITY_SMILED_STARTED,
     POST_ACTIVITY_SMILED_SUCCEEDED,
-    POST_ACTIVITY_SMILED_FAILED
+    POST_ACTIVITY_SMILED_FAILED,
+    RESET_POST_ACTIVITY_SMILED_COMPLETE
 } from './types';
 
 export const postActivityLike = values => ({
@@ -25,6 +30,10 @@ export const postActivityLikeError = error => ({
     payload: error 
 });
 
+export const resetPostActivityLikeComplete = () => ({
+    type: RESET_POST_ACTIVITY_LIKE_COMPLETE
+});
+
 export const postActivityFavorite = values => ({
     type: POST_ACTIVITY_FAVORITE_STARTED,
     payload: values
@@ -40,6 +49,10 @@ export const postActivityFavoriteError = error => ({
     payload: error
 });
 
+export const resetPostActivityFavoriteComplete = () => ({
+    type: RESET_POST_ACTIVITY_FAVORITE_COMPLETE
+});
+
 export const postActivitySmiled = values => ({
     type: POST_ACTIVITY_SMILED_STARTED,
     payload: values
@@ -53,5 +66,9 @@ export const postActivitySmiledSuccess = data => ({
 export const postActivitySmiledError = error => ({
     type: POST_ACTIVITY_SMILED_FAILED,
     payload: error
+});
+
+export const resetPostActivitySmiledComplete = () => ({
+    type: RESET_POST_ACTIVITY_SMILED_COMPLETE
 });
 
