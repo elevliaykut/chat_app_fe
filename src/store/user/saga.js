@@ -36,7 +36,8 @@ import {
 	USER_FREEZE_ACCOUNT_STARTED,
 	USER_DELETE_ACCOUNT_STARTED,
 	USER_CHANGE_EMAIL_STARTED,
-	USER_CHANGE_PASSWORD_STARTED
+	USER_CHANGE_PASSWORD_STARTED,
+	CREATE_PAYMENT_STARTED
 } from './types';
 
 import {
@@ -106,7 +107,9 @@ import {
 	userChangeEmailSuccess,
 	userChangeEmailError,
 	userChangePasswordSuccess,
-	userChangePasswordError
+	userChangePasswordError,
+	createPaymentSuccess,
+	createPaymentError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1050,6 +1053,27 @@ function* userChangePasswordTask(action) {
 	}
 }
 
+function* createPaymentTask(action) {
+	const { payload = {} } = action;
+	const { formData } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/user/payment`,
+			formData,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(createPaymentSuccess(data));
+	} catch (error) {
+		yield put(createPaymentError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1193,6 +1217,10 @@ function* watchUserChangePassword() {
 	yield takeLatest(USER_CHANGE_PASSWORD_STARTED, userChangePasswordTask);
 }
 
+function* watchCreatePayment() {
+	yield takeLatest(CREATE_PAYMENT_STARTED, createPaymentTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1228,6 +1256,7 @@ export default function* saga() {
 		watchUserFreezeAccount(),
 		watchUserDeleteAccount(),
 		watchUserChangeEmail(),
-		watchUserChangePassword()
+		watchUserChangePassword(),
+		watchCreatePayment()
 	]);
 }

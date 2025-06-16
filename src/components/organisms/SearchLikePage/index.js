@@ -471,17 +471,25 @@ const SearchLikePage = ({
                     <div className={styles.memberEpisode}>
                         {memberVisible ? (
                             <>
-                                <MatchUserCard
-                                    user={matchUser}
-                                    getUserMatch={getUserMatch}
-                                    userActivityLiked={userActivityLiked}
-                                    userActivityLikedReset={userActivityLikedReset}
-                                    getMatchPreviusUser={getMatchPreviusUser}
-                                    setMessageModalVisible={setMessageModalVisible}
-                                    setSelectedMessageUserId={setSelectedMessageUserId}
-                                    setSelectedUsername={setSelectedUsername}
-                                    setSelectedUserStatus={setSelectedUserStatus}
-                                />
+                                {matchUser ? (
+                                    <>
+                                        <MatchUserCard
+                                            user={matchUser}
+                                            getUserMatch={getUserMatch}
+                                            userActivityLiked={userActivityLiked}
+                                            userActivityLikedReset={userActivityLikedReset}
+                                            getMatchPreviusUser={getMatchPreviusUser}
+                                            setMessageModalVisible={setMessageModalVisible}
+                                            setSelectedMessageUserId={setSelectedMessageUserId}
+                                            setSelectedUsername={setSelectedUsername}
+                                            setSelectedUserStatus={setSelectedUserStatus}
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <label>Kullanıcı Bulunmadı.</label>
+                                    </>
+                                )}
                             </>
                         ) : (
                             <>

@@ -15,7 +15,8 @@ const MatchUserCard = ({
 
     const matchButtonOnClick  = () => {
         userActivityLiked({
-            userId: user?.id
+            userId: user?.id,
+            status: 1
         });
         userActivityLikedReset();
         getUserMatch();

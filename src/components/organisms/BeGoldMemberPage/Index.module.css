@@ -124,6 +124,33 @@
   .infoBox li {
     line-height: 20px;
   }
+
+  .formContainer {
+    width: 100%;
+    display: block;
+  }
+
+  .formGroup {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .formGroup label {
+    font-size: 15px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .saveButton {
+    margin-bottom: 20px;
+  }
+
   
   /* ------------------ Responsive ------------------ */
 

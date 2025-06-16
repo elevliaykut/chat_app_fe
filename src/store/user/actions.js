@@ -119,7 +119,11 @@ import {
 	USER_CHANGE_PASSWORD_STARTED,
 	USER_CHANGE_PASSWORD_SUCCEEDED,
 	USER_CHANGE_PASSWORD_FAILED,
-	RESET_USER_CHANGE_PASSWORD_COMPLETE
+	RESET_USER_CHANGE_PASSWORD_COMPLETE,
+	CREATE_PAYMENT_STARTED,
+	CREATE_PAYMENT_SUCCEEDED,
+	CREATE_PAYMENT_FAILED,
+	RESET_CREATE_PAYMENT_COMPLETE
 } from './types';
 
 export const loginUser = values => ({
@@ -706,4 +710,23 @@ export const userChangePasswordError = error => ({
 
 export const resetUserChangePasswordComplete = () => ({
 	type: RESET_USER_CHANGE_PASSWORD_COMPLETE
+});
+
+export const createPayment = values => ({
+	type: CREATE_PAYMENT_STARTED,
+	payload: values
+});
+
+export const createPaymentSuccess = data => ({
+	typr: CREATE_PAYMENT_SUCCEEDED,
+	payload: data
+});
+
+export const createPaymentError = error => ({
+	type: CREATE_PAYMENT_FAILED,
+	payload: error
+});
+
+export const resetCreatePaymentComplete = () => ({
+	type: RESET_CREATE_PAYMENT_COMPLETE
 });

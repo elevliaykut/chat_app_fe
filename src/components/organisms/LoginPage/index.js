@@ -244,7 +244,7 @@ const LoginPage = ({
 													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
 												</label>
 											</div>
-							</form>
+								</form>
 							</div>
 						</div>
 						<div className={styles.rightContentEpisode}>

@@ -16,7 +16,8 @@ const ProfileEpisode = ({
     setPersonalInfoModalVisible = () => {},
     setSpouseCandidateModalVisible = () => {},
     setCaracteristicFeatureModalVisible = () => {},
-    setPhotoModalVisible = () => {}
+    setPhotoModalVisible = () => {},
+    userLogout = () => {}
 }) => {
 
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
@@ -262,11 +263,15 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.noneIconmenu}>
-                        <div style={{ marginLeft: '0px',marginTop: '8px'}}>
-                            <label className={styles.menuLabel}>ÖDEME FORMU</label>
-                        </div>
-                    </div>
+                    {userMe?.gender === 1 && (
+                        <>
+                            <div className={styles.noneIconmenu} onClick={() => window.location = '/payment'}>
+                                <div style={{ marginLeft: '0px',marginTop: '8px'}}>
+                                    <label className={styles.menuLabel}>ÖDEME FORMU</label>
+                                </div>
+                            </div>
+                        </>
+                    )} 
                     <div className={styles.line}/>
                     <div className={styles.noneIconmenu} onClick={() => window.location = '/contact'}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
@@ -286,7 +291,7 @@ const ProfileEpisode = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.noneIconmenu}>
+                    <div className={styles.noneIconmenu} onClick={userLogout}>
                         <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                             <label className={styles.menuLabel}>ÇIKIŞ</label>
                         </div>

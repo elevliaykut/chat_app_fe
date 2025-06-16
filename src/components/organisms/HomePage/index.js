@@ -378,6 +378,7 @@ const HomePage = ({
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 setPhotoModalVisible={setPhotoModalVisible}
+                                userLogout={userLogout}
                             />
                         </>
                     )}

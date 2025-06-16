@@ -119,7 +119,11 @@ import {
 	USER_CHANGE_PASSWORD_STARTED,
 	USER_CHANGE_PASSWORD_SUCCEEDED,
 	USER_CHANGE_PASSWORD_FAILED,
-	RESET_USER_CHANGE_PASSWORD_COMPLETE
+	RESET_USER_CHANGE_PASSWORD_COMPLETE,
+	CREATE_PAYMENT_STARTED,
+	CREATE_PAYMENT_SUCCEEDED,
+	CREATE_PAYMENT_FAILED,
+	RESET_CREATE_PAYMENT_COMPLETE
 } from './types';
 
 const initialState = {
@@ -171,6 +175,7 @@ const initialState = {
 	deleteAccountComplete: false,
 	changeEmailComplete: false,
 	changePasswordComplete: false,
+	paymentComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -918,6 +923,30 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				changePasswordComplete: false
+			};
+		case CREATE_PAYMENT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				paymentComplete: false,
+			};
+		case CREATE_PAYMENT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				paymentComplete: true
+			};
+		case CREATE_PAYMENT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				paymentComplete: false,
+				error: payload
+			};
+		case RESET_CREATE_PAYMENT_COMPLETE:
+			return {
+				...state,
+				paymentComplete: false
 			};
 		default:
 			return state;
