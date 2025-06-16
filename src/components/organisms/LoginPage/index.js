@@ -125,11 +125,13 @@ const LoginPage = ({
 									}}>
 									{loginIsLoaing ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
 								</button>
-								<label style={{
-									fontSize: '16px',
-									marginTop: '15px',
-									cursor: 'pointer'
-								}}>Şifremi Unuttum ?</label>
+								{
+									//<label style={{
+									//	fontSize: '16px',
+									//	marginTop: '15px',
+									//	cursor: 'pointer'
+									//}}>Şifremi Unuttum ?</label>
+								}
 							</form>
 						</div>
     				</div>

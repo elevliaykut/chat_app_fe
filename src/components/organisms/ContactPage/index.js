@@ -12,6 +12,7 @@ import ToastMessage from "../../molecules/TostMessage";
 import StoryBanner from "../../molecules/StoryBanner";
 import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
 import FooterBanner from "../../molecules/FooterBanner";
+import Footer from '../../molecules/Footer';
 
 export default function Home({
   isLoading = false,
@@ -312,6 +313,7 @@ useEffect(() => {
                 </div>
           </div>
         </div>
+        <FooterBanner/>
     </>
     
   );

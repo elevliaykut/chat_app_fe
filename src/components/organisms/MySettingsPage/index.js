@@ -4,6 +4,7 @@ import MySettingProfileCard from "../../molecules/MySettingProfileCard";
 import TopBanner from "../../molecules/TopBanner";
 import ToastMessage from "../../molecules/TostMessage";
 import ConfirmModal from "../../molecules/Modals/ConfirmModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const MySettingsPage = ({
     userMe = {},
@@ -418,6 +419,7 @@ const MySettingsPage = ({
                     </div>
                 </div>
             </div>
+            <FooterBanner/>
         </>
     )
 }

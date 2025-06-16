@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopBanner from "../../molecules/TopBanner";
 import { userLogout } from "@/src/store/user/actions";
 import styles from './Index.module.css';
+import FooterBanner from "../../molecules/FooterBanner";
 
 const NotificationsPage = ({
     isLoading = false,
@@ -124,6 +125,7 @@ const NotificationsPage = ({
                     <label>Yükleniyor...</label>
                 </>
             )}
+            <FooterBanner/>
         </>
     )
 }

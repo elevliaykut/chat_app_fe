@@ -9,36 +9,23 @@ const FooterBanner = () => {
                     <label>Anasayfa</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu}>
-                    <label>Blog</label>
-                    <div className={styles.cızgı}/>
-
-                </div>
-                <div className={styles.menu}>
-                    <label>Hakkımızda</label>
-                    <div className={styles.cızgı}/>
-                </div>
-                <div className={styles.menu}>
+                <div className={styles.menu} onClick={() => window.location = '/help'}>
                     <label>Yardım</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu}>
+                <div className={styles.menu} onClick={() => window.location = '/gizlilik-sozlesmesi'}>
                     <label>Gizlilik Politikası</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu}>
-                    <label>Rehber</label>
-                    <div className={styles.cızgı}/>
-                </div>
-                <div className={styles.menu}>
+                <div className={styles.menu} onClick={() => window.location = '/kullanici-sozlesmesi'}>
                     <label>Kullanıcı Sözleşmesi</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu}>
+                <div className={styles.menu} onClick={() => window.location = '/acik-riza-metni'}>
                     <label>Açık Rıza Metni</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu}>
+                <div className={styles.menu} onClick={() => window.location = '/contact'}>
                     <label>İletişim</label>
                 </div>
             </div>

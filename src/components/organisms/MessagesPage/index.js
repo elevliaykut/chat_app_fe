@@ -3,6 +3,7 @@ import TopBanner from "../../molecules/TopBanner";
 import styles from './Index.module.css';
 import ToastMessage from "../../molecules/TostMessage";
 import UserReportModal from "../../molecules/Modals/UserReportModal";
+import FooterBanner from "../../molecules/FooterBanner";
 
 const MessagesPage = ({
     isLoading = false,
@@ -368,6 +369,7 @@ const MessagesPage = ({
                     </div>
                 </div>
             </div>    
+            <FooterBanner/>
         </>
     )
 }
