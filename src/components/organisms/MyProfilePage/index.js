@@ -55,7 +55,13 @@ const MyProfilePage = ({
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
     photos = [],
-    userPhotoIsLoading = false
+    userPhotoIsLoading = false,
+    resetPostActivityLikeComplete = () => {},
+    resetPostActivityFavoriteComplete = () => {},
+    resetPostActivitySmiledComplete = () => {},
+    activityLikeComplete = false,
+    activityFavoriteComplete = false,
+    activitySmileComplete = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -67,6 +73,27 @@ const MyProfilePage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
     const [photoModalVisible, setPhotoModalVisible] = useState(false);
     const [photoGalleryVisible, setPhotoGalleryVisible] = useState(false);
+
+    useEffect(() => {
+        if(activityLikeComplete) {
+            resetPostActivityLikeComplete();
+            getMyPosts();
+        }
+    },[activityLikeComplete]);
+
+    useEffect(() => {
+        if(activityFavoriteComplete) {
+            resetPostActivityFavoriteComplete();
+            getMyPosts();
+        }
+    },[activityFavoriteComplete]);
+
+    useEffect(() => {
+        if(activitySmileComplete) {
+            resetPostActivitySmiledComplete();
+            getMyPosts();
+        }
+    },[activitySmileComplete]);
 
     useEffect(() => {
         if(userPhotoIsLoading) {
