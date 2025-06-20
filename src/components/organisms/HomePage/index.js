@@ -108,6 +108,12 @@ const HomePage = ({
     }
 
     useEffect(() => {
+        if(!userMe?.personal_info_complete) {
+            window.location = '/info';
+        }
+    },[userMe]);
+
+    useEffect(() => {
         userReportsReset();
     },[]);
 

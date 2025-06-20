@@ -20,7 +20,7 @@ const LoginPage = ({
 	const [username, setUsername]							= useState();
 	const [email, setEmail]									= useState();
 	const [password, setPassword]	    					= useState();
-	const [birthDate, setBirthDate]							= useState();
+	const [birthDate, setBirthDate]							= useState();
 	const [isPrivacyChecked, setIsPrivacyChecked] 			= useState(false);
 	const [loginPrivacyChecked, setLoginPrivacyChecked] 	= useState(false);
 	const [emailPrivacyChecked, setEmailPrivacyChecked] 	= useState(false);
@@ -52,7 +52,10 @@ const LoginPage = ({
 	useEffect(() => {
 		if(registerCompleted) {
 			userRegisterCompletedReset();
-			setLoginModalVisible(true);
+			loginUser({
+				username: username,
+				password: password
+			});
 		}
 	},[registerCompleted]);
 

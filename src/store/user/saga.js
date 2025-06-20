@@ -130,9 +130,6 @@ function* loginUserTask(action) {
 		} else {
 			window.location = '/info';
 		}
-		setTimeout(() => {
-			window.location = '/home';
-		},[400]);
 
 		cookies.set('userName', data?.data?.name);
 		cookies.set('userSurname', data?.data?.surname);
