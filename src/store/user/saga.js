@@ -608,7 +608,7 @@ function* userBlockedTask(action) {
 
 function* userReportsTask(action) {
 	const { payload } = action;
-	const { description, type, userId } = payload;
+	const { description, type, userId, postId } = payload;
 
 	const token = cookies.get('chatAppToken');
 
@@ -616,7 +616,8 @@ function* userReportsTask(action) {
 		const response = yield call(axios.post, `${BASE_URL}/user/report/${userId}`,
 			{
 				description: description,
-				type: type
+				type: type,
+				post_id: postId
 			},
 			{
 				headers: { Authorization: `Bearer ${token}` },

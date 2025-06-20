@@ -15,6 +15,7 @@ import StoryBanner from "../../molecules/StoryBanner";
 import ToastMessage from "../../molecules/TostMessage";
 import UserPhotoModal from "../../molecules/Modals/UserPhotoModal";
 import MessageModal from "../../molecules/Modals/MessageModal";
+import PostReportModal from "../../molecules/Modals/PostReportModal";
 
 const HomePage = ({
     posts = [],
@@ -76,8 +77,11 @@ const HomePage = ({
     resetPostActivitySmiledComplete = () => {},
     activityLikeComplete = false,
     activityFavoriteComplete = false,
-    activitySmileComplete = false
+    activitySmileComplete = false,
 
+    userReportsComplete = false,
+    userReports = () => {},
+    userReportsReset = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -95,10 +99,17 @@ const HomePage = ({
     const [selectedMessageUserId, setSelectedMessageUserId] = useState();
     const [selectedUsername, setSelectedUsername] = useState();
     const [selectedUserStatus, setSelectedUserStatus] = useState();
+    const [postReportModalVisible, setPostReportModalVisible] = useState(false);
+    const [userId, setUserId] = useState();
+    const [postId, setPostId] = useState();
 
     const messageModalOnClose = () => {
         setMessageModalVisible(false);
     }
+
+    useEffect(() => {
+        userReportsReset();
+    },[]);
 
     useEffect(() => {
         if(selectedMessageUserId) {
@@ -242,6 +253,18 @@ const HomePage = ({
                 </>
             )}
 
+            {postReportModalVisible && (
+                <>
+                    <PostReportModal
+                        onClose={() => setPostReportModalVisible(false)}
+                        isLoading={isLoading}
+                        userReports={userReports}
+                        userId={userId}
+                        postId={postId}
+                        setPostReportModalVisible={setPostReportModalVisible}
+                    />
+                </>
+            )}
             {messageModalVisible && (
                 <>
                     <MessageModal
@@ -405,11 +428,14 @@ const HomePage = ({
                                     postIsLoading={postIsLoading}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
-                                    
                                     setMessageModalVisible={setMessageModalVisible}
                                     setSelectedMessageUserId={setSelectedMessageUserId}
                                     setSelectedUsername={setSelectedUsername}
                                     setSelectedUserStatus={setSelectedUserStatus}
+                                    
+                                    setPostReportModalVisible={setPostReportModalVisible}
+                                    setUserId={setUserId}
+                                    setPostId={setPostId}
                                 />
                             </>
                         )}

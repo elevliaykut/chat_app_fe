@@ -15,10 +15,13 @@ const ListPostBox = ({
     setMessageModalVisible = () => {},
     setSelectedMessageUserId = () => {},
     setSelectedUsername = () => {},
-    setSelectedUserStatus = () => {}
+    setSelectedUserStatus = () => {},
+    setPostReportModalVisible = () => {},
+    setUserId = () => {},
+    setPostId = () => {}
 }) => {
     const pathname = usePathname();
-    const isArchivePage = pathname === '/archive';
+    const isArchivePage = pathname === '/archive' || pathname === '/my-profile';
 
     const handleLikeClick = (postId, likedByMe) => {
         if(likedByMe) {
@@ -71,6 +74,12 @@ const ListPostBox = ({
         setSelectedUsername(user?.username);
         setSelectedUserStatus(user?.is_online)
     }
+
+    const reportModalOnClick = (postId, userId) => {
+        setPostReportModalVisible(true);
+        setUserId(userId);
+        setPostId(postId)
+    }       
 
     return(
         <>
@@ -182,6 +191,29 @@ const ListPostBox = ({
                                         </div>
                                         <div className={styles.line}></div>
                                     </div>    
+                                    {!isArchivePage && (
+                                        <>
+                                            <div className={styles.footerSmile} onClick={() => reportModalOnClick(item?.id, item?.creator_user?.id)}>
+                                                <div className={styles.menuIconEpisode}>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    >
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A7 7 0 1117 9m-5 11v-2m0-4h.01" />
+                                                </svg>
+                                                </div>
+                                                <div className={styles.menuTextEpisode}>
+                                                    <label className={styles.footerText}>Şikayet Et</label>
+                                                </div>
+                                                <div className={styles.line}></div>
+                                            </div>  
+                                        </>
+                                    )}  
                                 </div>
                             </div>
                         

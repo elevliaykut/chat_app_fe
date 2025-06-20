@@ -20,7 +20,10 @@ import {
     createStory,
     resetCreateStoryComplete,
     userUploadPhoto,
-    getUserPhoto
+    getUserPhoto,
+    
+    userReports,
+    userReportsReset
 } from '../../../store/user/actions';
 
 import {
@@ -50,7 +53,7 @@ const mapStateToProps = state => ({
     activityLikeComplete: state?.post?.activityLikeComplete,
     activityFavoriteComplete: state?.post?.activityFavoriteComplete,
     activitySmileComplete: state?.post?.activitySmileComplete,
-
+    userReportsComplete: state?.user?.userReportsComplete,
 
     posts: state?.user?.posts,
     isLoading: state?.user?.isLoading,
@@ -112,7 +115,11 @@ const mapDispatchToProps = dispatch => ({
 
     resetPostActivityLikeComplete: () => dispatch(resetPostActivityLikeComplete()),
     resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
-    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete())
+    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
+    
+    userReports: payload => dispatch(userReports(payload)),
+    userReportsReset: () => dispatch(userReportsReset()),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

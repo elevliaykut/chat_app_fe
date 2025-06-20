@@ -10,6 +10,7 @@ import ToastMessage from "../../molecules/TostMessage";
 import FooterBanner from "../../molecules/FooterBanner";
 import MessageModal from "../../molecules/Modals/MessageModal";
 import MemberPhotoCard from "../../molecules/MemberPhotoCard";
+import PostReportModal from "../../molecules/Modals/PostReportModal";
 
 const MemberDetailsPage = ({
     isLoading = false,
@@ -58,7 +59,13 @@ const MemberDetailsPage = ({
     sendMessageCompleted = false,
     getUserPhoto = () => {},
     photos = [],
-    userPhotoIsLoading = false
+    userPhotoIsLoading = false,
+    resetPostActivityLikeComplete = () => {},
+    resetPostActivityFavoriteComplete = () => {},
+    resetPostActivitySmiledComplete = () => {},
+    activityLikeComplete = false,
+    activityFavoriteComplete = false,
+    activitySmileComplete = false,
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -71,6 +78,34 @@ const MemberDetailsPage = ({
     const [selectedUsername, setSelectedUsername] = useState();
     const [selectedUserStatus, setSelectedUserStatus] = useState();
     const [photoGalleryVisible, setPhotoGalleryVisible] = useState(false);
+    const [postReportModalVisible, setPostReportModalVisible] = useState(false);
+    const [userId, setUserId] = useState();
+    const [postId, setPostId] = useState();
+
+    useEffect(() => {
+        if(activityLikeComplete) {
+            resetPostActivityLikeComplete();
+            getMemberPosts({ memberId: memberId });
+        }
+    },[activityLikeComplete]);
+
+    useEffect(() => {
+        if(activityFavoriteComplete) {
+            resetPostActivityFavoriteComplete();
+            getMemberPosts({ memberId: memberId });
+        }
+    },[activityFavoriteComplete]);
+
+    useEffect(() => {
+        if(activitySmileComplete) {
+            resetPostActivitySmiledComplete();
+            getMemberPosts({ memberId: memberId });
+        }
+    },[activitySmileComplete]);
+
+    useEffect(() => {
+        userReportsReset();
+    },[]);
 
     useEffect(() => {
         if(userPhotoIsLoading) {
@@ -193,6 +228,18 @@ const MemberDetailsPage = ({
 
     return (
         <>
+            {postReportModalVisible && (
+                <>
+                    <PostReportModal
+                        onClose={() => setPostReportModalVisible(false)}
+                        isLoading={isLoading}
+                        userReports={userReports}
+                        userId={userId}
+                        postId={postId}
+                        setPostReportModalVisible={setPostReportModalVisible}
+                    />
+                </>
+            )}
             {messageModalVisible && (
                 <>
                     <MessageModal
@@ -285,9 +332,16 @@ const MemberDetailsPage = ({
                                     posts={posts}
                                     postActivityLike={postActivityLike}
                                     postIsLoading={postIsLoading}
-                                    postError={postError}
                                     postActivityFavorite={postActivityFavorite}
                                     postActivitySmiled={postActivitySmiled}
+                                    setMessageModalVisible={setMessageModalVisible}
+                                    setSelectedMessageUserId={setSelectedMessageUserId}
+                                    setSelectedUsername={setSelectedUsername}
+                                    setSelectedUserStatus={setSelectedUserStatus}
+                                    
+                                    setPostReportModalVisible={setPostReportModalVisible}
+                                    setUserId={setUserId}
+                                    setPostId={setPostId}
                                 />
                             </>
                         )}

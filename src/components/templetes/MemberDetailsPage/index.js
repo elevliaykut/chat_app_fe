@@ -16,8 +16,13 @@ import {
 
 import {
     postActivityLike,
+    resetPostActivityLikeComplete,
+
     postActivityFavorite,
-    postActivitySmiled
+    resetPostActivityFavoriteComplete,
+
+    postActivitySmiled,
+    resetPostActivitySmiledComplete
 } from '../../../store/post/actions';
 
 import {
@@ -38,6 +43,10 @@ import {
 } from '../../../store/user/actions';
 
 const mapStateToProps = state => ({
+    activityLikeComplete: state?.post?.activityLikeComplete,
+    activityFavoriteComplete: state?.post?.activityFavoriteComplete,
+    activitySmileComplete: state?.post?.activitySmileComplete,
+
     isLoading: state?.user?.isLoading,
     error: state?.user?.error,
     userMe: state?.user?.userMe,
@@ -87,7 +96,12 @@ const mapDispatchToProps = dispatch => ({
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
     resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
-    getUserPhoto: payload => dispatch(getUserPhoto(payload))
+
+    resetPostActivityLikeComplete: () => dispatch(resetPostActivityLikeComplete()),
+    resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
+    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
+
+    getUserPhoto: payload => dispatch(getUserPhoto(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemberDetailsOrganisms);
