@@ -442,9 +442,7 @@ const PersonalInfoModal = ({
                                 {['İngilizce', 'Almanca', 'Fransızca', 'Arapça', 'İspanyolca', 'Japonca', 'Diğer'].map((lang) => (
                                     <li 
                                         key={lang} 
-                                        style={{ 
-                                            padding: '0px',
-                                        }}>
+                                        style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={lang}
@@ -452,7 +450,7 @@ const PersonalInfoModal = ({
                                         onChange={handleCheckboxChange}
                                         style={{ marginTop: '-200px'}}
                                     />
-                                        {lang}
+                                        <label style={{ marginTop: '-25px'}}>{lang}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -586,7 +584,7 @@ const PersonalInfoModal = ({
                         </div>
 
                         <div style={{ marginTop: '18px'}}>
-                            <label>Taviz Vermeyecekleriniz </label>
+                            <label>Taviz Vermeyecekleriniz</label>
                             <div
                                 style={{
                                 position: 'relative',
@@ -600,15 +598,14 @@ const PersonalInfoModal = ({
                             >
                                 <ul style={{ listStyleType: 'none', padding: '0' }}>
                                 {['Namaz', 'Oruç', 'Sadakat', 'Dürüstlük'].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
-                                    <input
-                                        type="checkbox"
-                                        value={item}
-                                        checked={notCompromise.includes(item)}
-                                        onChange={handleNotCompromiseChange}  // Burada onChange fonksiyonu çağrılıyor
-                                        style={{ marginRight: '8px' }}
-                                    />
-                                    {item}
+                                    <li key={item} style={{ padding: '15px 0' }}>
+                                        <input
+                                            type="checkbox"
+                                            value={item}
+                                            checked={notCompromise.includes(item)}
+                                            onChange={handleNotCompromiseChange}  // Burada onChange fonksiyonu çağrılıyor
+                                        />
+                                            <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -722,7 +719,7 @@ const PersonalInfoModal = ({
                                     "İslamdan taviz vermesin",
                                     "Yalan söylemesin"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -730,7 +727,7 @@ const PersonalInfoModal = ({
                                         onChange={handleConsiderIslamChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                    {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -762,7 +759,7 @@ const PersonalInfoModal = ({
                                     "Yabancı rock",
                                     "Türk halk müziği"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -770,7 +767,7 @@ const PersonalInfoModal = ({
                                         onChange={handleMusicTypeChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                    {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -805,7 +802,7 @@ const PersonalInfoModal = ({
                                     "Dini", 
                                     "Kişisel gelişim"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -813,7 +810,7 @@ const PersonalInfoModal = ({
                                         onChange={handleBookTypeChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                        {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -846,7 +843,7 @@ const PersonalInfoModal = ({
                                      "Güven", 
                                      "Gelir uyumu"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -854,7 +851,7 @@ const PersonalInfoModal = ({
                                         onChange={handleLookingQualityChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                        {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -893,7 +890,7 @@ const PersonalInfoModal = ({
                                     "Gezme", 
                                     "Arkadaşlık"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -901,7 +898,7 @@ const PersonalInfoModal = ({
                                         onChange={handleHoobiesChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                        {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -939,7 +936,7 @@ const PersonalInfoModal = ({
                                     "Zeki", 
                                     "İyimser"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -947,7 +944,7 @@ const PersonalInfoModal = ({
                                         onChange={handlePersonalityChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                        {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>

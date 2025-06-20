@@ -386,7 +386,7 @@ const SpouseCandidateModal = ({
                             >
                                 <ul style={{ listStyleType: 'none', padding: '0' }}>
                                 {['Namaz', 'Oruç', 'Sadakat', 'Dürüstlük'].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -394,7 +394,7 @@ const SpouseCandidateModal = ({
                                         onChange={handleNotCompromiseChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                    {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
@@ -479,7 +479,7 @@ const SpouseCandidateModal = ({
                                      "Güven", 
                                      "Gelir uyumu"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '5px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -487,7 +487,7 @@ const SpouseCandidateModal = ({
                                         onChange={handleLookingQualityChange}  // Burada onChange fonksiyonu çağrılıyor
                                         style={{ marginRight: '8px' }}
                                     />
-                                        {item}
+                                        <label style={{ marginTop: '-25px'}}>{item}</label>
                                     </li>
                                 ))}
                                 </ul>
