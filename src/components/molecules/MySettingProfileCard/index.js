@@ -150,17 +150,6 @@ const MySettingProfileCard = ({
                         </div>
                     </div>
                     <div className={styles.line}/>
-                    <div className={styles.menu}>
-                        <div style={{ marginTop: '3px'}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2H8a2 2 0 00-2 2v12a2 2 0 002 2zm0 0v-4" />
-                            </svg>
-                        </div>
-                        <div style={{ marginLeft: '15px',marginTop: '8px'}}>
-                            <label style={{ fontSize: '15px', color: ThemeConfig.black}}>Sözleşme</label>
-                        </div>
-                    </div>
-                    <div className={styles.line}/>
                     <div className={styles.menu} onClick={() => window.location = '/contact'}>
                         <div style={{ marginTop: '3px'}}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
