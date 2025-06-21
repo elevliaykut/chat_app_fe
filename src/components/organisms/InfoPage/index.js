@@ -36,31 +36,31 @@ const InfoPage = ({
     const [menuFour, setMenuFour] = useState(false);
     const [menuFive, setMenuFive] = useState(false);
 
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
-    const [age, setAge] = useState();
-    const [phone, setPhone] = useState();
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [age, setAge] = useState("");
+    const [phone, setPhone] = useState("");
 
-    const [tall, setTall] = useState();
-    const [maritalStatus, setMaritalStatus] = useState(1);
-    const [weight, setWeight] = useState();
-    const [headCraft, setHeadCraft] = useState("Evet");
-    const [cityId, setCityId] = useState();
-    const [districtId, setDistrictId] = useState();
-    const [eyeColor, setEyeColor] = useState("Siyah");
-    const [bodyType, setBodyType] = useState("İnce");
-    const [hairColor, setHairColor] = useState("Siyah");
-    const [educationStatus, setEducationStatus] = useState("İlk Öğretim");
-    const [skinColor, setSkinColor] = useState("Buğday");
-    const [disability, setDisability] = useState("Hayır");
-    const [haveAChild, setHaveAChild] = useState("Çocuğum Yok");
-    const [cigarette, setCigarette] = useState("İçmiyorum");
-    const [wantToChild, setWantToChild] = useState("İstiyorum");
-    const [alcohol, setAlcohol] = useState("Hiç kullanmadım");
-    const [liveWith, setLiveWith] = useState("Ailemle");
-    const [salary, setSalary] = useState("0-10000 TL");
-    const [job, setJob] = useState("Bilişim");
-    const [workStatus, setWorkStatus] = useState("Full time");
+    const [tall, setTall] = useState("");
+    const [maritalStatus, setMaritalStatus] = useState("");
+    const [weight, setWeight] = useState("");
+    const [headCraft, setHeadCraft] = useState("");
+    const [cityId, setCityId] = useState("");
+    const [districtId, setDistrictId] = useState("");
+    const [eyeColor, setEyeColor] = useState("");
+    const [bodyType, setBodyType] = useState("");
+    const [hairColor, setHairColor] = useState("");
+    const [educationStatus, setEducationStatus] = useState("");
+    const [skinColor, setSkinColor] = useState("");
+    const [disability, setDisability] = useState("");
+    const [haveAChild, setHaveAChild] = useState("");
+    const [cigarette, setCigarette] = useState("");
+    const [wantToChild, setWantToChild] = useState("");
+    const [alcohol, setAlcohol] = useState("");
+    const [liveWith, setLiveWith] = useState("");
+    const [salary, setSalary] = useState("");
+    const [job, setJob] = useState("");
+    const [workStatus, setWorkStatus] = useState("");
 
     const [formVisible, setFormVisible] = useState(false);
 
@@ -71,6 +71,22 @@ const InfoPage = ({
     },[definitionIsLoading]);
 
     const formSubmitOnClick = () => {
+
+        if(salary === "") {
+            alert('Geliriniz Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(job === "") {
+            alert('Mesleğiniz Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(workStatus === "") {
+            alert('Çalışma Şekliniz Seçeneğini Doldurun!');
+            return;
+        };
+
         updateUserPersonalInfo({
             name: name,
             surname: surname,
@@ -132,33 +148,33 @@ const InfoPage = ({
 
     const formOneNextOnClick = () => {
         
-        if(name === undefined) {
+        if(name === "") {
             alert('İsim Girin!');
             return;
         };
 
-        if(surname === undefined) {
+        if(surname === "") {
             alert('Soyisim Girin!');
             return;
         };
 
-        if(age === undefined) {
-            alert('Yaş Girin!');
+        if(weight === "") {
+            alert('Kilonuzu Girin!');
             return;
         };
 
-        if(phone === undefined) {
+        if(phone === "") {
             alert('Telefon Girin!');
             return;
         };
 
-        if(tall === undefined) {
+        if(tall === "") {
             alert('Boyunuzu Girin!');
             return;
         };
 
-        if(weight === undefined) {
-            alert('Kilonuzu Girin!');
+        if(maritalStatus === "") {
+            alert('Medeni Hal Girin!');
             return;
         };
         
@@ -176,6 +192,17 @@ const InfoPage = ({
     }
 
     const formTwoNextOnClick = () => {
+
+        if(cityId === "") {
+            alert('Yaşadığınız Şehri Girin!');
+            return;
+        };
+
+        if(districtId === "") {
+            alert('Yaşadığınız İlçeyi Girin!');
+            return;
+        };
+
         setInfoOne(false);
         setInfoTwo(false);
         setInfoThree(true);
@@ -204,6 +231,37 @@ const InfoPage = ({
     }
 
     const formThreeNextOnClick = () => {
+
+        if(eyeColor === "") {
+            alert('Göz Rengini Girin!');
+            return;
+        };
+
+        if(bodyType === "") {
+            alert('Vücut Tipini Girin!');
+            return;
+        };
+
+        if(hairColor === "") {
+            alert('Saç Rengini Girin!');
+            return;
+        };
+
+        if(educationStatus === "") {
+            alert('Eğitim Durumunu Girin!');
+            return;
+        };
+
+        if(skinColor === "") {
+            alert('Ten Rengini Girin!');
+            return;
+        };
+
+        if(disability === "") {
+            alert('Fiziksel Engel Kısmını Doldurun!');
+            return;
+        };
+
         setInfoOne(false);
         setInfoTwo(false);
         setInfoThree(false);
@@ -232,6 +290,32 @@ const InfoPage = ({
     }
 
     const formFourNextOnClick = () => {
+
+        if(haveAChild === "") {
+            alert('Çocuğunuz Varmı Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(cigarette === "") {
+            alert('Sigara Kullanıyormusunuz Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(wantToChild === "") {
+            alert('Çocuk İstiyormusunuz Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(alcohol === "") {
+            alert('Alkol Kullanıyormusunuz Seçeneğini Doldurun!');
+            return;
+        };
+
+        if(liveWith === "") {
+            alert('Kiminle Yaşıyorsunuz Seçeneğini Doldurun!');
+            return;
+        };
+
         setInfoOne(false);
         setInfoTwo(false);
         setInfoThree(false);
@@ -487,10 +571,12 @@ const InfoPage = ({
                                                 <div className={styles.rightInputEpisode}>
                                                     <label>Medeni Haliniz</label>
                                                     <select
+                                                        value={maritalStatus}
+                                                        style={{ marginTop: '5px'}} 
                                                         onChange={(e) => setMaritalStatus(e?.target?.value)}
-                                                        style={{ marginTop: '5px'}}
+                                                        required
                                                     >
-                                                        <option disabled>{maritalStatus}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="1">Hiç Evlenmemiş</option>
                                                         <option value="2">Bekar</option>
                                                         <option value="3">Boşanmış</option>
@@ -506,9 +592,10 @@ const InfoPage = ({
                                                         <select
                                                             style={{ marginTop: '5px'}}
                                                             onChange={(e) => setHeadCraft(e?.target?.value)}
+                                                            value={headCraft}
                                                             required
                                                         >
-                                                            <option disabled>{headCraft}</option>
+                                                            <option value="" disabled>Lütfen seçiniz</option>
                                                             <option value="Evet">Evet</option>
                                                             <option value="Hayır">Hayır</option>
                                                         </select>
@@ -547,8 +634,10 @@ const InfoPage = ({
                                                     <select
                                                         style={{ marginTop: '5px'}}
                                                         onChange={cityOnChange}
+                                                        value={cityId}
                                                         required
                                                     >
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         {cities?.map(item => (
                                                             <option key={item.id} value={item.id}>
                                                                 {item.name}
@@ -561,8 +650,10 @@ const InfoPage = ({
                                                     <select
                                                         style={{ marginTop: '5px'}}
                                                         onChange={districtOnChange}
+                                                        value={districtId}
                                                         required
                                                     >
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         {districts?.map(item => (
                                                             <>
                                                                 <option value={item?.id}>{item.name}</option>
@@ -617,8 +708,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setEyeColor(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={eyeColor}
                                                     >   
-                                                        <option disabled>{eyeColor}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Siyah">Siyah</option>
                                                         <option value="Kahverengi">Kahverengi</option>
                                                         <option value="Ela">Ela</option>
@@ -632,8 +724,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setBodyType(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={bodyType}
                                                     >
-                                                        <option disabled>{bodyType}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="İnce">İnce</option>
                                                         <option value="Normal">Normal</option>
                                                         <option value="Atletik">Atletik</option>
@@ -649,8 +742,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setHairColor(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={hairColor}
                                                     >
-                                                        <option disabled>{hairColor}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Siyah">Siyah</option>
                                                         <option value="Kahverengi">Kahverengi</option>
                                                         <option value="Kızıl">Kızıl</option>
@@ -664,8 +758,9 @@ const InfoPage = ({
                                                         <select
                                                             onChange={(e) => setEducationStatus(e?.target?.value)}
                                                             style={{ marginTop: '5px'}}
+                                                            value={educationStatus}
                                                         >
-                                                        <option disabled>{educationStatus}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="İlk Öğretim">İlk Öğretim</option>
                                                         <option value="Lise">Lise</option>
                                                         <option value="Ön Lisans">Ön Lisans</option>
@@ -680,8 +775,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setSkinColor(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={skinColor}
                                                     >
-                                                        <option disabled>{skinColor}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Buğday">Buğday</option>
                                                         <option value="Bronz">Bronz</option>
                                                         <option value="Esmer">Esmer</option>
@@ -694,8 +790,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setDisability(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={disability}
                                                     >
-                                                        <option disabled>{disability}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Hayır">Hayır</option>
                                                         <option value="Var; Görme engelliyim">Var; Görme engelliyim</option>
                                                         <option value="Var; İşitme engelliyim">Var; İşitme engelliyim</option>
@@ -750,8 +847,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setHaveAChild(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={haveAChild}
                                                     >
-                                                        <option disabled>{haveAChild}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Çocuğum Yok">Çocuğum Yok</option>
                                                         <option value="Çocuğum var ama benimle yaşamıyor">Çocuğum var ama benimle yaşamıyor</option>
                                                         <option value="Çocuğum benimle yaşıyor">Çocuğum benimle yaşıyor</option>
@@ -762,8 +860,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setCigarette(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={cigarette}
                                                     >
-                                                        <option disabled>{cigarette}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="İçmiyorum">İçmiyorum</option>
                                                         <option value="İçiyorum">İçiyorum</option>
                                                         <option value="Arasıra içiyorum">Arasıra içiyorum</option>
@@ -777,8 +876,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setWantToChild(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={wantToChild}
                                                     >
-                                                        <option disabled>{wantToChild}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="İstiyorum">İstiyorum</option>
                                                         <option value="Daha sonra istiyorum">Daha sonra istiyorum</option>
                                                         <option value="İstemiyorum">İstemiyorum</option>
@@ -790,8 +890,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setAlcohol(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={alcohol}
                                                     >
-                                                        <option disabled>{alcohol}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Hiç kullanmadım">Hiç kullanmadım</option>
                                                         <option value="Kullanmıyorum">Kullanmıyorum</option>
                                                         <option value="Ara sıra kullanıyorum">Ara sıra kullanıyorum</option>
@@ -805,8 +906,9 @@ const InfoPage = ({
                                                 <select
                                                     onChange={(e) => setLiveWith(e?.target?.value)}
                                                     style={{ marginTop: '5px'}}
+                                                    value={liveWith}
                                                 >
-                                                    <option disabled>{liveWith}</option>
+                                                    <option value="" disabled>Lütfen seçiniz</option>
                                                     <option value="Ailemle">Ailemle</option>
                                                     <option value="Ev arkadaşımla">Ev arkadaşımla</option>
                                                     <option value="Yalnız">Yalnız</option>
@@ -860,8 +962,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setSalary(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={salary}
                                                     >
-                                                        <option disabled>{salary}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="0-10000 TL">0-10000 TL</option>
                                                         <option value="10000-20000 TL">10000-20000 TL</option>
                                                         <option value="20000-30000 TL">20000-30000 TL</option>
@@ -876,8 +979,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setJob(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={job}
                                                     >
-                                                        <option disabled>{job}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Bilişim">Bilişim</option>
                                                         <option value="Çevirmen">Çevirmen</option>
                                                         <option value="Danışmanlık">Danışmanlık</option>
@@ -931,8 +1035,9 @@ const InfoPage = ({
                                                     <select
                                                         onChange={(e) => setWorkStatus(e?.target?.value)}
                                                         style={{ marginTop: '5px'}}
+                                                        value={workStatus}
                                                     >
-                                                        <option disabled>{workStatus}</option>
+                                                        <option value="" disabled>Lütfen seçiniz</option>
                                                         <option value="Full time">Full time</option>
                                                         <option value="Kendi işim">Kendi işim</option>
                                                         <option value="Part time">Part time</option>
