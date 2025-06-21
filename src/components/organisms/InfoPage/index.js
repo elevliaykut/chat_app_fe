@@ -273,6 +273,29 @@ const InfoPage = ({
         setMenuFive(false);
     }
 
+    function calculateAge(birthDateStr) {
+        const birthDate = new Date(birthDateStr);
+        const today = new Date();
+      
+        let age = today.getFullYear() - birthDate.getFullYear();
+      
+        const isBirthdayPassedThisYear =
+          today.getMonth() > birthDate.getMonth() ||
+          (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+      
+        if (!isBirthdayPassedThisYear) {
+          age--;
+        }
+      
+        return age;
+    }
+
+    useEffect(() => {
+        const birthDate = userMe?.birth_date;
+        const age = calculateAge(birthDate);
+        setAge(age);
+    },[userMe]);
+
     return(
         <>
             <TopBanner
@@ -430,13 +453,13 @@ const InfoPage = ({
                                             <div className={styles.twoInputLineEpisode} style={{ marginTop: '18px'}}>
                                                 
                                                 <div className={styles.leftInputEpisode}>
-                                                    <label>Yaş</label>
-                                                    <input
-                                                        defaultValue={age}
-                                                        placeholder="Yaş"
-                                                        onChange={(e) => setAge(e?.target?.value)}
-                                                        className={styles.input}
-                                                    />
+                                                    <label>Kilo</label>
+                                                        <input
+                                                            defaultValue={weight}
+                                                            placeholder="Kilo"
+                                                            onChange={(e) => setWeight(e?.target?.value)}
+                                                            className={styles.input}
+                                                        />
                                                 </div>
                                                 <div className={styles.rightInputEpisode}>
                                                     <label>Telefon</label>
@@ -474,16 +497,6 @@ const InfoPage = ({
                                                         <option value="4">Eşi Vefat Etmiş</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
-                                            <div className={styles.singleInputEpisode} style={{ marginTop: '18px'}}>
-                                                    <label>Kilo</label>
-                                                    <input
-                                                        defaultValue={weight}
-                                                        placeholder="Kilo"
-                                                        onChange={(e) => setWeight(e?.target?.value)}
-                                                        className={styles.input}
-                                                    />
                                             </div>
 
                                             {userMe?.gender === 0 && (
