@@ -4,6 +4,11 @@
   padding: 20px;
 }
 
+.cardContainer {
+  display: flex;
+  width: 100%;
+}
+
 .headerTextEpisode {
   width: 100%;
   display: block;
@@ -32,6 +37,7 @@
   
   .codeHeader {
     display: flex;
+    height: 100%;
   }
   
   .codeBox {
@@ -54,6 +60,7 @@
   }
   
   .bankGrid {
+    width: 85%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
@@ -277,5 +284,12 @@
   .confirmButton {
     padding: 6px 10px;
     font-size: 13px;
+  }
+
+  .bankGrid {
+    width: 100%;
+  }
+  .cardContainer {
+    display: block;
   }
 }

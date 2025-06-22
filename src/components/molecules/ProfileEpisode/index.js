@@ -265,7 +265,7 @@ const ProfileEpisode = ({
                     <div className={styles.line}/>
                     {userMe?.gender === 1 && (
                         <>
-                            <div className={styles.noneIconmenu} onClick={() => window.location = '/payment'}>
+                            <div className={styles.noneIconmenu} onClick={() => window.location = '/payment-form'}>
                                 <div style={{ marginLeft: '0px',marginTop: '8px'}}>
                                     <label className={styles.menuLabel}>ÖDEME FORMU</label>
                                 </div>

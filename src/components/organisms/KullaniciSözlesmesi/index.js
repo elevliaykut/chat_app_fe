@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
+import TopBanner from "../../molecules/TopBanner";
+import FooterBanner from "../../molecules/FooterBanner";
 
-const KullaniciSözlesmesi = () => {
+const KullaniciSözlesmesi = ({
+    getUserMe = () => {},
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = {},
+    userMe = {},
+    userMeLoading = false,
+    notificationIsLoading = false,
+    isLoading = false,
+}) => {
+    const [userMeVisible, setUserMeVisible] = useState(false);
+    
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
+
+    useEffect(() => {
+        getUserMe();
+        getNotifications({ read: false });
+    },[]);
+
     return (
         <>
-            <div className={styles.container}>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                messageCount={userMe?.message_count}
+                profileVisible={userMeVisible}
+                userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
+            />
+            <div className={styles.frame}>
                 <label className={styles.description}>
                 Değerli Ziyaretçimiz,<br/>
 
@@ -225,6 +257,7 @@ const KullaniciSözlesmesi = () => {
                     Üyelik formunda yer alan "üyelik sözleşmesini okudum, kabul ediyorum" kutusunun işaretlenmesi yukarıdaki koşulların kabul edilmiş olması anlamına gelmektedir.<br/>
                 </label>
             </div>
+            <FooterBanner/>
         </>
     )
 }

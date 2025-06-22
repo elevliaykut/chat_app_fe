@@ -1,12 +1,13 @@
-.container {
-    padding: 20px;
-}
 .description {
     font-size: 16px;
     color: black;
     line-height: 35px;
 }
-
+.frame {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+  }
 .title {
     font-size: 18px;
     font-weight: bold;

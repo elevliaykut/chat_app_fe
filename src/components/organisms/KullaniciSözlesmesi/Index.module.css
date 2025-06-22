@@ -1,6 +1,8 @@
-.container {
+.frame {
+    width: 70%;
+    margin: auto;
     padding: 20px;
-}
+  }
 .description {
     font-size: 16px;
     color: black;

@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
+import TopBanner from "../../molecules/TopBanner";
+import FooterBanner from "../../molecules/FooterBanner";
 
-const GizlilikSozlesmesi = () => {
+const GizlilikSozlesmesi = ({
+    getUserMe = () => {},
+    userLogout = () => {},
+    getNotifications = () => {},
+    notifications = {},
+    userMe = {},
+    userMeLoading = false,
+    notificationIsLoading = false,
+    isLoading = false,
+}) => {
+    const [userMeVisible, setUserMeVisible] = useState(false);
+
+    useEffect(() => {
+        if(!userMeLoading) {
+            setUserMeVisible(true);
+        }
+    },[userMeLoading]);
+
+    useEffect(() => {
+        getUserMe();
+        getNotifications({ read: false });
+    },[]);
+
     return (
         <>
-            <div className={styles.container}>
+            <TopBanner
+                onlineMemberCount={userMe?.online_member_count}
+                messageCount={userMe?.message_count}
+                profileVisible={userMeVisible}
+                userLogout={userLogout}
+                notifications={notifications}
+                notificationIsLoading={notificationIsLoading}
+            />
+            <div className={styles.frame}>
                 <label className={styles.description}>
                     Aşağıdaki "Gizlilik Sözleşmesi", Bikalp'in, kullanıcılarına sağladığı bilgi ve hizmetlerin sunumuna ilişkin hükümleri düzenlemektedir. İşbu sözleşmede Bikalp Web Sitesi "site", bu siteye her ne surette olursa olsun bilgi veren, kullanan, giriş yapanlar ve sair de "kullanıcı" olarak adlandırılacaktır. Siteye giren ya da sitedeki formları dolduran her kullanıcı, "Gizlilik Sözleşmesi" ve "Üyelik Sözleşmesi"nde yer alan hükümleri okumuş ve kabul etmiş sayılacaktır.
                 </label>
@@ -78,6 +110,7 @@ const GizlilikSozlesmesi = () => {
                     - BİKALP bu metin içindeki her türlü bilgiyi değiştirme hakkını saklı tutar. Bu siteyi kullanarak bu "Gizlilik Sözleşmesi"nde yapılacak her türlü düzenleme ve değişiklik kullanıcı tarafından kabul edilmiş sayılır.<br/>
                 </label>
             </div>
+            <FooterBanner/>
         </>
     )
 }
