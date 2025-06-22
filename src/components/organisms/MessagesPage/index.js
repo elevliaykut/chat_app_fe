@@ -323,15 +323,34 @@ const MessagesPage = ({
                                 {messages.length > 0 ? (
                                     <>
                                         <div className={styles.messages}>
-                                            <div className={styles.usernameEpisode} onClick={() => window.location = '/member/' + userId}>
+                                            <div
+                                                className={styles.usernameEpisode}
+                                                onClick={() => (window.location = '/member/' + userId)}
+                                            >
                                                 <label>{username}</label>
                                             </div>
-                                            {messages.map(msg => (
-                                                <div key={msg.id} className={`${styles.messageItem} ${ msg.sender?.id === userMe?.id ? styles.outgoing : styles.incoming}`}>
-                                                    {msg.message}
+
+                                            {messages.map((msg) => {
+                                                const isMe = msg.sender?.id === userMe?.id;
+
+                                                // Tarih formatlama
+                                                const formattedDate = new Date(msg.created_at).toLocaleString('tr-TR', {
+                                                dateStyle: 'short',
+                                                timeStyle: 'short',
+                                                });
+
+                                                return (
+                                                <div
+                                                    key={msg.id}
+                                                    className={`${styles.messageItem} ${isMe ? styles.outgoing : styles.incoming}`}
+                                                >
+                                                    <div>{msg.message}</div>
+                                                    <div className={styles.messageDate}>{formattedDate}</div>
                                                 </div>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
+
                                     </>
                                 ) : (
                                     <>

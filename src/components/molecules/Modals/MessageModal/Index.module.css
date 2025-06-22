@@ -53,6 +53,12 @@
     flex-direction: column;
   }
   
+  .messageDate {
+    font-size: 10px;
+    color: #000;
+    margin-top: 4px;
+  }
+
   .userList {
     padding: 12px;
     overflow-y: auto;

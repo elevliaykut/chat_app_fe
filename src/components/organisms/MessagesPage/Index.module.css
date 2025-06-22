@@ -29,6 +29,14 @@
   background-color: #fff;
 }
 
+.messageDate {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+  color: #000;
+}
+
+
 .tabs button {
   background: none;
   border: none;
