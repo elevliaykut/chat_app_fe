@@ -157,13 +157,15 @@ const MessagesPage = ({
 
     const incomingBlocked = (user) => {
         userBlocked({
-            userId: user?.sender?.id
+            userId: user?.sender?.id,
+            status: 1
         });
     }
 
     const outgoingBlocked = (user) => {
         userBlocked({
-            userId: user?.receiver?.id
+            userId: user?.receiver?.id,
+            status: 1
         });
     }
 
@@ -180,6 +182,8 @@ const MessagesPage = ({
     useEffect(() => {
         if(userBlockedComplete) {
             userBlockedReset();
+            getMessageLogs();
+            getOutGoingMessageLogs();
             setBlockedUserMessageVisible(true);
         }
     },[userBlockedComplete]);
