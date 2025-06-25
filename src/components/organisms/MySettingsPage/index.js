@@ -200,13 +200,13 @@ const MySettingsPage = ({
 
             {freezeAccountToastVisible && (
                 <>
-                    <ToastMessage message="Hesap Dondurma İşleminiz Başarılı Bir Şekilde Gerçekleşti."/>
+                    <ToastMessage message="İşleminiz Başarılı Bir Şekilde Gerçekleşti."/>
                 </>
             )}
 
             {deleteAccountToastVisible && (
                 <>
-                    <ToastMessage message="Hesap Silme İşleminiz Başarılı Bir Şekilde Gerçekleşti."/>
+                    <ToastMessage message="İşleminiz Başarılı Bir Şekilde Gerçekleşti."/>
                 </>
             )}
 
