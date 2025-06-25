@@ -116,7 +116,7 @@ const BeGoldMemberPage = ({
                             <h4>Hesap Özeti</h4>
                             <p>6 Aylık Altın Üyelik — 1194 TL</p>
                             <p><strong>Toplam:</strong> 1194 TL</p>
-                            <button className={styles.confirmButton}>Ödemeyi Onayladım</button>
+                            <button className={styles.confirmButton} onClick={() => window.location = '/payment-form'}>Ödemeyi Onayladım</button>
                         </div>
                     </div>
                 </div>

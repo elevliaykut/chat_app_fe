@@ -13,7 +13,9 @@ const PaymentPage = ({
     notificationIsLoading = false
 }) => {
 
-    const [userMeVisible, setUserMeVisible] = useState(false);
+    const [userMeVisible, setUserMeVisible]             = useState(false);
+    const [creditCardVisible, setCreditCardVisible]     = useState(true);
+    const [fastVisible, setFastVisible]                 = useState(false);
 
     useEffect(() => {
         if(!userMeLoading) {
@@ -26,7 +28,35 @@ const PaymentPage = ({
         getNotifications({ read: false });
     },[]);
 
-    const packages = [
+    const packagesForCreditCard = [
+        {
+          icon: '🚀',
+          title: '1 AYLIK',
+          price: '₺749',
+          monthly: '/Ay',
+          total: 'Toplam 749 TL',
+          features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
+        },
+        {
+          icon: '🎗',
+          title: '6 AYLIK',
+          price: '2194',
+          monthly: '/Ay',
+          total: 'Toplam ~2794 TL~ Yerine 2194 TL',
+          features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
+          highlight: true,
+        },
+        {
+          icon: '💎',
+          title: '3 AYLIK',
+          price: '1897',
+          monthly: '/Ay',
+          total: 'Toplam 1897 TL',
+          features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
+        },
+    ];
+
+    const packagesForFast = [
         {
           icon: '🚀',
           title: '1 AYLIK',
@@ -54,6 +84,16 @@ const PaymentPage = ({
         },
     ];
 
+    const creditButtonOnClick = () => {
+        setFastVisible(false);
+        setCreditCardVisible(true);
+    }
+
+    const fastButtonOnClick = () => {
+        setFastVisible(true);
+        setCreditCardVisible(false);
+    }
+
     return (
         <>
             <TopBanner
@@ -71,33 +111,64 @@ const PaymentPage = ({
                     <p className={styles.subtitle}>Ödeme yönteminizi ve paketlerinizi seçerek ödeme yapabilirsiniz.</p>
 
                     <div className={styles.tabs}>
-                        <div className={styles.tab}>Kredi Kartı</div>
-                        <div className={styles.tab} onClick={() => window.location = '/be-gold-member'}>Banka Transferi</div>
+                        <div className={styles.tab} onClick={creditButtonOnClick}>Kredi Kartı</div>
+                        <div className={styles.tab} onClick={fastButtonOnClick}>Banka Transferi</div>
                         <div className={styles.tab}>Cep Telefonu</div>
                     </div>
 
-                    <div className={styles.cards}>
-                        {packages.map((pkg, idx) => (
-                        <div
-                            key={idx}
-                            className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
-                        >
-                            <div className={styles.icon}>{pkg?.icon}</div>
-                            <h3>{pkg.title}</h3>
-                            <div className={styles.price}>
-                                {pkg.price}
-                                <span>{pkg.monthly}</span>
-                            </div>
-                            <p className={styles.total}>{pkg.total}</p>
-                            <ul className={styles.features}>
-                                {pkg.features.map((feat, i) => (
-                                    <li key={i}>{feat}</li>
+                    {creditCardVisible && (
+                        <>
+                            <div className={styles.cards}>
+                                {packagesForFast.map((pkg, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
+                                    >
+                                        <div className={styles.icon}>{pkg?.icon}</div>
+                                        <h3>{pkg.title}</h3>
+                                        <div className={styles.price}>
+                                            {pkg.price}
+                                            <span>{pkg.monthly}</span>
+                                        </div>
+                                        <p className={styles.total}>{pkg.total}</p>
+                                        <ul className={styles.features}>
+                                            {pkg.features.map((feat, i) => (
+                                                <li key={i}>{feat}</li>
+                                            ))}
+                                        </ul>
+                                        <button className={styles.button}>Paketi Seç</button>
+                                    </div>
                                 ))}
-                            </ul>
-                            <button className={styles.button}>Paketi Seç</button>
-                        </div>
-                        ))}
-                    </div>
+                            </div>
+                        </>
+                    )}
+
+                    {fastVisible && (
+                        <>
+                            <div className={styles.cards}>
+                                {packagesForCreditCard.map((pkg, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
+                                    >
+                                        <div className={styles.icon}>{pkg?.icon}</div>
+                                        <h3>{pkg.title}</h3>
+                                        <div className={styles.price}>
+                                            {pkg.price}
+                                            <span>{pkg.monthly}</span>
+                                        </div>
+                                        <p className={styles.total}>{pkg.total}</p>
+                                        <ul className={styles.features}>
+                                            {pkg.features.map((feat, i) => (
+                                                <li key={i}>{feat}</li>
+                                            ))}
+                                        </ul>
+                                        <button className={styles.button} onClick={() => window.location = '/be-gold-member'}>Paketi Seç</button>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
 
                     <p className={styles.footerNote}>
                         Kredi kartı bilgileriniz kesinlikle kayıt edilmemektedir ve sizin adınıza otomatik ödeme gerçekleştirilmemektedir. 
