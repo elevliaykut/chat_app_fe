@@ -75,7 +75,7 @@ const CaracteristicFeatureModal = ({
                             <label>Tanışmak istediğiniz kişide aradığınız 3 özellik </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_one}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionOne(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -85,7 +85,7 @@ const CaracteristicFeatureModal = ({
                             <label>Tanışmak istediğiniz kişide istemediğiniz 3 özellik </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_two}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionTwo(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -95,7 +95,7 @@ const CaracteristicFeatureModal = ({
                             <label>Yanından ayırmadığı 3 şey </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_three}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionThree(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -105,7 +105,7 @@ const CaracteristicFeatureModal = ({
                             <label>Kitap tercihiz </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_four}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionFour(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -115,7 +115,7 @@ const CaracteristicFeatureModal = ({
                             <label>Hayvanları seviyor mu? </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_five}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionFive(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -125,7 +125,7 @@ const CaracteristicFeatureModal = ({
                             <label>Müzik zevkiniz </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_six}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionSix(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -135,7 +135,7 @@ const CaracteristicFeatureModal = ({
                             <label>Spora ilginiz </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_seven}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionSeven(e?.target?.value)}
                                 className={styles.input}
                             />
@@ -145,7 +145,7 @@ const CaracteristicFeatureModal = ({
                             <label>Tatil tercihiz </label>
                             <input
                                 defaultValue={userMe?.caracterisric_feature?.question_eight}
-                                placeholder="KENDİ KELİMELERİNİZ İLE ANlATIN"
+                                placeholder="KENDİ KELİMELERİNİZ İLE ANLATIN"
                                 onChange={(e) => setQuestionEight(e?.target?.value)}
                                 className={styles.input}
                             />

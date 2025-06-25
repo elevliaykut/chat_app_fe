@@ -386,7 +386,7 @@ const SpouseCandidateModal = ({
                             >
                                 <ul style={{ listStyleType: 'none', padding: '0' }}>
                                 {['Namaz', 'Oruç', 'Sadakat', 'Dürüstlük'].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -479,7 +479,7 @@ const SpouseCandidateModal = ({
                                      "Güven", 
                                      "Gelir uyumu"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}

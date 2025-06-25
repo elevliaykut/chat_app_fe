@@ -442,7 +442,7 @@ const PersonalInfoModal = ({
                                 {['İngilizce', 'Almanca', 'Fransızca', 'Arapça', 'İspanyolca', 'Japonca', 'Diğer'].map((lang) => (
                                     <li 
                                         key={lang} 
-                                        style={{ padding: '15px 0' }}>
+                                        style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={lang}
@@ -598,7 +598,7 @@ const PersonalInfoModal = ({
                             >
                                 <ul style={{ listStyleType: 'none', padding: '0' }}>
                                 {['Namaz', 'Oruç', 'Sadakat', 'Dürüstlük'].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                         <input
                                             type="checkbox"
                                             value={item}
@@ -719,7 +719,7 @@ const PersonalInfoModal = ({
                                     "İslamdan taviz vermesin",
                                     "Yalan söylemesin"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -759,7 +759,7 @@ const PersonalInfoModal = ({
                                     "Yabancı rock",
                                     "Türk halk müziği"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -802,7 +802,7 @@ const PersonalInfoModal = ({
                                     "Dini", 
                                     "Kişisel gelişim"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -843,7 +843,7 @@ const PersonalInfoModal = ({
                                      "Güven", 
                                      "Gelir uyumu"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -890,7 +890,7 @@ const PersonalInfoModal = ({
                                     "Gezme", 
                                     "Arkadaşlık"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
@@ -936,7 +936,7 @@ const PersonalInfoModal = ({
                                     "Zeki", 
                                     "İyimser"
                                 ].map((item) => (
-                                    <li key={item} style={{ padding: '15px 0' }}>
+                                    <li key={item} style={{ padding: '15px 0', marginTop: '-15px', width: '60%' }}>
                                     <input
                                         type="checkbox"
                                         value={item}
