@@ -14,7 +14,9 @@ import {
     userChangeEmail,
     resetUserChangeEmailComplete,
     userChangePassword,
-    resetUserChangePasswordComplete
+    resetUserChangePasswordComplete,
+    userUpdateSpouseCandidate,
+    userUpdateSpouseCandidateReset,
 } from '../../../store/user/actions';
 
 import {
@@ -35,6 +37,7 @@ const mapStateToProps = state => ({
     deleteAccountComplete: state?.user?.deleteAccountComplete,
     changeEmailComplete: state?.user?.changeEmailComplete,
     changePasswordComplete: state?.user?.changePasswordComplete,
+    userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +53,9 @@ const mapDispatchToProps = dispatch => ({
     userChangeEmail: payload => dispatch(userChangeEmail(payload)),
     resetUserChangeEmailComplete: () => dispatch(resetUserChangeEmailComplete()),
     userChangePassword: payload => dispatch(userChangePassword(payload)),
-    resetUserChangePasswordComplete: () => dispatch(resetUserChangePasswordComplete())
+    resetUserChangePasswordComplete: () => dispatch(resetUserChangePasswordComplete()),
+    userUpdateSpouseCandidate: payload => dispatch(userUpdateSpouseCandidate(payload)),
+    userUpdateSpouseCandidateReset: () => dispatch(userUpdateSpouseCandidateReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MySettingsOrganisms);

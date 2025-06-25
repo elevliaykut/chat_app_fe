@@ -33,6 +33,9 @@ const MySettingsPage = ({
     userChangePassword = () => {},
     resetUserChangePasswordComplete = () => {},
     changePasswordComplete = false,
+    userUpdateSpouseCandidate = () => {},
+    userUpdateSpouseCandidateReset = () => {},
+    userUpdateSpouseCandidateInfoComplete = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
@@ -127,14 +130,17 @@ const MySettingsPage = ({
 
 
     const filterButtonOnClick = () => {
-        updateUserPersonalInfo({
-            maritalStatus: maturity,
-            name: userMe?.name,
-            surname: userMe?.surname,
-            age: userMe?.age,
-            phone: userMe?.phone
+        userUpdateSpouseCandidate({
+            maritalStatus: maturity
         });
     }
+
+    useEffect(() => {
+        if(userUpdateSpouseCandidateInfoComplete) {
+            userUpdateSpouseCandidateReset();
+            getUserMe();
+        }
+    },[userUpdateSpouseCandidateInfoComplete]);
 
     const changeEmailButtonOnClick = () => {
         if(email) {
@@ -219,7 +225,7 @@ const MySettingsPage = ({
             {freezeConfirmModalVisible && (
                 <>
                     <ConfirmModal
-                        desc={"Hesabınızı Dondurmak İstediğinize Eminmisiniz?"}
+                        desc={"Değişiklik Yapmak İstediğinize Eminmisiniz?"}
                         onClose={freezeModalOnClose}
                         onConfirm={freezeAccountHandleSubmit}
                     />
@@ -269,17 +275,17 @@ const MySettingsPage = ({
                                         <div className={styles.settingsEpisodeContainer}>
                                             <label>Medeni Hal</label>
                                             <select
-                                                defaultValue={userMe?.detail?.marital_status_value}
+                                                defaultValue={userMe?.spouse_candidate?.marital_status}
                                                 style={{ marginTop: '10px'}}
                                                 onChange={(e) => setMaturity(e?.target?.value)}
                                             >
                                                 <option value="">
-                                                    {userMe?.detail?.marital_status_value}
+                                                    {userMe?.spouse_candidate?.marital_status}
                                                 </option>
-                                                <option value="1">Hiç Evlenmemiş</option>
-                                                <option value="2">Bekar</option>
-                                                <option value="3">Boşanmış</option>
-                                                <option value="4">Eşi Vefat Etmiş</option>
+                                                <option value="Hiç Evlenmemiş">Hiç Evlenmemiş</option>
+                                                <option value="Bekar">Bekar</option>
+                                                <option value="Boşanmış">Boşanmış</option>
+                                                <option value="Eşi Vefat Etmiş">Eşi Vefat Etmiş</option>
                                             </select>
 
                                             <div className={styles.settingsSubmitButtonEpisode}>
