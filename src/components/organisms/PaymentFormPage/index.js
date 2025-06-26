@@ -28,7 +28,6 @@ const PaymentFormPage = ({
     const [paymentDate, setPaymentDate] = useState();
     const [price, setPrice] = useState();
     const [description, setDescription] = useState();
-    const [code, setCode] = useState();
 
     useEffect(() => {
         if(paymentComplete) {
@@ -87,17 +86,6 @@ const PaymentFormPage = ({
         });
     }
 
-    const generateHavaleKodu = () => {
-        const now = Date.now(); // Unix timestamp (ms)
-        const random = Math.floor(Math.random() * 100000); // 5 basamaklı rastgele sayı
-        return `HV${now}${random}`;
-      };
-
-    useEffect(() => {
-        const code = generateHavaleKodu();
-        setCode(code);
-    },[]);
-
     return (
         <>
             {successMessageVisible && (
@@ -120,10 +108,6 @@ const PaymentFormPage = ({
                 
                 <div className={styles.codeHeader}>
                     <div style={{ display: 'block'}}>
-                        <div style={{ display: "flex", marginBottom: '20px'}}>
-                            <label>Havale Kodunuz: </label>
-                            <label style={{ color: 'red', marginLeft: '10px'}}> {code} </label>
-                        </div>
                         <div className={styles.codeBox}>
                             <ul>
                             <li>Ödemenizi banka aracılığıyla yapacaksanız havale kodunuzu açıklama kısmına yazınız</li>

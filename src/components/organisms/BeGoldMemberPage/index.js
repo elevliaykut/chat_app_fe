@@ -19,6 +19,18 @@ const BeGoldMemberPage = ({
 }) => {
     const [userMeVisible, setUserMeVisible] = useState(false);
     const [successMessageVisible, setSuccessMessageVisible] = useState(false);
+    const [code, setCode] = useState();
+
+    const generateHavaleKodu = () => {
+        const now = Date.now(); // Unix timestamp (ms)
+        const random = Math.floor(Math.random() * 100000); // 5 basamaklı rastgele sayı
+        return `HV${now}${random}`;
+      };
+
+    useEffect(() => {
+        const code = generateHavaleKodu();
+        setCode(code);
+    },[]);
 
     useEffect(() => {
         if(paymentComplete) {
@@ -96,7 +108,10 @@ const BeGoldMemberPage = ({
                 <div className={styles.headerTextEpisode}>
                     <h1>Havale/Eft Ödeme</h1>
                 </div>
-                
+                <div style={{ display: "flex", marginBottom: '20px'}}>
+                    <label>Havale Kodunuz: </label>
+                    <label style={{ color: 'red', marginLeft: '10px'}}> {code} </label>
+                </div>
                 <h3 className={styles.recipient}>ALICI: Mint Bilgi Teknolojileri Tic. Ltd. Şti</h3>
                 
                 <div className={styles.cardContainer}>
