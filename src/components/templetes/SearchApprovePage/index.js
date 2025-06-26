@@ -4,6 +4,7 @@ import SearchApproveOrganisms from "../../organisms/SearchApprovePage";
 
 import {
     getUsers,
+    getApproveUsers,
     userActivitySmiled,
     userActivitySmiledReset,
     userBlocked,
@@ -44,6 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getUsers: (payload) => dispatch(getUsers(payload)),
+    getApproveUsers: (payload) => dispatch(getApproveUsers(payload)),
     userActivitySmiled: payload => dispatch(userActivitySmiled(payload)),
     userActivitySmiledReset: () => dispatch(userActivitySmiledReset()),
     userBlocked: payload => dispatch(userBlocked(payload)),

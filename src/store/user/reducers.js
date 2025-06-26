@@ -28,6 +28,9 @@ import {
 	GET_USERS_STARTED,
 	GET_USERS_SUCCEEDED,
 	GET_USERS_FAILED,
+	GET_APPROVE_USERS_STARTED,
+	GET_APPROVE_USERS_SUCCEEDED,
+	GET_APPROVE_USERS_FAILED,
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_FAVORITE_USERS_SUCCEEDED,
 	GET_MY_FAVORITE_USERS_FAILED,
@@ -382,6 +385,32 @@ const user = (state = initialState, action) => {
 				members: payload?.data
 			};
 		case GET_USERS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				memberIsLoading: false,
+				filterUserIsLoading: false,
+				pageLoading: false,
+				error: payload
+			};
+		case GET_APPROVE_USERS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				memberIsLoading: true,
+				filterUserIsLoading: true,
+				pageLoading: false
+			};
+		case GET_APPROVE_USERS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				memberIsLoading: false,
+				filterUserIsLoading: false,
+				pageLoading: true,
+				members: payload?.data
+			};
+		case GET_APPROVE_USERS_FAILED:
 			return {
 				...state,
 				isLoading: false,

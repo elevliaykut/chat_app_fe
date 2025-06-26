@@ -7,7 +7,6 @@ import FooterBanner from "../../molecules/FooterBanner";
 import MessageModal from "../../molecules/Modals/MessageModal";
 
 const SearchApprovePage = ({
-    getUsers = () => {},
     members = [],
     isLoading = false,
     userActivitySmiled = () => {},
@@ -35,7 +34,8 @@ const SearchApprovePage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    getApproveUsers = () => {}
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
@@ -65,43 +65,33 @@ const SearchApprovePage = ({
     },[userMeLoading]);
 
     useEffect(() => {
-        getUsers({
-            status: 1
-        });
+        getApproveUsers();
     },[]);
 
     useEffect(() => {
         if(userActivitySmiledCompleted) {
-            getUsers({
-                status: 1
-            });
+            getApproveUsers();
             userActivitySmiledReset();
         }
     },[userActivitySmiledCompleted]);
 
     useEffect(() => {
         if(userBlockedComplete) {
-            getUsers({
-                status: 1
-            });
+            getApproveUsers();
             userBlockedReset();
         }
     },[userBlockedComplete]);
 
     useEffect(() => {
         if(userActivityFavoriteCompleted) {
-            getUsers({
-                status: 1
-            });
+            getApproveUsers();
             userActivityFavoriteReset();
         }
     },[userActivityFavoriteCompleted]);
 
     useEffect(() => {
         if(userActivityLikedCompleted) {
-            getUsers({
-                status: 1
-            });
+            getApproveUsers();
             userActivityLikedReset();
         }
     },[userActivityLikedCompleted]);

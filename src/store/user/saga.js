@@ -11,6 +11,7 @@ import {
 	GET_USER_ME_STARTED,
 	UPDATE_USER_PERSONAL_INFO_STARTED,
 	GET_USERS_STARTED,
+	GET_APPROVE_USERS_STARTED,
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_SMILED_PROFILES_STARTED,
 	GET_MY_LIKED_PROFILES_STARTED,
@@ -57,6 +58,8 @@ import {
 	updateUserPersonalInfoError,
 	getUsersSuccess,
 	getUsersError,
+	getApproveUsersSuccess,
+	getApproveUsersError,
 	getMyFavoriteUsersSuccess,
 	getMyFavoriteUsersError,
 	getMySmiledProfilesSuccess,
@@ -399,6 +402,79 @@ function* getUsersTask(action) {
 					&filter[physical]=${physical ? physical : ''}`;
 	try {
 		const response = yield call(axios.get, `${BASE_URL}/user/activity/filter${query}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+			
+		);
+		const { data } = response;
+		yield put(getUsersSuccess(data));
+	} catch (error) {
+		yield put(getUsersError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* getApproveUsersTask(action) {
+	const { payload = {} } = action;
+	const { 
+		id, 
+		creatorUserId,
+		status,
+		nearUsers, 
+		bornTodayDate, 
+		gender, 
+		startsBetween, 
+		username,
+		minAgeRange,
+		maxAgeRange,
+		minTall,
+		maxTall,
+		minWeight,
+		maxWeight,
+		cityId,
+		job,
+		maritalStatus,
+		headCraft,
+		haveAChild,
+		useCigarette,
+		useAlcohol,
+		education,
+		salary,
+		physical,
+		hasPhotos
+	} = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	const query = `?filter[id]=${id ? id : ''}
+					&filter[creator_user_id]=${creatorUserId ? creatorUserId : ''}
+					&filter[status]=${status ? status : ''}
+					&filter[near_users]=${nearUsers ? nearUsers : ''}
+					&filter[born_today_date]=${bornTodayDate ? bornTodayDate : ''}
+					&filter[gender]=${gender ? gender : ''}
+					&filter[starts_between]=${startsBetween ? startsBetween : ''}
+					
+					&filter[username]=${username ? username : ''}
+					&filter[min_age_range]=${minAgeRange ? minAgeRange : ''}
+					&filter[max_age_range]=${maxAgeRange ? maxAgeRange : ''}
+					&filter[min_tall]=${minTall ? minTall : ''}
+					&filter[max_tall]=${maxTall ? maxTall : ''}
+					&filter[min_weight]=${minWeight ? minWeight : ''}
+					&filter[max_weight]=${maxWeight ? maxWeight : ''}
+					&filter[city_id]=${cityId ? cityId : ''}
+					&filter[job]=${job ? job : ''}
+					&filter[marital_status]=${maritalStatus ? maritalStatus : ''}
+					&filter[head_craft]=${headCraft ? headCraft : ''}
+					&filter[have_a_child]=${haveAChild ? haveAChild : ''}
+					&filter[use_cigarette]=${useCigarette ? useCigarette : ''}
+					&filter[use_alcohol]=${useAlcohol ? useAlcohol : ''}
+					&filter[education]=${education ? education : ''}
+					&filter[salary]=${salary ? salary : ''}
+					&filter[has_photos]=${hasPhotos ? hasPhotos : ''}
+					&filter[physical]=${physical ? physical : ''}`;
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/activity/approve${query}`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},
@@ -1111,6 +1187,10 @@ function* watchGetUsers() {
 	yield takeLatest(GET_USERS_STARTED, getUsersTask);
 }
 
+function* watchGetApproveUsers() {
+	yield takeLatest(GET_APPROVE_USERS_STARTED, getApproveUsersTask);
+}
+
 function* watchGetMyFavoriteUsers() {
 	yield takeLatest(GET_MY_FAVORITE_USERS_STARTED, getMyFavoriteUsersTask);
 }
@@ -1229,6 +1309,7 @@ export default function* saga() {
 		watchGetUserMe(),
 		watchUpdateUserPersonalInfo(),
 		watchGetUsers(),
+		watchGetApproveUsers(),
 		watchGetMyFavoriteUsers(),
 		watchGetMySmiledProfiles(),
 		watchGetMyLikedProfiles(),

@@ -28,6 +28,9 @@ import {
 	GET_USERS_STARTED,
 	GET_USERS_SUCCEEDED,
 	GET_USERS_FAILED,
+	GET_APPROVE_USERS_STARTED,
+	GET_APPROVE_USERS_SUCCEEDED,
+	GET_APPROVE_USERS_FAILED,
 	GET_MY_FAVORITE_USERS_STARTED,
 	GET_MY_FAVORITE_USERS_SUCCEEDED,
 	GET_MY_FAVORITE_USERS_FAILED,
@@ -263,6 +266,21 @@ export const getUsersSuccess = data => ({
 
 export const getUsersError = error => ({
 	type: GET_USERS_FAILED,
+	payload: error
+});
+
+export const getApproveUsers = values => ({
+	type: GET_APPROVE_USERS_STARTED,
+	payload: values
+});
+
+export const getApproveUsersSuccess = data => ({
+	type: GET_APPROVE_USERS_SUCCEEDED,
+	payload: data
+});
+
+export const getApproveUsersError = error => ({
+	type: GET_APPROVE_USERS_FAILED,
 	payload: error
 });
 
