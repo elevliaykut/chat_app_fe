@@ -126,7 +126,10 @@ import {
 	CREATE_PAYMENT_STARTED,
 	CREATE_PAYMENT_SUCCEEDED,
 	CREATE_PAYMENT_FAILED,
-	RESET_CREATE_PAYMENT_COMPLETE
+	RESET_CREATE_PAYMENT_COMPLETE,
+	ADMIN_GET_USERS_STARTED,
+	ADMIN_GET_USERS_SUCCEEDED,
+	ADMIN_GET_USERS_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -747,4 +750,19 @@ export const createPaymentError = error => ({
 
 export const resetCreatePaymentComplete = () => ({
 	type: RESET_CREATE_PAYMENT_COMPLETE
+});
+
+export const adminGetUsers = values => ({
+	type: ADMIN_GET_USERS_STARTED,
+	payload: values
+});
+
+export const adminGetUsersSuccess = data => ({
+	type: ADMIN_GET_USERS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetUsersError = error => ({
+	type: ADMIN_GET_USERS_FAILED,
+	payload: error
 });

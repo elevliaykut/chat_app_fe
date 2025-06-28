@@ -126,7 +126,10 @@ import {
 	CREATE_PAYMENT_STARTED,
 	CREATE_PAYMENT_SUCCEEDED,
 	CREATE_PAYMENT_FAILED,
-	RESET_CREATE_PAYMENT_COMPLETE
+	RESET_CREATE_PAYMENT_COMPLETE,
+	ADMIN_GET_USERS_STARTED,
+	ADMIN_GET_USERS_SUCCEEDED,
+	ADMIN_GET_USERS_FAILED
 } from './types';
 
 const initialState = {
@@ -178,7 +181,8 @@ const initialState = {
 	deleteAccountComplete: false,
 	changeEmailComplete: false,
 	changePasswordComplete: false,
-	paymentComplete: false
+	paymentComplete: false,
+	adminUsers: [],
 };
 
 const user = (state = initialState, action) => {
@@ -976,6 +980,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				paymentComplete: false
+			};
+		case ADMIN_GET_USERS_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case ADMIN_GET_USERS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminUsers: payload?.data
+			};
+		case ADMIN_GET_USERS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;
