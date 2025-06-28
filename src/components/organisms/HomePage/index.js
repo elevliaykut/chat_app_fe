@@ -271,6 +271,7 @@ const HomePage = ({
                     />
                 </>
             )}
+
             {messageModalVisible && (
                 <>
                     <MessageModal
@@ -299,6 +300,7 @@ const HomePage = ({
                     />
                 </>
             )}
+            
             {profileTextModalVisible && (
                 <>
                     <ProfileTextModal

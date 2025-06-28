@@ -1,0 +1,26 @@
+/* Genel container */
+.frame {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* İçerik düzeni */
+.content {
+    display: flex;
+    gap: 20px;
+}
+
+/* Sol taraf: Profile */
+.profileEpisode {
+    flex: 0 0 30%;
+    box-sizing: border-box;
+}
+
+/* Sağ taraf: Post paylaşımı + Liste */
+.rightSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
