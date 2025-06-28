@@ -39,7 +39,8 @@ import {
 	USER_CHANGE_EMAIL_STARTED,
 	USER_CHANGE_PASSWORD_STARTED,
 	CREATE_PAYMENT_STARTED,
-	ADMIN_GET_USERS_STARTED
+	ADMIN_GET_USERS_STARTED,
+	ADMIN_GET_USER_DETAILS_STARTED,
 } from './types';
 
 import {
@@ -115,7 +116,9 @@ import {
 	createPaymentSuccess,
 	createPaymentError,
 	adminGetUsersSuccess,
-	adminGetUsersError
+	adminGetUsersError,
+	adminGetUserDetailsSuccess,
+	adminGetUserDetailsError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1176,6 +1179,26 @@ function* adminGetUsersTask(action) {
 	}
 }
 
+function* adminGetUserDetailsTask(action) {
+	const { payload = {} } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/${userId}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetUserDetailsSuccess(data));
+	} catch (error) {
+		yield put(adminGetUserDetailsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1331,6 +1354,10 @@ function* watchAdminGetUsers() {
 	yield takeLatest(ADMIN_GET_USERS_STARTED, adminGetUsersTask);
 }
 
+function* watchAdminGetUserDetails() {
+	yield takeLatest(ADMIN_GET_USER_DETAILS_STARTED, adminGetUserDetailsTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1369,6 +1396,7 @@ export default function* saga() {
 		watchUserChangeEmail(),
 		watchUserChangePassword(),
 		watchCreatePayment(),
-		watchAdminGetUsers()
+		watchAdminGetUsers(),
+		watchAdminGetUserDetails()
 	]);
 }
