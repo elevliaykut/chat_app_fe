@@ -41,7 +41,9 @@ import {
 	CREATE_PAYMENT_STARTED,
 	ADMIN_GET_USERS_STARTED,
 	ADMIN_GET_USER_DETAILS_STARTED,
-	ADMIN_DELETE_USER_STARTED
+	ADMIN_DELETE_USER_STARTED,
+	ADMIN_GET_STORIES_STARTED,
+	ADMIN_APPROVE_STORY_STARTED
 } from './types';
 
 import {
@@ -121,7 +123,11 @@ import {
 	adminGetUserDetailsSuccess,
 	adminGetUserDetailsError,
 	adminDeleteUserSuccess,
-	adminDeleteUserError
+	adminDeleteUserError,
+	adminGetStoriesSuccess,
+	adminGetStoriesError,
+	adminApproveStorySuccess,
+	adminApproveStoryError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1221,6 +1227,44 @@ function* adminDeleteUserTask(action) {
 	}
 }
 
+function* adminGetStoriesTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/stories/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetStoriesSuccess(data));
+	} catch (error) {
+		yield put(adminGetStoriesError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminApproveStoryTask(action) {
+	const { payload = {} } = action;
+	const { storyId } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/approve/story/${storyId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApproveStorySuccess(data));
+	} catch (error) {
+		yield put(adminApproveStoryError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1384,6 +1428,14 @@ function* watchAdminDeleteUser() {
 	yield takeLatest(ADMIN_DELETE_USER_STARTED, adminDeleteUserTask);
 }
 
+function* watchAdminGetStories() {
+	yield takeLatest(ADMIN_GET_STORIES_STARTED, adminGetStoriesTask);
+}
+
+function* watchAdminApproveStory() {
+	yield takeLatest(ADMIN_APPROVE_STORY_STARTED, adminApproveStoryTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1424,6 +1476,8 @@ export default function* saga() {
 		watchCreatePayment(),
 		watchAdminGetUsers(),
 		watchAdminGetUserDetails(),
-		watchAdminDeleteUser()
+		watchAdminDeleteUser(),
+		watchAdminGetStories(),
+		watchAdminApproveStory()
 	]);
 }

@@ -136,7 +136,14 @@ import {
 	ADMIN_DELETE_USER_STARTED,
 	ADMIN_DELETE_USER_SUCCEEDED,
 	ADMIN_DELETE_USER_FAILED,
-	ADMIN_DELETE_USER_RESET
+	ADMIN_DELETE_USER_RESET,
+	ADMIN_GET_STORIES_STARTED,
+	ADMIN_GET_STORIES_SUCCEEDED,
+	ADMIN_GET_STORIES_FAILED,
+	ADMIN_APPROVE_STORY_STARTED,
+	ADMIN_APPROVE_STORY_SUCCEEDED,
+	ADMIN_APPROVE_STORY_FAILED,
+	ADMIN_APPROVE_STORY_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -806,4 +813,38 @@ export const adminDeleteUserError = error => ({
 
 export const adminDeleteUserReset = () => ({
 	type: ADMIN_DELETE_USER_RESET
+});
+
+export const adminGetStories = values => ({
+	type: ADMIN_GET_STORIES_STARTED,
+	payload: values
+});
+
+export const adminGetStoriesSuccess = data => ({
+	type: ADMIN_GET_STORIES_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetStoriesError = error => ({
+	type: ADMIN_GET_STORIES_FAILED,
+	payload: error
+});
+
+export const adminApproveStory = values => ({
+	type: ADMIN_APPROVE_STORY_STARTED,
+	payload: values
+});
+
+export const adminApproveStorySuccess = data => ({
+	type: ADMIN_APPROVE_STORY_SUCCEEDED,
+	payload: data
+});
+
+export const adminApproveStoryError = error => ({
+	type: ADMIN_APPROVE_STORY_FAILED,
+	payload: error
+});
+
+export const adminApproveStoryReset = () => ({
+	type: ADMIN_APPROVE_STORY_RESET
 });

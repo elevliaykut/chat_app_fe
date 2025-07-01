@@ -136,7 +136,14 @@ import {
 	ADMIN_DELETE_USER_STARTED,
 	ADMIN_DELETE_USER_SUCCEEDED,
 	ADMIN_DELETE_USER_FAILED,
-	ADMIN_DELETE_USER_RESET
+	ADMIN_DELETE_USER_RESET,
+	ADMIN_GET_STORIES_STARTED,
+	ADMIN_GET_STORIES_SUCCEEDED,
+	ADMIN_GET_STORIES_FAILED,
+	ADMIN_APPROVE_STORY_STARTED,
+	ADMIN_APPROVE_STORY_SUCCEEDED,
+	ADMIN_APPROVE_STORY_FAILED,
+	ADMIN_APPROVE_STORY_RESET
 } from './types';
 
 const initialState = {
@@ -191,7 +198,9 @@ const initialState = {
 	paymentComplete: false,
 	adminUsers: [],
 	adminUserDetails: {},
-	adminDeleteUserComplete: false
+	adminDeleteUserComplete: false,
+	adminStories: [],
+	adminApproveStoryComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -1046,6 +1055,47 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminDeleteUserComplete: false
+			};
+		case ADMIN_GET_STORIES_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case ADMIN_GET_STORIES_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminStories: payload?.data
+			};
+		case ADMIN_GET_STORIES_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_STORY_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApproveStoryComplete: false,
+			};
+		case ADMIN_APPROVE_STORY_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveStoryComplete: true,
+			};
+		case ADMIN_APPROVE_STORY_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveStoryComplete: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_STORY_RESET:
+			return {
+				...state,
+				adminApproveStoryComplete: false
 			};
 		default:
 			return state;
