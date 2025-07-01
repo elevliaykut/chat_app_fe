@@ -143,7 +143,10 @@ import {
 	ADMIN_APPROVE_STORY_STARTED,
 	ADMIN_APPROVE_STORY_SUCCEEDED,
 	ADMIN_APPROVE_STORY_FAILED,
-	ADMIN_APPROVE_STORY_RESET
+	ADMIN_APPROVE_STORY_RESET,
+	ADMIN_GET_PHOTOS_STARTED,
+	ADMIN_GET_PHOTOS_SUCCEEDED,
+	ADMIN_GET_PHOTOS_FAILED,
 } from './types';
 
 const initialState = {
@@ -201,6 +204,7 @@ const initialState = {
 	adminDeleteUserComplete: false,
 	adminStories: [],
 	adminApproveStoryComplete: false,
+	adminPhotos: []
 };
 
 const user = (state = initialState, action) => {
@@ -1096,6 +1100,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminApproveStoryComplete: false
+			};
+		case ADMIN_GET_PHOTOS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case ADMIN_GET_PHOTOS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminPhotos: payload?.data
+			};
+		case ADMIN_GET_PHOTOS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;

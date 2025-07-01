@@ -143,7 +143,10 @@ import {
 	ADMIN_APPROVE_STORY_STARTED,
 	ADMIN_APPROVE_STORY_SUCCEEDED,
 	ADMIN_APPROVE_STORY_FAILED,
-	ADMIN_APPROVE_STORY_RESET
+	ADMIN_APPROVE_STORY_RESET,
+	ADMIN_GET_PHOTOS_STARTED,
+	ADMIN_GET_PHOTOS_SUCCEEDED,
+	ADMIN_GET_PHOTOS_FAILED
 } from './types';
 
 export const loginUser = values => ({
@@ -847,4 +850,19 @@ export const adminApproveStoryError = error => ({
 
 export const adminApproveStoryReset = () => ({
 	type: ADMIN_APPROVE_STORY_RESET
+});
+
+export const adminGetPhotos = values => ({
+	type: ADMIN_GET_PHOTOS_STARTED,
+	payload: values
+});
+
+export const adminGetPhotosSuccess = data => ({
+	type: ADMIN_GET_PHOTOS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetPhotosError = error => ({
+	type: ADMIN_GET_PHOTOS_FAILED,
+	payload: error
 });
