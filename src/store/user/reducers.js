@@ -133,6 +133,10 @@ import {
 	ADMIN_GET_USER_DETAILS_STARTED,
 	ADMIN_GET_USER_DETAILS_SUCCEEDED,
 	ADMIN_GET_USER_DETAILS_FAILED,
+	ADMIN_DELETE_USER_STARTED,
+	ADMIN_DELETE_USER_SUCCEEDED,
+	ADMIN_DELETE_USER_FAILED,
+	ADMIN_DELETE_USER_RESET
 } from './types';
 
 const initialState = {
@@ -186,7 +190,8 @@ const initialState = {
 	changePasswordComplete: false,
 	paymentComplete: false,
 	adminUsers: [],
-	adminUserDetails: {}
+	adminUserDetails: {},
+	adminDeleteUserComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -1018,6 +1023,29 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				error: payload
+			};
+		case ADMIN_DELETE_USER_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminDeleteUserComplete: false,
+			};
+		case ADMIN_DELETE_USER_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminDeleteUserComplete: true
+			};
+		case ADMIN_DELETE_USER_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminDeleteUserComplete: false
+			};
+		case ADMIN_DELETE_USER_RESET:
+			return {
+				...state,
+				adminDeleteUserComplete: false
 			};
 		default:
 			return state;

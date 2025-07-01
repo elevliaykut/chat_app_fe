@@ -133,6 +133,10 @@ import {
 	ADMIN_GET_USER_DETAILS_STARTED,
 	ADMIN_GET_USER_DETAILS_SUCCEEDED,
 	ADMIN_GET_USER_DETAILS_FAILED,
+	ADMIN_DELETE_USER_STARTED,
+	ADMIN_DELETE_USER_SUCCEEDED,
+	ADMIN_DELETE_USER_FAILED,
+	ADMIN_DELETE_USER_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -783,4 +787,23 @@ export const adminGetUserDetailsSuccess = data => ({
 export const adminGetUserDetailsError = error => ({
 	type: ADMIN_GET_USER_DETAILS_FAILED,
 	payload: error
+});
+
+export const adminDeleteUser = values => ({
+	type: ADMIN_DELETE_USER_STARTED,
+	payload: values
+});
+
+export const adminDeleteUserSuccess = data => ({
+	type: ADMIN_DELETE_USER_SUCCEEDED,
+	payload: data
+});
+
+export const adminDeleteUserError = error => ({
+	type: ADMIN_DELETE_USER_FAILED,
+	payload: error
+});
+
+export const adminDeleteUserReset = () => ({
+	type: ADMIN_DELETE_USER_RESET
 });
