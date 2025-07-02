@@ -157,7 +157,14 @@ import {
 	ADMIN_APPROVE_POST_STARTED,
 	ADMIN_APPROVE_POST_SUCCEEDED,
 	ADMIN_APPROVE_POST_FAILED,
-	ADMIN_APPROVE_POST_RESET
+	ADMIN_APPROVE_POST_RESET,
+	ADMIN_GET_PROFILE_TEXTS_STARTED,
+	ADMIN_GET_PROFILE_TEXTS_SUCCEEDED,
+	ADMIN_GET_PROFILE_TEXTS_FAILED,
+	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
+	ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED,
+	ADMIN_APPROVE_PROFILE_TEXT_FAILED,
+	ADMIN_APPROVE_PROFILE_TEXT_RESET
 } from './types';
 
 const initialState = {
@@ -219,6 +226,8 @@ const initialState = {
 	adminApprovePhotoComplete: false,
 	adminPosts: [],
 	adminApprovePostComplete: false,
+	adminProfileTexts: [],
+	adminApproveProfileTextComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -1196,6 +1205,46 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminApprovePostComplete: false
+			};
+		case ADMIN_GET_PROFILE_TEXTS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case ADMIN_GET_PROFILE_TEXTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminProfileTexts: payload?.data
+			};
+		case ADMIN_GET_PROFILE_TEXTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_PROFILE_TEXT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApproveProfileTextComplete: false
+			};
+		case ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveProfileTextComplete: true
+			};
+		case ADMIN_APPROVE_PROFILE_TEXT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveProfileTextComplete: false,
+			};
+		case ADMIN_APPROVE_PROFILE_TEXT_RESET:
+			return {
+				...state,
+				adminApproveProfileTextComplete: false
 			};
 		default:
 			return state;

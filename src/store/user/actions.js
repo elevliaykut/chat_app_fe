@@ -157,7 +157,14 @@ import {
 	ADMIN_APPROVE_POST_STARTED,
 	ADMIN_APPROVE_POST_SUCCEEDED,
 	ADMIN_APPROVE_POST_FAILED,
-	ADMIN_APPROVE_POST_RESET
+	ADMIN_APPROVE_POST_RESET,
+	ADMIN_GET_PROFILE_TEXTS_STARTED,
+	ADMIN_GET_PROFILE_TEXTS_SUCCEEDED,
+	ADMIN_GET_PROFILE_TEXTS_FAILED,
+	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
+	ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED,
+	ADMIN_APPROVE_PROFILE_TEXT_FAILED,
+	ADMIN_APPROVE_PROFILE_TEXT_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -929,4 +936,38 @@ export const adminApprovePostError = error => ({
 
 export const adminApprovePostReset = () => ({
 	type: ADMIN_APPROVE_POST_RESET
+});
+
+export const adminGetProfileTexts = values => ({
+	type: ADMIN_GET_PROFILE_TEXTS_STARTED,
+	payload: values
+});
+
+export const adminGetProfileTextsSuccess = data => ({
+	type: ADMIN_GET_PROFILE_TEXTS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetProfileTextsError = error => ({
+	type: ADMIN_GET_PROFILE_TEXTS_FAILED,
+	payload: error
+});
+
+export const adminApproveProfileText = values => ({
+	type: ADMIN_APPROVE_PROFILE_TEXT_STARTED,
+	payload: values
+});
+
+export const adminApproveProfileTextSuccess = data => ({
+	type: ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED,
+	payload: data
+});
+
+export const adminApproveProfileTextError = error => ({
+	type: ADMIN_APPROVE_PROFILE_TEXT_FAILED,
+	payload: error
+});
+
+export const adminApproveProfileTextReset = () => ({
+	type: ADMIN_APPROVE_PROFILE_TEXT_RESET
 });

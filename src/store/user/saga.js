@@ -48,6 +48,8 @@ import {
 	ADMIN_APPROVE_PHOTO_STARTED,
 	ADMIN_GET_POSTS_STARTED,
 	ADMIN_APPROVE_POST_STARTED,
+	ADMIN_GET_PROFILE_TEXTS_STARTED,
+	ADMIN_APPROVE_PROFILE_TEXT_STARTED
 } from './types';
 
 import {
@@ -139,7 +141,11 @@ import {
 	adminGetPostsSuccess,
 	adminGetPostsError,
 	adminApprovePostSuccess,
-	adminApprovePostError
+	adminApprovePostError,
+	adminGetProfileTextsSuccess,
+	adminGetProfileTextsError,
+	adminApproveProfileTextSuccess,
+	adminApproveProfileTextError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1354,6 +1360,45 @@ function* adminAprovePostTask(action) {
 	}
 }
 
+function* adminGetProfileTextsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/profile/text/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetProfileTextsSuccess(data));
+	} catch (error) {
+		yield put(adminGetProfileTextsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminApproveProfileTextTask(action) {
+	const { payload = {} } = action;
+	const { detailId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/profile/text/approve/${detailId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApproveProfileTextSuccess(data));
+	} catch (error) {
+		yield put(adminApproveProfileTextError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1541,6 +1586,14 @@ function* watchAdminApprovePost() {
 	yield takeLatest(ADMIN_APPROVE_POST_STARTED, adminAprovePostTask);
 }
 
+function* watchAdminGetProfileTexts() {
+	yield takeLatest(ADMIN_GET_PROFILE_TEXTS_STARTED, adminGetProfileTextsTask);
+}
+
+function* watchAdminApproveProfileText() {
+	yield takeLatest(ADMIN_APPROVE_PROFILE_TEXT_STARTED, adminApproveProfileTextTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1587,6 +1640,8 @@ export default function* saga() {
 		watchGetAdminPhotos(),
 		watchAdminApprovePhoto(),
 		watchAdminGetPosts(),
-		watchAdminApprovePost()
+		watchAdminApprovePost(),
+		watchAdminGetProfileTexts(),
+		watchAdminApproveProfileText()
 	]);
 }
