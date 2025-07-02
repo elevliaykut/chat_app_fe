@@ -50,7 +50,9 @@ import {
 	ADMIN_GET_POSTS_STARTED,
 	ADMIN_APPROVE_POST_STARTED,
 	ADMIN_GET_PROFILE_TEXTS_STARTED,
-	ADMIN_APPROVE_PROFILE_TEXT_STARTED
+	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
+	ADMIN_GET_PAYMENTS_STARTED,
+	ADMIN_APPROVE_PAYMENT_STARTED
 } from './types';
 
 import {
@@ -148,7 +150,11 @@ import {
 	adminGetProfileTextsSuccess,
 	adminGetProfileTextsError,
 	adminApproveProfileTextSuccess,
-	adminApproveProfileTextError
+	adminApproveProfileTextError,
+	adminGetPaymentsSuccess,
+	adminGetPaymentsError,
+	adminApprovePaymentSuccess,
+	adminApprovePaymentError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1420,6 +1426,45 @@ function* adminApproveProfileTextTask(action) {
 	}
 }
 
+function* adminGetPaymentsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/payment/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetPaymentsSuccess(data));
+	} catch (error) {
+		yield put(adminGetPaymentsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminApprovePaymentTask(action) {
+	const { payload = {} } = action;
+	const { paymentId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/payment/approve/${paymentId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApprovePaymentSuccess(data));
+	} catch (error) {
+		yield put(adminApprovePaymentError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1619,6 +1664,14 @@ function* watchAdminApproveProfileText() {
 	yield takeLatest(ADMIN_APPROVE_PROFILE_TEXT_STARTED, adminApproveProfileTextTask);
 }
 
+function* watchAdminGetPayments() {
+	yield takeLatest(ADMIN_GET_PAYMENTS_STARTED, adminGetPaymentsTask);
+}
+
+function* watchAdminApprovePayment() {
+	yield takeLatest(ADMIN_APPROVE_PAYMENT_STARTED, adminApprovePaymentTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1668,6 +1721,8 @@ export default function* saga() {
 		watchAdminGetPosts(),
 		watchAdminApprovePost(),
 		watchAdminGetProfileTexts(),
-		watchAdminApproveProfileText()
+		watchAdminApproveProfileText(),
+		watchAdminGetPayments(),
+		watchAdminApprovePayment()
 	]);
 }

@@ -167,7 +167,14 @@ import {
 	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
 	ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED,
 	ADMIN_APPROVE_PROFILE_TEXT_FAILED,
-	ADMIN_APPROVE_PROFILE_TEXT_RESET
+	ADMIN_APPROVE_PROFILE_TEXT_RESET,
+	ADMIN_GET_PAYMENTS_STARTED,
+	ADMIN_GET_PAYMENTS_SUCCEEDED,
+	ADMIN_GET_PAYMENTS_FAILED,
+	ADMIN_APPROVE_PAYMENT_STARTED,
+	ADMIN_APPROVE_PAYMENT_SUCCEEDED,
+	ADMIN_APPROVE_PAYMENT_FAILED,
+	ADMIN_APPROVE_PAYMENT_RESET
 } from './types';
 
 const initialState = {
@@ -231,7 +238,9 @@ const initialState = {
 	adminPosts: [],
 	adminApprovePostComplete: false,
 	adminProfileTexts: [],
-	adminApproveProfileTextComplete: false
+	adminApproveProfileTextComplete: false,
+	adminPayments: [],
+	adminApprovePaymentComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -1266,6 +1275,47 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminApproveProfileTextComplete: false
+			};
+		case ADMIN_GET_PAYMENTS_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case ADMIN_GET_PAYMENTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminPayments: payload?.data
+			};
+		case ADMIN_GET_PAYMENTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_PAYMENT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApprovePaymentComplete: false
+			};
+		case ADMIN_APPROVE_PAYMENT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePaymentComplete: true
+			};
+		case ADMIN_APPROVE_PAYMENT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePaymentComplete: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_PAYMENT_RESET:
+			return {
+				...state,
+				adminApprovePaymentComplete: false
 			};
 		default:
 			return state;

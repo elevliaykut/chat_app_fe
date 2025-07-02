@@ -168,6 +168,13 @@ import {
 	GET_MY_STORY_STARTED,
 	GET_MY_STORY_SUCCEEDED,
 	GET_MY_STORY_FAILED,
+	ADMIN_GET_PAYMENTS_STARTED,
+	ADMIN_GET_PAYMENTS_SUCCEEDED,
+	ADMIN_GET_PAYMENTS_FAILED,
+	ADMIN_APPROVE_PAYMENT_STARTED,
+	ADMIN_APPROVE_PAYMENT_SUCCEEDED,
+	ADMIN_APPROVE_PAYMENT_FAILED,
+	ADMIN_APPROVE_PAYMENT_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -988,4 +995,38 @@ export const adminApproveProfileTextError = error => ({
 
 export const adminApproveProfileTextReset = () => ({
 	type: ADMIN_APPROVE_PROFILE_TEXT_RESET
+});
+
+export const adminGetPayments = values => ({
+	type: ADMIN_GET_PAYMENTS_STARTED,
+	payload: values
+});
+
+export const adminGetPaymentsSuccess = data => ({
+	type: ADMIN_GET_PAYMENTS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetPaymentsError = error => ({
+	type: ADMIN_GET_PAYMENTS_FAILED,
+	payload: error
+});
+
+export const adminApprovePayment = values => ({
+	type: ADMIN_APPROVE_PAYMENT_STARTED,
+	payload: values
+});
+
+export const adminApprovePaymentSuccess = data => ({
+	type: ADMIN_APPROVE_PAYMENT_SUCCEEDED,
+	payload: data
+});
+
+export const adminApprovePaymentError = error => ({
+	type: ADMIN_APPROVE_PAYMENT_FAILED,
+	payload: error
+});
+
+export const adminApprovePaymentReset = () => ({
+	type: ADMIN_APPROVE_PAYMENT_RESET
 });
