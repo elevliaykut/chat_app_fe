@@ -3,6 +3,7 @@ import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
 import FooterBanner from "../../molecules/FooterBanner";
 import ToastMessage from "../../molecules/TostMessage";
+import { useRouter } from 'next/router';
 
 const BeGoldMemberPage = ({
     getUserMe = () => {},
@@ -20,6 +21,8 @@ const BeGoldMemberPage = ({
     const [userMeVisible, setUserMeVisible] = useState(false);
     const [successMessageVisible, setSuccessMessageVisible] = useState(false);
     const [code, setCode] = useState();
+    const router = useRouter();
+    const { price, packageName } = router.query;
 
     const generateHavaleKodu = () => {
         const now = Date.now(); // Unix timestamp (ms)
@@ -129,8 +132,8 @@ const BeGoldMemberPage = ({
                     <div className={styles.codeHeader}>
                         <div className={styles.summaryBox}>
                             <h4>Hesap Özeti</h4>
-                            <p>6 Aylık Altın Üyelik — 1194 TL</p>
-                            <p><strong>Toplam:</strong> 1194 TL</p>
+                            <p>{packageName} ALTIN ÜYELİK</p>
+                            <strong>Toplam: {price}₺</strong> 
                             <button className={styles.confirmButton} onClick={() => window.location = '/payment-form'}>Ödemeyi Onayladım</button>
                         </div>
                     </div>

@@ -32,9 +32,9 @@ const PaymentPage = ({
         {
           icon: '🚀',
           title: '1 AYLIK',
-          price: '₺749',
+          price: '749',
           monthly: '/Ay',
-          total: 'Toplam 749 TL',
+          total: 'Toplam 749₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
         },
         {
@@ -42,7 +42,7 @@ const PaymentPage = ({
           title: '6 AYLIK',
           price: '2194',
           monthly: '/Ay',
-          total: 'Toplam ~2794 TL~ Yerine 2194 TL',
+          total: 'Toplam ~2794₺~ Yerine 2194₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
           highlight: true,
         },
@@ -51,7 +51,7 @@ const PaymentPage = ({
           title: '3 AYLIK',
           price: '1897',
           monthly: '/Ay',
-          total: 'Toplam 1897 TL',
+          total: 'Toplam 1897₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
         },
     ];
@@ -60,26 +60,26 @@ const PaymentPage = ({
         {
           icon: '🚀',
           title: '1 AYLIK',
-          price: '₺549',
+          price: '549',
           monthly: '/Ay',
-          total: 'Toplam 549 TL',
+          total: 'Toplam 549₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
         },
         {
           icon: '🎗',
           title: '6 AYLIK',
-          price: '₺199',
+          price: '199',
           monthly: '/Ay',
-          total: 'Toplam ~1794 TL~ Yerine 1194 TL',
+          total: 'Toplam ~1794₺ ~ Yerine 199₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
           highlight: true,
         },
         {
           icon: '💎',
           title: '3 AYLIK',
-          price: '₺299',
+          price: '299',
           monthly: '/Ay',
-          total: 'Toplam 897 TL',
+          total: 'Toplam 299₺',
           features: ['7/24 Sınırsız Mesajlaşma', 'Üyelerle Sınırsız Etkileşim'],
         },
     ];
@@ -119,7 +119,7 @@ const PaymentPage = ({
                     {creditCardVisible && (
                         <>
                             <div className={styles.cards}>
-                                {packagesForFast.map((pkg, idx) => (
+                                {packagesForCreditCard.map((pkg, idx) => (
                                     <div
                                         key={idx}
                                         className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
@@ -127,7 +127,7 @@ const PaymentPage = ({
                                         <div className={styles.icon}>{pkg?.icon}</div>
                                         <h3>{pkg.title}</h3>
                                         <div className={styles.price}>
-                                            {pkg.price}
+                                            {pkg.price}₺
                                             <span>{pkg.monthly}</span>
                                         </div>
                                         <p className={styles.total}>{pkg.total}</p>
@@ -146,7 +146,7 @@ const PaymentPage = ({
                     {fastVisible && (
                         <>
                             <div className={styles.cards}>
-                                {packagesForCreditCard.map((pkg, idx) => (
+                                {packagesForFast.map((pkg, idx) => (
                                     <div
                                         key={idx}
                                         className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
@@ -154,7 +154,7 @@ const PaymentPage = ({
                                         <div className={styles.icon}>{pkg?.icon}</div>
                                         <h3>{pkg.title}</h3>
                                         <div className={styles.price}>
-                                            {pkg.price}
+                                            {pkg.price}₺
                                             <span>{pkg.monthly}</span>
                                         </div>
                                         <p className={styles.total}>{pkg.total}</p>
@@ -163,7 +163,10 @@ const PaymentPage = ({
                                                 <li key={i}>{feat}</li>
                                             ))}
                                         </ul>
-                                        <button className={styles.button} onClick={() => window.location = '/be-gold-member'}>Paketi Seç</button>
+                                        <button className={styles.button} 
+                                            onClick={() => window.location = '/be-gold-member?price=' + pkg?.price + '&packageName=' + pkg?.title}>
+                                                Paketi Seç
+                                        </button>
                                     </div>
                                 ))}
                             </div>
