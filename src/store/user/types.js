@@ -152,6 +152,10 @@ export const GET_STORY_STARTED = `${category}__GET_STORY_STARTED`;
 export const GET_STORY_SUCCEEDED = `${category}__GET_STORY_SUCCEEDED`;
 export const GET_STORY_FAILED = `${category}__GET_STORY_FAILED`;
 
+export const GET_MY_STORY_STARTED = `${category}__GET_MY_STORY__STARTED`;
+export const GET_MY_STORY_SUCCEEDED = `${category}__GET_MY_STORY__SUCCEEDED`;
+export const GET_MY_STORY_FAILED = `${category}__GET_MY_STORY__FAILED`;
+
 export const CREATE_STORY_STARTED = `${category}__CREATE_STORY__STARTED`;
 export const CREATE_STORY_SUCCEEDED = `${category}__CREATE_STORY__SUCCEEDED`;
 export const CREATE_STORY_FAILED = `${category}__CREATE_STORY_FAILED`;

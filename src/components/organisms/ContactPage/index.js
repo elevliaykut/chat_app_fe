@@ -64,7 +64,9 @@ export default function Home({
   createStoryComplete = false,
   userUploadPhoto = () => {},
   getUserPhoto = () => {},
-  photos = []
+  photos = [],
+  getMyStory = () => {},
+  myStories = []
 }) {
 
   const [profileVisible, setProfileVisible]                           = useState(false);
@@ -85,9 +87,14 @@ export default function Home({
 }
 
 useEffect(() => {
+  getMyStory();
+},[]);
+
+useEffect(() => {
     if(createStoryComplete) {
         resetCreateStoryComplete();
         setShareSelectNotif(true);
+        window.location.reload();
     }
 },[createStoryComplete]);
 
@@ -263,6 +270,7 @@ useEffect(() => {
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
           )}

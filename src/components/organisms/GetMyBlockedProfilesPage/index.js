@@ -71,7 +71,9 @@ const GetMyBlockedProfilesPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -97,9 +99,14 @@ const GetMyBlockedProfilesPage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -346,6 +353,7 @@ const GetMyBlockedProfilesPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

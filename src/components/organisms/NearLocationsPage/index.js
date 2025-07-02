@@ -72,7 +72,9 @@ const NearLocationsPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -98,9 +100,14 @@ const NearLocationsPage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -378,6 +385,7 @@ const NearLocationsPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

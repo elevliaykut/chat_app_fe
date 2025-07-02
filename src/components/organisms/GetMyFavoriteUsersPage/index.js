@@ -71,7 +71,9 @@ const GetMyFavoriteUsersPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -95,9 +97,14 @@ const GetMyFavoriteUsersPage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -345,6 +352,7 @@ const GetMyFavoriteUsersPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

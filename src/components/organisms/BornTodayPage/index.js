@@ -71,7 +71,9 @@ const BornTodayPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -96,9 +98,14 @@ const BornTodayPage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -381,6 +388,7 @@ const BornTodayPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

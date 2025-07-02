@@ -71,7 +71,9 @@ const NewMembersPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -96,9 +98,14 @@ const NewMembersPage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -420,6 +427,7 @@ const NewMembersPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

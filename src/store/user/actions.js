@@ -164,7 +164,10 @@ import {
 	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
 	ADMIN_APPROVE_PROFILE_TEXT_SUCCEEDED,
 	ADMIN_APPROVE_PROFILE_TEXT_FAILED,
-	ADMIN_APPROVE_PROFILE_TEXT_RESET
+	ADMIN_APPROVE_PROFILE_TEXT_RESET,
+	GET_MY_STORY_STARTED,
+	GET_MY_STORY_SUCCEEDED,
+	GET_MY_STORY_FAILED,
 } from './types';
 
 export const loginUser = values => ({
@@ -640,6 +643,21 @@ export const getStorySuccess = data => ({
 
 export const getStoryError = error => ({
 	type: GET_STORY_FAILED,
+	payload: error
+});
+
+export const getMyStory = values => ({
+	type: GET_MY_STORY_STARTED,
+	payload: values
+});
+
+export const getMyStorySuccess = data => ({
+	type: GET_MY_STORY_SUCCEEDED,
+	payload: data
+});
+
+export const getMyStoryError = error => ({
+	type: GET_MY_STORY_FAILED,
 	payload: error
 });
 

@@ -19,6 +19,8 @@ import {
     getStory,
     createStory,
     resetCreateStoryComplete,
+
+    getMyStory,
 } from '../../../store/user/actions';
 
 import {
@@ -74,7 +76,8 @@ const mapStateToProps = state => ({
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
     photos: state?.user?.photos,
-    userPhotoIsLoading: state?.user?.userPhotoIsLoading
+    userPhotoIsLoading: state?.user?.userPhotoIsLoading,
+    myStories: state?.user?.myStories
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -106,7 +109,8 @@ const mapDispatchToProps = dispatch => ({
     
     resetPostActivityLikeComplete: () => dispatch(resetPostActivityLikeComplete()),
     resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
-    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete())
+    resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
+    getMyStory: payload => dispatch(getMyStory(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

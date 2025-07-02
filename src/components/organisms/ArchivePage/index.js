@@ -74,7 +74,10 @@ const ArchivePage = ({
     resetPostActivitySmiledComplete = () => {},
     activityLikeComplete = false,
     activityFavoriteComplete = false,
-    activitySmileComplete = false
+    activitySmileComplete = false,
+
+    getMyStory = () => {},
+    myStories = []
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -98,6 +101,10 @@ const ArchivePage = ({
     }
 
     useEffect(() => {
+        getMyStory();
+    },[]);
+
+    useEffect(() => {
         if(selectedMessageUserId) {
             getMessages({ userId: selectedMessageUserId });
         }
@@ -113,6 +120,7 @@ const ArchivePage = ({
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
     
@@ -339,6 +347,7 @@ const ArchivePage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

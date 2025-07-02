@@ -81,7 +81,10 @@ const HomePage = ({
 
     userReportsComplete = false,
     userReports = () => {},
-    userReportsReset = () => {}
+    userReportsReset = () => {},
+
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -106,6 +109,10 @@ const HomePage = ({
     const messageModalOnClose = () => {
         setMessageModalVisible(false);
     }
+
+    useEffect(() => {
+        getMyStory();
+    },[]);
 
     useEffect(() => {
         if(!userMe?.personal_info_complete) {
@@ -133,6 +140,7 @@ const HomePage = ({
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -390,6 +398,7 @@ const HomePage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

@@ -71,7 +71,9 @@ const GetMySmiledProfilesPage = ({
     createStoryComplete = false,
     userUploadPhoto = () => {},
     getUserPhoto = () => {},
-    photos = []
+    photos = [],
+    getMyStory = () => {},
+    myStories = []
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -92,6 +94,10 @@ const GetMySmiledProfilesPage = ({
     const [shareSelectNotif, setShareSelectNotif] = useState(false);
     const [photoModalVisible, setPhotoModalVisible] = useState(false);
 
+    useEffect(() => {
+        getMyStory();
+    },[]);
+
     const userPhotoModalOnClose = () => {
         setPhotoModalVisible(false);
     }
@@ -100,6 +106,7 @@ const GetMySmiledProfilesPage = ({
         if(createStoryComplete) {
             resetCreateStoryComplete();
             setShareSelectNotif(true);
+            window.location.reload();
         }
     },[createStoryComplete]);
 
@@ -346,6 +353,7 @@ const GetMySmiledProfilesPage = ({
                             users={stories}
                             userMe={userMe}
                             createStory={createStory}
+                            myStories={myStories}
                         />
                     </>
                 )}

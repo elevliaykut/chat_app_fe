@@ -27,7 +27,9 @@ import {
     createStory,
     resetCreateStoryComplete,
     userUploadPhoto,
-    getUserPhoto
+    getUserPhoto,
+    getMyStory,
+
 } from '../../../store/user/actions';
 
 import {
@@ -72,6 +74,8 @@ const mapStateToProps = state => ({
     photos: state?.user?.photos,
     stories: state?.user?.stories,
     createStoryComplete: state?.user?.createStoryComplete,
+    myStories: state?.user?.myStories
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -106,7 +110,9 @@ const mapDispatchToProps = dispatch => ({
     createStory: payload => dispatch(createStory(payload)),
     resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
     userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
-    getUserPhoto: payload => dispatch(getUserPhoto(payload))
+    getUserPhoto: payload => dispatch(getUserPhoto(payload)),
+    getMyStory: payload => dispatch(getMyStory(payload))
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewMembersPageOrganisms);

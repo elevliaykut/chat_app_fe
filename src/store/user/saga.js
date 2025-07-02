@@ -31,6 +31,7 @@ import {
 	GET_MATCH_PREVIUS_USER_STARTED,
 	USER_LOGOUT_STARTED,
 	GET_STORY_STARTED,
+	GET_MY_STORY_STARTED,
 	CREATE_STORY_STARTED,
 	USER_UPLOAD_PHOTO_STARTED,
 	GET_USER_PHOTO_STARTED,
@@ -108,6 +109,8 @@ import {
 	userLogoutSuccess,
 	getStorySuccess,
 	getStoryError,
+	getMyStorySuccess,
+	getMyStoryError,
 	createStorySuccess,
 	createStoryError,
 	userUploadPhotoSuccess,
@@ -1020,6 +1023,24 @@ function* getStoryTask(action) {
 	}
 }
 
+function* getMyStoryTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/story/me`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getMyStorySuccess(data));
+	} catch (error) {
+		yield put(getMyStoryError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* creteStoryTask(action) {
 	const { payload = {} } = action;
 	const { formData } = payload;
@@ -1518,6 +1539,10 @@ function* watchGetStory() {
 	yield takeLatest(GET_STORY_STARTED, getStoryTask);
 }
 
+function* watchGetMyStory() {
+	yield takeLatest(GET_MY_STORY_STARTED, getMyStoryTask);
+}
+
 function* watchCreateStory() {
 	yield takeLatest(CREATE_STORY_STARTED, creteStoryTask);
 }
@@ -1624,6 +1649,7 @@ export default function* saga() {
 		watchGetMatchPreviusUser(),
 		watchUserLogout(),
 		watchGetStory(),
+		watchGetMyStory(),
 		watchCreateStory(),
 		watchUserUploadPhoto(),
 		watchGetUserPhoto(),

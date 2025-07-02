@@ -97,6 +97,9 @@ import {
 	GET_STORY_STARTED,
 	GET_STORY_SUCCEEDED,
 	GET_STORY_FAILED,
+	GET_MY_STORY_STARTED,
+	GET_MY_STORY_SUCCEEDED,
+	GET_MY_STORY_FAILED,
 	CREATE_STORY_STARTED,
 	CREATE_STORY_SUCCEEDED,
 	CREATE_STORY_FAILED,
@@ -209,6 +212,7 @@ const initialState = {
 	matchPreviusUserComplete: false,
 	loginIsLoaing: false,
 	stories: [],
+	myStories: [],
 	createStoryComplete: false,
 	photos: [],
 	userPhotoIsLoading: false,
@@ -839,6 +843,23 @@ const user = (state = initialState, action) => {
 				stories: payload?.data
 			};
 		case GET_STORY_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case GET_MY_STORY_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case GET_MY_STORY_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				myStories: payload?.data
+			};
+		case GET_MY_STORY_FAILED:
 			return {
 				...state,
 				isLoading: false,

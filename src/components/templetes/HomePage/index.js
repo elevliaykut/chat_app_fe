@@ -23,7 +23,9 @@ import {
     getUserPhoto,
     
     userReports,
-    userReportsReset
+    userReportsReset,
+
+    getMyStory,
 } from '../../../store/user/actions';
 
 import {
@@ -81,7 +83,9 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.isLoading,
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
-    sendMessageCompleted: state?.notifications?.sendMessageCompleted
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
+
+    myStories: state?.user?.myStories
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -119,6 +123,8 @@ const mapDispatchToProps = dispatch => ({
     
     userReports: payload => dispatch(userReports(payload)),
     userReportsReset: () => dispatch(userReportsReset()),
+
+    getMyStory: payload => dispatch(getMyStory(payload))
 
 });
 
