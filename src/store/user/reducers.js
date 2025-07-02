@@ -174,7 +174,10 @@ import {
 	ADMIN_APPROVE_PAYMENT_STARTED,
 	ADMIN_APPROVE_PAYMENT_SUCCEEDED,
 	ADMIN_APPROVE_PAYMENT_FAILED,
-	ADMIN_APPROVE_PAYMENT_RESET
+	ADMIN_APPROVE_PAYMENT_RESET,
+	GET_USER_PHOTOS_STARTED,
+	GET_USER_PHOTOS_SUCCEEDED,
+	GET_USER_PHOTOS_FAILED
 } from './types';
 
 const initialState = {
@@ -241,6 +244,7 @@ const initialState = {
 	adminApproveProfileTextComplete: false,
 	adminPayments: [],
 	adminApprovePaymentComplete: false,
+	userPhotos: []
 };
 
 const user = (state = initialState, action) => {
@@ -1316,6 +1320,23 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminApprovePaymentComplete: false
+			};
+		case GET_USER_PHOTOS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case GET_USER_PHOTOS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userPhotos: payload?.data
+			};
+		case GET_USER_PHOTOS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
 			};
 		default:
 			return state;

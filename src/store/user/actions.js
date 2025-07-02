@@ -174,7 +174,10 @@ import {
 	ADMIN_APPROVE_PAYMENT_STARTED,
 	ADMIN_APPROVE_PAYMENT_SUCCEEDED,
 	ADMIN_APPROVE_PAYMENT_FAILED,
-	ADMIN_APPROVE_PAYMENT_RESET
+	ADMIN_APPROVE_PAYMENT_RESET,
+	GET_USER_PHOTOS_STARTED,
+	GET_USER_PHOTOS_SUCCEEDED,
+	GET_USER_PHOTOS_FAILED,
 } from './types';
 
 export const loginUser = values => ({
@@ -1029,4 +1032,19 @@ export const adminApprovePaymentError = error => ({
 
 export const adminApprovePaymentReset = () => ({
 	type: ADMIN_APPROVE_PAYMENT_RESET
+});
+
+export const getUserPhotos = values => ({
+	type: GET_USER_PHOTOS_STARTED,
+	payload: values
+});
+
+export const getUserPhotosSuccess = data => ({
+	type: GET_USER_PHOTOS_SUCCEEDED,
+	payload: data
+});
+
+export const getUserPhotosError = error => ({
+	type: GET_USER_PHOTOS_FAILED,
+	payload: error
 });

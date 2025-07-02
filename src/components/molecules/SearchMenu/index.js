@@ -17,7 +17,7 @@ const SearchMenu = () => {
         { label: 'YAKIN KONUMDA', path: '/search/near' },
         { label: 'YENİ ÜYELER', path: '/search/new' },
         { label: 'ONAYLI ÜYELER', path: '/search/approve' },
-        //{ label: 'YENİ FOTOĞRAFLAR', path: '/search/photo' },
+        { label: 'YENİ FOTOĞRAFLAR', path: '/search/photos' },
         { label: 'BUGÜN DOĞANLAR', path: '/search/birthday' },
     ];
 
@@ -35,7 +35,7 @@ const SearchMenu = () => {
                         className={`${styles.menu} ${activePath === item.path ? styles.active : ''}`}
                         onClick={() => handleMenuClick(item.path)}
                     >
-                        <label>{item.label}</label>
+                        <label style={{ fontSize: '11px'}}>{item.label}</label>
                     </div>
                 ))}
             </div>

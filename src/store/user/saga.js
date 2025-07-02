@@ -52,7 +52,8 @@ import {
 	ADMIN_GET_PROFILE_TEXTS_STARTED,
 	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
 	ADMIN_GET_PAYMENTS_STARTED,
-	ADMIN_APPROVE_PAYMENT_STARTED
+	ADMIN_APPROVE_PAYMENT_STARTED,
+	GET_USER_PHOTOS_STARTED
 } from './types';
 
 import {
@@ -154,7 +155,9 @@ import {
 	adminGetPaymentsSuccess,
 	adminGetPaymentsError,
 	adminApprovePaymentSuccess,
-	adminApprovePaymentError
+	adminApprovePaymentError,
+	getUserPhotosSuccess,
+	getUserPhotosError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1465,6 +1468,24 @@ function* adminApprovePaymentTask(action) {
 	}
 }
 
+function* getUserPhotosTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/user/photos`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getUserPhotosSuccess(data));
+	} catch (error) {
+		yield put(getUserPhotosError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1672,6 +1693,10 @@ function* watchAdminApprovePayment() {
 	yield takeLatest(ADMIN_APPROVE_PAYMENT_STARTED, adminApprovePaymentTask);
 }
 
+function* watchGetUserPhotos() {
+	yield takeLatest(GET_USER_PHOTOS_STARTED, getUserPhotosTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1723,6 +1748,7 @@ export default function* saga() {
 		watchAdminGetProfileTexts(),
 		watchAdminApproveProfileText(),
 		watchAdminGetPayments(),
-		watchAdminApprovePayment()
+		watchAdminApprovePayment(),
+		watchGetUserPhotos()
 	]);
 }
