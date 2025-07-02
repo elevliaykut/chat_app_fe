@@ -78,7 +78,7 @@ const PaymentFormPage = ({
         data.append('buyer_bank', buyerBank);
         data.append('payment_date', paymentDate);
         data.append('price', price);
-        data.append('code', code);
+        data.append('code', description);
         data.append('description', description);
 
         createPayment({
