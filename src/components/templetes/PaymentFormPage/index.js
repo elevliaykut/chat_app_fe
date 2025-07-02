@@ -15,7 +15,6 @@ import {
 
 const mapStateToProps = state => ({
     isLoading: state?.user?.isLoading,
-    paymentComplete: state?.user?.paymentComplete,
     error: state?.user?.error,
     pageLoading: state?.user?.pageLoading,
     pageLoading: state?.user?.pageLoading,

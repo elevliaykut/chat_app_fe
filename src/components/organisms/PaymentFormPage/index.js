@@ -84,6 +84,9 @@ const PaymentFormPage = ({
         createPayment({
             formData: data
         });
+
+        setSuccessMessageVisible(true);
+        window.location = '/home';
     }
 
     return (
