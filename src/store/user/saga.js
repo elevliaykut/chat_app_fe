@@ -45,6 +45,9 @@ import {
 	ADMIN_GET_STORIES_STARTED,
 	ADMIN_APPROVE_STORY_STARTED,
 	ADMIN_GET_PHOTOS_STARTED,
+	ADMIN_APPROVE_PHOTO_STARTED,
+	ADMIN_GET_POSTS_STARTED,
+	ADMIN_APPROVE_POST_STARTED,
 } from './types';
 
 import {
@@ -130,7 +133,13 @@ import {
 	adminApproveStorySuccess,
 	adminApproveStoryError,
 	adminGetPhotosSuccess,
-	adminGetPhotosError
+	adminGetPhotosError,
+	adminApprovePhotoSuccess,
+	adminApprovePhotoError,
+	adminGetPostsSuccess,
+	adminGetPostsError,
+	adminApprovePostSuccess,
+	adminApprovePostError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1286,6 +1295,65 @@ function* adminGetPhotosTask(action) {
 	}
 }
 
+function* adminApprovePhotoTask(action) {
+	const { payload = {} } = action;
+	const { photoId } = payload;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/approve/photo/${photoId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApprovePhotoSuccess(data));
+	} catch (error) {
+		yield put(adminApprovePhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminGetPostsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/posts/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetPostsSuccess(data));
+	} catch (error) {
+		yield put(adminGetPostsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminAprovePostTask(action) {
+	const { payload = {} } = action;
+	const { postId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/approve/post/${postId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApprovePostSuccess(data));
+	} catch (error) {
+		yield put(adminApprovePostError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1461,6 +1529,18 @@ function* watchGetAdminPhotos() {
 	yield takeLatest(ADMIN_GET_PHOTOS_STARTED, adminGetPhotosTask);
 }
 
+function* watchAdminApprovePhoto() {
+	yield takeLatest(ADMIN_APPROVE_PHOTO_STARTED, adminApprovePhotoTask);
+}
+
+function* watchAdminGetPosts() {
+	yield takeLatest(ADMIN_GET_POSTS_STARTED, adminGetPostsTask);
+}
+
+function* watchAdminApprovePost() {
+	yield takeLatest(ADMIN_APPROVE_POST_STARTED, adminAprovePostTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1504,6 +1584,9 @@ export default function* saga() {
 		watchAdminDeleteUser(),
 		watchAdminGetStories(),
 		watchAdminApproveStory(),
-		watchGetAdminPhotos()
+		watchGetAdminPhotos(),
+		watchAdminApprovePhoto(),
+		watchAdminGetPosts(),
+		watchAdminApprovePost()
 	]);
 }

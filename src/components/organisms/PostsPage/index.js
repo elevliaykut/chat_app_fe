@@ -3,38 +3,38 @@ import styles from './Index.module.css';
 import AdminTopBanner from "../../molecules/AdminTopBanner";
 import AdminMenu from "../../molecules/AdminMenu";
 
-const PhotosPage = ({
+const PostsPage = ({
     userLogout = () => {},
-    adminGetPhotos = () => {},
+    adminGetPosts = () => {},
     isLoading = false,
     error = false,
-    adminPhotos = [],
-    adminApprovePhotoComplete = false,
-    adminApprovePhoto = () => {},
-    adminApprovePhotoReset = () => {}
+    adminPosts = [],
+    adminApprovePostComplete = false,
+    adminApprovePost = () => {},
+    adminApprovePostReset = () => {},
 }) => {
-    const [photosVisible, setPhotosVisible] = useState(false);
+    const [postVisible, setPostVisible] = useState(false);
 
     useEffect(() => {
         if(!isLoading) {
-            setPhotosVisible(true);
+            setPostVisible(true);
         }
     },[]);
     
     useEffect(() => {
-        adminGetPhotos();
+        adminGetPosts();
     },[]);
 
-    const handleDetailClick = photoId => {
-        adminApprovePhoto({ photoId: photoId });
+    const handleDetailClick = postId => {
+        adminApprovePost({ postId: postId });
     };
 
     useEffect(() => {
-        if(adminApprovePhotoComplete) {
-            adminApprovePhotoReset();
-            window.location = '/photos';
+        if(adminApprovePostComplete) {
+            adminApprovePostReset();
+            window.location = '/posts';
         }
-    },[adminApprovePhotoComplete]);
+    },[adminApprovePostComplete]);
 
     return (
         <>
@@ -46,10 +46,10 @@ const PhotosPage = ({
                     <AdminMenu/>
                     <div style={{ width: '100%'}}>
                         
-                        {photosVisible && (
+                        {postVisible && (
                             <>
                                 <div className={styles.container}>
-                                    <h1 className={styles.title}>Fotoğraf Listesi</h1>
+                                    <h1 className={styles.title}>Post Listesi</h1>
                                     <table className={styles.table}>
                                         <thead>
                                         <tr>
@@ -57,20 +57,21 @@ const PhotosPage = ({
                                             <th>İsim</th>
                                             <th>Soyisim</th>
                                             <th>Fotoğraf</th>
+                                            <th>İçerik</th>
                                             <th>Durum</th>
                                             <th>İşlemler</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {adminPhotos.map(photo => (
-                                            <tr key={photo.id}>
-                                            <td>{photo.id}</td>
-                                            <td>{photo?.user?.name}</td>
-                                            <td>{photo?.user?.surname}</td>
+                                        {adminPosts.map(post => (
+                                            <tr key={post.id}>
+                                            <td>{post.id}</td>
+                                            <td>{post?.creator_user?.name}</td>
+                                            <td>{post?.creator_user?.surname}</td>
                                             <td>
-                                                {photo.photo_path ? (
+                                                {post.photo[0] ? (
                                                     <img
-                                                        src={photo.photo_path}
+                                                        src={post.photo[0]?.photo_path}
                                                         alt="story"
                                                         style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
                                                     />
@@ -78,11 +79,12 @@ const PhotosPage = ({
                                                     <span>Yok</span>
                                                 )}
                                             </td>
-                                            <td>{photo?.status === 0 ? 'Onay Bekliyor' : 'Onaylandı'}</td>
+                                            <td>{post?.description}</td>
+                                            <td>{post?.status === 0 ? 'Onay Bekliyor' : 'Onaylandı'}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}
-                                                    onClick={() => handleDetailClick(photo?.id)}
+                                                    onClick={() => handleDetailClick(post?.id)}
                                                 >
                                                     Onayla
                                                 </button>
@@ -100,4 +102,4 @@ const PhotosPage = ({
         </>
     )
 }
-export default PhotosPage;
+export default PostsPage;

@@ -146,7 +146,18 @@ import {
 	ADMIN_APPROVE_STORY_RESET,
 	ADMIN_GET_PHOTOS_STARTED,
 	ADMIN_GET_PHOTOS_SUCCEEDED,
-	ADMIN_GET_PHOTOS_FAILED
+	ADMIN_GET_PHOTOS_FAILED,
+	ADMIN_APPROVE_PHOTO_STARTED,
+	ADMIN_APPROVE_PHOTO_SUCCEEDED,
+	ADMIN_APPROVE_PHOTO_FAILED,
+	ADMIN_APPROVE_PHOTO_RESET,
+	ADMIN_GET_POSTS_STARTED,
+	ADMIN_GET_POSTS_SUCCEEDED,
+	ADMIN_GET_POSTS_FAILED,
+	ADMIN_APPROVE_POST_STARTED,
+	ADMIN_APPROVE_POST_SUCCEEDED,
+	ADMIN_APPROVE_POST_FAILED,
+	ADMIN_APPROVE_POST_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -865,4 +876,57 @@ export const adminGetPhotosSuccess = data => ({
 export const adminGetPhotosError = error => ({
 	type: ADMIN_GET_PHOTOS_FAILED,
 	payload: error
+});
+
+export const adminApprovePhoto = values => ({
+	type: ADMIN_APPROVE_PHOTO_STARTED,
+	payload: values
+});
+
+export const adminApprovePhotoSuccess = data => ({
+	type: ADMIN_APPROVE_PHOTO_SUCCEEDED,
+	payload: data
+});
+
+export const adminApprovePhotoError = error => ({
+	type: ADMIN_APPROVE_PHOTO_FAILED,
+	payload: error
+});
+
+export const adminApprovePhotoReset = () => ({
+	type: ADMIN_APPROVE_PHOTO_RESET,
+});
+
+export const adminGetPosts = values => ({
+	type: ADMIN_GET_POSTS_STARTED,
+	payload: values
+});
+
+export const adminGetPostsSuccess = data => ({
+	type: ADMIN_GET_POSTS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetPostsError = error => ({
+	type: ADMIN_GET_POSTS_FAILED,
+	payload: error
+});
+
+export const adminApprovePost = values => ({
+	type: ADMIN_APPROVE_POST_STARTED,
+	payload: values
+});
+
+export const adminApprovePostSuccess = data => ({
+	type: ADMIN_APPROVE_POST_SUCCEEDED,
+	payload: data
+});
+
+export const adminApprovePostError = error => ({
+	type: ADMIN_APPROVE_POST_FAILED,
+	payload: error
+});
+
+export const adminApprovePostReset = () => ({
+	type: ADMIN_APPROVE_POST_RESET
 });

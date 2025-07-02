@@ -147,6 +147,17 @@ import {
 	ADMIN_GET_PHOTOS_STARTED,
 	ADMIN_GET_PHOTOS_SUCCEEDED,
 	ADMIN_GET_PHOTOS_FAILED,
+	ADMIN_APPROVE_PHOTO_STARTED,
+	ADMIN_APPROVE_PHOTO_SUCCEEDED,
+	ADMIN_APPROVE_PHOTO_FAILED,
+	ADMIN_APPROVE_PHOTO_RESET,
+	ADMIN_GET_POSTS_STARTED,
+	ADMIN_GET_POSTS_SUCCEEDED,
+	ADMIN_GET_POSTS_FAILED,
+	ADMIN_APPROVE_POST_STARTED,
+	ADMIN_APPROVE_POST_SUCCEEDED,
+	ADMIN_APPROVE_POST_FAILED,
+	ADMIN_APPROVE_POST_RESET
 } from './types';
 
 const initialState = {
@@ -204,7 +215,10 @@ const initialState = {
 	adminDeleteUserComplete: false,
 	adminStories: [],
 	adminApproveStoryComplete: false,
-	adminPhotos: []
+	adminPhotos: [],
+	adminApprovePhotoComplete: false,
+	adminPosts: [],
+	adminApprovePostComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -1117,6 +1131,71 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				error: payload
+			};
+		case ADMIN_APPROVE_PHOTO_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApprovePhotoComplete: false
+			};
+		case ADMIN_APPROVE_PHOTO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePhotoComplete: true,
+			};
+		case ADMIN_APPROVE_PHOTO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePhotoComplete: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_PHOTO_RESET:
+			return {
+				...state,
+				adminApprovePhotoComplete: false,
+			};
+		case ADMIN_GET_POSTS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case ADMIN_GET_POSTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminPosts: payload?.data
+			};
+		case ADMIN_GET_POSTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_POST_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApprovePostComplete: false,
+			};
+		case ADMIN_APPROVE_POST_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePostComplete: true
+			};
+		case ADMIN_APPROVE_POST_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApprovePostComplete: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_POST_RESET:
+			return {
+				...state,
+				adminApprovePostComplete: false
 			};
 		default:
 			return state;
