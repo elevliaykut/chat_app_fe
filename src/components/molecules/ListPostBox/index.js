@@ -102,9 +102,19 @@ const ListPostBox = ({
                                                 <label>{item?.creator_user?.age},{item?.creator_user?.detail?.marital_status_value},{item?.creator_user?.detail?.city?.name}</label>
                                             </div>
                                         </div>
-                                        <div className={styles.statusEpisode}>
-                                            <label>Durumunu Güncelledi</label>
-                                        </div>
+                                        {isArchivePage && (
+                                            <>
+                                                <div className={styles.statusEpisode}>
+                                                    <label 
+                                                        style={{ 
+                                                                color: item?.status === 1 ? ThemeConfig.success : ThemeConfig.error,
+                                                                fontWeight: "bold"
+                                                        }}>
+                                                            {item?.status === 1  ? 'Onaylandı' : 'Onay Bekliyor'}
+                                                    </label>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                     <div className={styles.rightEpisode}>
                                         <label>
