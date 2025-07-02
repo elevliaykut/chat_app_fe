@@ -10,9 +10,7 @@ const StoryBanner = ({
     const [activeStoryIndex, setActiveStoryIndex] = useState(0);
     const progressBarRef = useRef(null);
 
-    // openStory parametresi 'me' ise kendi storileri açılır
     const openStory = (userIndex) => {
-        // Modal sadece story varsa açılsın
         if (userIndex === 'me') {
             if (!myStories[0]?.stories?.length) return;
         } else {
@@ -52,21 +50,19 @@ const StoryBanner = ({
 
     useEffect(() => {
         if (activeUserIndex === null) return;
-
         const timer = setTimeout(nextStory, 5000);
-
         if (progressBarRef.current) {
             progressBarRef.current.style.animation = 'none';
-            progressBarRef.current.offsetHeight; // reflow trigger
+            progressBarRef.current.offsetHeight;
             progressBarRef.current.style.animation = `progressBarAnimation 5s linear forwards`;
         }
-
         return () => clearTimeout(timer);
     }, [activeUserIndex, activeStoryIndex]);
 
-    // aktif kullanıcı ve storileri belirle
     const activeUser = activeUserIndex === 'me' ? myStories[0] : users[activeUserIndex];
-    const activeStories = activeUserIndex === 'me' ? (myStories[0]?.stories || []) : (users[activeUserIndex]?.stories || []);
+    const activeStories = activeUserIndex === 'me'
+        ? (myStories[0]?.stories || [])
+        : (users[activeUserIndex]?.stories || []);
 
     const handleStorySelect = (e) => {
         const file = e.target.files[0];
@@ -77,13 +73,17 @@ const StoryBanner = ({
         }
     };
 
-    // Kendi storileri olup olmadığını kontrol et
     const myHasStories = myStories[0]?.stories?.length > 0;
+
+    const getStatusText = (status) => {
+        if (status === 0) return "Onay bekliyor";
+        if (status === 1) return "Onaylandı";
+        return "";
+    };
 
     return (
         <div className={styles.container}>
             <div className={styles.storyList}>
-                {/* Kendi avatar */}
                 <div className={styles.profileWrapper} onClick={() => openStory('me')}>
                     <div className={styles.avatarBox}>
                         {myStories[0]?.profile_photo_url ? (
@@ -102,7 +102,6 @@ const StoryBanner = ({
                                     border: myHasStories ? "3px solid #ff0066" : "none",
                                 }}
                             >
-                                {/* Placeholder SVG */}
                                 <svg
                                     width="95"
                                     height="95"
@@ -136,7 +135,6 @@ const StoryBanner = ({
                     />
                 </div>
 
-                {/* Diğer kullanıcılar */}
                 {users.map((user, index) => {
                     const hasStories = user.stories && user.stories.length > 0;
                     return (
@@ -204,6 +202,14 @@ const StoryBanner = ({
                             alt="story"
                             className={styles.storyMedia}
                         />
+
+                        {/* ✅ Sadece kendi storisi için status bilgisi */}
+                        {activeUserIndex === 'me' && (
+                            <div className={styles.storyStatus}>
+                                {getStatusText(activeStories[activeStoryIndex]?.status)}
+                            </div>
+                        )}
+
                         <button onClick={(e) => { e.stopPropagation(); closeStory(); }} className={styles.closeBtn}>
                             ×
                         </button>
