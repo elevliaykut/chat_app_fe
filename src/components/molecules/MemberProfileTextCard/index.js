@@ -1,9 +1,14 @@
 import React from "react";
 import styles from './Index.module.css';
+import ThemeConfig from "@/src/utils/ThemeConfig";
+import { useRouter } from "next/router";
 
 const MemberProfileTextCard = ({
     details = {}
 }) => {
+    const router = useRouter();
+    const isMyProfilePage = router.pathname === "/my-profile";
+
     return (
         <>
             <div className={styles.container}>
@@ -23,7 +28,25 @@ const MemberProfileTextCard = ({
                         </svg>
                      </div>
                      <div className={styles.titleTextEpisode}>
-                        <label>Profil Yazısı</label>
+                        <div style={{ display: 'flex'}}>
+                            <label>Profil Yazısı</label>
+                            {isMyProfilePage && (
+                                <>
+                                    <label 
+                                        style={{ 
+                                            marginLeft: '20px', 
+                                            fontWeight: 'bold', 
+                                            color: details?.detail?.profile_text_status === 1 ? ThemeConfig.success : ThemeConfig.error
+                                        }}>
+                                            {details?.detail?.profile_summary && (
+                                                <>
+                                                    {details?.detail?.profile_text_status === 1 ? 'Onaylandı' : 'Onay Bekliyor'}
+                                                </>
+                                            )}
+                                    </label>
+                                </>
+                            )}
+                        </div>
                      </div>
                 </div>
                 <div className={styles.contentText}>
