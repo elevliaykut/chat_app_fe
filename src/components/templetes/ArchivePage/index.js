@@ -20,8 +20,9 @@ import {
     getStory,
     createStory,
     resetCreateStoryComplete,
-
     getMyStory,
+    userDeletePhoto,
+    userDeletePhotoReset,
 } from '../../../store/user/actions';
 
 import {
@@ -79,7 +80,9 @@ const mapStateToProps = state => ({
     photos: state?.user?.photos,
     userPhotoIsLoading: state?.user?.userPhotoIsLoading,
     myStories: state?.user?.myStories,
-    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete
+    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete,
+    userDeletePhotoComplete: state?.user?.userDeletePhotoComplete
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -114,6 +117,9 @@ const mapDispatchToProps = dispatch => ({
     resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
     getMyStory: payload => dispatch(getMyStory(payload)),
     userUploadPhotoReset: () => dispatch(userUploadPhotoReset()),
+
+    userDeletePhoto: payload => dispatch(userDeletePhoto(payload)),
+    userDeletePhotoReset: () => dispatch(userDeletePhotoReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

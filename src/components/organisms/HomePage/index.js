@@ -83,7 +83,11 @@ const HomePage = ({
     getMyStory = () => {},
     myStories = [],
     userUploadPhotoComplete = false,
-    userUploadPhotoReset = () => {}
+    userUploadPhotoReset = () => {},
+    
+    userDeletePhoto = () => {},
+    userDeletePhotoComplete = false,
+    userDeletePhotoReset = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -108,6 +112,13 @@ const HomePage = ({
     const messageModalOnClose = () => {
         setMessageModalVisible(false);
     }
+
+    useEffect(() => {
+        if(userDeletePhotoComplete) {
+            userDeletePhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userDeletePhotoComplete]);
 
     useEffect(() => {
         if(userUploadPhotoComplete) {
@@ -315,6 +326,7 @@ const HomePage = ({
                         error={error}
                         userUploadPhoto={userUploadPhoto}
                         photos={photos}
+                        userDeletePhoto={userDeletePhoto}
                     />
                 </>
             )}

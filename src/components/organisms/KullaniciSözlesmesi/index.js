@@ -28,14 +28,16 @@ const KullaniciSözlesmesi = ({
 
     return (
         <>
-            <TopBanner
-                onlineMemberCount={userMe?.online_member_count}
-                messageCount={userMe?.message_count}
-                profileVisible={userMeVisible}
-                userLogout={userLogout}
-                notifications={notifications}
-                notificationIsLoading={notificationIsLoading}
-            />
+            {
+                //<TopBanner
+                //    onlineMemberCount={userMe?.online_member_count}
+                //    messageCount={userMe?.message_count}
+                //    profileVisible={userMeVisible}
+                //    userLogout={userLogout}
+                //    notifications={notifications}
+                //    notificationIsLoading={notificationIsLoading}
+                ///>
+            }
             <div className={styles.frame}>
                 <label className={styles.description}>
                 Değerli Ziyaretçimiz,<br/>

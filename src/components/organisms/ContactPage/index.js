@@ -68,7 +68,10 @@ export default function Home({
   getMyStory = () => {},
   myStories = [],
   userUploadPhotoComplete = false,
-  userUploadPhotoReset = () => {}
+  userUploadPhotoReset = () => {},
+  userDeletePhoto = () => {},
+  userDeletePhotoComplete = false,
+  userDeletePhotoReset = () => {}
 }) {
 
   const [profileVisible, setProfileVisible]                           = useState(false);
@@ -87,6 +90,13 @@ export default function Home({
   const userPhotoModalOnClose = () => {
     setPhotoModalVisible(false);
 }
+
+useEffect(() => {
+  if(userDeletePhotoComplete) {
+      userDeletePhotoReset();
+      getUserPhoto({ userId: userMe?.id });
+  }
+},[userDeletePhotoComplete]);
 
 useEffect(() => {
   if(userUploadPhotoComplete) {
@@ -187,6 +197,7 @@ useEffect(() => {
                         error={error}
                         userUploadPhoto={userUploadPhoto}
                         photos={photos}
+                        userDeletePhoto={userDeletePhoto}
                     />
                 </>
             )}

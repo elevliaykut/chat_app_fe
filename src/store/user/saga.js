@@ -58,6 +58,7 @@ import {
 	ADMIN_APPROVE_REPORT_STARTED,
 	ADMIN_GET_PROFILE_PHOTOS_STARTED,
 	ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
+	USER_DELETE_PHOTO_STARTED,
 } from './types';
 
 import {
@@ -169,7 +170,9 @@ import {
 	adminGetProfilePhotosSuccess,
 	adminGetProfilePhotosError,
 	adminApproveProfilePhotoSuccess,
-	adminApproveProfilePhotoError
+	adminApproveProfilePhotoError,
+	userDeletePhotoSuccess,
+	userDeletePhotoError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1575,6 +1578,26 @@ function* adminApproveProfilePhotoTask(action) {
 	}
 }
 
+function* userDeletePhotoTask(action) {
+	const { payload = {} } = action;
+	const { photoId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/user/photo/${photoId}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(userDeletePhotoSuccess(data));
+	} catch (error) {
+		yield put(userDeletePhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1802,6 +1825,10 @@ function* watchAdminApproveProfilePhoto() {
 	yield takeLatest(ADMIN_APPROVE_PROFILE_PHOTO_STARTED, adminApproveProfilePhotoTask);
 }
 
+function* watchUserDeletePhoto() {
+	yield takeLatest(USER_DELETE_PHOTO_STARTED, userDeletePhotoTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1858,6 +1885,7 @@ export default function* saga() {
 		watchGetUserReports(),
 		watchAdminApproveReport(),
 		watchAdminGetProfilePhotos(),
-		watchAdminApproveProfilePhoto()
+		watchAdminApproveProfilePhoto(),
+		watchUserDeletePhoto()
 	]);
 }

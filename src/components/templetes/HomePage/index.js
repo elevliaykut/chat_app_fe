@@ -22,11 +22,12 @@ import {
     userUploadPhoto,
     userUploadPhotoReset,
     getUserPhoto,
-    
     userReports,
     userReportsReset,
-
     getMyStory,
+
+    userDeletePhoto,
+    userDeletePhotoReset,
 } from '../../../store/user/actions';
 
 import {
@@ -86,7 +87,9 @@ const mapStateToProps = state => ({
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
     myStories: state?.user?.myStories,
-    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete
+    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete,
+    
+    userDeletePhotoComplete: state?.user?.userDeletePhotoComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -123,9 +126,10 @@ const mapDispatchToProps = dispatch => ({
     userReports: payload => dispatch(userReports(payload)),
     userReportsReset: () => dispatch(userReportsReset()),
     getMyStory: payload => dispatch(getMyStory(payload)),
-
     userUploadPhotoReset: () => dispatch(userUploadPhotoReset()),
-
+    
+    userDeletePhoto: payload => dispatch(userDeletePhoto(payload)),
+    userDeletePhotoReset: () => dispatch(userDeletePhotoReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageOrganisms);

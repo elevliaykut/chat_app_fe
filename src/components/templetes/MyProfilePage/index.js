@@ -16,7 +16,9 @@ import {
     userLogout,
     userUploadPhoto,
     userUploadPhotoReset,
-    getUserPhoto
+    getUserPhoto,
+    userDeletePhoto,
+    userDeletePhotoReset,
 } from '../../../store/user/actions';
 
 import {
@@ -64,7 +66,9 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.notificationIsLoading,
     photos: state?.user?.photos,
     userPhotoIsLoading: state?.user?.userPhotoIsLoading,
-    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete
+    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete,
+    userDeletePhotoComplete: state?.user?.userDeletePhotoComplete
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -91,6 +95,8 @@ const mapDispatchToProps = dispatch => ({
     resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
     resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
     userUploadPhotoReset: () => dispatch(userUploadPhotoReset()),
+    userDeletePhoto: payload => dispatch(userDeletePhoto(payload)),
+    userDeletePhotoReset: () => dispatch(userDeletePhotoReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyProfileOrganisms);

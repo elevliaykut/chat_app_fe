@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import ThemeConfig from "@/src/utils/ThemeConfig";
 import ToastMessage from "../../TostMessage";
@@ -8,15 +8,19 @@ const UserPhotoModal = ({
     isLoading = false,
     error = null,
     userUploadPhoto = () => {},
-    photos = []
-}) => {      
-
+    photos = [],
+    userDeletePhoto = () => {}
+}) => {
     const [selectedPhotos, setSelectedPhotos] = useState([]);
 
     useEffect(() => {
         if (photos && photos.length > 0) {
-            const photoUrls = photos.map((p) => p.photo_path);
-            setSelectedPhotos(photoUrls);
+            const formattedPhotos = photos.map(p => ({
+                id: p.id,
+                url: p.photo_path,
+                file: null
+            }));
+            setSelectedPhotos(formattedPhotos);
         }
     }, [photos]);
 
@@ -24,62 +28,76 @@ const UserPhotoModal = ({
         const files = e.target.files;
         if (!files) return;
 
-        const data = new FormData();
-        data.append('photo', e.target.files[0]);
-        userUploadPhoto({ formData: data });
-
         const fileList = Array.from(files);
-        // Maksimum 7 foto kontrolü
+
         if (selectedPhotos.length + fileList.length > 7) {
-        alert('En fazla 7 fotoğraf yükleyebilirsiniz.');
-        return;
+            alert('En fazla 7 fotoğraf yükleyebilirsiniz.');
+            return;
         }
 
-        setSelectedPhotos((prev) => [...prev, ...fileList]);
+        const newPhotos = fileList.map(f => ({
+            id: null,
+            url: null,
+            file: f
+        }));
+
+        setSelectedPhotos(prev => [...prev, ...newPhotos]);
+
+        // Yüklemeden sadece ilk dosyayı upload fonksiyonuna gönder
+        const data = new FormData();
+        data.append('photo', fileList[0]);
+        userUploadPhoto({ formData: data });
     };
 
-    return(
-        <>
-            <div className={styles.overlay}>
-                <div className={styles.modal}>
-                    <div className={styles.modalHeader}>
-                        <div>
-                            <label>FOTOĞRAFLAR</label>
-                        </div>
-                        <div className={styles.closeButton} style={{ marginLeft: 'auto', cursor: 'pointer'}} onClick={onClose}>
-                            X
-                        </div>
-                    </div>
-                    
-                    <div className={styles.photoContainer}>
-                    {selectedPhotos.map((item, index) => {
-                        const src = typeof item === 'string' ? item : URL.createObjectURL(item);
+    const handleRemovePhoto = (photo) => {
+        userDeletePhoto({ photoId: photo?.id });
+        setSelectedPhotos(prev => prev.filter(p => p !== photo));
+    };
+
+    return (
+        <div className={styles.overlay}>
+            <div className={styles.modal}>
+                <div className={styles.modalHeader}>
+                    <div><label>FOTOĞRAFLAR</label></div>
+                    <div className={styles.closeButton} onClick={onClose}>X</div>
+                </div>
+
+                <div className={styles.photoContainer}>
+                    {selectedPhotos.map((photo, index) => {
+                        const src = photo.url || (photo.file ? URL.createObjectURL(photo.file) : '');
                         return (
-                            <img
-                                key={index}
-                                src={src}
-                                alt={`preview-${index}`}
-                                className={styles.photoThumb}
-                            />
+                            <div key={index} className={styles.photoWrapper}>
+                                <img
+                                    src={src}
+                                    alt={`preview-${index}`}
+                                    className={styles.photoThumb}
+                                />
+                                <button
+                                    type="button"
+                                    className={styles.deleteButton}
+                                    onClick={() => handleRemovePhoto(photo)}
+                                >
+                                    Sil
+                                </button>
+                            </div>
                         );
                     })}
 
-                        {selectedPhotos.length < 7 && (
+                    {selectedPhotos.length < 7 && (
                         <label className={styles.addPhotoBox}>
                             +
                             <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoSelect}
-                            style={{ display: 'none' }}
+                                type="file"
+                                accept="image/*"
+                                onChange={handlePhotoSelect}
+                                style={{ display: 'none' }}
                             />
                         </label>
-                        )}
-                    </div>
-         
+                    )}
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
+
 export default UserPhotoModal;

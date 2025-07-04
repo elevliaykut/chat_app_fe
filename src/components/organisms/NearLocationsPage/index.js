@@ -75,7 +75,10 @@ const NearLocationsPage = ({
     getMyStory = () => {},
     myStories = [],
     userUploadPhotoComplete = false,
-    userUploadPhotoReset = () => {}
+    userUploadPhotoReset = () => {},
+    userDeletePhoto = () => {},
+    userDeletePhotoComplete = false,
+    userDeletePhotoReset = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -99,6 +102,13 @@ const NearLocationsPage = ({
     const userPhotoModalOnClose = () => {
         setPhotoModalVisible(false);
     }
+
+    useEffect(() => {
+        if(userDeletePhotoComplete) {
+            userDeletePhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userDeletePhotoComplete]);
 
     useEffect(() => {
         if(userUploadPhotoComplete) {
@@ -285,6 +295,7 @@ const NearLocationsPage = ({
                         error={error}
                         userUploadPhoto={userUploadPhoto}
                         photos={photos}
+                        userDeletePhoto={userDeletePhoto}
                     />
                 </>
             )}

@@ -192,7 +192,11 @@ import {
 	ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
 	ADMIN_APPROVE_PROFILE_PHOTO_SUCCEEDED,
 	ADMIN_APPROVE_PROFILE_PHOTO_FAILED,
-	ADMIN_APPROVE_PROFILE_PHOTO_RESET
+	ADMIN_APPROVE_PROFILE_PHOTO_RESET,
+	USER_DELETE_PHOTO_STARTED,
+	USER_DELETE_PHOTO_SUCCEEDED,
+	USER_DELETE_PHOTO_FAILED,
+	USER_DELETE_PHOTO_RESET
 } from './types';
 
 const initialState = {
@@ -265,6 +269,7 @@ const initialState = {
 	adminProfilePhotos: [],
 	adminApproveProfilePhotoComplete: false,
 	userUploadPhotoComplete: false,
+	userDeletePhotoComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -1447,6 +1452,30 @@ const user = (state = initialState, action) => {
 			return {
 				...state,
 				adminApproveProfilePhotoComplete: false
+			};
+		case USER_DELETE_PHOTO_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				userDeletePhotoComplete: false,
+			};
+		case USER_DELETE_PHOTO_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userDeletePhotoComplete: true,
+			};
+		case USER_DELETE_PHOTO_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				userDeletePhotoComplete: false,
+				error: payload,
+			};
+		case USER_DELETE_PHOTO_RESET:
+			return {
+				...state,
+				userDeletePhotoComplete: false
 			};
 		default:
 			return state;

@@ -192,7 +192,11 @@ import {
 	ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
 	ADMIN_APPROVE_PROFILE_PHOTO_SUCCEEDED,
 	ADMIN_APPROVE_PROFILE_PHOTO_FAILED,
-	ADMIN_APPROVE_PROFILE_PHOTO_RESET
+	ADMIN_APPROVE_PROFILE_PHOTO_RESET,
+	USER_DELETE_PHOTO_STARTED,
+	USER_DELETE_PHOTO_SUCCEEDED,
+	USER_DELETE_PHOTO_FAILED,
+	USER_DELETE_PHOTO_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -1134,4 +1138,23 @@ export const adminApproveProfilePhotoError = error => ({
 
 export const adminApproveProfilePhotoReset = () => ({
 	type: ADMIN_APPROVE_PROFILE_PHOTO_RESET
+});
+
+export const userDeletePhoto = values => ({
+	type: USER_DELETE_PHOTO_STARTED,
+	payload: values
+});
+
+export const userDeletePhotoSuccess = data => ({
+	type: USER_DELETE_PHOTO_SUCCEEDED,
+	payload: data
+});
+
+export const userDeletePhotoError = error => ({
+	type: USER_DELETE_PHOTO_FAILED,
+	payload: error
+});
+
+export const userDeletePhotoReset = () => ({
+	type: USER_DELETE_PHOTO_RESET,
 });
