@@ -55,7 +55,9 @@ import {
 	ADMIN_APPROVE_PAYMENT_STARTED,
 	GET_USER_PHOTOS_STARTED,
 	GET_USER_REPORTS_STARTED,
-	ADMIN_APPROVE_REPORT_STARTED
+	ADMIN_APPROVE_REPORT_STARTED,
+	ADMIN_GET_PROFILE_PHOTOS_STARTED,
+	ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
 } from './types';
 
 import {
@@ -163,7 +165,11 @@ import {
 	getUserReportsSuccess,
 	getUserReportsError,
 	adminApproveReportSuccess,
-	adminApproveReportError
+	adminApproveReportError,
+	adminGetProfilePhotosSuccess,
+	adminGetProfilePhotosError,
+	adminApproveProfilePhotoSuccess,
+	adminApproveProfilePhotoError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1530,6 +1536,45 @@ function* adminApproveReportTask(action) {
 	}
 }
 
+function* adminGetProfilePhotosTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/profile-photos/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminGetProfilePhotosSuccess(data));
+	} catch (error) {
+		yield put(adminGetProfilePhotosError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminApproveProfilePhotoTask(action) {
+	const { payload = {} } = action;
+	const { userId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.post, `${BASE_URL}/admin/user/profile-photo/approve/${userId}`,
+			{},
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApproveProfilePhotoSuccess(data));
+	} catch (error) {
+		yield put(adminApproveProfilePhotoError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1749,6 +1794,14 @@ function* watchAdminApproveReport() {
 	yield takeLatest(ADMIN_APPROVE_REPORT_STARTED, adminApproveReportTask);
 }
 
+function* watchAdminGetProfilePhotos() {
+	yield takeLatest(ADMIN_GET_PROFILE_PHOTOS_STARTED, adminGetProfilePhotosTask);
+}
+
+function* watchAdminApproveProfilePhoto() {
+	yield takeLatest(ADMIN_APPROVE_PROFILE_PHOTO_STARTED, adminApproveProfilePhotoTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1803,6 +1856,8 @@ export default function* saga() {
 		watchAdminApprovePayment(),
 		watchGetUserPhotos(),
 		watchGetUserReports(),
-		watchAdminApproveReport()
+		watchAdminApproveReport(),
+		watchAdminGetProfilePhotos(),
+		watchAdminApproveProfilePhoto()
 	]);
 }

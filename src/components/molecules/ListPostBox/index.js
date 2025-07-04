@@ -91,7 +91,33 @@ const ListPostBox = ({
                                     
                                     <div className={styles.leftEpisode}>
                                         <div className={styles.profileEpisode} onClick={() => window.location = '/member/' + item?.creator_user?.id}>
-                                            <Image src={IM} style={{ width: '60px',height: '60px',borderRadius: '100px'}}/>
+                                            {item?.creator_user?.profile_photo_path ? (
+                                                <>
+                                                    <Image 
+                                                        src={item?.creator_user?.profile_photo_path} 
+                                                        width={100}
+                                                        height={100}
+                                                        style={{ width: '60px',height: '60px',borderRadius: '100px'}}
+                                                    />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <svg
+                                                        width="60"
+                                                        height="60"
+                                                        viewBox="0 0 24 24"
+                                                        fill="#ccc"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                        <circle cx="12" cy="12" r="10" fill="#E0E0E0" />
+                                                        <circle cx="12" cy="8" r="4" fill="#BDBDBD" />
+                                                        <path
+                                                            d="M12 14c-4 0-6 2-6 4v1h12v-1c0-2-2-4-6-4z"
+                                                            fill="#BDBDBD"
+                                                    />
+                                                    </svg>
+                                                </>
+                                            )}
                                         </div>
                                         
                                         <div className={styles.profileDetailEpisode}>

@@ -185,6 +185,13 @@ import {
 	ADMIN_APPROVE_REPORT_SUCCEEDED,
 	ADMIN_APPROVE_REPORT_FAILED,
 	ADMIN_APPROVE_REPORT_RESET,
+	ADMIN_GET_PROFILE_PHOTOS_STARTED,
+	ADMIN_GET_PROFILE_PHOTOS_SUCCEEDED,
+	ADMIN_GET_PROFILE_PHOTOS_FAILED,
+	ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
+	ADMIN_APPROVE_PROFILE_PHOTO_SUCCEEDED,
+	ADMIN_APPROVE_PROFILE_PHOTO_FAILED,
+	ADMIN_APPROVE_PROFILE_PHOTO_RESET
 } from './types';
 
 export const loginUser = values => ({
@@ -1088,4 +1095,38 @@ export const adminApproveReportError = error => ({
 
 export const adminApproveReportReset = () => ({
 	type: ADMIN_APPROVE_REPORT_RESET
+});
+
+export const adminGetProfilePhotos = values => ({
+	type: ADMIN_GET_PROFILE_PHOTOS_STARTED,
+	payload: values
+});
+
+export const adminGetProfilePhotosSuccess = data => ({
+	type: ADMIN_GET_PROFILE_PHOTOS_SUCCEEDED,
+	payload: data
+});
+
+export const adminGetProfilePhotosError = error => ({
+	type: ADMIN_GET_PROFILE_PHOTOS_FAILED,
+	payload: error
+});
+
+export const adminApproveProfilePhoto = values => ({
+	type: ADMIN_APPROVE_PROFILE_PHOTO_STARTED,
+	payload: values
+});
+
+export const adminApproveProfilePhotoSuccess = data => ({
+	type: ADMIN_APPROVE_PROFILE_PHOTO_SUCCEEDED,
+	payload: data
+});
+
+export const adminApproveProfilePhotoError = error => ({
+	type: ADMIN_APPROVE_PROFILE_PHOTO_FAILED,
+	payload: error
+});
+
+export const adminApproveProfilePhotoReset = () => ({
+	type: ADMIN_APPROVE_PROFILE_PHOTO_RESET
 });

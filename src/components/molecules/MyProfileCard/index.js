@@ -4,6 +4,7 @@ import IMG from '../../../utils/imgs/header-bg.jpg';
 import Image from "next/image";
 import ThemeConfig from "@/src/utils/ThemeConfig";
 import ToastMessage from "../TostMessage";
+import { useRouter } from "next/router";
 
 const MyProfileCard = ({
     uploadProfilePhotoComplete = false,
@@ -20,6 +21,9 @@ const MyProfileCard = ({
 }) => {
     const [showSelectedFileSuccess, setShowSelectedFileSuccess] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+
+    const router = useRouter();
+    const isMyProfilePage = router.pathname === "/my-profile";
 
     const handleImageChange = (e) => {
         setShowSelectedFileSuccess(true);
@@ -87,7 +91,20 @@ const MyProfileCard = ({
                             </>
                         )}
                     </div>
-                    
+                    {isMyProfilePage && (
+                        <>
+                            <label 
+                                style={{ 
+                                    textAlign: 'center', 
+                                    fontSize: '13px', 
+                                    fontWeight: 'bold',
+                                    paddingTop: '15px',
+                                    color: details?.photo_approve === 1 ? ThemeConfig.success : ThemeConfig.error
+                                    }}>
+                                        {details?.photo_approve === 1 ? 'Onaylandı' : 'Onay Bekliyor'}
+                            </label>
+                        </>
+                    )}
                     <input
                         id="fileInput" // Bu inputu gizli yapıyoruz
                         type="file"
