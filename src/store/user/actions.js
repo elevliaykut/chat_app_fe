@@ -104,6 +104,7 @@ import {
 	USER_UPLOAD_PHOTO_STARTED,
 	USER_UPLOAD_PHOTO_SUCCEEDED,
 	USER_UPLOAD_PHOTO_FAILED,
+	USER_UPLOAD_PHOTO_RESET,
 	GET_USER_PHOTO_STARTED,
 	GET_USER_PHOTO_SUCCEEDED,
 	GET_USER_PHOTO_FAILED,
@@ -717,6 +718,10 @@ export const userUploadPhotoSuccess = data => ({
 export const userUploadPhotoError = error => ({
 	type: USER_UPLOAD_PHOTO_FAILED,
 	payload: error
+});
+
+export const userUploadPhotoReset = () => ({
+	type: USER_UPLOAD_PHOTO_RESET
 });
 
 export const getUserPhoto = values => ({

@@ -68,16 +68,16 @@ const ArchivePage = ({
     messages = [],
     sendMessageCompleted = false,
     userPhotoIsLoading = false,
-
     resetPostActivityLikeComplete = () => {},
     resetPostActivityFavoriteComplete = () => {},
     resetPostActivitySmiledComplete = () => {},
     activityLikeComplete = false,
     activityFavoriteComplete = false,
     activitySmileComplete = false,
-
     getMyStory = () => {},
-    myStories = []
+    myStories = [],
+    userUploadPhotoComplete = false,
+    userUploadPhotoReset = () => {}
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [profileTextModalVisible, setProfileTextModalVisible]         = useState(false);
@@ -100,6 +100,13 @@ const ArchivePage = ({
         setMessageModalVisible(false);
     }
 
+    useEffect(() => {
+        if(userUploadPhotoComplete) {
+            userUploadPhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userUploadPhotoComplete]);
+    
     useEffect(() => {
         getMyStory();
     },[]);

@@ -73,7 +73,9 @@ const GetMyBlockedProfilesPage = ({
     getUserPhoto = () => {},
     photos = [],
     getMyStory = () => {},
-    myStories = []
+    myStories = [],
+    userUploadPhotoComplete = false,
+    userUploadPhotoReset = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -102,6 +104,13 @@ const GetMyBlockedProfilesPage = ({
         getMyStory();
     },[]);
 
+    useEffect(() => {
+        if(userUploadPhotoComplete) {
+            userUploadPhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userUploadPhotoComplete]);
+    
     useEffect(() => {
         if(createStoryComplete) {
             resetCreateStoryComplete();

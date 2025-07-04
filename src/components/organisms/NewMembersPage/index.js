@@ -73,7 +73,9 @@ const NewMembersPage = ({
     getUserPhoto = () => {},
     photos = [],
     getMyStory = () => {},
-    myStories = []
+    myStories = [],
+    userUploadPhotoComplete = false,
+    userUploadPhotoReset = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -97,6 +99,13 @@ const NewMembersPage = ({
         setPhotoModalVisible(false);
     }
 
+    useEffect(() => {
+        if(userUploadPhotoComplete) {
+            userUploadPhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userUploadPhotoComplete]);
+    
     useEffect(() => {
         getMyStory();
     },[]);

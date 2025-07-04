@@ -73,7 +73,9 @@ const GetMyFavoriteUsersPage = ({
     getUserPhoto = () => {},
     photos = [],
     getMyStory = () => {},
-    myStories = []
+    myStories = [],
+    userUploadPhotoComplete = false,
+    userUploadPhotoReset = () => {}
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -96,6 +98,13 @@ const GetMyFavoriteUsersPage = ({
         setPhotoModalVisible(false);
     }
 
+    useEffect(() => {
+        if(userUploadPhotoComplete) {
+            userUploadPhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userUploadPhotoComplete]);
+    
     useEffect(() => {
         getMyStory();
     },[]);

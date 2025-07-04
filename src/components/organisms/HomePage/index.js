@@ -71,20 +71,19 @@ const HomePage = ({
     messageIsLoading = false,
     messages = [],
     sendMessageCompleted = false,
-
     resetPostActivityLikeComplete = () => {},
     resetPostActivityFavoriteComplete = () => {},
     resetPostActivitySmiledComplete = () => {},
     activityLikeComplete = false,
     activityFavoriteComplete = false,
     activitySmileComplete = false,
-
     userReportsComplete = false,
     userReports = () => {},
     userReportsReset = () => {},
-
     getMyStory = () => {},
-    myStories = []
+    myStories = [],
+    userUploadPhotoComplete = false,
+    userUploadPhotoReset = () => {}
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -109,6 +108,13 @@ const HomePage = ({
     const messageModalOnClose = () => {
         setMessageModalVisible(false);
     }
+
+    useEffect(() => {
+        if(userUploadPhotoComplete) {
+            userUploadPhotoReset();
+            getUserPhoto({ userId: userMe?.id });
+        }
+    },[userUploadPhotoComplete]);
 
     useEffect(() => {
         getMyStory();
@@ -157,9 +163,13 @@ const HomePage = ({
 
     useEffect(() => {
         if(userMe?.id) {
-            getUserPhoto({ userId: userMe });
+            getUserPhoto({ userId: userMe?.id });
         }
     },[userMe?.id]);
+
+    useEffect(() => {
+        getUserPhoto({ userId: userMe?.id});
+    },[]);
 
     useEffect(() => {
         if (!isUserLoggedIn) {

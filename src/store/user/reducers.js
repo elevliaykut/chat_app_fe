@@ -107,6 +107,7 @@ import {
 	USER_UPLOAD_PHOTO_STARTED,
 	USER_UPLOAD_PHOTO_SUCCEEDED,
 	USER_UPLOAD_PHOTO_FAILED,
+	USER_UPLOAD_PHOTO_RESET,
 	GET_USER_PHOTO_STARTED,
 	GET_USER_PHOTO_SUCCEEDED,
 	GET_USER_PHOTO_FAILED,
@@ -262,7 +263,8 @@ const initialState = {
 	userReports: [],
 	adminApproveReportComplete: false,
 	adminProfilePhotos: [],
-	adminApproveProfilePhotoComplete: false
+	adminApproveProfilePhotoComplete: false,
+	userUploadPhotoComplete: false,
 };
 
 const user = (state = initialState, action) => {
@@ -923,18 +925,26 @@ const user = (state = initialState, action) => {
 		case USER_UPLOAD_PHOTO_STARTED:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
+				userUploadPhotoComplete: false
 			};
 		case USER_UPLOAD_PHOTO_SUCCEEDED:
 			return {
 				...state,
 				isLoading: false,
+				userUploadPhotoComplete: true
 			};
 		case USER_UPLOAD_PHOTO_FAILED:
 			return {
 				...state,
 				isLoading: false,
+				userUploadPhotoComplete: false,
 				error: payload
+			};
+		case USER_UPLOAD_PHOTO_RESET:
+			return {
+				...state,
+				userUploadPhotoComplete: false
 			};
 		case GET_USER_PHOTO_STARTED:
 			return {

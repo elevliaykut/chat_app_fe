@@ -20,6 +20,7 @@ import {
     createStory,
     resetCreateStoryComplete,
     userUploadPhoto,
+    userUploadPhotoReset,
     getUserPhoto,
     
     userReports,
@@ -84,8 +85,8 @@ const mapStateToProps = state => ({
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
-
-    myStories: state?.user?.myStories
+    myStories: state?.user?.myStories,
+    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -116,15 +117,14 @@ const mapDispatchToProps = dispatch => ({
     getMessages: payload => dispatch(getMessages(payload)),
     sendMessage: payload => dispatch(sendMessage(payload)),
     resetSendMessageCompleted: () => dispatch(resetSendMessageCompleted()),
-
     resetPostActivityLikeComplete: () => dispatch(resetPostActivityLikeComplete()),
     resetPostActivityFavoriteComplete: () => dispatch(resetPostActivityFavoriteComplete()),
     resetPostActivitySmiledComplete: () => dispatch(resetPostActivitySmiledComplete()),
-    
     userReports: payload => dispatch(userReports(payload)),
     userReportsReset: () => dispatch(userReportsReset()),
+    getMyStory: payload => dispatch(getMyStory(payload)),
 
-    getMyStory: payload => dispatch(getMyStory(payload))
+    userUploadPhotoReset: () => dispatch(userUploadPhotoReset()),
 
 });
 

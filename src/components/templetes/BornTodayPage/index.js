@@ -26,6 +26,7 @@ import {
     createStory,
     resetCreateStoryComplete,
     userUploadPhoto,
+    userUploadPhotoReset,
     getUserPhoto,
     getMyStory,
 
@@ -64,15 +65,15 @@ const mapStateToProps = state => ({
     isUserLoggedIn: state?.user?.isUserLoggedIn,
     notifications: state?.notifications?.notifications,
     notificationIsLoading: state?.notifications?.notificationIsLoading,
-
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
-
     photos: state?.user?.photos,
     stories: state?.user?.stories,
     createStoryComplete: state?.user?.createStoryComplete,
-    myStories: state?.user?.myStories
+    myStories: state?.user?.myStories,
+    userUploadPhotoComplete: state?.user?.userUploadPhotoComplete
+
 
 });
 
@@ -107,7 +108,8 @@ const mapDispatchToProps = dispatch => ({
     resetCreateStoryComplete: () => dispatch(resetCreateStoryComplete()),
     userUploadPhoto: payload => dispatch(userUploadPhoto(payload)),
     getUserPhoto: payload => dispatch(getUserPhoto(payload)),
-    getMyStory: payload => dispatch(getMyStory(payload))
+    getMyStory: payload => dispatch(getMyStory(payload)),
+    userUploadPhotoReset: () => dispatch(userUploadPhotoReset()),
 
 });
 
