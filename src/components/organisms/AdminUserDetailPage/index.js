@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import AdminTopBanner from "../../molecules/AdminTopBanner";
 import AdminMenu from "../../molecules/AdminMenu";
+import Image from "next/image";
 
 const AdminUserDetailPage = ({
     userLogout = () => {},
@@ -19,7 +20,7 @@ const AdminUserDetailPage = ({
     useEffect(() => {
         adminGetUserDetails({ userId: userId });
     },[userId]);
-
+    
     useEffect(() => {
         if(!isLoading) {
             setUserDetailVisible(true);
@@ -50,6 +51,16 @@ const AdminUserDetailPage = ({
                             <div style={{ width: '100%'}}>
                                 <div className={styles.container}>
                                     <h1 className={styles.title}>Kullanıcı Detayı</h1>
+                                            {adminUserDetails?.profile_photo_path && (
+                                                <>
+                                                    <Image 
+                                                        src={adminUserDetails?.profile_photo_path} 
+                                                        width={200}
+                                                        height={200}
+                                                        style={{ width: '200px',height: '200px',borderRadius: '0px'}}
+                                                    />
+                                                </>
+                                            )}
 
                                     <section className={styles.section}>
                                         <div style={{ display: 'flex'}}>
