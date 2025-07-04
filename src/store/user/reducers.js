@@ -177,7 +177,14 @@ import {
 	ADMIN_APPROVE_PAYMENT_RESET,
 	GET_USER_PHOTOS_STARTED,
 	GET_USER_PHOTOS_SUCCEEDED,
-	GET_USER_PHOTOS_FAILED
+	GET_USER_PHOTOS_FAILED,
+	GET_USER_REPORTS_STARTED,
+	GET_USER_REPORTS_SUCCEEDED,
+	GET_USER_REPORTS_FAILED,
+	ADMIN_APPROVE_REPORT_STARTED,
+	ADMIN_APPROVE_REPORT_SUCCEEDED,
+	ADMIN_APPROVE_REPORT_FAILED,
+	ADMIN_APPROVE_REPORT_RESET
 } from './types';
 
 const initialState = {
@@ -244,7 +251,9 @@ const initialState = {
 	adminApproveProfileTextComplete: false,
 	adminPayments: [],
 	adminApprovePaymentComplete: false,
-	userPhotos: []
+	userPhotos: [],
+	userReports: [],
+	adminApproveReportComplete: false
 };
 
 const user = (state = initialState, action) => {
@@ -1337,6 +1346,47 @@ const user = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 				error: payload
+			};
+		case GET_USER_REPORTS_STARTED:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case GET_USER_REPORTS_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				userReports: payload?.data
+			};
+		case GET_USER_REPORTS_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_REPORT_STARTED:
+			return {
+				...state,
+				isLoading: true,
+				adminApproveReportComplete: false
+			};
+		case ADMIN_APPROVE_REPORT_SUCCEEDED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveReportComplete: true,
+			};
+		case ADMIN_APPROVE_REPORT_FAILED:
+			return {
+				...state,
+				isLoading: false,
+				adminApproveReportComplete: false,
+				error: payload
+			};
+		case ADMIN_APPROVE_REPORT_RESET:
+			return {
+				...state,
+				adminApproveReportComplete: false,
 			};
 		default:
 			return state;

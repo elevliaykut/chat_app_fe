@@ -178,6 +178,13 @@ import {
 	GET_USER_PHOTOS_STARTED,
 	GET_USER_PHOTOS_SUCCEEDED,
 	GET_USER_PHOTOS_FAILED,
+	GET_USER_REPORTS_STARTED,
+	GET_USER_REPORTS_SUCCEEDED,
+	GET_USER_REPORTS_FAILED,
+	ADMIN_APPROVE_REPORT_STARTED,
+	ADMIN_APPROVE_REPORT_SUCCEEDED,
+	ADMIN_APPROVE_REPORT_FAILED,
+	ADMIN_APPROVE_REPORT_RESET,
 } from './types';
 
 export const loginUser = values => ({
@@ -1047,4 +1054,38 @@ export const getUserPhotosSuccess = data => ({
 export const getUserPhotosError = error => ({
 	type: GET_USER_PHOTOS_FAILED,
 	payload: error
+});
+
+export const getUserReports = values => ({
+	type: GET_USER_REPORTS_STARTED,
+	payload: values
+});
+
+export const getUserReportsSuccess = data => ({
+	type: GET_USER_REPORTS_SUCCEEDED,
+	payload: data
+});
+
+export const getUserReportsError = error => ({
+	type: GET_USER_REPORTS_FAILED,
+	payload: error
+});
+
+export const adminApproveReport = values => ({
+	type: ADMIN_APPROVE_REPORT_STARTED,
+	payload: values
+});
+
+export const adminApproveReportSuccess = data => ({
+	type: ADMIN_APPROVE_REPORT_SUCCEEDED,
+	payload: data
+});
+
+export const adminApproveReportError = error => ({
+	type: ADMIN_APPROVE_REPORT_FAILED,
+	payload: error
+});
+
+export const adminApproveReportReset = () => ({
+	type: ADMIN_APPROVE_REPORT_RESET
 });

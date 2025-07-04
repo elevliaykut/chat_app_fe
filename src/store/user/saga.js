@@ -53,7 +53,9 @@ import {
 	ADMIN_APPROVE_PROFILE_TEXT_STARTED,
 	ADMIN_GET_PAYMENTS_STARTED,
 	ADMIN_APPROVE_PAYMENT_STARTED,
-	GET_USER_PHOTOS_STARTED
+	GET_USER_PHOTOS_STARTED,
+	GET_USER_REPORTS_STARTED,
+	ADMIN_APPROVE_REPORT_STARTED
 } from './types';
 
 import {
@@ -157,7 +159,11 @@ import {
 	adminApprovePaymentSuccess,
 	adminApprovePaymentError,
 	getUserPhotosSuccess,
-	getUserPhotosError
+	getUserPhotosError,
+	getUserReportsSuccess,
+	getUserReportsError,
+	adminApproveReportSuccess,
+	adminApproveReportError
 } from './actions';
 
 const cookies = new Cookies();
@@ -1486,6 +1492,44 @@ function* getUserPhotosTask(action) {
 	}
 }
 
+function* getUserReportsTask(action) {
+	const { payload = {} } = action;
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.get, `${BASE_URL}/admin/user/reports/list`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(getUserReportsSuccess(data));
+	} catch (error) {
+		yield put(getUserReportsError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
+function* adminApproveReportTask(action) {
+	const { payload = {} } = action;
+	const { reportId } = payload;
+
+	const token = cookies.get('chatAppToken');
+
+	try {
+		const response = yield call(axios.delete, `${BASE_URL}/admin/user/report/${reportId}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			},
+		);
+		const { data } = response;
+		yield put(adminApproveReportSuccess(data));
+	} catch (error) {
+		yield put(adminApproveReportError(error?.response?.data));
+		console.log(error?.response);
+	}
+}
+
 function* userLogoutTask(action) {
 	yield put(userLogoutSuccess());
 	window.location = '/';
@@ -1697,6 +1741,14 @@ function* watchGetUserPhotos() {
 	yield takeLatest(GET_USER_PHOTOS_STARTED, getUserPhotosTask);
 }
 
+function* watchGetUserReports() {
+	yield takeLatest(GET_USER_REPORTS_STARTED, getUserReportsTask);
+}
+
+function* watchAdminApproveReport() {
+	yield takeLatest(ADMIN_APPROVE_REPORT_STARTED, adminApproveReportTask);
+}
+
 export default function* saga() {
 	yield all([
 		watchLoginUser(),
@@ -1749,6 +1801,8 @@ export default function* saga() {
 		watchAdminApproveProfileText(),
 		watchAdminGetPayments(),
 		watchAdminApprovePayment(),
-		watchGetUserPhotos()
+		watchGetUserPhotos(),
+		watchGetUserReports(),
+		watchAdminApproveReport()
 	]);
 }
