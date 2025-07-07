@@ -58,6 +58,7 @@ const PhotosPage = ({
                                             <th>Soyisim</th>
                                             <th>Fotoğraf</th>
                                             <th>Durum</th>
+                                            <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
                                         </thead>
@@ -79,6 +80,7 @@ const PhotosPage = ({
                                                 )}
                                             </td>
                                             <td>{photo?.status === 0 ? 'Onay Bekliyor' : 'Onaylandı'}</td>
+                                            <td>{photo?.created_at}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}

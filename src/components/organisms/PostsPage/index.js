@@ -59,6 +59,7 @@ const PostsPage = ({
                                             <th>Fotoğraf</th>
                                             <th>İçerik</th>
                                             <th>Durum</th>
+                                            <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
                                         </thead>
@@ -81,6 +82,7 @@ const PostsPage = ({
                                             </td>
                                             <td>{post?.description}</td>
                                             <td>{post?.status === 0 ? 'Onay Bekliyor' : 'Onaylandı'}</td>
+                                            <td>{post?.created_at}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}

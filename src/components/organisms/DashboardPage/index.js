@@ -51,6 +51,7 @@ const DashboardPage = ({
                                             <th>Telefon</th>
                                             <th>Durum</th>
                                             <th>Cinsiyet</th>
+                                            <th>Tarih</th>
                                             <th>Detay</th>
                                         </tr>
                                         </thead>
@@ -65,6 +66,7 @@ const DashboardPage = ({
                                             <td>{user.phone}</td>
                                             <td>{user.status === 1 ? 'Aktif' : 'Pasif'}</td>
                                             <td>{user.gender === 1 ? 'Erkek'  :'Kadın'}</td>
+                                            <td>{user?.created_at}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}

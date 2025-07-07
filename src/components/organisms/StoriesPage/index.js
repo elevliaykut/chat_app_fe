@@ -58,6 +58,7 @@ const StoriesPage = ({
                                             <th>Soyisim</th>
                                             <th>Story</th>
                                             <th>Durum</th>
+                                            <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
                                         </thead>
@@ -79,6 +80,7 @@ const StoriesPage = ({
                                                 )}
                                             </td>
                                             <td>{story?.status}</td>
+                                            <td>{story?.created_at}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}

@@ -58,6 +58,7 @@ const ProfileTextsPage = ({
                                             <th>Soyisim</th>
                                             <th>Profil Yazısı</th>
                                             <th>Durum</th>
+                                            <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
                                         </thead>
@@ -69,6 +70,7 @@ const ProfileTextsPage = ({
                                             <td>{text?.user_surname}</td>
                                             <td>{text?.profile_summary}</td>
                                             <td>{text?.profile_text_status === 0 ? 'Onay Bekliyor' : 'Onaylandı'}</td>
+                                            <td>{text?.created_at}</td>
                                             <td>
                                                 <button
                                                     className={styles.detailButton}
