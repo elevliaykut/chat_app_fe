@@ -35,7 +35,8 @@ const MySettingsPage = ({
     changePasswordComplete = false,
     userUpdateSpouseCandidate = () => {},
     userUpdateSpouseCandidateReset = () => {},
-    userUpdateSpouseCandidateInfoComplete = false
+    userUpdateSpouseCandidateInfoComplete = false,
+    isThatActive = false
 }) => {
     const [profileVisible, setProfileVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
@@ -262,6 +263,7 @@ const MySettingsPage = ({
                                 setDeleteAccountEpisodeVisible={setDeleteAccountEpisodeVisible}
                                 setChangeEmailEpisodeVisible={setChangeEmailEpisodeVisible}
                                 setChangePasswordEpisodeVisible={setChangePasswordEpisodeVisible}
+                                isThatActive={isThatActive}
                             />
                         </>
                     )}

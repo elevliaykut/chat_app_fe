@@ -87,7 +87,8 @@ const HomePage = ({
     
     userDeletePhoto = () => {},
     userDeletePhotoComplete = false,
-    userDeletePhotoReset = () => {}
+    userDeletePhotoReset = () => {},
+    isThatActive = false
 }) => {
 
     const [visible, setVisible]                                         = useState(false);
@@ -441,6 +442,7 @@ const HomePage = ({
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 setPhotoModalVisible={setPhotoModalVisible}
                                 userLogout={userLogout}
+                                isThatActive={isThatActive}
                             />
                         </>
                     )}

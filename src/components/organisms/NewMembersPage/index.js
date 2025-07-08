@@ -78,7 +78,8 @@ const NewMembersPage = ({
     userUploadPhotoReset = () => {},
     userDeletePhoto = () => {},
     userDeletePhotoComplete = false,
-    userDeletePhotoReset = () => {}
+    userDeletePhotoReset = () => {},
+    isThatActive = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -467,6 +468,8 @@ const NewMembersPage = ({
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 setPhotoModalVisible={setPhotoModalVisible}
+                                userLogout={userLogout}
+                                isThatActive={isThatActive}
                             />
                         </>
                     )}

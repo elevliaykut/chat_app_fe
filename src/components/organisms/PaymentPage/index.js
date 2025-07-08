@@ -31,7 +31,7 @@ const PaymentPage = ({
     const packagesForCreditCard = [
         {
           icon: '🚀',
-          title: '1 AYLIK',
+          title: '1',
           price: '749',
           monthly: '/Ay',
           total: 'Toplam 749₺',
@@ -39,7 +39,7 @@ const PaymentPage = ({
         },
         {
           icon: '🎗',
-          title: '6 AYLIK',
+          title: '6',
           price: '2194',
           monthly: '/Ay',
           total: 'Toplam ~2794₺~ Yerine 2194₺',
@@ -48,7 +48,7 @@ const PaymentPage = ({
         },
         {
           icon: '💎',
-          title: '3 AYLIK',
+          title: '3',
           price: '1897',
           monthly: '/Ay',
           total: 'Toplam 1897₺',
@@ -59,7 +59,7 @@ const PaymentPage = ({
     const packagesForFast = [
         {
           icon: '🚀',
-          title: '1 AYLIK',
+          title: '1',
           price: '549',
           monthly: '/Ay',
           total: 'Toplam 549₺',
@@ -67,7 +67,7 @@ const PaymentPage = ({
         },
         {
           icon: '🎗',
-          title: '6 AYLIK',
+          title: '6',
           price: '199',
           monthly: '/Ay',
           total: 'Toplam ~1794₺ ~ Yerine 199₺',
@@ -76,7 +76,7 @@ const PaymentPage = ({
         },
         {
           icon: '💎',
-          title: '3 AYLIK',
+          title: '3',
           price: '299',
           monthly: '/Ay',
           total: 'Toplam 299₺',
@@ -125,7 +125,7 @@ const PaymentPage = ({
                                         className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
                                     >
                                         <div className={styles.icon}>{pkg?.icon}</div>
-                                        <h3>{pkg.title}</h3>
+                                        <h3>{pkg.title} AYLIK</h3>
                                         <div className={styles.price}>
                                             {pkg.price}₺
                                             <span>{pkg.monthly}</span>
@@ -152,7 +152,7 @@ const PaymentPage = ({
                                         className={`${styles.card} ${pkg.highlight ? styles.highlight : ''}`}
                                     >
                                         <div className={styles.icon}>{pkg?.icon}</div>
-                                        <h3>{pkg.title}</h3>
+                                        <h3>{pkg.title} AYLIK</h3>
                                         <div className={styles.price}>
                                             {pkg.price}₺
                                             <span>{pkg.monthly}</span>

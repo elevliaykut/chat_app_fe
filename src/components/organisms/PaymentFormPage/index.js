@@ -3,6 +3,7 @@ import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
 import FooterBanner from "../../molecules/FooterBanner";
 import ToastMessage from "../../molecules/TostMessage";
+import { useRouter } from 'next/router';
 
 const PaymentFormPage = ({
     getUserMe = () => {},
@@ -28,6 +29,9 @@ const PaymentFormPage = ({
     const [paymentDate, setPaymentDate] = useState();
     const [price, setPrice] = useState();
     const [description, setDescription] = useState();
+
+    const router = useRouter();
+    const { packageTime } = router.query;
 
     useEffect(() => {
         if(paymentComplete) {
@@ -80,6 +84,7 @@ const PaymentFormPage = ({
         data.append('price', price);
         data.append('code', description);
         data.append('description', description);
+        data.append('package_time', packageTime);
 
         createPayment({
             formData: data

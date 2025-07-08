@@ -78,7 +78,8 @@ const NearLocationsPage = ({
     userUploadPhotoReset = () => {},
     userDeletePhoto = () => {},
     userDeletePhotoComplete = false,
-    userDeletePhotoReset = () => {}
+    userDeletePhotoReset = () => {},
+    isThatActive = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -424,6 +425,8 @@ const NearLocationsPage = ({
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 setPhotoModalVisible={setPhotoModalVisible}
+                                userLogout={userLogout}
+                                isThatActive={isThatActive}
                             />
                         </>
                     )}

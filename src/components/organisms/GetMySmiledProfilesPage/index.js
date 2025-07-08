@@ -78,7 +78,8 @@ const GetMySmiledProfilesPage = ({
     userUploadPhotoReset = () => {},
     userDeletePhoto = () => {},
     userDeletePhotoComplete = false,
-    userDeletePhotoReset = () => {}
+    userDeletePhotoReset = () => {},
+    isThatActive = false
 }) => {
 
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -393,6 +394,8 @@ const GetMySmiledProfilesPage = ({
                                 setSpouseCandidateModalVisible={setSpouseCandidateModalVisible}
                                 setCaracteristicFeatureModalVisible={setCaracteristicFeatureModalVisible}
                                 setPhotoModalVisible={setPhotoModalVisible}
+                                userLogout={userLogout}
+                                isThatActive={isThatActive}
                             />
                         </>
                     )}

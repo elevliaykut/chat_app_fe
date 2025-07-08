@@ -132,9 +132,9 @@ const BeGoldMemberPage = ({
                     <div className={styles.codeHeader}>
                         <div className={styles.summaryBox}>
                             <h4>Hesap Özeti</h4>
-                            <p>{packageName} ALTIN ÜYELİK</p>
+                            <p>{packageName} AYLIK ALTIN ÜYELİK</p>
                             <strong>Toplam: {price}₺</strong> 
-                            <button className={styles.confirmButton} onClick={() => window.location = '/payment-form'}>Ödemeyi Onayladım</button>
+                            <button className={styles.confirmButton} onClick={() => window.location = '/payment-form?packageTime=' + packageName}>Ödemeyi Onayladım</button>
                         </div>
                     </div>
                 </div>

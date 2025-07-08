@@ -203,6 +203,7 @@ const initialState = {
 	id: '',
 	firstName: '',
 	lastName: '',
+	isThatActive: false,
 	phone: '',
 	email: '',
 	status: '',
@@ -291,6 +292,7 @@ const user = (state = initialState, action) => {
 				phone: payload?.data?.phone,
 				email: payload?.data?.email,
 				status: payload?.data?.status,
+				isThatActive: payload?.data?.is_that_active,
 				loginIsLoaing: false
 			};
         case USER_LOGIN_FAILED:

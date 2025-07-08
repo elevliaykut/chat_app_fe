@@ -64,6 +64,7 @@ const PaymentsPage = ({
                                             <th>Açıklama</th>
                                             <th>Kod</th>
                                             <th>Ödeme Durumu</th>
+                                            <th>Paket Süresi</th>
                                             <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
@@ -82,6 +83,7 @@ const PaymentsPage = ({
                                                 <td>{payment?.description}</td>
                                                 <td>{payment?.code}</td>
                                                 <td>{payment?.completed ? 'Onaylanmış' : 'Onay Bekliyor'}</td>
+                                                <td>{payment?.package_time ? payment?.package_time + 'AYLIK' : '-'}</td>
                                                 <td>{payment?.created_at}</td>
                                                 <td>
                                                     <button

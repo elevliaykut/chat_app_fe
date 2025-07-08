@@ -89,7 +89,8 @@ const mapStateToProps = state => ({
     myStories: state?.user?.myStories,
     userUploadPhotoComplete: state?.user?.userUploadPhotoComplete,
     
-    userDeletePhotoComplete: state?.user?.userDeletePhotoComplete
+    userDeletePhotoComplete: state?.user?.userDeletePhotoComplete,
+    isThatActive: state?.user?.isThatActive,
 });
 
 const mapDispatchToProps = dispatch => ({

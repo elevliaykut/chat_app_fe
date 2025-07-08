@@ -37,7 +37,8 @@ const mapStateToProps = state => ({
     deleteAccountComplete: state?.user?.deleteAccountComplete,
     changeEmailComplete: state?.user?.changeEmailComplete,
     changePasswordComplete: state?.user?.changePasswordComplete,
-    userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete
+    userUpdateSpouseCandidateInfoComplete: state?.user?.userUpdateSpouseCandidateInfoComplete,
+    isThatActive: state?.user?.isThatActive,
 });
 
 const mapDispatchToProps = dispatch => ({
