@@ -10,14 +10,14 @@
 
 .menu {
     display: flex;
-    margin-left: 30px;
+    margin-left: 8px;
     padding-top: 13px;
     padding-bottom: 13px;
     cursor: pointer;
 }
 
 .menuLabel {
-    font-size: 16px;
+    font-size: 14px;
     color: #000;
     transition: transform 0.3s ease;
 }

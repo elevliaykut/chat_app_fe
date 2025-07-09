@@ -1235,10 +1235,12 @@ function* createPaymentTask(action) {
 
 function* adminGetUsersTask(action) {
 	const { payload = {} } = action;
+	const { username } = payload;
+
 	const token = cookies.get('chatAppToken');
 
 	try {
-		const response = yield call(axios.get, `${BASE_URL}/admin/user`,
+		const response = yield call(axios.get, `${BASE_URL}/admin/user?filter[username]=${username ? username : ''}`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			},

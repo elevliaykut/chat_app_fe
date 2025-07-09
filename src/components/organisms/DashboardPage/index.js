@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import AdminTopBanner from "../../molecules/AdminTopBanner";
 import AdminMenu from "../../molecules/AdminMenu";
+import debounce from 'lodash.debounce';
 
 const DashboardPage = ({
     userLogout = () => {},
@@ -26,6 +27,14 @@ const DashboardPage = ({
         window.location = `/admin/user/${userId}`;
     };
 
+    const setSearchTerm = value => {
+		debounceOnSearch(value);
+	};
+
+	const debounceOnSearch = debounce(value => {
+		adminGetUsers({ username: value });
+	}, 400);
+
     return (
         <>
             <AdminTopBanner 
@@ -40,6 +49,12 @@ const DashboardPage = ({
                             <>
                                 <div className={styles.container}>
                                     <h1 className={styles.title}>Kullanıcı Listesi</h1>
+                                    <input
+                                        type="text"
+                                        placeholder="Kullanıcı adına göre ara..."
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className={styles.searchInput}
+                                    />
                                     <table className={styles.table}>
                                         <thead>
                                         <tr>
