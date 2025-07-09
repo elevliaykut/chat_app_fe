@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
 import FooterBanner from "../../molecules/FooterBanner";
+import Footer from "../../molecules/Footer";
 
 const KullaniciSözlesmesi = ({
     getUserMe = () => {},
@@ -13,18 +14,18 @@ const KullaniciSözlesmesi = ({
     notificationIsLoading = false,
     isLoading = false,
 }) => {
-    const [userMeVisible, setUserMeVisible] = useState(false);
+    //const [userMeVisible, setUserMeVisible] = useState(false);
     
-    useEffect(() => {
-        if(!userMeLoading) {
-            setUserMeVisible(true);
-        }
-    },[userMeLoading]);
+    //useEffect(() => {
+    //    if(!userMeLoading) {
+    //        setUserMeVisible(true);
+    //    }
+    //},[userMeLoading]);
 
-    useEffect(() => {
-        getUserMe();
-        getNotifications({ read: false });
-    },[]);
+    //useEffect(() => {
+    //    getUserMe();
+    //    getNotifications({ read: false });
+    //},[]);
 
     return (
         <>
@@ -259,7 +260,10 @@ const KullaniciSözlesmesi = ({
                     Üyelik formunda yer alan "üyelik sözleşmesini okudum, kabul ediyorum" kutusunun işaretlenmesi yukarıdaki koşulların kabul edilmiş olması anlamına gelmektedir.<br/>
                 </label>
             </div>
-            <FooterBanner/>
+            {
+                //<FooterBanner/>
+            }
+            <Footer/>
         </>
     )
 }

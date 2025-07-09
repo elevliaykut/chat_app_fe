@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import TopBanner from "../../molecules/TopBanner";
-import FooterBanner from "../../molecules/FooterBanner";
+import Footer from "../../molecules/Footer";
 
 const HelpPage = ({
     getUserMe = () => {},
@@ -24,16 +24,16 @@ const HelpPage = ({
         setActiveIndex(activeIndex === index ? null : index);
     };
     
-    useEffect(() => {
-        if(!userMeLoading) {
-            setUserMeVisible(true);
-        }
-    },[userMeLoading]);
+    //useEffect(() => {
+    //    if(!userMeLoading) {
+    //        setUserMeVisible(true);
+    //    }
+    //},[userMeLoading]);
 
-    useEffect(() => {
-        getUserMe();
-        getNotifications({ read: false });
-    },[]);
+    //useEffect(() => {
+    //    getUserMe();
+    //    getNotifications({ read: false });
+    //},[]);
 
     const paymentData = [
         {
@@ -229,14 +229,16 @@ const HelpPage = ({
 
     return (
         <>
-            <TopBanner
-                onlineMemberCount={userMe?.online_member_count}
-                messageCount={userMe?.message_count}
-                profileVisible={userMeVisible}
-                userLogout={userLogout}
-                notifications={notifications}
-                notificationIsLoading={notificationIsLoading}
-            />
+            {
+                //<TopBanner
+                //    onlineMemberCount={userMe?.online_member_count}
+                //    messageCount={userMe?.message_count}
+                //    profileVisible={userMeVisible}
+                //    userLogout={userLogout}
+                //    notifications={notifications}
+                //    notificationIsLoading={notificationIsLoading}
+                ///>
+            }
             <div className={styles?.frame}>
                 <div className={styles.headerTextEpisode}>
                     <h1>Yardım</h1>
@@ -345,7 +347,10 @@ const HelpPage = ({
                         </main>
                     </div>
                 </div>
-                <FooterBanner/>
+                {
+                    //<FooterBanner/>
+                }
+                <Footer/>
         </>
     )
 }

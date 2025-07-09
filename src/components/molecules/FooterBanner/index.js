@@ -9,19 +9,19 @@ const FooterBanner = () => {
                     <label>Anasayfa</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu} onClick={() => window.location = '/help'}>
+                <div className={styles.menu} onClick={() => window.open('/help', '_blank')}>
                     <label>Yardım</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu} onClick={() => window.location = '/gizlilik-sozlesmesi'}>
+                <div className={styles.menu} onClick={() => window.open('/gizlilik-sozlesmesi', '_blank')}>
                     <label>Gizlilik Politikası</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu} onClick={() => window.location = '/kullanici-sozlesmesi'}>
+                <div className={styles.menu} onClick={() => window.open('/kullanici-sozlesmesi', '_blank')}>
                     <label>Kullanıcı Sözleşmesi</label>
                     <div className={styles.cızgı}/>
                 </div>
-                <div className={styles.menu} onClick={() => window.location = '/acik-riza-metni'}>
+                <div className={styles.menu} onClick={() => window.open('/acik-riza-metni', '_blank')}>
                     <label>Açık Rıza Metni</label>
                     <div className={styles.cızgı}/>
                 </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Index.module.css';
 import FooterBanner from "../../molecules/FooterBanner";
 import TopBanner from "../../molecules/TopBanner";
+import Footer from "../../molecules/Footer";
 
 const AcikRizaMetni = ({
     getUserMe = () => {},
@@ -13,29 +14,31 @@ const AcikRizaMetni = ({
     notificationIsLoading = false,
     isLoading = false,
 }) => {
-    const [userMeVisible, setUserMeVisible] = useState(false);
+    //const [userMeVisible, setUserMeVisible] = useState(false);
 
-    useEffect(() => {
-        if(!userMeLoading) {
-            setUserMeVisible(true);
-        }
-    },[userMeLoading]);
+    //useEffect(() => {
+    //    if(!userMeLoading) {
+    //        setUserMeVisible(true);
+    //    }
+    //},[userMeLoading]);
 
-    useEffect(() => {
-        getUserMe();
-        getNotifications({ read: false });
-    },[]);
+    //useEffect(() => {
+    //    getUserMe();
+    //    getNotifications({ read: false });
+    //},[]);
 
     return (
         <>
-            <TopBanner
-                onlineMemberCount={userMe?.online_member_count}
-                messageCount={userMe?.message_count}
-                profileVisible={userMeVisible}
-                userLogout={userLogout}
-                notifications={notifications}
-                notificationIsLoading={notificationIsLoading}
-            />
+            {
+                //<TopBanner
+                //    onlineMemberCount={userMe?.online_member_count}
+                //    messageCount={userMe?.message_count}
+                //    profileVisible={userMeVisible}
+                //    userLogout={userLogout}
+                //    notifications={notifications}
+                //    notificationIsLoading={notificationIsLoading}
+                ///>
+            }
             <div className={styles.frame}>
                 <label className={styles.title}>
                     Ticari Elektronik İleti İzni Aydınlatma ve Onay Metni
@@ -59,7 +62,10 @@ const AcikRizaMetni = ({
                 </label>
 
             </div>
-            <FooterBanner/>
+            {
+                //<FooterBanner/>
+            }
+            <Footer/>
         </>
     )
 }

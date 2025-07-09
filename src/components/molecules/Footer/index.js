@@ -9,32 +9,20 @@ const Footer  = () => {
                 <div className={styles.frame}>
                     
                     <div className={styles.topMenu}>
-                        <div className={styles.menu}>
+                        <div className={styles.menu} onClick={() => window.location = '/'}>
                             <label>Anasayfa</label>
                         </div>
-                        <div className={styles.menu}>
-                            <label>Blog</label>
-                        </div>
-                        <div className={styles.menu}>
-                            <label>Hakkımızda</label>
-                        </div>
-                        <div className={styles.menu}>
+                        <div className={styles.menu} onClick={() => window.open('/help', '_blank')}>
                             <label>Yardım</label>
                         </div>
-                        <div className={styles.menu}>
+                        <div className={styles.menu} onClick={() => window.open('/gizlilik-sozlesmesi', '_blank')}>
                             <label>Gizlilik Politikası</label>
                         </div>
-                        <div className={styles.menu}>
-                            <label>Rehber</label>
-                        </div>
-                        <div className={styles.menu}>
+                        <div className={styles.menu} onClick={() => window.open('/kullanici-sozlesmesi', '_blank')}>
                             <label>Kullanıcı Sözleşmesi</label>
                         </div>
-                        <div className={styles.menu}>
+                        <div className={styles.menu} onClick={() => window.open('/acik-riza-metni', '_blank')}>
                             <label>Açık Rıza Beyanı</label>
-                        </div>
-                        <div className={styles.menu}>
-                            <label>İletişim</label>
                         </div>
                     </div>
 
@@ -43,11 +31,13 @@ const Footer  = () => {
                             <h1>Hakkımızda</h1>
                             <label>Gönülden Sevenler</label>
                         </div>
-                        <div className={styles.item}>
-                            <h1>Adres Bigileri</h1>
-                            <label>Email: -</label>
-                            <label>Email: -</label>
-                        </div>
+                        {
+                            //<div className={styles.item}>
+                            //    <h1>Adres Bigileri</h1>
+                            //    <label>Email: -</label>
+                            //    <label>Email: -</label>
+                            //</div>
+                        }
                         <div className={styles.follow}>
                             <h1>Bizi Takip Edin</h1>
                             <div className={styles.social}>
