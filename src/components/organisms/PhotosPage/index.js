@@ -56,6 +56,7 @@ const PhotosPage = ({
                                             <th>ID</th>
                                             <th>İsim</th>
                                             <th>Soyisim</th>
+                                            <th>Kullanıcı Adı</th>
                                             <th>Fotoğraf</th>
                                             <th>Durum</th>
                                             <th>Tarih</th>
@@ -68,6 +69,7 @@ const PhotosPage = ({
                                             <td>{photo.id}</td>
                                             <td>{photo?.user?.name}</td>
                                             <td>{photo?.user?.surname}</td>
+                                            <td>{photo?.user?.username}</td>
                                             <td>
                                                 {photo.photo_path ? (
                                                     <img
