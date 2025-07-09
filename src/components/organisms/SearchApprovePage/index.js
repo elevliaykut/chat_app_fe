@@ -35,7 +35,8 @@ const SearchApprovePage = ({
     messageIsLoading = false,
     messages = [],
     sendMessageCompleted = false,
-    getApproveUsers = () => {}
+    getApproveUsers = () => {},
+    isThatActive = false
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
@@ -140,6 +141,7 @@ const SearchApprovePage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

@@ -47,6 +47,7 @@ const mapStateToProps = state => ({
     readIncomingMessageComplete: state?.notifications?.readIncomingMessageComplete,
     userBlockedComplete: state?.user?.userBlockedComplete,
     userReportsComplete: state?.user?.userReportsComplete,
+    isThatActive: state?.user?.isThatActive
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -70,7 +70,8 @@ const mapStateToProps = state => ({
     messages: state?.notifications?.messages,
     sendMessageCompleted: state?.notifications?.sendMessageCompleted,
     photos: state?.user?.photos,
-    userPhotoIsLoading: state?.user?.userPhotoIsLoading
+    userPhotoIsLoading: state?.user?.userPhotoIsLoading,
+    isThatActive: state?.user?.isThatActive,
 });
 
 const mapDispatchToProps = dispatch => ({

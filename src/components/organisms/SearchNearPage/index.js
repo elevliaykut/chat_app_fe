@@ -35,7 +35,8 @@ const SearchNearPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    isThatActive = false
 }) => {
     const [memberVisible, setMemberVisible] = useState(false);
     const [userMeVisible, setUserMeVisible] = useState(false);
@@ -154,6 +155,7 @@ const SearchNearPage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

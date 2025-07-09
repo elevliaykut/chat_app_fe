@@ -315,6 +315,7 @@ const HomePage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}
@@ -473,7 +474,6 @@ const HomePage = ({
                                     setSelectedMessageUserId={setSelectedMessageUserId}
                                     setSelectedUsername={setSelectedUsername}
                                     setSelectedUserStatus={setSelectedUserStatus}
-                                    
                                     setPostReportModalVisible={setPostReportModalVisible}
                                     setUserId={setUserId}
                                     setPostId={setPostId}

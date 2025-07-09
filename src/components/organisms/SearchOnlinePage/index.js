@@ -37,7 +37,8 @@ const SearchOnlinePage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    isThatActive = false
 }) => {
 
     const [visible, setVisible] = useState(false);
@@ -143,6 +144,7 @@ const SearchOnlinePage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

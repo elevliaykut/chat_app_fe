@@ -39,6 +39,7 @@ const MessagesPage = ({
     userReports = () => {},
     userReportsReset = () => {},
     userReportsComplete = false,
+    isThatActive = false
 }) => {
     const [messageVisible, setMessageVisible]                           = useState(false);
     const [messageContentVisible, setMessageContentVisible]             = useState(false);
@@ -334,25 +335,41 @@ const MessagesPage = ({
                                                 <label>{username}</label>
                                             </div>
 
-                                            {messages.map((msg) => {
-                                                const isMe = msg.sender?.id === userMe?.id;
+                                            {isThatActive  ? (
+                                                <>
+                                                    {messages.map((msg) => {
+                                                        const isMe = msg.sender?.id === userMe?.id;
 
-                                                // Tarih formatlama
-                                                const formattedDate = new Date(msg.created_at).toLocaleString('tr-TR', {
-                                                dateStyle: 'short',
-                                                timeStyle: 'short',
-                                                });
+                                                        // Tarih formatlama
+                                                        const formattedDate = new Date(msg.created_at).toLocaleString('tr-TR', {
+                                                        dateStyle: 'short',
+                                                        timeStyle: 'short',
+                                                        });
 
-                                                return (
-                                                <div
-                                                    key={msg.id}
-                                                    className={`${styles.messageItem} ${isMe ? styles.outgoing : styles.incoming}`}
-                                                >
-                                                    <div>{msg.message}</div>
-                                                    <div className={styles.messageDate}>{formattedDate}</div>
-                                                </div>
-                                                );
-                                            })}
+                                                        return (
+                                                        <div
+                                                            key={msg.id}
+                                                            className={`${styles.messageItem} ${isMe ? styles.outgoing : styles.incoming}`}
+                                                        >
+                                                            <div>{msg.message}</div>
+                                                            <div className={styles.messageDate}>{formattedDate}</div>
+                                                        </div>
+                                                        );
+                                                    })}
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div style={{ textAlign: 'center'}}>
+                                                        <h1 style={{ fontSize: '18px', paddingBottom: '20px'}}>Mesajlaşmaya başlamak için hemen Altın üye olun!</h1>
+                                                        <button style={{ width: '250px', textAlign: 'center', marginBottom: '20px'}} onClick={() => window.location = '/payment'}>HEMEN PAKETİNİ SEÇ</button>
+                                                        <label style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: 400}}> - 7/24 sınırsız mesajlaşma</label>
+                                                        <label style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: 400}}> - Üyelerle sınırsız etkileşim</label>
+                                                        <label style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: 400}}> - Avantajlı hediye alma</label>
+                                                        <label style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: 400}}> - Avantajlı ŞANSINI ARTIR gösterimi</label>
+                                                        <label style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: 400}}> - Aramalarda üst sıralarda yer alma</label>
+                                                    </div>
+                                                </>
+                                            )}
                                         </div>
 
                                     </>
@@ -363,26 +380,30 @@ const MessagesPage = ({
                                 )}
 
                                 {/* 💬 Mesaj Gönderme Alanı */}
-                                <div className={styles.messageInputContainer}>
-                                    <input
-                                        type="text"
-                                        value={newMessage}
-                                        onChange={(e) => setNewMessage(e.target.value)}
-                                        className={styles.messageInput}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter" && newMessage.trim()) {
-                                                handleSendMessage();
-                                            }
-                                        }}
-                                        placeholder="Mesajınızı yazın..."
-                                    />
-                                    <button
-                                        className={styles.sendButton}
-                                        onClick={handleSendMessage}
-                                    >
-                                        Gönder
-                                    </button>
-                                </div>
+                                {isThatActive && (
+                                    <>
+                                        <div className={styles.messageInputContainer}>
+                                            <input
+                                                type="text"
+                                                value={newMessage}
+                                                onChange={(e) => setNewMessage(e.target.value)}
+                                                className={styles.messageInput}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter" && newMessage.trim()) {
+                                                        handleSendMessage();
+                                                    }
+                                                }}
+                                                placeholder="Mesajınızı yazın..."
+                                            />
+                                            <button
+                                                className={styles.sendButton}
+                                                onClick={handleSendMessage}
+                                            >
+                                                Gönder
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
                             </>
                         ) : (
                             <>

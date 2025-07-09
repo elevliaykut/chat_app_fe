@@ -45,7 +45,8 @@ const SearchDetailPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    isThatActive = false
 }) => {
     const [username, setUsername] = useState();
     const [minAge, setMinAge] = useState();
@@ -344,6 +345,7 @@ const SearchDetailPage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

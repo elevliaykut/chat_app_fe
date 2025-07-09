@@ -18,7 +18,7 @@ const ListPostBox = ({
     setSelectedUserStatus = () => {},
     setPostReportModalVisible = () => {},
     setUserId = () => {},
-    setPostId = () => {}
+    setPostId = () => {},
 }) => {
     const pathname = usePathname();
     const isArchivePage = pathname === '/archive' || pathname === '/my-profile';

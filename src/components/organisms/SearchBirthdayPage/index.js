@@ -35,7 +35,8 @@ const SearchBirthdayPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    isThatActive = false
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
@@ -171,6 +172,7 @@ const SearchBirthdayPage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

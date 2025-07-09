@@ -39,7 +39,8 @@ const mapStateToProps = state => ({
     notificationIsLoading: state?.notifications?.notificationIsLoading,
     messageIsLoading: state?.notifications?.messageIsLoading,
     messages: state?.notifications?.messages,
-    sendMessageCompleted: state?.notifications?.sendMessageCompleted
+    sendMessageCompleted: state?.notifications?.sendMessageCompleted,
+    isThatActive: state?.user?.isThatActive
 });
 
 const mapDispatchToProps = dispatch => ({

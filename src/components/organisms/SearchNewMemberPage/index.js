@@ -35,7 +35,8 @@ const SearchNewMemberPage = ({
     resetSendMessageCompleted = () => {},
     messageIsLoading = false,
     messages = [],
-    sendMessageCompleted = false
+    sendMessageCompleted = false,
+    isThatActive = false
 }) => {
 
     const [memberVisible, setMemberVisible] = useState(false);
@@ -205,6 +206,7 @@ const SearchNewMemberPage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}

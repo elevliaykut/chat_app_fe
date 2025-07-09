@@ -66,6 +66,7 @@ const MemberDetailsPage = ({
     activityLikeComplete = false,
     activityFavoriteComplete = false,
     activitySmileComplete = false,
+    isThatActive = false
 }) => {
     
     const [profileVisible, setProfileVisible]                           = useState(false);
@@ -253,6 +254,7 @@ const MemberDetailsPage = ({
                         selectedMessageUserId={selectedMessageUserId}
                         selectedUsername={selectedUsername}
                         selectedUserStatus={selectedUserStatus}
+                        isThatActive={isThatActive}
                     />
                 </>
             )}
