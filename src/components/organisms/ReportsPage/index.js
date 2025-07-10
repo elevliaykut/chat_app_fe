@@ -56,8 +56,10 @@ const ReportsPage = ({
                                             <th>ID</th>
                                             <th>İsim</th>
                                             <th>Soyisim</th>
+                                            <th>Kullanıcı Adı</th>
                                             <th>Şikayet Edilen Kişi İsim</th>
                                             <th>Şikayet Edilen Kişi Soyisim</th>
+                                            <th>Kullanıcı Adı</th>
                                             <th>Açıklama</th>
                                             <th>Tarih</th>
                                             <th>İşlemler</th>
@@ -69,8 +71,10 @@ const ReportsPage = ({
                                                 <td>{report.id}</td>
                                                 <td>{report?.creator_user?.name}</td>
                                                 <td>{report?.creator_user?.surname}</td>
+                                                <td>{report?.creator_user?.username}</td>
                                                 <td>{report?.user?.name}</td>
                                                 <td>{report?.user?.surname}</td>
+                                                <td>{report?.user?.username}</td>
                                                 <td>{report?.description}</td>
                                                 <td>{report?.created_at}</td>
                                                 <td>
