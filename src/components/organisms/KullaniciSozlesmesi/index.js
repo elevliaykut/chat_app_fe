@@ -4,7 +4,7 @@ import TopBanner from "../../molecules/TopBanner";
 import FooterBanner from "../../molecules/FooterBanner";
 import Footer from "../../molecules/Footer";
 
-const KullaniciSözlesmesi = ({
+const KullaniciSozlesmesi = ({
     getUserMe = () => {},
     userLogout = () => {},
     getNotifications = () => {},
@@ -267,4 +267,4 @@ const KullaniciSözlesmesi = ({
         </>
     )
 }
-export default KullaniciSözlesmesi;
+export default KullaniciSozlesmesi;

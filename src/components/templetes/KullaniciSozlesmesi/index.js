@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import KullaniciSözlesmesiPageOrganisms from '../../organisms/KullaniciSözlesmesi';
+import KullaniciSozlesmesiPageOrganisms from '../../organisms/KullaniciSozlesmesi';
 
 import {
     getUserMe,
@@ -29,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
     getNotifications: payload => dispatch(getNotifications(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(KullaniciSözlesmesiPageOrganisms);
+export default connect(mapStateToProps, mapDispatchToProps)(KullaniciSozlesmesiPageOrganisms);
