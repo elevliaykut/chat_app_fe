@@ -91,7 +91,6 @@ const PaymentFormPage = ({
         });
 
         setSuccessMessageVisible(true);
-        window.location = '/home';
     }
 
     return (

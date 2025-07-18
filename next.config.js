@@ -10,8 +10,8 @@ const nextConfig = {
           pathname: '/storage/uploads/**',
         },
         {
-          protocol: 'http',
-          hostname: 'laravel-app-production-4473.up.railway.app',
+          protocol: 'https',
+          hostname: 'bikalp.xyz',
           pathname: '/storage/uploads/**',
         },
       ],
