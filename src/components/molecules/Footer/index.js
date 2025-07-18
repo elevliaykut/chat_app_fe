@@ -28,7 +28,7 @@ const Footer  = () => {
 
                     <div className={styles.centerContainer}>
                         <div className={styles.item}>
-                            <h1>Hakkımızda</h1>
+                            <h1 style={{cursor: 'pointer'}} onClick={() => window.open('/about', '_blank')}>Hakkımızda</h1>
                             <label>Gönülden Sevenler</label>
                         </div>
                         {
