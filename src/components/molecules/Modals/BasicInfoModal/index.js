@@ -15,13 +15,6 @@ const BasicInfoModal = ({
     getDistricts = []
 }) => {
 
-    useEffect(() => {
-        if(updateUserPersonalInfoComplete) {
-            onClose();
-            resetUpdateUserPersonalInfoComplete();
-        }
-    },[updateUserPersonalInfoComplete]);
-
     const [messageVisible, setMessageVisible] = useState(false);
     const [cityId, setCityId] = useState();
     const [districtId, setDistrictId] = useState();
@@ -110,43 +103,45 @@ const BasicInfoModal = ({
                             />
                         </div>
 
-                        <div style={{ marginTop: '18px'}}>
-                            <label>Yaşadığınız Şehir </label>
-                            <select
-                                defaultValue={userMe?.detail?.city?.id ?? ""}
-                                style={{ marginTop: '10px' }}
-                                onChange={cityOnChange}
-                                required
-                            >
-                                <option value="" disabled>
-                                    {userMe?.detail?.city?.name}
-                                </option>
-                                {cities?.map(item => (
-                                    <option key={item.id} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        
 
-                        <div style={{ marginTop: '18px'}}>
-                            <label>Yaşadığınız İlçe </label>
-                            <select
-                                style={{ marginTop: '10px'}}
-                                defaultValue={userMe?.detail?.district?.id ?? ""}
-								onChange={districtOnChange}
-								required
-							>
-                                <option value="" disabled>
-                                    {userMe?.detail?.district?.name}
-                                </option>
-                                {districts?.map(item => (
-                                    <>
-								        <option value={item?.id}>{item.name}</option>
-                                    </>
-                                ))}
-							</select>
-                        </div>
+                        	<div style={{ marginTop: '18px' }}>
+								<label>Yaşadığınız Şehir</label>
+								<select
+									defaultValue={userMe?.detail?.city?.id ?? ""}
+									style={{ marginTop: '10px' }}
+									onChange={cityOnChange}
+									required
+								>
+									<option value="" disabled hidden>
+										Şehir seçiniz
+									</option>
+									{cities?.map(item => (
+										<option key={item.id} value={item.id}>
+											{item.name}
+										</option>
+									))}
+								</select>
+                            </div>
+
+                            <div style={{ marginTop: '18px' }}>
+								<label>Yaşadığınız İlçe</label>
+								<select
+									defaultValue={userMe?.detail?.district?.id ?? ""}
+									style={{ marginTop: '10px' }}
+									onChange={districtOnChange}
+									required
+								>
+									<option value="" disabled hidden>
+										İlçe seçiniz
+									</option>
+									{districts?.map(item => (
+										<option key={item.id} value={item.id}>
+											{item.name}
+										</option>
+									))}
+								</select>
+                        	</div>
                         
                     </div>
                     <div className={styles.buttonEpisode}>
