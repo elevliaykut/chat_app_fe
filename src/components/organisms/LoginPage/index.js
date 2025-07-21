@@ -242,7 +242,7 @@ const LoginPage = ({
 														onChange={(e) => setIsPrivacyChecked(e.target.checked)}
 														required
 													/>
-													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px', cursor: 'pointer'}} onClick={() => window.open('/gizlilik-sozlesmesi', '_blank')}>Gizlilik Sözleşmesini okudum ve kabul ediyorum.</span>
 												</label>
 											</div>
 											<div style={{ marginTop: '5px'}}> 
@@ -254,7 +254,7 @@ const LoginPage = ({
 														onChange={(e) => setLoginPrivacyChecked(e.target.checked)}
 														required
 													/>
-													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Üyelik Sözleşmesini okudum,kabul ediyorum.</span>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px', cursor: 'pointer'}} onClick={() => window.open('/kullanici-sozlesmesi', '_blank')}>Üyelik Sözleşmesini okudum,kabul ediyorum.</span>
 												</label>
 											</div>
 											<div style={{ marginTop: '5px'}}> 
@@ -266,7 +266,7 @@ const LoginPage = ({
 														onChange={(e) => setEmailPrivacyChecked(e.target.checked)}
 														required
 													/>
-													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px'}}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
+													<span style={{ color: 'white', fontWeight: 500, paddingLeft: '12px', cursor: 'pointer'}} onClick={() => window.open('/acik-riza-metni', '_blank')}>Tafafıma tanıtıcı e-posta gönderilmesine izin veriyorum.</span>
 												</label>
 											</div>
 								</form>
