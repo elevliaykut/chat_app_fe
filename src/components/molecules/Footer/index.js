@@ -24,6 +24,9 @@ const Footer  = () => {
                         <div className={styles.menu} onClick={() => window.open('/acik-riza-metni', '_blank')}>
                             <label>Açık Rıza Beyanı</label>
                         </div>
+                        <div className={styles.menu} onClick={() => window.open('/iletisim', '_blank')}>
+                            <label>İletişim</label>
+                        </div>
                     </div>
 
                     <div className={styles.centerContainer}>
