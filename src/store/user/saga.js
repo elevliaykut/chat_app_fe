@@ -190,7 +190,7 @@ function* loginUserTask(action) {
 		cookies.set('chatAppToken', data?.token);
 
 		if(data?.data?.type === 1) {
-			if(data?.data?.personal_info_complete) {
+			if(data?.data?.personal_info_complete === 1) {
 				window.location = '/home';
 			} else {
 				window.location = '/info';
