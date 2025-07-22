@@ -190,9 +190,10 @@ function* loginUserTask(action) {
 		cookies.set('chatAppToken', data?.token);
 
 		if(data?.data?.type === 1) {
-			if(data?.data?.personal_info_complete === 1) {
+			if(data?.data?.personal_info_complete === 1 || data?.data?.personal_info_complete === true) {
 				window.location = '/home';
-			} else {
+			}
+			if(data?.data?.personal_info_complete === 0 || data?.data?.personal_info_complete === false) {
 				window.location = '/info';
 			}
 		}
